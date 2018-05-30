@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CC_Synchronizer.AppService;
 
 namespace CC_Synchronizer
 {
@@ -13,15 +14,8 @@ namespace CC_Synchronizer
             Console.WriteLine("Chocolate Costumizer Syncronizer\n\nPress any key to end.");
             Console.ReadLine();
 
-            //try
-            //{
-            //    //ToDo: Start App-Provider                
-            //}
-            //catch (SocketException e)
-            //{
-
-            //}
-
+            //AppServer appServer = new AppServer();
+            
             //ToDO: Start Webfrontend-Provider
         }
     }
