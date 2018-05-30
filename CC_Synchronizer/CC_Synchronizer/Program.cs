@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CC_Synchronizer.AppService;
+using CC_Synchronizer.FrontendService;
 
 namespace CC_Synchronizer
 {
@@ -15,8 +16,8 @@ namespace CC_Synchronizer
             Console.ReadLine();
 
             //AppServer appServer = new AppServer();
-            
-            //ToDO: Start Webfrontend-Provider
+
+            //FrontendHost feHost = new FrontendHost();
         }
     }
 }

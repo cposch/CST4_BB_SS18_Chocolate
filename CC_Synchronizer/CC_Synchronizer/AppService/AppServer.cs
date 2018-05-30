@@ -18,6 +18,7 @@ namespace CC_Synchronizer.AppService
             serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             serverSocket.Bind(new IPEndPoint(IPAddress.Any, 8181));
             serverSocket.Listen(100);
+            Console.WriteLine("App Server started");
             Task.Factory.StartNew(StartAccepting);
         }
 

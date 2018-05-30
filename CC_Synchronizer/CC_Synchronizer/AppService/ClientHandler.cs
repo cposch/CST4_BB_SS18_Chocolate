@@ -16,7 +16,7 @@ namespace CC_Synchronizer.AppService
         {
             this.socket = socket;
 
-            Console.WriteLine("App-Client connected from " + socket.RemoteEndPoint.ToString());
+            Console.WriteLine("App Client connected from " + socket.RemoteEndPoint.ToString());
             Task.Factory.StartNew(Recieve);
         }
 
