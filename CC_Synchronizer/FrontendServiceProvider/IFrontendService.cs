@@ -11,7 +11,9 @@ namespace FrontendServiceProvider
     [ServiceContract]
     public interface IFrontendService
     {
+        // Testmethode, um aus der Backend DB ein Produkt an das Frontend zu liefern um zu sehen, ob transport der Daten funkt.
+
         [OperationContract]
-        void GetChanges();
+        void GetProducts();
     }
 }
