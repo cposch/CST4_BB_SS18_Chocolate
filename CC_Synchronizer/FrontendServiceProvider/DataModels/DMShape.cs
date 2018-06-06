@@ -9,10 +9,20 @@ namespace FrontendServiceProvider.DataModels
     class DMShape
     {
         // only Oracle Backend values. table name = SHAPE
-        // how many values do we need?
+        
         public Guid ShapeID { get; set; }
         public string ShapeName { get; set; }
 
-        // add constructor
+        // constructor
+        public DMShape()
+        {
+
+        }
+
+        public DMShape(Guid shapeID, string shapeName)
+        {
+            ShapeID = shapeID;
+            ShapeName = shapeName;
+        }
     }
 }

@@ -9,11 +9,22 @@ namespace FrontendServiceProvider.DataModels
     public class DMPackage
     {
         // only Oracle Backend values. table name = PACKAGE
-        // how many values do we need?
+        
         public Guid PackageID { get; set; }
         public string PackageName { get; set; }
         public float PackagePrice { get; set; }
 
-        // add constructor
+        // constructor
+        public DMPackage()
+        {
+
+        }
+
+        public DMPackage(Guid packageID, string packageName, float packagePrice)
+        {
+            PackageID = packageID;
+            PackageName = packageName;
+            PackagePrice = packagePrice;
+        }
     }
 }

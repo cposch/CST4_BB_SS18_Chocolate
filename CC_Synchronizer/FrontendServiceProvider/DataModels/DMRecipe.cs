@@ -9,10 +9,20 @@ namespace FrontendServiceProvider.DataModels
     public class DMRecipe
     {
         // only Oracle Backend values. table name = RECIEPE
-        // how many values do we need?
+        
         public Guid RecipeID { get; set; }
         public string ReciepeDescription { get; set; }
 
-        // add constructor
+        // constructor
+        public DMRecipe()
+        {
+
+        }
+
+        public DMRecipe(Guid recipeID, string reciepeDescription)
+        {
+            RecipeID = recipeID;
+            ReciepeDescription = reciepeDescription;
+        }
     }
 }
