@@ -15,7 +15,6 @@ namespace FrontendServiceProvider.DataModels
         public string ProductDescription { get; set; }
         public long ProductPrice { get; set; }
         public DMRecipe ProductRecipe { get; set; }
-        //public DMShape ProductShape { get; set; }
 
         // add constructor
 
