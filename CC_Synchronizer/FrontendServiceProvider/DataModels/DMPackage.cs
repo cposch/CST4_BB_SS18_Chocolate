@@ -9,9 +9,8 @@ namespace FrontendServiceProvider.DataModels
     public class DMPackage
     {
         // only Oracle Backend values. table name = PACKAGE
-        // ToDo: add values from PHP myAdmin database
         // how many values do we need?
-        public int ProductID { get; set; }
+        public Guid PackageID { get; set; }
         public string PackageName { get; set; }
         public float PackagePrice { get; set; }
 

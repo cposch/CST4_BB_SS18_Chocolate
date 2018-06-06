@@ -8,13 +8,13 @@ namespace FrontendServiceProvider.DataModels
 {
     public class DMIngredient
     {
-        // only Oracle Backend values. table name = INGREDIENT (+ INGREDIENT_CATEGORY for the category)
-        // ToDo: add values from PHP myAdmin database
+        // only Oracle Backend values. table name = INGREDIENT
         // how many values do we need?
-        public float IngredientPrice { get; set; }
-        public string IngredientType { get; set; }
+        public Guid IngredientID { get; set; }
+        public string IngredientName { get; set; }
         public string IngredientDescription { get; set; }
-        public string Category { get; set; }
+        public float IngredientPrice { get; set; }
+        public string IngredientCategory { get; set; }
 
         // add constructor
     }

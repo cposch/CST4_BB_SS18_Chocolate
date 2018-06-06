@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace FrontendServiceProvider.DataModels
 {
-    public class DMRecipe
+    class DMShape
     {
-        // only Oracle Backend values. table name = RECIEPE
+        // only Oracle Backend values. table name = SHAPE
         // how many values do we need?
-        public Guid RecipeID { get; set; }
-        public string ReciepeDescription { get; set; }
+        public Guid ShapeID { get; set; }
+        public string ShapeName { get; set; }
 
         // add constructor
     }

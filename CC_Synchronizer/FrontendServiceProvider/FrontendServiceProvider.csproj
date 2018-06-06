@@ -47,6 +47,7 @@
     <Compile Include="DataModels\DMPackage.cs" />
     <Compile Include="DataModels\DMProduct.cs" />
     <Compile Include="DataModels\DMRecipe.cs" />
+    <Compile Include="DataModels\DMShape.cs" />
     <Compile Include="FrontendService.cs" />
     <Compile Include="IFrontendService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
