@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
+using CC_Synchronizer.AppService.Data;
 
 namespace CC_Synchronizer.AppService
 {

@@ -8,6 +8,6 @@ namespace CC_Synchronizer.AppService.Data
 {
     public class SyncClassIngredientCategory
     {
-        IngredientCategoryAppData a;
+        IngredientCategoryAppData[] Element;
     }
 }
