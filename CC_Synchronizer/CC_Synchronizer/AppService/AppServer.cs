@@ -25,7 +25,9 @@ namespace CC_Synchronizer.AppService
         private void StartAccepting()
         {
             while (true)
+            {
                 clients.Add(new ClientHandler(serverSocket.Accept()));
+            }
         }
     }
 }
