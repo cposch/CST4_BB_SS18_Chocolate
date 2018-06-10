@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Xml.Serialization;
 
 namespace CC_Synchronizer.AppService.Data
 {
+    [XmlRoot("IngredientCategory")]
+    public class AppIngredientCategory
+    {
+        [XmlAnyElement("Item")]
+        IngredientCategoryAppData[] items;
+    }
+
     public class IngredientCategoryAppData
     {
         public int ID { get; set; }

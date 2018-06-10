@@ -47,8 +47,7 @@
   <ItemGroup>
     <Compile Include="AppService\AppServer.cs" />
     <Compile Include="AppService\ClientHandler.cs" />
-    <Compile Include="AppService\Data\IngredientCategoryAppData.cs" />
-    <Compile Include="AppService\Data\SyncClassIngredientCategory.cs" />
+    <Compile Include="AppService\Data\AppIngredientCategory.cs" />
     <Compile Include="FrontendService\FrontendHost.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
