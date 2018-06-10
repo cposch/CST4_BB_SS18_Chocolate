@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RESTFrontendService.DataModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -12,8 +13,14 @@ namespace RESTFrontendService
     [ServiceContract]
     public interface IRestServiceImpl
     {
+         /*
+         [OperationContract]
+         [WebInvoke(Method ="GET", ResponseFormat = WebMessageFormat.Xml, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "xml/{id}")]
+         string Data(string id);
+         */
+
         [OperationContract]
-        [WebInvoke(Method ="GET", ResponseFormat = WebMessageFormat.Xml, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "xml/{id}")]
-        void DoWork();
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Xml, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "xml")]
+        DMProduct Data();
     }
 }
