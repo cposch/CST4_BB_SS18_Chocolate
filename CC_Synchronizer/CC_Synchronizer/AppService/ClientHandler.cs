@@ -5,7 +5,6 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
-using CC_Synchronizer.AppService.Data;
 
 namespace CC_Synchronizer.AppService
 {
@@ -29,11 +28,14 @@ namespace CC_Synchronizer.AppService
 
             length = socket.Receive(buffer);
             recievingString = Encoding.UTF8.GetString(buffer, 0, length);
-
             Console.WriteLine(recievingString);
-            socket.Send(Encoding.UTF8.GetBytes(recievingString));
 
-            //ToDo: Splitting recievied string
+            //ToDo: Try save XML data in classes 
+
+            socket.Send(Encoding.UTF8.GetBytes(recievingString));
+            Console.WriteLine("String returned");
+
+            //ToDo: Splitting recievied string?
 
         }
     }
