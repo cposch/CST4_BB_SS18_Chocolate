@@ -31,7 +31,8 @@ namespace CC_Synchronizer.AppService
             recievingString = Encoding.UTF8.GetString(buffer, 0, length);
 
             Console.WriteLine(recievingString);
-            
+            socket.Send(Encoding.UTF8.GetBytes(recievingString));
+
             //ToDo: Splitting recievied string
 
         }

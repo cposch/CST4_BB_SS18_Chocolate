@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8468DAE2-9729-491F-9CF0-869478763403}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>CC_Synchronizer</RootNamespace>
-    <AssemblyName>CC_Synchronizer</AssemblyName>
+    <ProjectGuid>{77139AB5-961D-48C2-8855-C2E5DB6DD1DA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AppSharedClasses</RootNamespace>
+    <AssemblyName>AppSharedClasses</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,10 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,29 +41,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppService\AppServer.cs" />
-    <Compile Include="AppService\ClientHandler.cs" />
-    <Compile Include="AppService\SyncXMLSerializer.cs" />
-    <Compile Include="FrontendService\FrontendHost.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="AppChanges.cs" />
+    <Compile Include="AppCustomers.cs" />
+    <Compile Include="AppIngredient.cs" />
+    <Compile Include="AppIngredientCategory.cs" />
+    <Compile Include="AppOffers.cs" />
+    <Compile Include="AppOrderItems.cs" />
+    <Compile Include="AppOrders.cs" />
+    <Compile Include="AppPackage.cs" />
+    <Compile Include="AppProductInfo.cs" />
+    <Compile Include="AppRecipe.cs" />
+    <Compile Include="AppRecipeIngredients.cs" />
+    <Compile Include="AppRule.cs" />
+    <Compile Include="AppRuleCategories.cs" />
+    <Compile Include="AppShape.cs" />
+    <Compile Include="AppTableID.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AppSharedClasses\AppSharedClasses.csproj">
-      <Project>{77139ab5-961d-48c2-8855-c2e5db6dd1da}</Project>
-      <Name>AppSharedClasses</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BackendDataHandler\BackendDataHandler.csproj">
-      <Project>{86386307-7a44-4300-b3f4-de6d7c2bbcd6}</Project>
-      <Name>BackendDataHandler</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FrontendServiceProvider\FrontendServiceProvider.csproj">
-      <Project>{fdd95d55-81a7-48d8-a845-08a267b2fa2b}</Project>
-      <Name>FrontendServiceProvider</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
