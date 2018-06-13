@@ -13,9 +13,10 @@ namespace CC_Synchronizer
     {
         static void Main(string[] args)
         {
+           /* Insert Product Test -- there be dragons!
             BackendDataHandling BDH = new BackendDataHandling();
             Product testproduct = new Product(99, "Test", "TestBeschreibung", "TestCategory", "Y", 33, new byte[100], "image//jpg", "shirt.jpg", new DateTime(), "Sweet", 44, new DateTime(), new DateTime());
-            BDH.AddProduct(testproduct);
+            BDH.AddProduct(testproduct); */
             Console.WriteLine("Chocolate Costumizer Syncronizer\n\nPress any key to end.");
             Console.ReadLine();
 
