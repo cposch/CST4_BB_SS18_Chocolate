@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BackendDataHandler
+namespace SharedLibrary.Models
 {
-
     public class Product
     {
         public Product()
