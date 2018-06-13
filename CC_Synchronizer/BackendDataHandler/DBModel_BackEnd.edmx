@@ -1,0 +1,2498 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DBModelBE.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="APEX$_ACL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="WS_APP_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="USERNAME" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="PRIV" Type="varchar2" MaxLength="1" Nullable="false" />
+          <Property Name="CREATED_ON" Type="date" Nullable="false" />
+          <Property Name="CREATED_BY" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="date" />
+          <Property Name="UPDATED_BY" Type="varchar2" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="APEX$_WS_FILES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="WS_APP_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DATA_GRID_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="ROW_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="WEBPAGE_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="COMPONENT_LEVEL" Type="varchar2" MaxLength="30" />
+          <Property Name="NAME" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="IMAGE_ALIAS" Type="varchar2" MaxLength="255" />
+          <Property Name="IMAGE_ATTRIBUTES" Type="varchar2" MaxLength="255" />
+          <Property Name="CONTENT" Type="blob" />
+          <Property Name="CONTENT_LAST_UPDATE" Type="date" />
+          <Property Name="MIME_TYPE" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="CONTENT_CHARSET" Type="varchar2" MaxLength="255" />
+          <Property Name="CONTENT_FILENAME" Type="varchar2" MaxLength="500" />
+          <Property Name="DESCRIPTION" Type="varchar2" MaxLength="4000" />
+          <Property Name="CREATED_ON" Type="date" Nullable="false" />
+          <Property Name="CREATED_BY" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="date" />
+          <Property Name="UPDATED_BY" Type="varchar2" MaxLength="255" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ADMIN.APEX$_WS_HISTORY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="APEX$_WS_HISTORY">
+          <Key>
+            <PropertyRef Name="ROW_ID" />
+            <PropertyRef Name="WS_APP_ID" />
+            <PropertyRef Name="DATA_GRID_ID" />
+          </Key>
+          <Property Name="ROW_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="WS_APP_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DATA_GRID_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="COLUMN_NAME" Type="varchar2" MaxLength="255" />
+          <Property Name="OLD_VALUE" Type="varchar2" MaxLength="4000" />
+          <Property Name="NEW_VALUE" Type="varchar2" MaxLength="4000" />
+          <Property Name="APPLICATION_USER_ID" Type="varchar2" MaxLength="255" />
+          <Property Name="CHANGE_DATE" Type="date" />
+        </EntityType>
+        <EntityType Name="APEX$_WS_LINKS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="WS_APP_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DATA_GRID_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="ROW_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="WEBPAGE_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="COMPONENT_LEVEL" Type="varchar2" MaxLength="30" />
+          <Property Name="TAGS" Type="varchar2" MaxLength="4000" />
+          <Property Name="SHOW_ON_HOMEPAGE" Type="varchar2" MaxLength="1" />
+          <Property Name="LINK_NAME" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="URL" Type="varchar2" MaxLength="4000" Nullable="false" />
+          <Property Name="LINK_DESCRIPTION" Type="varchar2" MaxLength="4000" />
+          <Property Name="DISPLAY_SEQUENCE" Type="number" Precision="38" Scale="0" />
+          <Property Name="CREATED_ON" Type="date" Nullable="false" />
+          <Property Name="CREATED_BY" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="date" />
+          <Property Name="UPDATED_BY" Type="varchar2" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="APEX$_WS_NOTES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="WS_APP_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DATA_GRID_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="ROW_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="WEBPAGE_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="COMPONENT_LEVEL" Type="varchar2" MaxLength="30" />
+          <Property Name="CONTENT" Type="clob" />
+          <Property Name="CREATED_ON" Type="date" Nullable="false" />
+          <Property Name="CREATED_BY" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="date" />
+          <Property Name="UPDATED_BY" Type="varchar2" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="APEX$_WS_ROWS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="WS_APP_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DATA_GRID_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="UNIQUE_VALUE" Type="varchar2" MaxLength="255" />
+          <Property Name="TAGS" Type="varchar2" MaxLength="4000" />
+          <Property Name="PARENT_ROW_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="OWNER" Type="varchar2" MaxLength="255" />
+          <Property Name="GEOCODE" Type="varchar2" MaxLength="512" />
+          <Property Name="LOAD_ORDER" Type="number" Precision="38" Scale="0" />
+          <Property Name="CHANGE_COUNT" Type="number" Precision="38" Scale="0" />
+          <Property Name="CREATED_ON" Type="date" Nullable="false" />
+          <Property Name="CREATED_BY" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="date" />
+          <Property Name="UPDATED_BY" Type="varchar2" MaxLength="255" />
+          <Property Name="C001" Type="varchar2" MaxLength="4000" />
+          <Property Name="C002" Type="varchar2" MaxLength="4000" />
+          <Property Name="C003" Type="varchar2" MaxLength="4000" />
+          <Property Name="C004" Type="varchar2" MaxLength="4000" />
+          <Property Name="C005" Type="varchar2" MaxLength="4000" />
+          <Property Name="C006" Type="varchar2" MaxLength="4000" />
+          <Property Name="C007" Type="varchar2" MaxLength="4000" />
+          <Property Name="C008" Type="varchar2" MaxLength="4000" />
+          <Property Name="C009" Type="varchar2" MaxLength="4000" />
+          <Property Name="C010" Type="varchar2" MaxLength="4000" />
+          <Property Name="C011" Type="varchar2" MaxLength="4000" />
+          <Property Name="C012" Type="varchar2" MaxLength="4000" />
+          <Property Name="C013" Type="varchar2" MaxLength="4000" />
+          <Property Name="C014" Type="varchar2" MaxLength="4000" />
+          <Property Name="C015" Type="varchar2" MaxLength="4000" />
+          <Property Name="C016" Type="varchar2" MaxLength="4000" />
+          <Property Name="C017" Type="varchar2" MaxLength="4000" />
+          <Property Name="C018" Type="varchar2" MaxLength="4000" />
+          <Property Name="C019" Type="varchar2" MaxLength="4000" />
+          <Property Name="C020" Type="varchar2" MaxLength="4000" />
+          <Property Name="C021" Type="varchar2" MaxLength="4000" />
+          <Property Name="C022" Type="varchar2" MaxLength="4000" />
+          <Property Name="C023" Type="varchar2" MaxLength="4000" />
+          <Property Name="C024" Type="varchar2" MaxLength="4000" />
+          <Property Name="C025" Type="varchar2" MaxLength="4000" />
+          <Property Name="C026" Type="varchar2" MaxLength="4000" />
+          <Property Name="C027" Type="varchar2" MaxLength="4000" />
+          <Property Name="C028" Type="varchar2" MaxLength="4000" />
+          <Property Name="C029" Type="varchar2" MaxLength="4000" />
+          <Property Name="C030" Type="varchar2" MaxLength="4000" />
+          <Property Name="C031" Type="varchar2" MaxLength="4000" />
+          <Property Name="C032" Type="varchar2" MaxLength="4000" />
+          <Property Name="C033" Type="varchar2" MaxLength="4000" />
+          <Property Name="C034" Type="varchar2" MaxLength="4000" />
+          <Property Name="C035" Type="varchar2" MaxLength="4000" />
+          <Property Name="C036" Type="varchar2" MaxLength="4000" />
+          <Property Name="C037" Type="varchar2" MaxLength="4000" />
+          <Property Name="C038" Type="varchar2" MaxLength="4000" />
+          <Property Name="C039" Type="varchar2" MaxLength="4000" />
+          <Property Name="C040" Type="varchar2" MaxLength="4000" />
+          <Property Name="C041" Type="varchar2" MaxLength="4000" />
+          <Property Name="C042" Type="varchar2" MaxLength="4000" />
+          <Property Name="C043" Type="varchar2" MaxLength="4000" />
+          <Property Name="C044" Type="varchar2" MaxLength="4000" />
+          <Property Name="C045" Type="varchar2" MaxLength="4000" />
+          <Property Name="C046" Type="varchar2" MaxLength="4000" />
+          <Property Name="C047" Type="varchar2" MaxLength="4000" />
+          <Property Name="C048" Type="varchar2" MaxLength="4000" />
+          <Property Name="C049" Type="varchar2" MaxLength="4000" />
+          <Property Name="C050" Type="varchar2" MaxLength="4000" />
+          <Property Name="N001" Type="number" Precision="38" Scale="0" />
+          <Property Name="N002" Type="number" Precision="38" Scale="0" />
+          <Property Name="N003" Type="number" Precision="38" Scale="0" />
+          <Property Name="N004" Type="number" Precision="38" Scale="0" />
+          <Property Name="N005" Type="number" Precision="38" Scale="0" />
+          <Property Name="N006" Type="number" Precision="38" Scale="0" />
+          <Property Name="N007" Type="number" Precision="38" Scale="0" />
+          <Property Name="N008" Type="number" Precision="38" Scale="0" />
+          <Property Name="N009" Type="number" Precision="38" Scale="0" />
+          <Property Name="N010" Type="number" Precision="38" Scale="0" />
+          <Property Name="N011" Type="number" Precision="38" Scale="0" />
+          <Property Name="N012" Type="number" Precision="38" Scale="0" />
+          <Property Name="N013" Type="number" Precision="38" Scale="0" />
+          <Property Name="N014" Type="number" Precision="38" Scale="0" />
+          <Property Name="N015" Type="number" Precision="38" Scale="0" />
+          <Property Name="N016" Type="number" Precision="38" Scale="0" />
+          <Property Name="N017" Type="number" Precision="38" Scale="0" />
+          <Property Name="N018" Type="number" Precision="38" Scale="0" />
+          <Property Name="N019" Type="number" Precision="38" Scale="0" />
+          <Property Name="N020" Type="number" Precision="38" Scale="0" />
+          <Property Name="N021" Type="number" Precision="38" Scale="0" />
+          <Property Name="N022" Type="number" Precision="38" Scale="0" />
+          <Property Name="N023" Type="number" Precision="38" Scale="0" />
+          <Property Name="N024" Type="number" Precision="38" Scale="0" />
+          <Property Name="N025" Type="number" Precision="38" Scale="0" />
+          <Property Name="N026" Type="number" Precision="38" Scale="0" />
+          <Property Name="N027" Type="number" Precision="38" Scale="0" />
+          <Property Name="N028" Type="number" Precision="38" Scale="0" />
+          <Property Name="N029" Type="number" Precision="38" Scale="0" />
+          <Property Name="N030" Type="number" Precision="38" Scale="0" />
+          <Property Name="N031" Type="number" Precision="38" Scale="0" />
+          <Property Name="N032" Type="number" Precision="38" Scale="0" />
+          <Property Name="N033" Type="number" Precision="38" Scale="0" />
+          <Property Name="N034" Type="number" Precision="38" Scale="0" />
+          <Property Name="N035" Type="number" Precision="38" Scale="0" />
+          <Property Name="N036" Type="number" Precision="38" Scale="0" />
+          <Property Name="N037" Type="number" Precision="38" Scale="0" />
+          <Property Name="N038" Type="number" Precision="38" Scale="0" />
+          <Property Name="N039" Type="number" Precision="38" Scale="0" />
+          <Property Name="N040" Type="number" Precision="38" Scale="0" />
+          <Property Name="N041" Type="number" Precision="38" Scale="0" />
+          <Property Name="N042" Type="number" Precision="38" Scale="0" />
+          <Property Name="N043" Type="number" Precision="38" Scale="0" />
+          <Property Name="N044" Type="number" Precision="38" Scale="0" />
+          <Property Name="N045" Type="number" Precision="38" Scale="0" />
+          <Property Name="N046" Type="number" Precision="38" Scale="0" />
+          <Property Name="N047" Type="number" Precision="38" Scale="0" />
+          <Property Name="N048" Type="number" Precision="38" Scale="0" />
+          <Property Name="N049" Type="number" Precision="38" Scale="0" />
+          <Property Name="N050" Type="number" Precision="38" Scale="0" />
+          <Property Name="D001" Type="date" />
+          <Property Name="D002" Type="date" />
+          <Property Name="D003" Type="date" />
+          <Property Name="D004" Type="date" />
+          <Property Name="D005" Type="date" />
+          <Property Name="D006" Type="date" />
+          <Property Name="D007" Type="date" />
+          <Property Name="D008" Type="date" />
+          <Property Name="D009" Type="date" />
+          <Property Name="D010" Type="date" />
+          <Property Name="D011" Type="date" />
+          <Property Name="D012" Type="date" />
+          <Property Name="D013" Type="date" />
+          <Property Name="D014" Type="date" />
+          <Property Name="D015" Type="date" />
+          <Property Name="D016" Type="date" />
+          <Property Name="D017" Type="date" />
+          <Property Name="D018" Type="date" />
+          <Property Name="D019" Type="date" />
+          <Property Name="D020" Type="date" />
+          <Property Name="D021" Type="date" />
+          <Property Name="D022" Type="date" />
+          <Property Name="D023" Type="date" />
+          <Property Name="D024" Type="date" />
+          <Property Name="D025" Type="date" />
+          <Property Name="D026" Type="date" />
+          <Property Name="D027" Type="date" />
+          <Property Name="D028" Type="date" />
+          <Property Name="D029" Type="date" />
+          <Property Name="D030" Type="date" />
+          <Property Name="D031" Type="date" />
+          <Property Name="D032" Type="date" />
+          <Property Name="D033" Type="date" />
+          <Property Name="D034" Type="date" />
+          <Property Name="D035" Type="date" />
+          <Property Name="D036" Type="date" />
+          <Property Name="D037" Type="date" />
+          <Property Name="D038" Type="date" />
+          <Property Name="D039" Type="date" />
+          <Property Name="D040" Type="date" />
+          <Property Name="D041" Type="date" />
+          <Property Name="D042" Type="date" />
+          <Property Name="D043" Type="date" />
+          <Property Name="D044" Type="date" />
+          <Property Name="D045" Type="date" />
+          <Property Name="D046" Type="date" />
+          <Property Name="D047" Type="date" />
+          <Property Name="D048" Type="date" />
+          <Property Name="D049" Type="date" />
+          <Property Name="D050" Type="date" />
+          <Property Name="CLOB001" Type="clob" />
+          <Property Name="SEARCH_CLOB" Type="clob" />
+        </EntityType>
+        <EntityType Name="APEX$_WS_TAGS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="WS_APP_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DATA_GRID_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="ROW_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="WEBPAGE_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="COMPONENT_LEVEL" Type="varchar2" MaxLength="30" />
+          <Property Name="TAG" Type="varchar2" MaxLength="4000" />
+          <Property Name="CREATED_ON" Type="date" Nullable="false" />
+          <Property Name="CREATED_BY" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="date" />
+          <Property Name="UPDATED_BY" Type="varchar2" MaxLength="255" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ADMIN.APEX$_WS_WEBPG_SECTION_HISTORY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="APEX$_WS_WEBPG_SECTION_HISTORY">
+          <Key>
+            <PropertyRef Name="SECTION_ID" />
+            <PropertyRef Name="WS_APP_ID" />
+            <PropertyRef Name="WEBPAGE_ID" />
+            <PropertyRef Name="APPLICATION_USER_ID" />
+            <PropertyRef Name="CHANGE_DATE" />
+          </Key>
+          <Property Name="SECTION_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="WS_APP_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="WEBPAGE_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="OLD_DISPLAY_SEQUENCE" Type="number" Precision="38" Scale="0" />
+          <Property Name="NEW_DISPLAY_SEQUENCE" Type="number" Precision="38" Scale="0" />
+          <Property Name="OLD_TITLE" Type="varchar2" MaxLength="4000" />
+          <Property Name="NEW_TITLE" Type="varchar2" MaxLength="4000" />
+          <Property Name="OLD_CONTENT" Type="clob" />
+          <Property Name="NEW_CONTENT" Type="clob" />
+          <Property Name="APPLICATION_USER_ID" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="CHANGE_DATE" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="APEX$_WS_WEBPG_SECTIONS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="WS_APP_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="WEBPAGE_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="DISPLAY_SEQUENCE" Type="number" Precision="38" Scale="0" />
+          <Property Name="SECTION_TYPE" Type="varchar2" MaxLength="30" Nullable="false" />
+          <Property Name="TITLE" Type="varchar2" MaxLength="4000" />
+          <Property Name="CONTENT" Type="clob" />
+          <Property Name="CONTENT_UPPER" Type="clob" />
+          <Property Name="NAV_START_WEBPAGE_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="NAV_MAX_LEVEL" Type="number" Precision="38" Scale="0" />
+          <Property Name="NAV_ORDER_BY" Type="varchar2" MaxLength="255" />
+          <Property Name="NAV_INCLUDE_LINK" Type="varchar2" MaxLength="1" />
+          <Property Name="DATA_GRID_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="REPORT_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="DATA_SECTION_STYLE" Type="number" Precision="38" Scale="0" />
+          <Property Name="SHOW_ADD_ROW" Type="varchar2" MaxLength="1" />
+          <Property Name="SHOW_EDIT_ROW" Type="varchar2" MaxLength="1" />
+          <Property Name="SHOW_SEARCH" Type="varchar2" MaxLength="1" />
+          <Property Name="MAX_ROW_COUNT" Type="number" Precision="38" Scale="0" />
+          <Property Name="CHART_TYPE" Type="varchar2" MaxLength="255" />
+          <Property Name="CHART_3D" Type="varchar2" MaxLength="1" />
+          <Property Name="CHART_LABEL" Type="varchar2" MaxLength="255" />
+          <Property Name="LABEL_AXIS_TITLE" Type="varchar2" MaxLength="255" />
+          <Property Name="CHART_VALUE" Type="varchar2" MaxLength="255" />
+          <Property Name="VALUE_AXIS_TITLE" Type="varchar2" MaxLength="255" />
+          <Property Name="CHART_AGGREGATE" Type="varchar2" MaxLength="255" />
+          <Property Name="CHART_SORTING" Type="varchar2" MaxLength="255" />
+          <Property Name="CHANGE_COUNT" Type="number" Precision="38" Scale="0" />
+          <Property Name="CREATED_ON" Type="date" Nullable="false" />
+          <Property Name="CREATED_BY" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="date" />
+          <Property Name="UPDATED_BY" Type="varchar2" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="APEX$TEAM_DEV_FILES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ROW_VERSION_NUMBER" Type="number" Precision="38" Scale="0" />
+          <Property Name="COMPONENT_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="COMPONENT_TYPE" Type="varchar2" MaxLength="30" Nullable="false" />
+          <Property Name="FILENAME" Type="varchar2" MaxLength="4000" Nullable="false" />
+          <Property Name="FILE_MIMETYPE" Type="varchar2" MaxLength="512" />
+          <Property Name="FILE_CHARSET" Type="varchar2" MaxLength="512" />
+          <Property Name="FILE_BLOB" Type="blob" />
+          <Property Name="FILE_COMMENTS" Type="varchar2" MaxLength="4000" />
+          <Property Name="TAGS" Type="varchar2" MaxLength="4000" />
+          <Property Name="CREATED" Type="timestamp with local time zone" Precision="6" />
+          <Property Name="CREATED_BY" Type="varchar2" MaxLength="255" />
+          <Property Name="UPDATED" Type="timestamp with local time zone" Precision="6" />
+          <Property Name="UPDATED_BY" Type="varchar2" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="DEMO_CONSTRAINT_LOOKUP">
+          <Key>
+            <PropertyRef Name="CONSTRAINT_NAME" />
+          </Key>
+          <Property Name="CONSTRAINT_NAME" Type="varchar2" MaxLength="30" Nullable="false" />
+          <Property Name="MESSAGE" Type="varchar2" MaxLength="4000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DEMO_CUSTOMERS">
+          <Key>
+            <PropertyRef Name="CUSTOMER_ID" />
+          </Key>
+          <Property Name="CUSTOMER_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="CUST_FIRST_NAME" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="CUST_LAST_NAME" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="CUST_STREET_ADDRESS1" Type="varchar2" MaxLength="60" />
+          <Property Name="CUST_STREET_ADDRESS2" Type="varchar2" MaxLength="60" />
+          <Property Name="CUST_CITY" Type="varchar2" MaxLength="30" />
+          <Property Name="CUST_STATE" Type="varchar2" MaxLength="2" />
+          <Property Name="CUST_POSTAL_CODE" Type="varchar2" MaxLength="10" />
+          <Property Name="CUST_EMAIL" Type="varchar2" MaxLength="30" />
+          <Property Name="PHONE_NUMBER1" Type="varchar2" MaxLength="25" />
+          <Property Name="PHONE_NUMBER2" Type="varchar2" MaxLength="25" />
+          <Property Name="URL" Type="varchar2" MaxLength="100" />
+          <Property Name="CREDIT_LIMIT" Type="number" Precision="9" Scale="2" />
+          <Property Name="TAGS" Type="varchar2" MaxLength="4000" />
+        </EntityType>
+        <EntityType Name="DEMO_ORDER_ITEMS">
+          <Key>
+            <PropertyRef Name="ORDER_ITEM_ID" />
+          </Key>
+          <Property Name="ORDER_ITEM_ID" Type="number" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="ORDER_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRODUCT_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="UNIT_PRICE" Type="number" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="QUANTITY" Type="number" Precision="8" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DEMO_ORDERS">
+          <Key>
+            <PropertyRef Name="ORDER_ID" />
+          </Key>
+          <Property Name="ORDER_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="CUSTOMER_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ORDER_TOTAL" Type="number" Precision="8" Scale="2" />
+          <Property Name="ORDER_TIMESTAMP" Type="timestamp with local time zone" Precision="6" />
+          <Property Name="USER_NAME" Type="varchar2" MaxLength="100" />
+          <Property Name="TAGS" Type="varchar2" MaxLength="4000" />
+          <Property Name="STATUS" Type="varchar2" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="DEMO_PRODUCT_INFO">
+          <Key>
+            <PropertyRef Name="PRODUCT_ID" />
+          </Key>
+          <Property Name="PRODUCT_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRODUCT_NAME" Type="varchar2" MaxLength="50" />
+          <Property Name="PRODUCT_DESCRIPTION" Type="varchar2" MaxLength="2000" />
+          <Property Name="CATEGORY" Type="varchar2" MaxLength="30" />
+          <Property Name="PRODUCT_AVAIL" Type="varchar2" MaxLength="1" />
+          <Property Name="LIST_PRICE" Type="number" Precision="8" Scale="2" />
+          <Property Name="PRODUCT_IMAGE" Type="blob" />
+          <Property Name="MIMETYPE" Type="varchar2" MaxLength="255" />
+          <Property Name="FILENAME" Type="varchar2" MaxLength="400" />
+          <Property Name="IMAGE_LAST_UPDATE" Type="timestamp with local time zone" Precision="6" />
+          <Property Name="TAGS" Type="varchar2" MaxLength="4000" />
+          <Property Name="SALE_PRICE" Type="number" Precision="8" Scale="2" />
+          <Property Name="SALE_BEGIN" Type="date" />
+          <Property Name="SALE_END" Type="date" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'ADMIN.DEMO_STATES' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="DEMO_STATES">
+          <Property Name="ST" Type="varchar2" MaxLength="30" />
+          <Property Name="STATE_NAME" Type="varchar2" MaxLength="30" />
+        </EntityType>-->
+        <EntityType Name="DEMO_TAGS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TAG" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="CONTENT_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="CONTENT_TYPE" Type="varchar2" MaxLength="30" />
+          <Property Name="CREATED" Type="timestamp with local time zone" Precision="6" />
+          <Property Name="CREATED_BY" Type="varchar2" MaxLength="255" />
+          <Property Name="UPDATED" Type="timestamp with local time zone" Precision="6" />
+          <Property Name="UPDATED_BY" Type="varchar2" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="DEMO_TAGS_SUM">
+          <Key>
+            <PropertyRef Name="TAG" />
+          </Key>
+          <Property Name="TAG" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="TAG_COUNT" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="DEMO_TAGS_TYPE_SUM">
+          <Key>
+            <PropertyRef Name="TAG" />
+            <PropertyRef Name="CONTENT_TYPE" />
+          </Key>
+          <Property Name="TAG" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="CONTENT_TYPE" Type="varchar2" MaxLength="30" Nullable="false" />
+          <Property Name="TAG_COUNT" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="DEPT">
+          <Key>
+            <PropertyRef Name="DEPTNO" />
+          </Key>
+          <Property Name="DEPTNO" Type="number" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="DNAME" Type="varchar2" MaxLength="14" />
+          <Property Name="LOC" Type="varchar2" MaxLength="13" />
+        </EntityType>
+        <EntityType Name="EMP">
+          <Key>
+            <PropertyRef Name="EMPNO" />
+          </Key>
+          <Property Name="EMPNO" Type="number" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="ENAME" Type="varchar2" MaxLength="10" />
+          <Property Name="JOB" Type="varchar2" MaxLength="9" />
+          <Property Name="MGR" Type="number" Precision="4" Scale="0" />
+          <Property Name="HIREDATE" Type="date" />
+          <Property Name="SAL" Type="number" Precision="7" Scale="2" />
+          <Property Name="COMM" Type="number" Precision="7" Scale="2" />
+          <Property Name="DEPTNO" Type="number" Precision="2" Scale="0" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'ADMIN.HTMLDB_PLAN_TABLE' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="HTMLDB_PLAN_TABLE">
+          <Property Name="STATEMENT_ID" Type="varchar2" MaxLength="30" />
+          <Property Name="PLAN_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="TIMESTAMP" Type="date" />
+          <Property Name="REMARKS" Type="varchar2" MaxLength="4000" />
+          <Property Name="OPERATION" Type="varchar2" MaxLength="30" />
+          <Property Name="OPTIONS" Type="varchar2" MaxLength="255" />
+          <Property Name="OBJECT_NODE" Type="varchar2" MaxLength="128" />
+          <Property Name="OBJECT_OWNER" Type="varchar2" MaxLength="128" />
+          <Property Name="OBJECT_NAME" Type="varchar2" MaxLength="128" />
+          <Property Name="OBJECT_ALIAS" Type="varchar2" MaxLength="261" />
+          <Property Name="OBJECT_INSTANCE" Type="number" Precision="38" Scale="0" />
+          <Property Name="OBJECT_TYPE" Type="varchar2" MaxLength="128" />
+          <Property Name="OPTIMIZER" Type="varchar2" MaxLength="255" />
+          <Property Name="SEARCH_COLUMNS" Type="number" Precision="38" Scale="0" />
+          <Property Name="ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="PARENT_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="DEPTH" Type="number" Precision="38" Scale="0" />
+          <Property Name="POSITION" Type="number" Precision="38" Scale="0" />
+          <Property Name="COST" Type="number" Precision="38" Scale="0" />
+          <Property Name="CARDINALITY" Type="number" Precision="38" Scale="0" />
+          <Property Name="BYTES" Type="number" Precision="38" Scale="0" />
+          <Property Name="OTHER_TAG" Type="varchar2" MaxLength="255" />
+          <Property Name="PARTITION_START" Type="varchar2" MaxLength="255" />
+          <Property Name="PARTITION_STOP" Type="varchar2" MaxLength="255" />
+          <Property Name="PARTITION_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="OTHER" Type="long" />
+          <Property Name="DISTRIBUTION" Type="varchar2" MaxLength="30" />
+          <Property Name="CPU_COST" Type="number" Precision="38" Scale="0" />
+          <Property Name="IO_COST" Type="number" Precision="38" Scale="0" />
+          <Property Name="TEMP_SPACE" Type="number" Precision="38" Scale="0" />
+          <Property Name="ACCESS_PREDICATES" Type="varchar2" MaxLength="4000" />
+          <Property Name="FILTER_PREDICATES" Type="varchar2" MaxLength="4000" />
+          <Property Name="PROJECTION" Type="varchar2" MaxLength="4000" />
+          <Property Name="TIME" Type="number" Precision="38" Scale="0" />
+          <Property Name="QBLOCK_NAME" Type="varchar2" MaxLength="128" />
+        </EntityType>-->
+        <EntityType Name="INGREDIENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRICE" Type="number" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="FILENAME" Type="varchar2" MaxLength="400" />
+          <Property Name="MIMETYPE" Type="varchar2" MaxLength="255" />
+          <Property Name="INGREDIENT_IMAGE" Type="blob" />
+          <Property Name="DESCRIPTION" Type="varchar2" MaxLength="2000" />
+          <Property Name="LOCATION_TOP" Type="varchar2" MaxLength="1" Nullable="false" />
+          <Property Name="LOCATION_BOTTOM" Type="varchar2" MaxLength="1" Nullable="false" />
+          <Property Name="LOCATION_CHOC" Type="varchar2" MaxLength="1" Nullable="false" />
+          <Property Name="CATEGORY_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="QUANTITY" Type="number" Precision="8" Scale="0" />
+          <Property Name="IMAGE_LAST_UPDATE" Type="timestamp with local time zone" Precision="6" />
+        </EntityType>
+        <EntityType Name="INGREDIENT_CATEGORY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NAME" Type="varchar2" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PACKAGE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRODUCT_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="PRICE" Type="number" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="FILENAME" Type="varchar2" MaxLength="400" />
+          <Property Name="MIMETYPE" Type="varchar2" MaxLength="255" />
+          <Property Name="PACKAGE_IMAGE" Type="blob" />
+          <Property Name="IMAGE_LAST_UPDATE" Type="timestamp with local time zone" Precision="6" />
+        </EntityType>
+        <EntityType Name="RECIEPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRODUCT_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="varchar2" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RECIEPE_INGREDIENTS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="RECIEPE_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="QUANTITY" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="UNIT_PRICE" Type="number" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="INGREDIENT_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RULE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRODUCT_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RULE_CATEGORIES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="RULE_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="CATEGORY_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SHAPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRODUCT_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="FILENAME" Type="varchar2" MaxLength="400" />
+          <Property Name="MIMETYPE" Type="varchar2" MaxLength="255" />
+          <Property Name="SHAPE_IMAGE" Type="blob" />
+          <Property Name="PRICE" Type="number" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="IMAGE_LAST_UPDATE" Type="timestamp with local time zone" Precision="6" />
+        </EntityType>
+        <Association Name="APEX$_WS_FILES_FK">
+          <End Role="APEX$_WS_ROWS" Type="Self.APEX$_WS_ROWS" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="APEX$_WS_FILES" Type="Self.APEX$_WS_FILES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="APEX$_WS_ROWS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="APEX$_WS_FILES">
+              <PropertyRef Name="ROW_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="APEX$_WS_LINKS_FK">
+          <End Role="APEX$_WS_ROWS" Type="Self.APEX$_WS_ROWS" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="APEX$_WS_LINKS" Type="Self.APEX$_WS_LINKS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="APEX$_WS_ROWS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="APEX$_WS_LINKS">
+              <PropertyRef Name="ROW_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="APEX$_WS_NOTES_FK">
+          <End Role="APEX$_WS_ROWS" Type="Self.APEX$_WS_ROWS" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="APEX$_WS_NOTES" Type="Self.APEX$_WS_NOTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="APEX$_WS_ROWS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="APEX$_WS_NOTES">
+              <PropertyRef Name="ROW_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="APEX$_WS_TAGS_FK">
+          <End Role="APEX$_WS_ROWS" Type="Self.APEX$_WS_ROWS" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="APEX$_WS_TAGS" Type="Self.APEX$_WS_TAGS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="APEX$_WS_ROWS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="APEX$_WS_TAGS">
+              <PropertyRef Name="ROW_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CATEGORY_RULECATEGORY_FK">
+          <End Role="INGREDIENT_CATEGORY" Type="Self.INGREDIENT_CATEGORY" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RULE_CATEGORIES" Type="Self.RULE_CATEGORIES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INGREDIENT_CATEGORY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RULE_CATEGORIES">
+              <PropertyRef Name="CATEGORY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DEMO_ORDER_ITEMS_FK">
+          <End Role="DEMO_ORDERS" Type="Self.DEMO_ORDERS" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DEMO_ORDER_ITEMS" Type="Self.DEMO_ORDER_ITEMS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEMO_ORDERS">
+              <PropertyRef Name="ORDER_ID" />
+            </Principal>
+            <Dependent Role="DEMO_ORDER_ITEMS">
+              <PropertyRef Name="ORDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DEMO_ORDER_ITEMS_PRODUCT_ID_FK">
+          <End Role="DEMO_PRODUCT_INFO" Type="Self.DEMO_PRODUCT_INFO" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DEMO_ORDER_ITEMS" Type="Self.DEMO_ORDER_ITEMS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEMO_PRODUCT_INFO">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="DEMO_ORDER_ITEMS">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DEMO_ORDERS_CUSTOMER_ID_FK">
+          <End Role="DEMO_CUSTOMERS" Type="Self.DEMO_CUSTOMERS" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DEMO_ORDERS" Type="Self.DEMO_ORDERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEMO_CUSTOMERS">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="DEMO_ORDERS">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INGREDIENT_CATEGORY_CON">
+          <End Role="INGREDIENT_CATEGORY" Type="Self.INGREDIENT_CATEGORY" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="INGREDIENT" Type="Self.INGREDIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INGREDIENT_CATEGORY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="INGREDIENT">
+              <PropertyRef Name="CATEGORY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INGREDIENT_TO_RECIEPE_FK">
+          <End Role="INGREDIENT" Type="Self.INGREDIENT" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RECIEPE_INGREDIENTS" Type="Self.RECIEPE_INGREDIENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INGREDIENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RECIEPE_INGREDIENTS">
+              <PropertyRef Name="INGREDIENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PACKAGE_CON">
+          <End Role="DEMO_PRODUCT_INFO" Type="Self.DEMO_PRODUCT_INFO" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PACKAGE" Type="Self.PACKAGE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEMO_PRODUCT_INFO">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="PACKAGE">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RECIEPE_TO_INGREDIENTS_FK">
+          <End Role="RECIEPE" Type="Self.RECIEPE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RECIEPE_INGREDIENTS" Type="Self.RECIEPE_INGREDIENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RECIEPE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RECIEPE_INGREDIENTS">
+              <PropertyRef Name="RECIEPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RECIEPE_TO_PRODUCT_FK">
+          <End Role="DEMO_PRODUCT_INFO" Type="Self.DEMO_PRODUCT_INFO" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RECIEPE" Type="Self.RECIEPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEMO_PRODUCT_INFO">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="RECIEPE">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RULE_CON">
+          <End Role="DEMO_PRODUCT_INFO" Type="Self.DEMO_PRODUCT_INFO" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RULE" Type="Self.RULE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEMO_PRODUCT_INFO">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="RULE">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RULE_RULECATEGORY_FK">
+          <End Role="RULE" Type="Self.RULE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RULE_CATEGORIES" Type="Self.RULE_CATEGORIES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RULE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RULE_CATEGORIES">
+              <PropertyRef Name="RULE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SHAPE_CON">
+          <End Role="DEMO_PRODUCT_INFO" Type="Self.DEMO_PRODUCT_INFO" Multiplicity="1" />
+          <End Role="SHAPE" Type="Self.SHAPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEMO_PRODUCT_INFO">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="SHAPE">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0011033">
+          <End Role="EMP" Type="Self.EMP" Multiplicity="0..1" />
+          <End Role="EMP1" Type="Self.EMP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMP">
+              <PropertyRef Name="EMPNO" />
+            </Principal>
+            <Dependent Role="EMP1">
+              <PropertyRef Name="MGR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0011034">
+          <End Role="DEPT" Type="Self.DEPT" Multiplicity="0..1" />
+          <End Role="EMP" Type="Self.EMP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPT">
+              <PropertyRef Name="DEPTNO" />
+            </Principal>
+            <Dependent Role="EMP">
+              <PropertyRef Name="DEPTNO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBModelBEStoreContainer">
+          <EntitySet Name="APEX$_ACL" EntityType="Self.APEX$_ACL" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="APEX$_WS_FILES" EntityType="Self.APEX$_WS_FILES" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="APEX$_WS_LINKS" EntityType="Self.APEX$_WS_LINKS" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="APEX$_WS_NOTES" EntityType="Self.APEX$_WS_NOTES" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="APEX$_WS_ROWS" EntityType="Self.APEX$_WS_ROWS" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="APEX$_WS_TAGS" EntityType="Self.APEX$_WS_TAGS" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="APEX$_WS_WEBPG_SECTIONS" EntityType="Self.APEX$_WS_WEBPG_SECTIONS" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="APEX$TEAM_DEV_FILES" EntityType="Self.APEX$TEAM_DEV_FILES" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="DEMO_CONSTRAINT_LOOKUP" EntityType="Self.DEMO_CONSTRAINT_LOOKUP" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="DEMO_CUSTOMERS" EntityType="Self.DEMO_CUSTOMERS" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="DEMO_ORDER_ITEMS" EntityType="Self.DEMO_ORDER_ITEMS" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="DEMO_ORDERS" EntityType="Self.DEMO_ORDERS" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="DEMO_PRODUCT_INFO" EntityType="Self.DEMO_PRODUCT_INFO" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="DEMO_TAGS" EntityType="Self.DEMO_TAGS" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="DEMO_TAGS_SUM" EntityType="Self.DEMO_TAGS_SUM" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="DEMO_TAGS_TYPE_SUM" EntityType="Self.DEMO_TAGS_TYPE_SUM" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="DEPT" EntityType="Self.DEPT" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="EMP" EntityType="Self.EMP" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="INGREDIENT" EntityType="Self.INGREDIENT" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="INGREDIENT_CATEGORY" EntityType="Self.INGREDIENT_CATEGORY" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="PACKAGE" EntityType="Self.PACKAGE" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="RECIEPE" EntityType="Self.RECIEPE" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="RECIEPE_INGREDIENTS" EntityType="Self.RECIEPE_INGREDIENTS" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="RULE" EntityType="Self.RULE" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="RULE_CATEGORIES" EntityType="Self.RULE_CATEGORIES" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="SHAPE" EntityType="Self.SHAPE" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="APEX$_WS_HISTORY" EntityType="Self.APEX$_WS_HISTORY" store:Type="Tables" store:Schema="ADMIN">
+            <DefiningQuery>SELECT 
+"APEX$_WS_HISTORY"."ROW_ID" AS "ROW_ID", 
+"APEX$_WS_HISTORY"."WS_APP_ID" AS "WS_APP_ID", 
+"APEX$_WS_HISTORY"."DATA_GRID_ID" AS "DATA_GRID_ID", 
+"APEX$_WS_HISTORY"."COLUMN_NAME" AS "COLUMN_NAME", 
+"APEX$_WS_HISTORY"."OLD_VALUE" AS "OLD_VALUE", 
+"APEX$_WS_HISTORY"."NEW_VALUE" AS "NEW_VALUE", 
+"APEX$_WS_HISTORY"."APPLICATION_USER_ID" AS "APPLICATION_USER_ID", 
+"APEX$_WS_HISTORY"."CHANGE_DATE" AS "CHANGE_DATE"
+FROM "ADMIN"."APEX$_WS_HISTORY" "APEX$_WS_HISTORY"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="APEX$_WS_WEBPG_SECTION_HISTORY" EntityType="Self.APEX$_WS_WEBPG_SECTION_HISTORY" store:Type="Tables" store:Schema="ADMIN">
+            <DefiningQuery>SELECT 
+"APEX$_WS_WEBPG_SECTION_HISTORY"."SECTION_ID" AS "SECTION_ID", 
+"APEX$_WS_WEBPG_SECTION_HISTORY"."WS_APP_ID" AS "WS_APP_ID", 
+"APEX$_WS_WEBPG_SECTION_HISTORY"."WEBPAGE_ID" AS "WEBPAGE_ID", 
+"APEX$_WS_WEBPG_SECTION_HISTORY"."OLD_DISPLAY_SEQUENCE" AS "OLD_DISPLAY_SEQUENCE", 
+"APEX$_WS_WEBPG_SECTION_HISTORY"."NEW_DISPLAY_SEQUENCE" AS "NEW_DISPLAY_SEQUENCE", 
+"APEX$_WS_WEBPG_SECTION_HISTORY"."OLD_TITLE" AS "OLD_TITLE", 
+"APEX$_WS_WEBPG_SECTION_HISTORY"."NEW_TITLE" AS "NEW_TITLE", 
+"APEX$_WS_WEBPG_SECTION_HISTORY"."OLD_CONTENT" AS "OLD_CONTENT", 
+"APEX$_WS_WEBPG_SECTION_HISTORY"."NEW_CONTENT" AS "NEW_CONTENT", 
+"APEX$_WS_WEBPG_SECTION_HISTORY"."APPLICATION_USER_ID" AS "APPLICATION_USER_ID", 
+"APEX$_WS_WEBPG_SECTION_HISTORY"."CHANGE_DATE" AS "CHANGE_DATE"
+FROM "ADMIN"."APEX$_WS_WEBPG_SECTION_HISTORY" "APEX$_WS_WEBPG_SECTION_HISTORY"</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="APEX$_WS_FILES_FK" Association="Self.APEX$_WS_FILES_FK">
+            <End Role="APEX$_WS_ROWS" EntitySet="APEX$_WS_ROWS" />
+            <End Role="APEX$_WS_FILES" EntitySet="APEX$_WS_FILES" />
+          </AssociationSet>
+          <AssociationSet Name="APEX$_WS_LINKS_FK" Association="Self.APEX$_WS_LINKS_FK">
+            <End Role="APEX$_WS_ROWS" EntitySet="APEX$_WS_ROWS" />
+            <End Role="APEX$_WS_LINKS" EntitySet="APEX$_WS_LINKS" />
+          </AssociationSet>
+          <AssociationSet Name="APEX$_WS_NOTES_FK" Association="Self.APEX$_WS_NOTES_FK">
+            <End Role="APEX$_WS_ROWS" EntitySet="APEX$_WS_ROWS" />
+            <End Role="APEX$_WS_NOTES" EntitySet="APEX$_WS_NOTES" />
+          </AssociationSet>
+          <AssociationSet Name="APEX$_WS_TAGS_FK" Association="Self.APEX$_WS_TAGS_FK">
+            <End Role="APEX$_WS_ROWS" EntitySet="APEX$_WS_ROWS" />
+            <End Role="APEX$_WS_TAGS" EntitySet="APEX$_WS_TAGS" />
+          </AssociationSet>
+          <AssociationSet Name="CATEGORY_RULECATEGORY_FK" Association="Self.CATEGORY_RULECATEGORY_FK">
+            <End Role="INGREDIENT_CATEGORY" EntitySet="INGREDIENT_CATEGORY" />
+            <End Role="RULE_CATEGORIES" EntitySet="RULE_CATEGORIES" />
+          </AssociationSet>
+          <AssociationSet Name="DEMO_ORDER_ITEMS_FK" Association="Self.DEMO_ORDER_ITEMS_FK">
+            <End Role="DEMO_ORDERS" EntitySet="DEMO_ORDERS" />
+            <End Role="DEMO_ORDER_ITEMS" EntitySet="DEMO_ORDER_ITEMS" />
+          </AssociationSet>
+          <AssociationSet Name="DEMO_ORDER_ITEMS_PRODUCT_ID_FK" Association="Self.DEMO_ORDER_ITEMS_PRODUCT_ID_FK">
+            <End Role="DEMO_PRODUCT_INFO" EntitySet="DEMO_PRODUCT_INFO" />
+            <End Role="DEMO_ORDER_ITEMS" EntitySet="DEMO_ORDER_ITEMS" />
+          </AssociationSet>
+          <AssociationSet Name="DEMO_ORDERS_CUSTOMER_ID_FK" Association="Self.DEMO_ORDERS_CUSTOMER_ID_FK">
+            <End Role="DEMO_CUSTOMERS" EntitySet="DEMO_CUSTOMERS" />
+            <End Role="DEMO_ORDERS" EntitySet="DEMO_ORDERS" />
+          </AssociationSet>
+          <AssociationSet Name="INGREDIENT_CATEGORY_CON" Association="Self.INGREDIENT_CATEGORY_CON">
+            <End Role="INGREDIENT_CATEGORY" EntitySet="INGREDIENT_CATEGORY" />
+            <End Role="INGREDIENT" EntitySet="INGREDIENT" />
+          </AssociationSet>
+          <AssociationSet Name="INGREDIENT_TO_RECIEPE_FK" Association="Self.INGREDIENT_TO_RECIEPE_FK">
+            <End Role="INGREDIENT" EntitySet="INGREDIENT" />
+            <End Role="RECIEPE_INGREDIENTS" EntitySet="RECIEPE_INGREDIENTS" />
+          </AssociationSet>
+          <AssociationSet Name="PACKAGE_CON" Association="Self.PACKAGE_CON">
+            <End Role="DEMO_PRODUCT_INFO" EntitySet="DEMO_PRODUCT_INFO" />
+            <End Role="PACKAGE" EntitySet="PACKAGE" />
+          </AssociationSet>
+          <AssociationSet Name="RECIEPE_TO_INGREDIENTS_FK" Association="Self.RECIEPE_TO_INGREDIENTS_FK">
+            <End Role="RECIEPE" EntitySet="RECIEPE" />
+            <End Role="RECIEPE_INGREDIENTS" EntitySet="RECIEPE_INGREDIENTS" />
+          </AssociationSet>
+          <AssociationSet Name="RECIEPE_TO_PRODUCT_FK" Association="Self.RECIEPE_TO_PRODUCT_FK">
+            <End Role="DEMO_PRODUCT_INFO" EntitySet="DEMO_PRODUCT_INFO" />
+            <End Role="RECIEPE" EntitySet="RECIEPE" />
+          </AssociationSet>
+          <AssociationSet Name="RULE_CON" Association="Self.RULE_CON">
+            <End Role="DEMO_PRODUCT_INFO" EntitySet="DEMO_PRODUCT_INFO" />
+            <End Role="RULE" EntitySet="RULE" />
+          </AssociationSet>
+          <AssociationSet Name="RULE_RULECATEGORY_FK" Association="Self.RULE_RULECATEGORY_FK">
+            <End Role="RULE" EntitySet="RULE" />
+            <End Role="RULE_CATEGORIES" EntitySet="RULE_CATEGORIES" />
+          </AssociationSet>
+          <AssociationSet Name="SHAPE_CON" Association="Self.SHAPE_CON">
+            <End Role="DEMO_PRODUCT_INFO" EntitySet="DEMO_PRODUCT_INFO" />
+            <End Role="SHAPE" EntitySet="SHAPE" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0011033" Association="Self.SYS_C0011033">
+            <End Role="EMP" EntitySet="EMP" />
+            <End Role="EMP1" EntitySet="EMP" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0011034" Association="Self.SYS_C0011034">
+            <End Role="DEPT" EntitySet="DEPT" />
+            <End Role="EMP" EntitySet="EMP" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBModelBE" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="APEX__ACL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="WS_APP_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="USERNAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRIV" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CREATED_ON" Type="DateTime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="DateTime" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="APEX__WS_FILES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="WS_APP_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DATA_GRID_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="WEBPAGE_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="COMPONENT_LEVEL" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IMAGE_ALIAS" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="IMAGE_ATTRIBUTES" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CONTENT" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CONTENT_LAST_UPDATE" Type="DateTime" />
+          <Property Name="MIME_TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CONTENT_CHARSET" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CONTENT_FILENAME" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="CREATED_ON" Type="DateTime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="DateTime" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="APEX__WS_ROWS" Relationship="Self.APEX__WS_FILES_FK" FromRole="APEX__WS_FILES" ToRole="APEX__WS_ROWS" />
+        </EntityType>
+        <EntityType Name="APEX__WS_LINKS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="WS_APP_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DATA_GRID_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="WEBPAGE_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="COMPONENT_LEVEL" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="TAGS" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="SHOW_ON_HOMEPAGE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="LINK_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="URL" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LINK_DESCRIPTION" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="DISPLAY_SEQUENCE" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="CREATED_ON" Type="DateTime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="DateTime" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="APEX__WS_ROWS" Relationship="Self.APEX__WS_LINKS_FK" FromRole="APEX__WS_LINKS" ToRole="APEX__WS_ROWS" />
+        </EntityType>
+        <EntityType Name="APEX__WS_NOTES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="WS_APP_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DATA_GRID_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="WEBPAGE_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="COMPONENT_LEVEL" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CONTENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CREATED_ON" Type="DateTime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="DateTime" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="APEX__WS_ROWS" Relationship="Self.APEX__WS_NOTES_FK" FromRole="APEX__WS_NOTES" ToRole="APEX__WS_ROWS" />
+        </EntityType>
+        <EntityType Name="APEX__WS_ROWS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="WS_APP_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DATA_GRID_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="UNIQUE_VALUE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TAGS" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="PARENT_ROW_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="OWNER" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="GEOCODE" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="LOAD_ORDER" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="CHANGE_COUNT" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="CREATED_ON" Type="DateTime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="DateTime" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="C001" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C002" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C003" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C004" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C005" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C006" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C007" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C008" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C009" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C010" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C011" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C012" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C013" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C014" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C015" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C016" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C017" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C018" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C019" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C020" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C021" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C022" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C023" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C024" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C025" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C026" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C027" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C028" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C029" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C030" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C031" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C032" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C033" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C034" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C035" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C036" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C037" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C038" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C039" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C040" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C041" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C042" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C043" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C044" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C045" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C046" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C047" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C048" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C049" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="C050" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="N001" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N002" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N003" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N004" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N005" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N006" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N007" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N008" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N009" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N010" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N011" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N012" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N013" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N014" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N015" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N016" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N017" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N018" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N019" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N020" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N021" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N022" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N023" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N024" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N025" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N026" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N027" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N028" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N029" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N030" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N031" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N032" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N033" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N034" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N035" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N036" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N037" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N038" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N039" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N040" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N041" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N042" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N043" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N044" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N045" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N046" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N047" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N048" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N049" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="N050" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="D001" Type="DateTime" />
+          <Property Name="D002" Type="DateTime" />
+          <Property Name="D003" Type="DateTime" />
+          <Property Name="D004" Type="DateTime" />
+          <Property Name="D005" Type="DateTime" />
+          <Property Name="D006" Type="DateTime" />
+          <Property Name="D007" Type="DateTime" />
+          <Property Name="D008" Type="DateTime" />
+          <Property Name="D009" Type="DateTime" />
+          <Property Name="D010" Type="DateTime" />
+          <Property Name="D011" Type="DateTime" />
+          <Property Name="D012" Type="DateTime" />
+          <Property Name="D013" Type="DateTime" />
+          <Property Name="D014" Type="DateTime" />
+          <Property Name="D015" Type="DateTime" />
+          <Property Name="D016" Type="DateTime" />
+          <Property Name="D017" Type="DateTime" />
+          <Property Name="D018" Type="DateTime" />
+          <Property Name="D019" Type="DateTime" />
+          <Property Name="D020" Type="DateTime" />
+          <Property Name="D021" Type="DateTime" />
+          <Property Name="D022" Type="DateTime" />
+          <Property Name="D023" Type="DateTime" />
+          <Property Name="D024" Type="DateTime" />
+          <Property Name="D025" Type="DateTime" />
+          <Property Name="D026" Type="DateTime" />
+          <Property Name="D027" Type="DateTime" />
+          <Property Name="D028" Type="DateTime" />
+          <Property Name="D029" Type="DateTime" />
+          <Property Name="D030" Type="DateTime" />
+          <Property Name="D031" Type="DateTime" />
+          <Property Name="D032" Type="DateTime" />
+          <Property Name="D033" Type="DateTime" />
+          <Property Name="D034" Type="DateTime" />
+          <Property Name="D035" Type="DateTime" />
+          <Property Name="D036" Type="DateTime" />
+          <Property Name="D037" Type="DateTime" />
+          <Property Name="D038" Type="DateTime" />
+          <Property Name="D039" Type="DateTime" />
+          <Property Name="D040" Type="DateTime" />
+          <Property Name="D041" Type="DateTime" />
+          <Property Name="D042" Type="DateTime" />
+          <Property Name="D043" Type="DateTime" />
+          <Property Name="D044" Type="DateTime" />
+          <Property Name="D045" Type="DateTime" />
+          <Property Name="D046" Type="DateTime" />
+          <Property Name="D047" Type="DateTime" />
+          <Property Name="D048" Type="DateTime" />
+          <Property Name="D049" Type="DateTime" />
+          <Property Name="D050" Type="DateTime" />
+          <Property Name="CLOB001" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SEARCH_CLOB" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="APEX__WS_FILES" Relationship="Self.APEX__WS_FILES_FK" FromRole="APEX__WS_ROWS" ToRole="APEX__WS_FILES" />
+          <NavigationProperty Name="APEX__WS_LINKS" Relationship="Self.APEX__WS_LINKS_FK" FromRole="APEX__WS_ROWS" ToRole="APEX__WS_LINKS" />
+          <NavigationProperty Name="APEX__WS_NOTES" Relationship="Self.APEX__WS_NOTES_FK" FromRole="APEX__WS_ROWS" ToRole="APEX__WS_NOTES" />
+          <NavigationProperty Name="APEX__WS_TAGS" Relationship="Self.APEX__WS_TAGS_FK" FromRole="APEX__WS_ROWS" ToRole="APEX__WS_TAGS" />
+        </EntityType>
+        <EntityType Name="APEX__WS_TAGS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="WS_APP_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DATA_GRID_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="WEBPAGE_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="COMPONENT_LEVEL" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="TAG" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="CREATED_ON" Type="DateTime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="DateTime" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="APEX__WS_ROWS" Relationship="Self.APEX__WS_TAGS_FK" FromRole="APEX__WS_TAGS" ToRole="APEX__WS_ROWS" />
+        </EntityType>
+        <EntityType Name="APEX__WS_WEBPG_SECTIONS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="WS_APP_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="WEBPAGE_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="DISPLAY_SEQUENCE" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="SECTION_TYPE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TITLE" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="CONTENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CONTENT_UPPER" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NAV_START_WEBPAGE_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="NAV_MAX_LEVEL" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="NAV_ORDER_BY" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NAV_INCLUDE_LINK" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="DATA_GRID_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="REPORT_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="DATA_SECTION_STYLE" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="SHOW_ADD_ROW" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="SHOW_EDIT_ROW" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="SHOW_SEARCH" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="MAX_ROW_COUNT" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="CHART_TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CHART_3D" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="CHART_LABEL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="LABEL_AXIS_TITLE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CHART_VALUE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="VALUE_AXIS_TITLE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CHART_AGGREGATE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CHART_SORTING" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CHANGE_COUNT" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="CREATED_ON" Type="DateTime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="DateTime" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="APEX_TEAM_DEV_FILES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ROW_VERSION_NUMBER" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="COMPONENT_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="COMPONENT_TYPE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FILENAME" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FILE_MIMETYPE" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="FILE_CHARSET" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="FILE_BLOB" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="FILE_COMMENTS" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="TAGS" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="CREATED" Type="DateTime" Precision="255" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATED" Type="DateTime" Precision="255" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DEMO_CONSTRAINT_LOOKUP">
+          <Key>
+            <PropertyRef Name="CONSTRAINT_NAME" />
+          </Key>
+          <Property Name="CONSTRAINT_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MESSAGE" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DEMO_CUSTOMERS">
+          <Key>
+            <PropertyRef Name="CUSTOMER_ID" />
+          </Key>
+          <Property Name="CUSTOMER_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="CUST_FIRST_NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CUST_LAST_NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CUST_STREET_ADDRESS1" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="CUST_STREET_ADDRESS2" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="CUST_CITY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CUST_STATE" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="CUST_POSTAL_CODE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CUST_EMAIL" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PHONE_NUMBER1" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="PHONE_NUMBER2" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="URL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CREDIT_LIMIT" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="TAGS" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DEMO_ORDERS" Relationship="Self.DEMO_ORDERS_CUSTOMER_ID_FK" FromRole="DEMO_CUSTOMERS" ToRole="DEMO_ORDERS" />
+        </EntityType>
+        <EntityType Name="DEMO_ORDER_ITEMS">
+          <Key>
+            <PropertyRef Name="ORDER_ITEM_ID" />
+          </Key>
+          <Property Name="ORDER_ITEM_ID" Type="Byte" Nullable="false" />
+          <Property Name="UNIT_PRICE" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="QUANTITY" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DEMO_ORDERS" Relationship="Self.DEMO_ORDER_ITEMS_FK" FromRole="DEMO_ORDER_ITEMS" ToRole="DEMO_ORDERS" />
+          <NavigationProperty Name="DEMO_PRODUCT_INFO" Relationship="Self.DEMO_ORDER_ITEMS_PRODUCT_ID_FK" FromRole="DEMO_ORDER_ITEMS" ToRole="DEMO_PRODUCT_INFO" />
+        </EntityType>
+        <EntityType Name="DEMO_ORDERS">
+          <Key>
+            <PropertyRef Name="ORDER_ID" />
+          </Key>
+          <Property Name="ORDER_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ORDER_TOTAL" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="ORDER_TIMESTAMP" Type="DateTime" Precision="255" />
+          <Property Name="USER_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TAGS" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="STATUS" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DEMO_CUSTOMERS" Relationship="Self.DEMO_ORDERS_CUSTOMER_ID_FK" FromRole="DEMO_ORDERS" ToRole="DEMO_CUSTOMERS" />
+          <NavigationProperty Name="DEMO_ORDER_ITEMS" Relationship="Self.DEMO_ORDER_ITEMS_FK" FromRole="DEMO_ORDERS" ToRole="DEMO_ORDER_ITEMS" />
+        </EntityType>
+        <EntityType Name="DEMO_PRODUCT_INFO">
+          <Key>
+            <PropertyRef Name="PRODUCT_ID" />
+          </Key>
+          <Property Name="PRODUCT_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRODUCT_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PRODUCT_DESCRIPTION" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="CATEGORY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PRODUCT_AVAIL" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="LIST_PRICE" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="PRODUCT_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="MIMETYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FILENAME" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="IMAGE_LAST_UPDATE" Type="DateTime" Precision="255" />
+          <Property Name="TAGS" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="SALE_PRICE" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="SALE_BEGIN" Type="DateTime" />
+          <Property Name="SALE_END" Type="DateTime" />
+          <NavigationProperty Name="DEMO_ORDER_ITEMS" Relationship="Self.DEMO_ORDER_ITEMS_PRODUCT_ID_FK" FromRole="DEMO_PRODUCT_INFO" ToRole="DEMO_ORDER_ITEMS" />
+          <NavigationProperty Name="PACKAGE" Relationship="Self.PACKAGE_CON" FromRole="DEMO_PRODUCT_INFO" ToRole="PACKAGE" />
+          <NavigationProperty Name="RECIEPE" Relationship="Self.RECIEPE_TO_PRODUCT_FK" FromRole="DEMO_PRODUCT_INFO" ToRole="RECIEPE" />
+          <NavigationProperty Name="RULE" Relationship="Self.RULE_CON" FromRole="DEMO_PRODUCT_INFO" ToRole="RULE" />
+          <NavigationProperty Name="SHAPE" Relationship="Self.SHAPE_CON" FromRole="DEMO_PRODUCT_INFO" ToRole="SHAPE" />
+        </EntityType>
+        <EntityType Name="DEMO_TAGS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TAG" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CONTENT_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="CONTENT_TYPE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CREATED" Type="DateTime" Precision="255" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATED" Type="DateTime" Precision="255" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DEMO_TAGS_SUM">
+          <Key>
+            <PropertyRef Name="TAG" />
+          </Key>
+          <Property Name="TAG" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TAG_COUNT" Type="Decimal" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="DEMO_TAGS_TYPE_SUM">
+          <Key>
+            <PropertyRef Name="TAG" />
+            <PropertyRef Name="CONTENT_TYPE" />
+          </Key>
+          <Property Name="TAG" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CONTENT_TYPE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TAG_COUNT" Type="Decimal" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="DEPT">
+          <Key>
+            <PropertyRef Name="DEPTNO" />
+          </Key>
+          <Property Name="DEPTNO" Type="Byte" Nullable="false" />
+          <Property Name="DNAME" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+          <Property Name="LOC" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EMP" Relationship="Self.SYS_C0011034" FromRole="DEPT" ToRole="EMP" />
+        </EntityType>
+        <EntityType Name="EMP">
+          <Key>
+            <PropertyRef Name="EMPNO" />
+          </Key>
+          <Property Name="EMPNO" Type="Int16" Nullable="false" />
+          <Property Name="ENAME" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="JOB" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="HIREDATE" Type="DateTime" />
+          <Property Name="SAL" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="COMM" Type="Decimal" Precision="7" Scale="2" />
+          <NavigationProperty Name="DEPT" Relationship="Self.SYS_C0011034" FromRole="EMP" ToRole="DEPT" />
+          <NavigationProperty Name="EMP1" Relationship="Self.SYS_C0011033" FromRole="EMP" ToRole="EMP1" />
+          <NavigationProperty Name="EMP2" Relationship="Self.SYS_C0011033" FromRole="EMP1" ToRole="EMP" />
+        </EntityType>
+        <EntityType Name="INGREDIENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRICE" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="FILENAME" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="MIMETYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="INGREDIENT_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="LOCATION_TOP" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LOCATION_BOTTOM" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LOCATION_CHOC" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="QUANTITY" Type="Int32" />
+          <Property Name="IMAGE_LAST_UPDATE" Type="DateTime" Precision="255" />
+          <NavigationProperty Name="INGREDIENT_CATEGORY" Relationship="Self.INGREDIENT_CATEGORY_CON" FromRole="INGREDIENT" ToRole="INGREDIENT_CATEGORY" />
+          <NavigationProperty Name="RECIEPE_INGREDIENTS" Relationship="Self.INGREDIENT_TO_RECIEPE_FK" FromRole="INGREDIENT" ToRole="RECIEPE_INGREDIENTS" />
+        </EntityType>
+        <EntityType Name="INGREDIENT_CATEGORY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="INGREDIENT" Relationship="Self.INGREDIENT_CATEGORY_CON" FromRole="INGREDIENT_CATEGORY" ToRole="INGREDIENT" />
+          <NavigationProperty Name="RULE_CATEGORIES" Relationship="Self.CATEGORY_RULECATEGORY_FK" FromRole="INGREDIENT_CATEGORY" ToRole="RULE_CATEGORIES" />
+        </EntityType>
+        <EntityType Name="PACKAGE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRICE" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="FILENAME" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="MIMETYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PACKAGE_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IMAGE_LAST_UPDATE" Type="DateTime" Precision="255" />
+          <NavigationProperty Name="DEMO_PRODUCT_INFO" Relationship="Self.PACKAGE_CON" FromRole="PACKAGE" ToRole="DEMO_PRODUCT_INFO" />
+        </EntityType>
+        <EntityType Name="RECIEPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DEMO_PRODUCT_INFO" Relationship="Self.RECIEPE_TO_PRODUCT_FK" FromRole="RECIEPE" ToRole="DEMO_PRODUCT_INFO" />
+          <NavigationProperty Name="RECIEPE_INGREDIENTS" Relationship="Self.RECIEPE_TO_INGREDIENTS_FK" FromRole="RECIEPE" ToRole="RECIEPE_INGREDIENTS" />
+        </EntityType>
+        <EntityType Name="RECIEPE_INGREDIENTS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="QUANTITY" Type="Int32" Nullable="false" />
+          <Property Name="UNIT_PRICE" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <NavigationProperty Name="INGREDIENT" Relationship="Self.INGREDIENT_TO_RECIEPE_FK" FromRole="RECIEPE_INGREDIENTS" ToRole="INGREDIENT" />
+          <NavigationProperty Name="RECIEPE" Relationship="Self.RECIEPE_TO_INGREDIENTS_FK" FromRole="RECIEPE_INGREDIENTS" ToRole="RECIEPE" />
+        </EntityType>
+        <EntityType Name="RULE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="DEMO_PRODUCT_INFO" Relationship="Self.RULE_CON" FromRole="RULE" ToRole="DEMO_PRODUCT_INFO" />
+          <NavigationProperty Name="RULE_CATEGORIES" Relationship="Self.RULE_RULECATEGORY_FK" FromRole="RULE" ToRole="RULE_CATEGORIES" />
+        </EntityType>
+        <EntityType Name="RULE_CATEGORIES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="INGREDIENT_CATEGORY" Relationship="Self.CATEGORY_RULECATEGORY_FK" FromRole="RULE_CATEGORIES" ToRole="INGREDIENT_CATEGORY" />
+          <NavigationProperty Name="RULE" Relationship="Self.RULE_RULECATEGORY_FK" FromRole="RULE_CATEGORIES" ToRole="RULE" />
+        </EntityType>
+        <EntityType Name="SHAPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FILENAME" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="MIMETYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SHAPE_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="PRICE" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="IMAGE_LAST_UPDATE" Type="DateTime" Precision="255" />
+          <NavigationProperty Name="DEMO_PRODUCT_INFO" Relationship="Self.SHAPE_CON" FromRole="SHAPE" ToRole="DEMO_PRODUCT_INFO" />
+        </EntityType>
+        <EntityType Name="APEX__WS_HISTORY">
+          <Key>
+            <PropertyRef Name="ROW_ID" />
+            <PropertyRef Name="WS_APP_ID" />
+            <PropertyRef Name="DATA_GRID_ID" />
+          </Key>
+          <Property Name="ROW_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="WS_APP_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DATA_GRID_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="COLUMN_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="OLD_VALUE" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="NEW_VALUE" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="APPLICATION_USER_ID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CHANGE_DATE" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="APEX__WS_WEBPG_SECTION_HISTORY">
+          <Key>
+            <PropertyRef Name="SECTION_ID" />
+            <PropertyRef Name="WS_APP_ID" />
+            <PropertyRef Name="WEBPAGE_ID" />
+            <PropertyRef Name="APPLICATION_USER_ID" />
+            <PropertyRef Name="CHANGE_DATE" />
+          </Key>
+          <Property Name="SECTION_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="WS_APP_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="WEBPAGE_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="OLD_DISPLAY_SEQUENCE" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="NEW_DISPLAY_SEQUENCE" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="OLD_TITLE" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="NEW_TITLE" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="OLD_CONTENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NEW_CONTENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="APPLICATION_USER_ID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CHANGE_DATE" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <Association Name="APEX__WS_FILES_FK">
+          <End Role="APEX__WS_ROWS" Type="Self.APEX__WS_ROWS" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="APEX__WS_FILES" Type="Self.APEX__WS_FILES" Multiplicity="*" />
+        </Association>
+        <Association Name="APEX__WS_LINKS_FK">
+          <End Role="APEX__WS_ROWS" Type="Self.APEX__WS_ROWS" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="APEX__WS_LINKS" Type="Self.APEX__WS_LINKS" Multiplicity="*" />
+        </Association>
+        <Association Name="APEX__WS_NOTES_FK">
+          <End Role="APEX__WS_ROWS" Type="Self.APEX__WS_ROWS" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="APEX__WS_NOTES" Type="Self.APEX__WS_NOTES" Multiplicity="*" />
+        </Association>
+        <Association Name="APEX__WS_TAGS_FK">
+          <End Role="APEX__WS_ROWS" Type="Self.APEX__WS_ROWS" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="APEX__WS_TAGS" Type="Self.APEX__WS_TAGS" Multiplicity="*" />
+        </Association>
+        <Association Name="DEMO_ORDERS_CUSTOMER_ID_FK">
+          <End Role="DEMO_CUSTOMERS" Type="Self.DEMO_CUSTOMERS" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DEMO_ORDERS" Type="Self.DEMO_ORDERS" Multiplicity="*" />
+        </Association>
+        <Association Name="DEMO_ORDER_ITEMS_FK">
+          <End Role="DEMO_ORDERS" Type="Self.DEMO_ORDERS" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DEMO_ORDER_ITEMS" Type="Self.DEMO_ORDER_ITEMS" Multiplicity="*" />
+        </Association>
+        <Association Name="DEMO_ORDER_ITEMS_PRODUCT_ID_FK">
+          <End Role="DEMO_PRODUCT_INFO" Type="Self.DEMO_PRODUCT_INFO" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DEMO_ORDER_ITEMS" Type="Self.DEMO_ORDER_ITEMS" Multiplicity="*" />
+        </Association>
+        <Association Name="PACKAGE_CON">
+          <End Role="DEMO_PRODUCT_INFO" Type="Self.DEMO_PRODUCT_INFO" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PACKAGE" Type="Self.PACKAGE" Multiplicity="*" />
+        </Association>
+        <Association Name="RECIEPE_TO_PRODUCT_FK">
+          <End Role="DEMO_PRODUCT_INFO" Type="Self.DEMO_PRODUCT_INFO" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RECIEPE" Type="Self.RECIEPE" Multiplicity="*" />
+        </Association>
+        <Association Name="RULE_CON">
+          <End Role="DEMO_PRODUCT_INFO" Type="Self.DEMO_PRODUCT_INFO" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RULE" Type="Self.RULE" Multiplicity="*" />
+        </Association>
+        <Association Name="SHAPE_CON">
+          <End Role="DEMO_PRODUCT_INFO" Type="Self.DEMO_PRODUCT_INFO" Multiplicity="1" />
+          <End Role="SHAPE" Type="Self.SHAPE" Multiplicity="*" />
+        </Association>
+        <Association Name="SYS_C0011034">
+          <End Role="DEPT" Type="Self.DEPT" Multiplicity="0..1" />
+          <End Role="EMP" Type="Self.EMP" Multiplicity="*" />
+        </Association>
+        <Association Name="SYS_C0011033">
+          <End Role="EMP" Type="Self.EMP" Multiplicity="0..1" />
+          <End Role="EMP1" Type="Self.EMP" Multiplicity="*" />
+        </Association>
+        <Association Name="INGREDIENT_CATEGORY_CON">
+          <End Role="INGREDIENT_CATEGORY" Type="Self.INGREDIENT_CATEGORY" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="INGREDIENT" Type="Self.INGREDIENT" Multiplicity="*" />
+        </Association>
+        <Association Name="INGREDIENT_TO_RECIEPE_FK">
+          <End Role="INGREDIENT" Type="Self.INGREDIENT" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RECIEPE_INGREDIENTS" Type="Self.RECIEPE_INGREDIENTS" Multiplicity="*" />
+        </Association>
+        <Association Name="CATEGORY_RULECATEGORY_FK">
+          <End Role="INGREDIENT_CATEGORY" Type="Self.INGREDIENT_CATEGORY" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RULE_CATEGORIES" Type="Self.RULE_CATEGORIES" Multiplicity="*" />
+        </Association>
+        <Association Name="RECIEPE_TO_INGREDIENTS_FK">
+          <End Role="RECIEPE" Type="Self.RECIEPE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RECIEPE_INGREDIENTS" Type="Self.RECIEPE_INGREDIENTS" Multiplicity="*" />
+        </Association>
+        <Association Name="RULE_RULECATEGORY_FK">
+          <End Role="RULE" Type="Self.RULE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RULE_CATEGORIES" Type="Self.RULE_CATEGORIES" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="BackendDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="APEX__ACL" EntityType="Self.APEX__ACL" />
+          <EntitySet Name="APEX__WS_FILES" EntityType="Self.APEX__WS_FILES" />
+          <EntitySet Name="APEX__WS_LINKS" EntityType="Self.APEX__WS_LINKS" />
+          <EntitySet Name="APEX__WS_NOTES" EntityType="Self.APEX__WS_NOTES" />
+          <EntitySet Name="APEX__WS_ROWS" EntityType="Self.APEX__WS_ROWS" />
+          <EntitySet Name="APEX__WS_TAGS" EntityType="Self.APEX__WS_TAGS" />
+          <EntitySet Name="APEX__WS_WEBPG_SECTIONS" EntityType="Self.APEX__WS_WEBPG_SECTIONS" />
+          <EntitySet Name="APEX_TEAM_DEV_FILES" EntityType="Self.APEX_TEAM_DEV_FILES" />
+          <EntitySet Name="DEMO_CONSTRAINT_LOOKUP" EntityType="Self.DEMO_CONSTRAINT_LOOKUP" />
+          <EntitySet Name="DEMO_CUSTOMERS" EntityType="Self.DEMO_CUSTOMERS" />
+          <EntitySet Name="DEMO_ORDER_ITEMS" EntityType="Self.DEMO_ORDER_ITEMS" />
+          <EntitySet Name="DEMO_ORDERS" EntityType="Self.DEMO_ORDERS" />
+          <EntitySet Name="DEMO_PRODUCT_INFO" EntityType="Self.DEMO_PRODUCT_INFO" />
+          <EntitySet Name="DEMO_TAGS" EntityType="Self.DEMO_TAGS" />
+          <EntitySet Name="DEMO_TAGS_SUM" EntityType="Self.DEMO_TAGS_SUM" />
+          <EntitySet Name="DEMO_TAGS_TYPE_SUM" EntityType="Self.DEMO_TAGS_TYPE_SUM" />
+          <EntitySet Name="DEPT" EntityType="Self.DEPT" />
+          <EntitySet Name="EMP" EntityType="Self.EMP" />
+          <EntitySet Name="INGREDIENT" EntityType="Self.INGREDIENT" />
+          <EntitySet Name="INGREDIENT_CATEGORY" EntityType="Self.INGREDIENT_CATEGORY" />
+          <EntitySet Name="PACKAGE" EntityType="Self.PACKAGE" />
+          <EntitySet Name="RECIEPE" EntityType="Self.RECIEPE" />
+          <EntitySet Name="RECIEPE_INGREDIENTS" EntityType="Self.RECIEPE_INGREDIENTS" />
+          <EntitySet Name="RULE" EntityType="Self.RULE" />
+          <EntitySet Name="RULE_CATEGORIES" EntityType="Self.RULE_CATEGORIES" />
+          <EntitySet Name="SHAPE" EntityType="Self.SHAPE" />
+          <EntitySet Name="APEX__WS_HISTORY" EntityType="Self.APEX__WS_HISTORY" />
+          <EntitySet Name="APEX__WS_WEBPG_SECTION_HISTORY" EntityType="Self.APEX__WS_WEBPG_SECTION_HISTORY" />
+          <AssociationSet Name="APEX__WS_FILES_FK" Association="Self.APEX__WS_FILES_FK">
+            <End Role="APEX__WS_ROWS" EntitySet="APEX__WS_ROWS" />
+            <End Role="APEX__WS_FILES" EntitySet="APEX__WS_FILES" />
+          </AssociationSet>
+          <AssociationSet Name="APEX__WS_LINKS_FK" Association="Self.APEX__WS_LINKS_FK">
+            <End Role="APEX__WS_ROWS" EntitySet="APEX__WS_ROWS" />
+            <End Role="APEX__WS_LINKS" EntitySet="APEX__WS_LINKS" />
+          </AssociationSet>
+          <AssociationSet Name="APEX__WS_NOTES_FK" Association="Self.APEX__WS_NOTES_FK">
+            <End Role="APEX__WS_ROWS" EntitySet="APEX__WS_ROWS" />
+            <End Role="APEX__WS_NOTES" EntitySet="APEX__WS_NOTES" />
+          </AssociationSet>
+          <AssociationSet Name="APEX__WS_TAGS_FK" Association="Self.APEX__WS_TAGS_FK">
+            <End Role="APEX__WS_ROWS" EntitySet="APEX__WS_ROWS" />
+            <End Role="APEX__WS_TAGS" EntitySet="APEX__WS_TAGS" />
+          </AssociationSet>
+          <AssociationSet Name="DEMO_ORDERS_CUSTOMER_ID_FK" Association="Self.DEMO_ORDERS_CUSTOMER_ID_FK">
+            <End Role="DEMO_CUSTOMERS" EntitySet="DEMO_CUSTOMERS" />
+            <End Role="DEMO_ORDERS" EntitySet="DEMO_ORDERS" />
+          </AssociationSet>
+          <AssociationSet Name="DEMO_ORDER_ITEMS_FK" Association="Self.DEMO_ORDER_ITEMS_FK">
+            <End Role="DEMO_ORDERS" EntitySet="DEMO_ORDERS" />
+            <End Role="DEMO_ORDER_ITEMS" EntitySet="DEMO_ORDER_ITEMS" />
+          </AssociationSet>
+          <AssociationSet Name="DEMO_ORDER_ITEMS_PRODUCT_ID_FK" Association="Self.DEMO_ORDER_ITEMS_PRODUCT_ID_FK">
+            <End Role="DEMO_PRODUCT_INFO" EntitySet="DEMO_PRODUCT_INFO" />
+            <End Role="DEMO_ORDER_ITEMS" EntitySet="DEMO_ORDER_ITEMS" />
+          </AssociationSet>
+          <AssociationSet Name="PACKAGE_CON" Association="Self.PACKAGE_CON">
+            <End Role="DEMO_PRODUCT_INFO" EntitySet="DEMO_PRODUCT_INFO" />
+            <End Role="PACKAGE" EntitySet="PACKAGE" />
+          </AssociationSet>
+          <AssociationSet Name="RECIEPE_TO_PRODUCT_FK" Association="Self.RECIEPE_TO_PRODUCT_FK">
+            <End Role="DEMO_PRODUCT_INFO" EntitySet="DEMO_PRODUCT_INFO" />
+            <End Role="RECIEPE" EntitySet="RECIEPE" />
+          </AssociationSet>
+          <AssociationSet Name="RULE_CON" Association="Self.RULE_CON">
+            <End Role="DEMO_PRODUCT_INFO" EntitySet="DEMO_PRODUCT_INFO" />
+            <End Role="RULE" EntitySet="RULE" />
+          </AssociationSet>
+          <AssociationSet Name="SHAPE_CON" Association="Self.SHAPE_CON">
+            <End Role="DEMO_PRODUCT_INFO" EntitySet="DEMO_PRODUCT_INFO" />
+            <End Role="SHAPE" EntitySet="SHAPE" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0011034" Association="Self.SYS_C0011034">
+            <End Role="DEPT" EntitySet="DEPT" />
+            <End Role="EMP" EntitySet="EMP" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0011033" Association="Self.SYS_C0011033">
+            <End Role="EMP" EntitySet="EMP" />
+            <End Role="EMP1" EntitySet="EMP" />
+          </AssociationSet>
+          <AssociationSet Name="INGREDIENT_CATEGORY_CON" Association="Self.INGREDIENT_CATEGORY_CON">
+            <End Role="INGREDIENT_CATEGORY" EntitySet="INGREDIENT_CATEGORY" />
+            <End Role="INGREDIENT" EntitySet="INGREDIENT" />
+          </AssociationSet>
+          <AssociationSet Name="INGREDIENT_TO_RECIEPE_FK" Association="Self.INGREDIENT_TO_RECIEPE_FK">
+            <End Role="INGREDIENT" EntitySet="INGREDIENT" />
+            <End Role="RECIEPE_INGREDIENTS" EntitySet="RECIEPE_INGREDIENTS" />
+          </AssociationSet>
+          <AssociationSet Name="CATEGORY_RULECATEGORY_FK" Association="Self.CATEGORY_RULECATEGORY_FK">
+            <End Role="INGREDIENT_CATEGORY" EntitySet="INGREDIENT_CATEGORY" />
+            <End Role="RULE_CATEGORIES" EntitySet="RULE_CATEGORIES" />
+          </AssociationSet>
+          <AssociationSet Name="RECIEPE_TO_INGREDIENTS_FK" Association="Self.RECIEPE_TO_INGREDIENTS_FK">
+            <End Role="RECIEPE" EntitySet="RECIEPE" />
+            <End Role="RECIEPE_INGREDIENTS" EntitySet="RECIEPE_INGREDIENTS" />
+          </AssociationSet>
+          <AssociationSet Name="RULE_RULECATEGORY_FK" Association="Self.RULE_RULECATEGORY_FK">
+            <End Role="RULE" EntitySet="RULE" />
+            <End Role="RULE_CATEGORIES" EntitySet="RULE_CATEGORIES" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBModelBEStoreContainer" CdmEntityContainer="BackendDBEntities">
+          <EntitySetMapping Name="APEX__ACL">
+            <EntityTypeMapping TypeName="DBModelBE.APEX__ACL">
+              <MappingFragment StoreEntitySet="APEX$_ACL">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="WS_APP_ID" ColumnName="WS_APP_ID" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="PRIV" ColumnName="PRIV" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_ON" ColumnName="UPDATED_ON" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="APEX__WS_FILES">
+            <EntityTypeMapping TypeName="DBModelBE.APEX__WS_FILES">
+              <MappingFragment StoreEntitySet="APEX$_WS_FILES">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="WS_APP_ID" ColumnName="WS_APP_ID" />
+                <ScalarProperty Name="DATA_GRID_ID" ColumnName="DATA_GRID_ID" />
+                <ScalarProperty Name="WEBPAGE_ID" ColumnName="WEBPAGE_ID" />
+                <ScalarProperty Name="COMPONENT_LEVEL" ColumnName="COMPONENT_LEVEL" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="IMAGE_ALIAS" ColumnName="IMAGE_ALIAS" />
+                <ScalarProperty Name="IMAGE_ATTRIBUTES" ColumnName="IMAGE_ATTRIBUTES" />
+                <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
+                <ScalarProperty Name="CONTENT_LAST_UPDATE" ColumnName="CONTENT_LAST_UPDATE" />
+                <ScalarProperty Name="MIME_TYPE" ColumnName="MIME_TYPE" />
+                <ScalarProperty Name="CONTENT_CHARSET" ColumnName="CONTENT_CHARSET" />
+                <ScalarProperty Name="CONTENT_FILENAME" ColumnName="CONTENT_FILENAME" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_ON" ColumnName="UPDATED_ON" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="APEX__WS_LINKS">
+            <EntityTypeMapping TypeName="DBModelBE.APEX__WS_LINKS">
+              <MappingFragment StoreEntitySet="APEX$_WS_LINKS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="WS_APP_ID" ColumnName="WS_APP_ID" />
+                <ScalarProperty Name="DATA_GRID_ID" ColumnName="DATA_GRID_ID" />
+                <ScalarProperty Name="WEBPAGE_ID" ColumnName="WEBPAGE_ID" />
+                <ScalarProperty Name="COMPONENT_LEVEL" ColumnName="COMPONENT_LEVEL" />
+                <ScalarProperty Name="TAGS" ColumnName="TAGS" />
+                <ScalarProperty Name="SHOW_ON_HOMEPAGE" ColumnName="SHOW_ON_HOMEPAGE" />
+                <ScalarProperty Name="LINK_NAME" ColumnName="LINK_NAME" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="LINK_DESCRIPTION" ColumnName="LINK_DESCRIPTION" />
+                <ScalarProperty Name="DISPLAY_SEQUENCE" ColumnName="DISPLAY_SEQUENCE" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_ON" ColumnName="UPDATED_ON" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="APEX__WS_NOTES">
+            <EntityTypeMapping TypeName="DBModelBE.APEX__WS_NOTES">
+              <MappingFragment StoreEntitySet="APEX$_WS_NOTES">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="WS_APP_ID" ColumnName="WS_APP_ID" />
+                <ScalarProperty Name="DATA_GRID_ID" ColumnName="DATA_GRID_ID" />
+                <ScalarProperty Name="WEBPAGE_ID" ColumnName="WEBPAGE_ID" />
+                <ScalarProperty Name="COMPONENT_LEVEL" ColumnName="COMPONENT_LEVEL" />
+                <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_ON" ColumnName="UPDATED_ON" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="APEX__WS_ROWS">
+            <EntityTypeMapping TypeName="DBModelBE.APEX__WS_ROWS">
+              <MappingFragment StoreEntitySet="APEX$_WS_ROWS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="WS_APP_ID" ColumnName="WS_APP_ID" />
+                <ScalarProperty Name="DATA_GRID_ID" ColumnName="DATA_GRID_ID" />
+                <ScalarProperty Name="UNIQUE_VALUE" ColumnName="UNIQUE_VALUE" />
+                <ScalarProperty Name="TAGS" ColumnName="TAGS" />
+                <ScalarProperty Name="PARENT_ROW_ID" ColumnName="PARENT_ROW_ID" />
+                <ScalarProperty Name="OWNER" ColumnName="OWNER" />
+                <ScalarProperty Name="GEOCODE" ColumnName="GEOCODE" />
+                <ScalarProperty Name="LOAD_ORDER" ColumnName="LOAD_ORDER" />
+                <ScalarProperty Name="CHANGE_COUNT" ColumnName="CHANGE_COUNT" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_ON" ColumnName="UPDATED_ON" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="C001" ColumnName="C001" />
+                <ScalarProperty Name="C002" ColumnName="C002" />
+                <ScalarProperty Name="C003" ColumnName="C003" />
+                <ScalarProperty Name="C004" ColumnName="C004" />
+                <ScalarProperty Name="C005" ColumnName="C005" />
+                <ScalarProperty Name="C006" ColumnName="C006" />
+                <ScalarProperty Name="C007" ColumnName="C007" />
+                <ScalarProperty Name="C008" ColumnName="C008" />
+                <ScalarProperty Name="C009" ColumnName="C009" />
+                <ScalarProperty Name="C010" ColumnName="C010" />
+                <ScalarProperty Name="C011" ColumnName="C011" />
+                <ScalarProperty Name="C012" ColumnName="C012" />
+                <ScalarProperty Name="C013" ColumnName="C013" />
+                <ScalarProperty Name="C014" ColumnName="C014" />
+                <ScalarProperty Name="C015" ColumnName="C015" />
+                <ScalarProperty Name="C016" ColumnName="C016" />
+                <ScalarProperty Name="C017" ColumnName="C017" />
+                <ScalarProperty Name="C018" ColumnName="C018" />
+                <ScalarProperty Name="C019" ColumnName="C019" />
+                <ScalarProperty Name="C020" ColumnName="C020" />
+                <ScalarProperty Name="C021" ColumnName="C021" />
+                <ScalarProperty Name="C022" ColumnName="C022" />
+                <ScalarProperty Name="C023" ColumnName="C023" />
+                <ScalarProperty Name="C024" ColumnName="C024" />
+                <ScalarProperty Name="C025" ColumnName="C025" />
+                <ScalarProperty Name="C026" ColumnName="C026" />
+                <ScalarProperty Name="C027" ColumnName="C027" />
+                <ScalarProperty Name="C028" ColumnName="C028" />
+                <ScalarProperty Name="C029" ColumnName="C029" />
+                <ScalarProperty Name="C030" ColumnName="C030" />
+                <ScalarProperty Name="C031" ColumnName="C031" />
+                <ScalarProperty Name="C032" ColumnName="C032" />
+                <ScalarProperty Name="C033" ColumnName="C033" />
+                <ScalarProperty Name="C034" ColumnName="C034" />
+                <ScalarProperty Name="C035" ColumnName="C035" />
+                <ScalarProperty Name="C036" ColumnName="C036" />
+                <ScalarProperty Name="C037" ColumnName="C037" />
+                <ScalarProperty Name="C038" ColumnName="C038" />
+                <ScalarProperty Name="C039" ColumnName="C039" />
+                <ScalarProperty Name="C040" ColumnName="C040" />
+                <ScalarProperty Name="C041" ColumnName="C041" />
+                <ScalarProperty Name="C042" ColumnName="C042" />
+                <ScalarProperty Name="C043" ColumnName="C043" />
+                <ScalarProperty Name="C044" ColumnName="C044" />
+                <ScalarProperty Name="C045" ColumnName="C045" />
+                <ScalarProperty Name="C046" ColumnName="C046" />
+                <ScalarProperty Name="C047" ColumnName="C047" />
+                <ScalarProperty Name="C048" ColumnName="C048" />
+                <ScalarProperty Name="C049" ColumnName="C049" />
+                <ScalarProperty Name="C050" ColumnName="C050" />
+                <ScalarProperty Name="N001" ColumnName="N001" />
+                <ScalarProperty Name="N002" ColumnName="N002" />
+                <ScalarProperty Name="N003" ColumnName="N003" />
+                <ScalarProperty Name="N004" ColumnName="N004" />
+                <ScalarProperty Name="N005" ColumnName="N005" />
+                <ScalarProperty Name="N006" ColumnName="N006" />
+                <ScalarProperty Name="N007" ColumnName="N007" />
+                <ScalarProperty Name="N008" ColumnName="N008" />
+                <ScalarProperty Name="N009" ColumnName="N009" />
+                <ScalarProperty Name="N010" ColumnName="N010" />
+                <ScalarProperty Name="N011" ColumnName="N011" />
+                <ScalarProperty Name="N012" ColumnName="N012" />
+                <ScalarProperty Name="N013" ColumnName="N013" />
+                <ScalarProperty Name="N014" ColumnName="N014" />
+                <ScalarProperty Name="N015" ColumnName="N015" />
+                <ScalarProperty Name="N016" ColumnName="N016" />
+                <ScalarProperty Name="N017" ColumnName="N017" />
+                <ScalarProperty Name="N018" ColumnName="N018" />
+                <ScalarProperty Name="N019" ColumnName="N019" />
+                <ScalarProperty Name="N020" ColumnName="N020" />
+                <ScalarProperty Name="N021" ColumnName="N021" />
+                <ScalarProperty Name="N022" ColumnName="N022" />
+                <ScalarProperty Name="N023" ColumnName="N023" />
+                <ScalarProperty Name="N024" ColumnName="N024" />
+                <ScalarProperty Name="N025" ColumnName="N025" />
+                <ScalarProperty Name="N026" ColumnName="N026" />
+                <ScalarProperty Name="N027" ColumnName="N027" />
+                <ScalarProperty Name="N028" ColumnName="N028" />
+                <ScalarProperty Name="N029" ColumnName="N029" />
+                <ScalarProperty Name="N030" ColumnName="N030" />
+                <ScalarProperty Name="N031" ColumnName="N031" />
+                <ScalarProperty Name="N032" ColumnName="N032" />
+                <ScalarProperty Name="N033" ColumnName="N033" />
+                <ScalarProperty Name="N034" ColumnName="N034" />
+                <ScalarProperty Name="N035" ColumnName="N035" />
+                <ScalarProperty Name="N036" ColumnName="N036" />
+                <ScalarProperty Name="N037" ColumnName="N037" />
+                <ScalarProperty Name="N038" ColumnName="N038" />
+                <ScalarProperty Name="N039" ColumnName="N039" />
+                <ScalarProperty Name="N040" ColumnName="N040" />
+                <ScalarProperty Name="N041" ColumnName="N041" />
+                <ScalarProperty Name="N042" ColumnName="N042" />
+                <ScalarProperty Name="N043" ColumnName="N043" />
+                <ScalarProperty Name="N044" ColumnName="N044" />
+                <ScalarProperty Name="N045" ColumnName="N045" />
+                <ScalarProperty Name="N046" ColumnName="N046" />
+                <ScalarProperty Name="N047" ColumnName="N047" />
+                <ScalarProperty Name="N048" ColumnName="N048" />
+                <ScalarProperty Name="N049" ColumnName="N049" />
+                <ScalarProperty Name="N050" ColumnName="N050" />
+                <ScalarProperty Name="D001" ColumnName="D001" />
+                <ScalarProperty Name="D002" ColumnName="D002" />
+                <ScalarProperty Name="D003" ColumnName="D003" />
+                <ScalarProperty Name="D004" ColumnName="D004" />
+                <ScalarProperty Name="D005" ColumnName="D005" />
+                <ScalarProperty Name="D006" ColumnName="D006" />
+                <ScalarProperty Name="D007" ColumnName="D007" />
+                <ScalarProperty Name="D008" ColumnName="D008" />
+                <ScalarProperty Name="D009" ColumnName="D009" />
+                <ScalarProperty Name="D010" ColumnName="D010" />
+                <ScalarProperty Name="D011" ColumnName="D011" />
+                <ScalarProperty Name="D012" ColumnName="D012" />
+                <ScalarProperty Name="D013" ColumnName="D013" />
+                <ScalarProperty Name="D014" ColumnName="D014" />
+                <ScalarProperty Name="D015" ColumnName="D015" />
+                <ScalarProperty Name="D016" ColumnName="D016" />
+                <ScalarProperty Name="D017" ColumnName="D017" />
+                <ScalarProperty Name="D018" ColumnName="D018" />
+                <ScalarProperty Name="D019" ColumnName="D019" />
+                <ScalarProperty Name="D020" ColumnName="D020" />
+                <ScalarProperty Name="D021" ColumnName="D021" />
+                <ScalarProperty Name="D022" ColumnName="D022" />
+                <ScalarProperty Name="D023" ColumnName="D023" />
+                <ScalarProperty Name="D024" ColumnName="D024" />
+                <ScalarProperty Name="D025" ColumnName="D025" />
+                <ScalarProperty Name="D026" ColumnName="D026" />
+                <ScalarProperty Name="D027" ColumnName="D027" />
+                <ScalarProperty Name="D028" ColumnName="D028" />
+                <ScalarProperty Name="D029" ColumnName="D029" />
+                <ScalarProperty Name="D030" ColumnName="D030" />
+                <ScalarProperty Name="D031" ColumnName="D031" />
+                <ScalarProperty Name="D032" ColumnName="D032" />
+                <ScalarProperty Name="D033" ColumnName="D033" />
+                <ScalarProperty Name="D034" ColumnName="D034" />
+                <ScalarProperty Name="D035" ColumnName="D035" />
+                <ScalarProperty Name="D036" ColumnName="D036" />
+                <ScalarProperty Name="D037" ColumnName="D037" />
+                <ScalarProperty Name="D038" ColumnName="D038" />
+                <ScalarProperty Name="D039" ColumnName="D039" />
+                <ScalarProperty Name="D040" ColumnName="D040" />
+                <ScalarProperty Name="D041" ColumnName="D041" />
+                <ScalarProperty Name="D042" ColumnName="D042" />
+                <ScalarProperty Name="D043" ColumnName="D043" />
+                <ScalarProperty Name="D044" ColumnName="D044" />
+                <ScalarProperty Name="D045" ColumnName="D045" />
+                <ScalarProperty Name="D046" ColumnName="D046" />
+                <ScalarProperty Name="D047" ColumnName="D047" />
+                <ScalarProperty Name="D048" ColumnName="D048" />
+                <ScalarProperty Name="D049" ColumnName="D049" />
+                <ScalarProperty Name="D050" ColumnName="D050" />
+                <ScalarProperty Name="CLOB001" ColumnName="CLOB001" />
+                <ScalarProperty Name="SEARCH_CLOB" ColumnName="SEARCH_CLOB" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="APEX__WS_TAGS">
+            <EntityTypeMapping TypeName="DBModelBE.APEX__WS_TAGS">
+              <MappingFragment StoreEntitySet="APEX$_WS_TAGS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="WS_APP_ID" ColumnName="WS_APP_ID" />
+                <ScalarProperty Name="DATA_GRID_ID" ColumnName="DATA_GRID_ID" />
+                <ScalarProperty Name="WEBPAGE_ID" ColumnName="WEBPAGE_ID" />
+                <ScalarProperty Name="COMPONENT_LEVEL" ColumnName="COMPONENT_LEVEL" />
+                <ScalarProperty Name="TAG" ColumnName="TAG" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_ON" ColumnName="UPDATED_ON" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="APEX__WS_WEBPG_SECTIONS">
+            <EntityTypeMapping TypeName="DBModelBE.APEX__WS_WEBPG_SECTIONS">
+              <MappingFragment StoreEntitySet="APEX$_WS_WEBPG_SECTIONS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="WS_APP_ID" ColumnName="WS_APP_ID" />
+                <ScalarProperty Name="WEBPAGE_ID" ColumnName="WEBPAGE_ID" />
+                <ScalarProperty Name="DISPLAY_SEQUENCE" ColumnName="DISPLAY_SEQUENCE" />
+                <ScalarProperty Name="SECTION_TYPE" ColumnName="SECTION_TYPE" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
+                <ScalarProperty Name="CONTENT_UPPER" ColumnName="CONTENT_UPPER" />
+                <ScalarProperty Name="NAV_START_WEBPAGE_ID" ColumnName="NAV_START_WEBPAGE_ID" />
+                <ScalarProperty Name="NAV_MAX_LEVEL" ColumnName="NAV_MAX_LEVEL" />
+                <ScalarProperty Name="NAV_ORDER_BY" ColumnName="NAV_ORDER_BY" />
+                <ScalarProperty Name="NAV_INCLUDE_LINK" ColumnName="NAV_INCLUDE_LINK" />
+                <ScalarProperty Name="DATA_GRID_ID" ColumnName="DATA_GRID_ID" />
+                <ScalarProperty Name="REPORT_ID" ColumnName="REPORT_ID" />
+                <ScalarProperty Name="DATA_SECTION_STYLE" ColumnName="DATA_SECTION_STYLE" />
+                <ScalarProperty Name="SHOW_ADD_ROW" ColumnName="SHOW_ADD_ROW" />
+                <ScalarProperty Name="SHOW_EDIT_ROW" ColumnName="SHOW_EDIT_ROW" />
+                <ScalarProperty Name="SHOW_SEARCH" ColumnName="SHOW_SEARCH" />
+                <ScalarProperty Name="MAX_ROW_COUNT" ColumnName="MAX_ROW_COUNT" />
+                <ScalarProperty Name="CHART_TYPE" ColumnName="CHART_TYPE" />
+                <ScalarProperty Name="CHART_3D" ColumnName="CHART_3D" />
+                <ScalarProperty Name="CHART_LABEL" ColumnName="CHART_LABEL" />
+                <ScalarProperty Name="LABEL_AXIS_TITLE" ColumnName="LABEL_AXIS_TITLE" />
+                <ScalarProperty Name="CHART_VALUE" ColumnName="CHART_VALUE" />
+                <ScalarProperty Name="VALUE_AXIS_TITLE" ColumnName="VALUE_AXIS_TITLE" />
+                <ScalarProperty Name="CHART_AGGREGATE" ColumnName="CHART_AGGREGATE" />
+                <ScalarProperty Name="CHART_SORTING" ColumnName="CHART_SORTING" />
+                <ScalarProperty Name="CHANGE_COUNT" ColumnName="CHANGE_COUNT" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_ON" ColumnName="UPDATED_ON" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="APEX_TEAM_DEV_FILES">
+            <EntityTypeMapping TypeName="DBModelBE.APEX_TEAM_DEV_FILES">
+              <MappingFragment StoreEntitySet="APEX$TEAM_DEV_FILES">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ROW_VERSION_NUMBER" ColumnName="ROW_VERSION_NUMBER" />
+                <ScalarProperty Name="COMPONENT_ID" ColumnName="COMPONENT_ID" />
+                <ScalarProperty Name="COMPONENT_TYPE" ColumnName="COMPONENT_TYPE" />
+                <ScalarProperty Name="FILENAME" ColumnName="FILENAME" />
+                <ScalarProperty Name="FILE_MIMETYPE" ColumnName="FILE_MIMETYPE" />
+                <ScalarProperty Name="FILE_CHARSET" ColumnName="FILE_CHARSET" />
+                <ScalarProperty Name="FILE_BLOB" ColumnName="FILE_BLOB" />
+                <ScalarProperty Name="FILE_COMMENTS" ColumnName="FILE_COMMENTS" />
+                <ScalarProperty Name="TAGS" ColumnName="TAGS" />
+                <ScalarProperty Name="CREATED" ColumnName="CREATED" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED" ColumnName="UPDATED" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEMO_CONSTRAINT_LOOKUP">
+            <EntityTypeMapping TypeName="DBModelBE.DEMO_CONSTRAINT_LOOKUP">
+              <MappingFragment StoreEntitySet="DEMO_CONSTRAINT_LOOKUP">
+                <ScalarProperty Name="CONSTRAINT_NAME" ColumnName="CONSTRAINT_NAME" />
+                <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEMO_CUSTOMERS">
+            <EntityTypeMapping TypeName="DBModelBE.DEMO_CUSTOMERS">
+              <MappingFragment StoreEntitySet="DEMO_CUSTOMERS">
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+                <ScalarProperty Name="CUST_FIRST_NAME" ColumnName="CUST_FIRST_NAME" />
+                <ScalarProperty Name="CUST_LAST_NAME" ColumnName="CUST_LAST_NAME" />
+                <ScalarProperty Name="CUST_STREET_ADDRESS1" ColumnName="CUST_STREET_ADDRESS1" />
+                <ScalarProperty Name="CUST_STREET_ADDRESS2" ColumnName="CUST_STREET_ADDRESS2" />
+                <ScalarProperty Name="CUST_CITY" ColumnName="CUST_CITY" />
+                <ScalarProperty Name="CUST_STATE" ColumnName="CUST_STATE" />
+                <ScalarProperty Name="CUST_POSTAL_CODE" ColumnName="CUST_POSTAL_CODE" />
+                <ScalarProperty Name="CUST_EMAIL" ColumnName="CUST_EMAIL" />
+                <ScalarProperty Name="PHONE_NUMBER1" ColumnName="PHONE_NUMBER1" />
+                <ScalarProperty Name="PHONE_NUMBER2" ColumnName="PHONE_NUMBER2" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="CREDIT_LIMIT" ColumnName="CREDIT_LIMIT" />
+                <ScalarProperty Name="TAGS" ColumnName="TAGS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEMO_ORDER_ITEMS">
+            <EntityTypeMapping TypeName="DBModelBE.DEMO_ORDER_ITEMS">
+              <MappingFragment StoreEntitySet="DEMO_ORDER_ITEMS">
+                <ScalarProperty Name="ORDER_ITEM_ID" ColumnName="ORDER_ITEM_ID" />
+                <ScalarProperty Name="UNIT_PRICE" ColumnName="UNIT_PRICE" />
+                <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEMO_ORDERS">
+            <EntityTypeMapping TypeName="DBModelBE.DEMO_ORDERS">
+              <MappingFragment StoreEntitySet="DEMO_ORDERS">
+                <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+                <ScalarProperty Name="ORDER_TOTAL" ColumnName="ORDER_TOTAL" />
+                <ScalarProperty Name="ORDER_TIMESTAMP" ColumnName="ORDER_TIMESTAMP" />
+                <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+                <ScalarProperty Name="TAGS" ColumnName="TAGS" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEMO_PRODUCT_INFO">
+            <EntityTypeMapping TypeName="DBModelBE.DEMO_PRODUCT_INFO">
+              <MappingFragment StoreEntitySet="DEMO_PRODUCT_INFO">
+                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+                <ScalarProperty Name="PRODUCT_NAME" ColumnName="PRODUCT_NAME" />
+                <ScalarProperty Name="PRODUCT_DESCRIPTION" ColumnName="PRODUCT_DESCRIPTION" />
+                <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+                <ScalarProperty Name="PRODUCT_AVAIL" ColumnName="PRODUCT_AVAIL" />
+                <ScalarProperty Name="LIST_PRICE" ColumnName="LIST_PRICE" />
+                <ScalarProperty Name="PRODUCT_IMAGE" ColumnName="PRODUCT_IMAGE" />
+                <ScalarProperty Name="MIMETYPE" ColumnName="MIMETYPE" />
+                <ScalarProperty Name="FILENAME" ColumnName="FILENAME" />
+                <ScalarProperty Name="IMAGE_LAST_UPDATE" ColumnName="IMAGE_LAST_UPDATE" />
+                <ScalarProperty Name="TAGS" ColumnName="TAGS" />
+                <ScalarProperty Name="SALE_PRICE" ColumnName="SALE_PRICE" />
+                <ScalarProperty Name="SALE_BEGIN" ColumnName="SALE_BEGIN" />
+                <ScalarProperty Name="SALE_END" ColumnName="SALE_END" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEMO_TAGS">
+            <EntityTypeMapping TypeName="DBModelBE.DEMO_TAGS">
+              <MappingFragment StoreEntitySet="DEMO_TAGS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TAG" ColumnName="TAG" />
+                <ScalarProperty Name="CONTENT_ID" ColumnName="CONTENT_ID" />
+                <ScalarProperty Name="CONTENT_TYPE" ColumnName="CONTENT_TYPE" />
+                <ScalarProperty Name="CREATED" ColumnName="CREATED" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED" ColumnName="UPDATED" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEMO_TAGS_SUM">
+            <EntityTypeMapping TypeName="DBModelBE.DEMO_TAGS_SUM">
+              <MappingFragment StoreEntitySet="DEMO_TAGS_SUM">
+                <ScalarProperty Name="TAG" ColumnName="TAG" />
+                <ScalarProperty Name="TAG_COUNT" ColumnName="TAG_COUNT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEMO_TAGS_TYPE_SUM">
+            <EntityTypeMapping TypeName="DBModelBE.DEMO_TAGS_TYPE_SUM">
+              <MappingFragment StoreEntitySet="DEMO_TAGS_TYPE_SUM">
+                <ScalarProperty Name="TAG" ColumnName="TAG" />
+                <ScalarProperty Name="CONTENT_TYPE" ColumnName="CONTENT_TYPE" />
+                <ScalarProperty Name="TAG_COUNT" ColumnName="TAG_COUNT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEPT">
+            <EntityTypeMapping TypeName="DBModelBE.DEPT">
+              <MappingFragment StoreEntitySet="DEPT">
+                <ScalarProperty Name="DEPTNO" ColumnName="DEPTNO" />
+                <ScalarProperty Name="DNAME" ColumnName="DNAME" />
+                <ScalarProperty Name="LOC" ColumnName="LOC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMP">
+            <EntityTypeMapping TypeName="DBModelBE.EMP">
+              <MappingFragment StoreEntitySet="EMP">
+                <ScalarProperty Name="EMPNO" ColumnName="EMPNO" />
+                <ScalarProperty Name="ENAME" ColumnName="ENAME" />
+                <ScalarProperty Name="JOB" ColumnName="JOB" />
+                <ScalarProperty Name="HIREDATE" ColumnName="HIREDATE" />
+                <ScalarProperty Name="SAL" ColumnName="SAL" />
+                <ScalarProperty Name="COMM" ColumnName="COMM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INGREDIENT">
+            <EntityTypeMapping TypeName="DBModelBE.INGREDIENT">
+              <MappingFragment StoreEntitySet="INGREDIENT">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="FILENAME" ColumnName="FILENAME" />
+                <ScalarProperty Name="MIMETYPE" ColumnName="MIMETYPE" />
+                <ScalarProperty Name="INGREDIENT_IMAGE" ColumnName="INGREDIENT_IMAGE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="LOCATION_TOP" ColumnName="LOCATION_TOP" />
+                <ScalarProperty Name="LOCATION_BOTTOM" ColumnName="LOCATION_BOTTOM" />
+                <ScalarProperty Name="LOCATION_CHOC" ColumnName="LOCATION_CHOC" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+                <ScalarProperty Name="IMAGE_LAST_UPDATE" ColumnName="IMAGE_LAST_UPDATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INGREDIENT_CATEGORY">
+            <EntityTypeMapping TypeName="DBModelBE.INGREDIENT_CATEGORY">
+              <MappingFragment StoreEntitySet="INGREDIENT_CATEGORY">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PACKAGE">
+            <EntityTypeMapping TypeName="DBModelBE.PACKAGE">
+              <MappingFragment StoreEntitySet="PACKAGE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="FILENAME" ColumnName="FILENAME" />
+                <ScalarProperty Name="MIMETYPE" ColumnName="MIMETYPE" />
+                <ScalarProperty Name="PACKAGE_IMAGE" ColumnName="PACKAGE_IMAGE" />
+                <ScalarProperty Name="IMAGE_LAST_UPDATE" ColumnName="IMAGE_LAST_UPDATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RECIEPE">
+            <EntityTypeMapping TypeName="DBModelBE.RECIEPE">
+              <MappingFragment StoreEntitySet="RECIEPE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RECIEPE_INGREDIENTS">
+            <EntityTypeMapping TypeName="DBModelBE.RECIEPE_INGREDIENTS">
+              <MappingFragment StoreEntitySet="RECIEPE_INGREDIENTS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+                <ScalarProperty Name="UNIT_PRICE" ColumnName="UNIT_PRICE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RULE">
+            <EntityTypeMapping TypeName="DBModelBE.RULE">
+              <MappingFragment StoreEntitySet="RULE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RULE_CATEGORIES">
+            <EntityTypeMapping TypeName="DBModelBE.RULE_CATEGORIES">
+              <MappingFragment StoreEntitySet="RULE_CATEGORIES">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SHAPE">
+            <EntityTypeMapping TypeName="DBModelBE.SHAPE">
+              <MappingFragment StoreEntitySet="SHAPE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="FILENAME" ColumnName="FILENAME" />
+                <ScalarProperty Name="MIMETYPE" ColumnName="MIMETYPE" />
+                <ScalarProperty Name="SHAPE_IMAGE" ColumnName="SHAPE_IMAGE" />
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="IMAGE_LAST_UPDATE" ColumnName="IMAGE_LAST_UPDATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="APEX__WS_HISTORY">
+            <EntityTypeMapping TypeName="DBModelBE.APEX__WS_HISTORY">
+              <MappingFragment StoreEntitySet="APEX$_WS_HISTORY">
+                <ScalarProperty Name="ROW_ID" ColumnName="ROW_ID" />
+                <ScalarProperty Name="WS_APP_ID" ColumnName="WS_APP_ID" />
+                <ScalarProperty Name="DATA_GRID_ID" ColumnName="DATA_GRID_ID" />
+                <ScalarProperty Name="COLUMN_NAME" ColumnName="COLUMN_NAME" />
+                <ScalarProperty Name="OLD_VALUE" ColumnName="OLD_VALUE" />
+                <ScalarProperty Name="NEW_VALUE" ColumnName="NEW_VALUE" />
+                <ScalarProperty Name="APPLICATION_USER_ID" ColumnName="APPLICATION_USER_ID" />
+                <ScalarProperty Name="CHANGE_DATE" ColumnName="CHANGE_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="APEX__WS_WEBPG_SECTION_HISTORY">
+            <EntityTypeMapping TypeName="DBModelBE.APEX__WS_WEBPG_SECTION_HISTORY">
+              <MappingFragment StoreEntitySet="APEX$_WS_WEBPG_SECTION_HISTORY">
+                <ScalarProperty Name="SECTION_ID" ColumnName="SECTION_ID" />
+                <ScalarProperty Name="WS_APP_ID" ColumnName="WS_APP_ID" />
+                <ScalarProperty Name="WEBPAGE_ID" ColumnName="WEBPAGE_ID" />
+                <ScalarProperty Name="OLD_DISPLAY_SEQUENCE" ColumnName="OLD_DISPLAY_SEQUENCE" />
+                <ScalarProperty Name="NEW_DISPLAY_SEQUENCE" ColumnName="NEW_DISPLAY_SEQUENCE" />
+                <ScalarProperty Name="OLD_TITLE" ColumnName="OLD_TITLE" />
+                <ScalarProperty Name="NEW_TITLE" ColumnName="NEW_TITLE" />
+                <ScalarProperty Name="OLD_CONTENT" ColumnName="OLD_CONTENT" />
+                <ScalarProperty Name="NEW_CONTENT" ColumnName="NEW_CONTENT" />
+                <ScalarProperty Name="APPLICATION_USER_ID" ColumnName="APPLICATION_USER_ID" />
+                <ScalarProperty Name="CHANGE_DATE" ColumnName="CHANGE_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="APEX__WS_FILES_FK" TypeName="DBModelBE.APEX__WS_FILES_FK" StoreEntitySet="APEX$_WS_FILES">
+            <EndProperty Name="APEX__WS_ROWS">
+              <ScalarProperty Name="ID" ColumnName="ROW_ID" />
+            </EndProperty>
+            <EndProperty Name="APEX__WS_FILES">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="ROW_ID" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="APEX__WS_LINKS_FK" TypeName="DBModelBE.APEX__WS_LINKS_FK" StoreEntitySet="APEX$_WS_LINKS">
+            <EndProperty Name="APEX__WS_ROWS">
+              <ScalarProperty Name="ID" ColumnName="ROW_ID" />
+            </EndProperty>
+            <EndProperty Name="APEX__WS_LINKS">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="ROW_ID" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="APEX__WS_NOTES_FK" TypeName="DBModelBE.APEX__WS_NOTES_FK" StoreEntitySet="APEX$_WS_NOTES">
+            <EndProperty Name="APEX__WS_ROWS">
+              <ScalarProperty Name="ID" ColumnName="ROW_ID" />
+            </EndProperty>
+            <EndProperty Name="APEX__WS_NOTES">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="ROW_ID" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="APEX__WS_TAGS_FK" TypeName="DBModelBE.APEX__WS_TAGS_FK" StoreEntitySet="APEX$_WS_TAGS">
+            <EndProperty Name="APEX__WS_ROWS">
+              <ScalarProperty Name="ID" ColumnName="ROW_ID" />
+            </EndProperty>
+            <EndProperty Name="APEX__WS_TAGS">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="ROW_ID" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="DEMO_ORDERS_CUSTOMER_ID_FK" TypeName="DBModelBE.DEMO_ORDERS_CUSTOMER_ID_FK" StoreEntitySet="DEMO_ORDERS">
+            <EndProperty Name="DEMO_CUSTOMERS">
+              <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+            </EndProperty>
+            <EndProperty Name="DEMO_ORDERS">
+              <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="DEMO_ORDER_ITEMS_FK" TypeName="DBModelBE.DEMO_ORDER_ITEMS_FK" StoreEntitySet="DEMO_ORDER_ITEMS">
+            <EndProperty Name="DEMO_ORDERS">
+              <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+            </EndProperty>
+            <EndProperty Name="DEMO_ORDER_ITEMS">
+              <ScalarProperty Name="ORDER_ITEM_ID" ColumnName="ORDER_ITEM_ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="DEMO_ORDER_ITEMS_PRODUCT_ID_FK" TypeName="DBModelBE.DEMO_ORDER_ITEMS_PRODUCT_ID_FK" StoreEntitySet="DEMO_ORDER_ITEMS">
+            <EndProperty Name="DEMO_PRODUCT_INFO">
+              <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+            </EndProperty>
+            <EndProperty Name="DEMO_ORDER_ITEMS">
+              <ScalarProperty Name="ORDER_ITEM_ID" ColumnName="ORDER_ITEM_ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="PACKAGE_CON" TypeName="DBModelBE.PACKAGE_CON" StoreEntitySet="PACKAGE">
+            <EndProperty Name="DEMO_PRODUCT_INFO">
+              <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+            </EndProperty>
+            <EndProperty Name="PACKAGE">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="RECIEPE_TO_PRODUCT_FK" TypeName="DBModelBE.RECIEPE_TO_PRODUCT_FK" StoreEntitySet="RECIEPE">
+            <EndProperty Name="DEMO_PRODUCT_INFO">
+              <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+            </EndProperty>
+            <EndProperty Name="RECIEPE">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="RULE_CON" TypeName="DBModelBE.RULE_CON" StoreEntitySet="RULE">
+            <EndProperty Name="DEMO_PRODUCT_INFO">
+              <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+            </EndProperty>
+            <EndProperty Name="RULE">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="SHAPE_CON" TypeName="DBModelBE.SHAPE_CON" StoreEntitySet="SHAPE">
+            <EndProperty Name="DEMO_PRODUCT_INFO">
+              <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+            </EndProperty>
+            <EndProperty Name="SHAPE">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="SYS_C0011034" TypeName="DBModelBE.SYS_C0011034" StoreEntitySet="EMP">
+            <EndProperty Name="DEPT">
+              <ScalarProperty Name="DEPTNO" ColumnName="DEPTNO" />
+            </EndProperty>
+            <EndProperty Name="EMP">
+              <ScalarProperty Name="EMPNO" ColumnName="EMPNO" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="DEPTNO" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="SYS_C0011033" TypeName="DBModelBE.SYS_C0011033" StoreEntitySet="EMP">
+            <EndProperty Name="EMP">
+              <ScalarProperty Name="EMPNO" ColumnName="MGR" />
+            </EndProperty>
+            <EndProperty Name="EMP1">
+              <ScalarProperty Name="EMPNO" ColumnName="EMPNO" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="MGR" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="INGREDIENT_CATEGORY_CON" TypeName="DBModelBE.INGREDIENT_CATEGORY_CON" StoreEntitySet="INGREDIENT">
+            <EndProperty Name="INGREDIENT_CATEGORY">
+              <ScalarProperty Name="ID" ColumnName="CATEGORY_ID" />
+            </EndProperty>
+            <EndProperty Name="INGREDIENT">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="INGREDIENT_TO_RECIEPE_FK" TypeName="DBModelBE.INGREDIENT_TO_RECIEPE_FK" StoreEntitySet="RECIEPE_INGREDIENTS">
+            <EndProperty Name="INGREDIENT">
+              <ScalarProperty Name="ID" ColumnName="INGREDIENT_ID" />
+            </EndProperty>
+            <EndProperty Name="RECIEPE_INGREDIENTS">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="CATEGORY_RULECATEGORY_FK" TypeName="DBModelBE.CATEGORY_RULECATEGORY_FK" StoreEntitySet="RULE_CATEGORIES">
+            <EndProperty Name="INGREDIENT_CATEGORY">
+              <ScalarProperty Name="ID" ColumnName="CATEGORY_ID" />
+            </EndProperty>
+            <EndProperty Name="RULE_CATEGORIES">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="RECIEPE_TO_INGREDIENTS_FK" TypeName="DBModelBE.RECIEPE_TO_INGREDIENTS_FK" StoreEntitySet="RECIEPE_INGREDIENTS">
+            <EndProperty Name="RECIEPE">
+              <ScalarProperty Name="ID" ColumnName="RECIEPE_ID" />
+            </EndProperty>
+            <EndProperty Name="RECIEPE_INGREDIENTS">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="RULE_RULECATEGORY_FK" TypeName="DBModelBE.RULE_RULECATEGORY_FK" StoreEntitySet="RULE_CATEGORIES">
+            <EndProperty Name="RULE">
+              <ScalarProperty Name="ID" ColumnName="RULE_ID" />
+            </EndProperty>
+            <EndProperty Name="RULE_CATEGORIES">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

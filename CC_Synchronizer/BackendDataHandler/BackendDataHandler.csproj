@@ -45,6 +45,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,14 +55,136 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="APEX_TEAM_DEV_FILES.cs">
+      <DependentUpon>DBModel_BackEnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="APEX__ACL.cs">
+      <DependentUpon>DBModel_BackEnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="APEX__WS_FILES.cs">
+      <DependentUpon>DBModel_BackEnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="APEX__WS_HISTORY.cs">
+      <DependentUpon>DBModel_BackEnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="APEX__WS_LINKS.cs">
+      <DependentUpon>DBModel_BackEnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="APEX__WS_NOTES.cs">
+      <DependentUpon>DBModel_BackEnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="APEX__WS_ROWS.cs">
+      <DependentUpon>DBModel_BackEnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="APEX__WS_TAGS.cs">
+      <DependentUpon>DBModel_BackEnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="APEX__WS_WEBPG_SECTIONS.cs">
+      <DependentUpon>DBModel_BackEnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="APEX__WS_WEBPG_SECTION_HISTORY.cs">
+      <DependentUpon>DBModel_BackEnd.tt</DependentUpon>
+    </Compile>
     <Compile Include="BackendDataHandling.cs" />
+    <Compile Include="DBModel_BackEnd.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBModel_BackEnd.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBModel_BackEnd.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBModel_BackEnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBModel_BackEnd.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBModel_BackEnd.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DEMO_CONSTRAINT_LOOKUP.cs">
+      <DependentUpon>DBModel_BackEnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DEMO_CUSTOMERS.cs">
+      <DependentUpon>DBModel_BackEnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DEMO_ORDERS.cs">
+      <DependentUpon>DBModel_BackEnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DEMO_ORDER_ITEMS.cs">
+      <DependentUpon>DBModel_BackEnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DEMO_PRODUCT_INFO.cs">
+      <DependentUpon>DBModel_BackEnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DEMO_TAGS.cs">
+      <DependentUpon>DBModel_BackEnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DEMO_TAGS_SUM.cs">
+      <DependentUpon>DBModel_BackEnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DEMO_TAGS_TYPE_SUM.cs">
+      <DependentUpon>DBModel_BackEnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DEPT.cs">
+      <DependentUpon>DBModel_BackEnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EMP.cs">
+      <DependentUpon>DBModel_BackEnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="INGREDIENT.cs">
+      <DependentUpon>DBModel_BackEnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="INGREDIENT_CATEGORY.cs">
+      <DependentUpon>DBModel_BackEnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PACKAGE.cs">
+      <DependentUpon>DBModel_BackEnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RECIEPE.cs">
+      <DependentUpon>DBModel_BackEnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RECIEPE_INGREDIENTS.cs">
+      <DependentUpon>DBModel_BackEnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RULE.cs">
+      <DependentUpon>DBModel_BackEnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RULE_CATEGORIES.cs">
+      <DependentUpon>DBModel_BackEnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SHAPE.cs">
+      <DependentUpon>DBModel_BackEnd.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <EntityDeploy Include="DBModel_BackEnd.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DBModel_BackEnd.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DBModel_BackEnd.edmx.diagram">
+      <DependentUpon>DBModel_BackEnd.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DBModel_BackEnd.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBModel_BackEnd.edmx</DependentUpon>
+      <LastGenOutput>DBModel_BackEnd.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DBModel_BackEnd.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBModel_BackEnd.edmx</DependentUpon>
+      <LastGenOutput>DBModel_BackEnd.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
