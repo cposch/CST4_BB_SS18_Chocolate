@@ -2,7 +2,7 @@
 
 namespace AppSharedClasses
 {
-    public class AppOrders
+    public class ShOrders
     {
         private int OrdersID;
         public int CustomerID { get; set; }
@@ -10,10 +10,12 @@ namespace AppSharedClasses
         public DateTime OrderTimeStamp { get; set; }
         public string UserName { get; set; }
         public string Status { get; set; }
+        public int BackendID { get; set; }
+        public int FrontEndID { get; set; }
 
-        public AppOrders() { }
+        public ShOrders() { }
 
-        public AppOrders(int ordersID, int customerID, float orderTotal, DateTime orderTimeStamp, string userName, string status)
+        public ShOrders(int ordersID, int customerID, float orderTotal, DateTime orderTimeStamp, string userName, string status, int backendID, int frontEndID)
         {
             OrdersID = ordersID;
             CustomerID = customerID;
@@ -21,6 +23,8 @@ namespace AppSharedClasses
             OrderTimeStamp = orderTimeStamp;
             UserName = userName;
             Status = status;
+            BackendID = backendID;
+            FrontEndID = frontEndID;
         }
     }
 }

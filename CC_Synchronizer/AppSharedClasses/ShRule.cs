@@ -1,18 +1,18 @@
 ﻿namespace AppSharedClasses
 {
-    public class AppIngredientCategory
+    public class ShRule
     {
         private int Id { get; set; }
-        public string Name { get; set; }
+        public int ProductId { get; set; }
         public int BackendID { get; set; }
         public int FrontEndID { get; set; }
 
-        public AppIngredientCategory() { }
+        public ShRule() { }
 
-        public AppIngredientCategory(int id, string name, int backendID, int frontEndID)
+        public ShRule(int id, int productId, int backendID, int frontEndID)
         {
             Id = id;
-            Name = name;
+            ProductId = productId;
             BackendID = backendID;
             FrontEndID = frontEndID;
         }

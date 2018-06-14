@@ -12,12 +12,11 @@ namespace CC_Synchronizer
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Chocolate Costumizer Syncronizer\n\nPress any key to end.");
-            //Console.ReadLine();
+            Console.WriteLine("Chocolate Costumizer Syncronizer\nPress Enter to end the application.\n");
 
             AppServer appServer = new AppServer();
-            Console.ReadLine();
             //FrontendHost feHost = new FrontendHost();
+            Console.ReadLine();
         }
     }
 }

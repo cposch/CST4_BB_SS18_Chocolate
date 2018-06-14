@@ -1,6 +1,6 @@
 ﻿namespace AppSharedClasses
 {
-    public class AppCustomers
+    public class ShCustomers
     {
         public int Customer_ID { get; set; }
         public string FirstName { get; set; }
@@ -15,11 +15,26 @@
         public int BackendID { get; set; }
         public int FrontEndID { get; set; }
 
-        public AppCustomers() { }
+        public ShCustomers() { }
 
-        public AppCustomers(int customer_ID, string firstName, string lastName, string streetAdress1, string streetAdress2, string city, string postalCode, string email, string phoneNumber1, string phoneNumber2, int backendID, int frontEndID)
+        public ShCustomers(int customer_ID, string firstName, string lastName, string streetAdress1, string streetAdress2, string city, string postalCode, string email, string phoneNumber1, string phoneNumber2, int backendID, int frontEndID)
         {
             Customer_ID = customer_ID;
+            FirstName = firstName;
+            LastName = lastName;
+            StreetAdress1 = streetAdress1;
+            this.streetAdress2 = streetAdress2;
+            City = city;
+            PostalCode = postalCode;
+            Email = email;
+            PhoneNumber1 = phoneNumber1;
+            PhoneNumber2 = phoneNumber2;
+            BackendID = backendID;
+            FrontEndID = frontEndID;
+        }
+
+        public ShCustomers(string firstName, string lastName, string streetAdress1, string streetAdress2, string city, string postalCode, string email, string phoneNumber1, string phoneNumber2, int backendID, int frontEndID)
+        {
             FirstName = firstName;
             LastName = lastName;
             StreetAdress1 = streetAdress1;

@@ -47,6 +47,18 @@
   <ItemGroup>
     <Compile Include="AppService\AppServer.cs" />
     <Compile Include="AppService\ClientHandler.cs" />
+    <Compile Include="AppService\SyncDataModels\Customers.cs" />
+    <Compile Include="AppService\SyncDataModels\Ingredients.cs" />
+    <Compile Include="AppService\SyncDataModels\Ingredient_Category.cs" />
+    <Compile Include="AppService\SyncDataModels\Orders.cs" />
+    <Compile Include="AppService\SyncDataModels\Order_Items.cs" />
+    <Compile Include="AppService\SyncDataModels\Packages.cs" />
+    <Compile Include="AppService\SyncDataModels\Product_Info.cs" />
+    <Compile Include="AppService\SyncDataModels\Recipe.cs" />
+    <Compile Include="AppService\SyncDataModels\Recipe_Ingredients.cs" />
+    <Compile Include="AppService\SyncDataModels\Rule.cs" />
+    <Compile Include="AppService\SyncDataModels\Rule_Categories.cs" />
+    <Compile Include="AppService\SyncDataModels\Shape.cs" />
     <Compile Include="AppService\SyncXMLSerializer.cs" />
     <Compile Include="FrontendService\FrontendHost.cs" />
     <Compile Include="Program.cs" />
@@ -69,5 +81,6 @@
       <Name>FrontendServiceProvider</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

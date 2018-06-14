@@ -3,7 +3,7 @@ using System.Windows.Media.Imaging;     //Reference PresentationCore
 
 namespace AppSharedClasses
 {
-    public class AppProductInfo
+    public class ShProductInfo
     {
         private int ProduktID;
         public string Name { get; set; }
@@ -15,10 +15,12 @@ namespace AppSharedClasses
         public DateTime SaleBegin { get; set; }
         public DateTime SaleEnd { get; set; }
         public BitmapImage ProductImage { get; set; }
+        public int BackendID { get; set; }
+        public int FrontEndID { get; set; }
 
-        public AppProductInfo() { }
+        public ShProductInfo() { }
 
-        public AppProductInfo(int produktID, string name, string description, string category, bool availability, float listPrice, float salePrice, DateTime saleBegin, DateTime saleEnd, BitmapImage productImage)
+        public ShProductInfo(int produktID, string name, string description, string category, bool availability, float listPrice, float salePrice, DateTime saleBegin, DateTime saleEnd, BitmapImage productImage, int backendID, int frontEndID)
         {
             ProduktID = produktID;
             Name = name;
@@ -30,6 +32,8 @@ namespace AppSharedClasses
             SaleBegin = saleBegin;
             SaleEnd = saleEnd;
             ProductImage = productImage;
+            BackendID = backendID;
+            FrontEndID = frontEndID;
         }
     }
 }

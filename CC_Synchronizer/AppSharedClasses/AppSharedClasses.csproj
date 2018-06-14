@@ -41,21 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppChanges.cs" />
-    <Compile Include="AppCustomers.cs" />
-    <Compile Include="AppIngredient.cs" />
-    <Compile Include="AppIngredientCategory.cs" />
-    <Compile Include="AppOffers.cs" />
-    <Compile Include="AppOrderItems.cs" />
-    <Compile Include="AppOrders.cs" />
-    <Compile Include="AppPackage.cs" />
-    <Compile Include="AppProductInfo.cs" />
-    <Compile Include="AppRecipe.cs" />
-    <Compile Include="AppRecipeIngredients.cs" />
-    <Compile Include="AppRule.cs" />
-    <Compile Include="AppRuleCategories.cs" />
-    <Compile Include="AppShape.cs" />
-    <Compile Include="AppTableID.cs" />
+    <Compile Include="ShCustomers.cs" />
+    <Compile Include="ShIngredient.cs" />
+    <Compile Include="ShIngredientCategory.cs" />
+    <Compile Include="ShOrderItems.cs" />
+    <Compile Include="ShOrders.cs" />
+    <Compile Include="ShPackage.cs" />
+    <Compile Include="ShProductInfo.cs" />
+    <Compile Include="ShRecipe.cs" />
+    <Compile Include="ShRecipeIngredients.cs" />
+    <Compile Include="ShRule.cs" />
+    <Compile Include="ShRuleCategories.cs" />
+    <Compile Include="ShShape.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

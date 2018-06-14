@@ -2,7 +2,7 @@
 using System.IO;
 using System.Xml.Serialization;
 
-namespace CC_Synchronizer.AppService.Data
+namespace CC_Synchronizer.AppService
 {
     public class SyncXMLSerializer<T>
     {
@@ -20,7 +20,6 @@ namespace CC_Synchronizer.AppService.Data
 
         public T Deserialize(string s)
         {
-
             using (StringReader textWriter = new StringReader(s))
             {
                 XmlSerializer XML = new XmlSerializer(typeof(T));

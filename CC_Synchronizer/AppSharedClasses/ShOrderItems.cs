@@ -1,22 +1,26 @@
 ﻿namespace AppSharedClasses
 {
-    public class AppOrderItems
+    public class ShOrderItems
     {
         private int OrderItemID;
         public int OrderID { get; set; }
         public int ProductID { get; set; }
         public float UnitPrice { get; set; }
         public float Quantity { get; set; }
+        public int BackendID { get; set; }
+        public int FrontEndID { get; set; }
 
-        public AppOrderItems() { }
+        public ShOrderItems() { }
 
-        public AppOrderItems(int orderItemID, int orderID, int productID, float unitPrice, float quantity)
+        public ShOrderItems(int orderItemID, int orderID, int productID, float unitPrice, float quantity, int backendID, int frontEndID)
         {
             OrderItemID = orderItemID;
             OrderID = orderID;
             ProductID = productID;
             UnitPrice = unitPrice;
             Quantity = quantity;
+            BackendID = backendID;
+            FrontEndID = frontEndID;
         }
     }
 }
