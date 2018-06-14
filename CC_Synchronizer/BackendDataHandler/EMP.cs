@@ -23,9 +23,13 @@ namespace BackendDataHandler
         public short EMPNO { get; set; }
         public string ENAME { get; set; }
         public string JOB { get; set; }
+        public Nullable<short> MGR { get; set; }
         public Nullable<System.DateTime> HIREDATE { get; set; }
         public Nullable<decimal> SAL { get; set; }
         public Nullable<decimal> COMM { get; set; }
+        public Nullable<byte> DEPTNO { get; set; }
+        public Nullable<decimal> FRONTEND_ID { get; set; }
+        public Nullable<decimal> MANUFACTURER_ID { get; set; }
     
         public virtual DEPT DEPT { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

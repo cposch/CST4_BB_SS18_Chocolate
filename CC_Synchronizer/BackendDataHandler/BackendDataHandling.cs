@@ -9,7 +9,8 @@ namespace BackendDataHandler
 {
     public class BackendDataHandling
     {
-        BackendDBEntities db = new BackendDBEntities();
+        BackendDBEntities2 db = new BackendDBEntities2();
+        
 
         public void AddProduct(Product p)
         {

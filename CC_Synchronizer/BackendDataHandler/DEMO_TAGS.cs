@@ -22,5 +22,7 @@ namespace BackendDataHandler
         public string CREATED_BY { get; set; }
         public Nullable<System.DateTime> UPDATED { get; set; }
         public string UPDATED_BY { get; set; }
+        public Nullable<decimal> FRONTEND_ID { get; set; }
+        public Nullable<decimal> MANUFACTURER_ID { get; set; }
     }
 }

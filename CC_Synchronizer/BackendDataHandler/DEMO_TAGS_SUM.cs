@@ -16,5 +16,7 @@ namespace BackendDataHandler
     {
         public string TAG { get; set; }
         public Nullable<decimal> TAG_COUNT { get; set; }
+        public Nullable<decimal> FRONTEND_ID { get; set; }
+        public Nullable<decimal> MANUFACTURER_ID { get; set; }
     }
 }

@@ -21,7 +21,10 @@ namespace BackendDataHandler
         }
     
         public decimal ID { get; set; }
+        public decimal PRODUCT_ID { get; set; }
         public string DESCRIPTION { get; set; }
+        public Nullable<decimal> FRONTEND_ID { get; set; }
+        public Nullable<decimal> MANUFACTURER_ID { get; set; }
     
         public virtual DEMO_PRODUCT_INFO DEMO_PRODUCT_INFO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

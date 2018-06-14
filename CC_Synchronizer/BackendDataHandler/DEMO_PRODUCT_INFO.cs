@@ -38,6 +38,8 @@ namespace BackendDataHandler
         public Nullable<decimal> SALE_PRICE { get; set; }
         public Nullable<System.DateTime> SALE_BEGIN { get; set; }
         public Nullable<System.DateTime> SALE_END { get; set; }
+        public Nullable<decimal> FRONTEND_ID { get; set; }
+        public Nullable<decimal> MANUFACTURER_ID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DEMO_ORDER_ITEMS> DEMO_ORDER_ITEMS { get; set; }

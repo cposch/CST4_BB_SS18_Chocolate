@@ -92,6 +92,10 @@
       <Project>{fdd95d55-81a7-48d8-a845-08a267b2fa2b}</Project>
       <Name>FrontendServiceProvider</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SharedLibrary\SharedLibrary.csproj">
+      <Project>{081F0B4A-E2AC-4083-B5F1-092483389899}</Project>
+      <Name>SharedLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">

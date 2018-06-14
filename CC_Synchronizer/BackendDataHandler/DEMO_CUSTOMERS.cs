@@ -34,6 +34,8 @@ namespace BackendDataHandler
         public string URL { get; set; }
         public Nullable<decimal> CREDIT_LIMIT { get; set; }
         public string TAGS { get; set; }
+        public Nullable<decimal> MANUFACTURER_ID { get; set; }
+        public Nullable<decimal> FRONTEND_ID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DEMO_ORDERS> DEMO_ORDERS { get; set; }

@@ -15,8 +15,12 @@ namespace BackendDataHandler
     public partial class RECIEPE_INGREDIENTS
     {
         public decimal ID { get; set; }
+        public decimal RECIEPE_ID { get; set; }
         public int QUANTITY { get; set; }
         public decimal UNIT_PRICE { get; set; }
+        public decimal INGREDIENT_ID { get; set; }
+        public Nullable<decimal> FRONTEND_ID { get; set; }
+        public Nullable<decimal> MANUFACTURER_ID { get; set; }
     
         public virtual INGREDIENT INGREDIENT { get; set; }
         public virtual RECIEPE RECIEPE { get; set; }

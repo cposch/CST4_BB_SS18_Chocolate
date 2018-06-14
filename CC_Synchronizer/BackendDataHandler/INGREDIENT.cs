@@ -29,9 +29,12 @@ namespace BackendDataHandler
         public string LOCATION_TOP { get; set; }
         public string LOCATION_BOTTOM { get; set; }
         public string LOCATION_CHOC { get; set; }
+        public decimal CATEGORY_ID { get; set; }
         public string NAME { get; set; }
         public Nullable<int> QUANTITY { get; set; }
         public Nullable<System.DateTime> IMAGE_LAST_UPDATE { get; set; }
+        public Nullable<decimal> FRONTEND_ID { get; set; }
+        public Nullable<decimal> MANUFACTURER_ID { get; set; }
     
         public virtual INGREDIENT_CATEGORY INGREDIENT_CATEGORY { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

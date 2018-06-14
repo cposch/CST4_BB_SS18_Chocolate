@@ -15,6 +15,10 @@ namespace BackendDataHandler
     public partial class RULE_CATEGORIES
     {
         public decimal ID { get; set; }
+        public decimal RULE_ID { get; set; }
+        public decimal CATEGORY_ID { get; set; }
+        public Nullable<decimal> FRONTEND_ID { get; set; }
+        public Nullable<decimal> MANUFACTURER_ID { get; set; }
     
         public virtual INGREDIENT_CATEGORY INGREDIENT_CATEGORY { get; set; }
         public virtual RULE RULE { get; set; }

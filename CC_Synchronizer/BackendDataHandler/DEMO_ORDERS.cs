@@ -21,11 +21,15 @@ namespace BackendDataHandler
         }
     
         public decimal ORDER_ID { get; set; }
+        public decimal CUSTOMER_ID { get; set; }
         public Nullable<decimal> ORDER_TOTAL { get; set; }
         public Nullable<System.DateTime> ORDER_TIMESTAMP { get; set; }
         public string USER_NAME { get; set; }
         public string TAGS { get; set; }
         public string STATUS { get; set; }
+        public Nullable<decimal> FRONTEND_ID { get; set; }
+        public Nullable<decimal> MANUFACTURER_ID { get; set; }
+        public Nullable<System.DateTime> DELIVERY_DATE { get; set; }
     
         public virtual DEMO_CUSTOMERS DEMO_CUSTOMERS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

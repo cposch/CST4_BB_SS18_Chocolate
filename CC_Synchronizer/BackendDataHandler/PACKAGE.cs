@@ -15,12 +15,15 @@ namespace BackendDataHandler
     public partial class PACKAGE
     {
         public decimal ID { get; set; }
+        public decimal PRODUCT_ID { get; set; }
         public string NAME { get; set; }
         public decimal PRICE { get; set; }
         public string FILENAME { get; set; }
         public string MIMETYPE { get; set; }
         public byte[] PACKAGE_IMAGE { get; set; }
         public Nullable<System.DateTime> IMAGE_LAST_UPDATE { get; set; }
+        public Nullable<decimal> FRONTEND_ID { get; set; }
+        public Nullable<decimal> MANUFACTURER_ID { get; set; }
     
         public virtual DEMO_PRODUCT_INFO DEMO_PRODUCT_INFO { get; set; }
     }
