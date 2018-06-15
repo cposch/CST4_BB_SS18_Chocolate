@@ -1,4 +1,5 @@
 ﻿using RESTFrontendService.DataModels;
+using SharedLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,14 +14,63 @@ namespace RESTFrontendService
     [ServiceContract]
     public interface IRestServiceImpl
     {
-         /*
-          [OperationContract]
-         [WebInvoke(Method ="GET", ResponseFormat = WebMessageFormat.Xml, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "xml/{id}")]
-         string Data(string id);
-         */
+        // Dummymethode für den Test zum Datenfluss
+        [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json , BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "json/test")]
+        DMProduct GetProductTest();
+
+
+        // READ Methoden
+        [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "json/products")]
+        List<Product> GetProducts();
 
         [OperationContract]
-        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Xml, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "xml")]
-        DMProduct Data();
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "json/orders")]
+        List<Order> GetOrders();
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "json/customers")]
+        List<Customer> GetCustomers();
+
+        // UPDATE Methoden
+        // Übergabeparameter einfügen
+        [OperationContract]
+        [WebInvoke(Method = "PUT", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "update/product")]
+        Product UpdateProduct();
+
+        [OperationContract]
+        [WebInvoke(Method = "PUT", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "update/order")]
+        Order UpdateOrder();
+
+        [OperationContract]
+        [WebInvoke(Method = "PUT", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "update/customer")]
+        Customer UpdateCustomer();
+
+        // INSERT Methoden
+        [OperationContract]
+        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "insert/product")]
+        Product InsertProduct(Product p);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "insert/order")]
+        Order InsertOrder(Order o);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "insert/customer")]
+        Customer InsertCustomer(Customer c);
+
+        // DELETE Methoden
+        [OperationContract]
+        [WebInvoke(Method = "DELETE", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "delete/{id}")]
+        Product DeleteProduct(int productID);
+
+        [OperationContract]
+        [WebInvoke(Method = "DELETE", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "delete/{id}")]
+        Order DeleteOrder(int orderID);
+
+        [OperationContract]
+        [WebInvoke(Method = "DELETE", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "delete/{id}")]
+        Customer DeleteCustomer(int customerID);
     }
 }
