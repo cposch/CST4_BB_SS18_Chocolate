@@ -14,7 +14,7 @@ namespace RESTFrontendService
     public interface IRestServiceImpl
     {
          /*
-         [OperationContract]
+          [OperationContract]
          [WebInvoke(Method ="GET", ResponseFormat = WebMessageFormat.Xml, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "xml/{id}")]
          string Data(string id);
          */
