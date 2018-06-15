@@ -39,7 +39,7 @@ namespace CC_Synchronizer.AppService
                     TableId = int.Parse(recievedString);
                     continue;
                 }
-                else if (10 == buffer.Length)
+                else if (buffer.Length == 10)
                 {
                     buffer = new byte[int.Parse(recievedString)];
                     continue;
@@ -124,7 +124,8 @@ namespace CC_Synchronizer.AppService
                         break;
                 }
 
-                TestSendEnd();
+                TestSendEnd(); //fürs Testen
+
                 buffer = new byte[2];
             }
         }
@@ -152,6 +153,7 @@ namespace CC_Synchronizer.AppService
         private void TestSendEnd()
         {
             socket.Send(Encoding.UTF8.GetBytes("13"));
+            Console.WriteLine("Client synchronized");
         }
     }
 }
