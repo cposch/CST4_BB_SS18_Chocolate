@@ -20,20 +20,22 @@ namespace RESTFrontendService
         }
 
         // DELETE Methoden
-        public Customer DeleteCustomer(int customerID)
+        /*
+        public Customer DeleteCustomer()
         {
             throw new NotImplementedException();
         }
 
-        public Order DeleteOrder(int orderID)
+        public Order DeleteOrder()
         {
             throw new NotImplementedException();
         }
 
-        public Product DeleteProduct(int productID)
+        public Product DeleteProduct()
         {
             throw new NotImplementedException();
         }
+        */
 
         // GET Methoden
         public List<Customer> GetCustomers()

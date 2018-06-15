@@ -16,7 +16,7 @@ namespace RESTFrontendService
     {
         // Dummymethode für den Test zum Datenfluss
         [OperationContract]
-        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json , BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "json/test")]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "json/test")]
         DMProduct GetProductTest();
 
 
@@ -61,16 +61,19 @@ namespace RESTFrontendService
         Customer InsertCustomer(Customer c);
 
         // DELETE Methoden
+        // Übergabeparameter + URI template einfügen
+        /*
         [OperationContract]
-        [WebInvoke(Method = "DELETE", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "delete/{id}")]
-        Product DeleteProduct(int productID);
+        [WebInvoke(Method = "DELETE", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "")]
+        Product DeleteProduct();
 
         [OperationContract]
-        [WebInvoke(Method = "DELETE", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "delete/{id}")]
-        Order DeleteOrder(int orderID);
+        [WebInvoke(Method = "DELETE", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "")]
+        Order DeleteOrder();
 
         [OperationContract]
-        [WebInvoke(Method = "DELETE", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "delete/{id}")]
-        Customer DeleteCustomer(int customerID);
+        [WebInvoke(Method = "DELETE", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "")]
+        Customer DeleteCustomer();
+        */
     }
 }
