@@ -124,8 +124,8 @@ namespace CC_Synchronizer.AppService
                         break;
                 }
 
-                if(TableId < 12.5)
-                    buffer = new byte[2];
+                TestSendEnd();
+                buffer = new byte[2];
             }
         }
 
@@ -147,6 +147,11 @@ namespace CC_Synchronizer.AppService
             socket.Send(Encoding.UTF8.GetBytes(stringBytes));
             socket.Send(Encoding.UTF8.GetBytes(returnString));
             Console.WriteLine("String "+tableIdString+" returned");
+        }
+
+        private void TestSendEnd()
+        {
+            socket.Send(Encoding.UTF8.GetBytes("13"));
         }
     }
 }
