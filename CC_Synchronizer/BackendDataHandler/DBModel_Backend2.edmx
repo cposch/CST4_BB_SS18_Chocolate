@@ -1,0 +1,1335 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DBModel2.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DEMO_CONSTRAINT_LOOKUP">
+          <Key>
+            <PropertyRef Name="CONSTRAINT_NAME" />
+          </Key>
+          <Property Name="CONSTRAINT_NAME" Type="varchar2" MaxLength="30" Nullable="false" />
+          <Property Name="MESSAGE" Type="varchar2" MaxLength="4000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DEMO_CUSTOMERS">
+          <Key>
+            <PropertyRef Name="CUSTOMER_ID" />
+          </Key>
+          <Property Name="CUSTOMER_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="CUST_FIRST_NAME" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="CUST_LAST_NAME" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="CUST_STREET_ADDRESS1" Type="varchar2" MaxLength="60" />
+          <Property Name="CUST_STREET_ADDRESS2" Type="varchar2" MaxLength="60" />
+          <Property Name="CUST_CITY" Type="varchar2" MaxLength="30" />
+          <Property Name="CUST_STATE" Type="varchar2" MaxLength="2" />
+          <Property Name="CUST_POSTAL_CODE" Type="varchar2" MaxLength="10" />
+          <Property Name="CUST_EMAIL" Type="varchar2" MaxLength="30" />
+          <Property Name="PHONE_NUMBER1" Type="varchar2" MaxLength="25" />
+          <Property Name="PHONE_NUMBER2" Type="varchar2" MaxLength="25" />
+          <Property Name="URL" Type="varchar2" MaxLength="100" />
+          <Property Name="CREDIT_LIMIT" Type="number" Precision="9" Scale="2" />
+          <Property Name="TAGS" Type="varchar2" MaxLength="4000" />
+          <Property Name="MANUFACTURER_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="FRONTEND_ID" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="DEMO_ORDER_ITEMS">
+          <Key>
+            <PropertyRef Name="ORDER_ITEM_ID" />
+          </Key>
+          <Property Name="ORDER_ITEM_ID" Type="number" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="ORDER_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRODUCT_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="UNIT_PRICE" Type="number" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="QUANTITY" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="FRONTEND_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="DEMO_ORDERS">
+          <Key>
+            <PropertyRef Name="ORDER_ID" />
+          </Key>
+          <Property Name="ORDER_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="CUSTOMER_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ORDER_TOTAL" Type="number" Precision="8" Scale="2" />
+          <Property Name="ORDER_TIMESTAMP" Type="timestamp with local time zone" Precision="6" />
+          <Property Name="USER_NAME" Type="varchar2" MaxLength="100" />
+          <Property Name="TAGS" Type="varchar2" MaxLength="4000" />
+          <Property Name="STATUS" Type="varchar2" MaxLength="30" />
+          <Property Name="FRONTEND_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="DELIVERY_DATE" Type="date" />
+        </EntityType>
+        <EntityType Name="DEMO_PRODUCT_INFO">
+          <Key>
+            <PropertyRef Name="PRODUCT_ID" />
+          </Key>
+          <Property Name="PRODUCT_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRODUCT_NAME" Type="varchar2" MaxLength="50" />
+          <Property Name="PRODUCT_DESCRIPTION" Type="varchar2" MaxLength="2000" />
+          <Property Name="CATEGORY" Type="varchar2" MaxLength="30" />
+          <Property Name="PRODUCT_AVAIL" Type="varchar2" MaxLength="1" />
+          <Property Name="LIST_PRICE" Type="number" Precision="8" Scale="2" />
+          <Property Name="PRODUCT_IMAGE" Type="blob" />
+          <Property Name="MIMETYPE" Type="varchar2" MaxLength="255" />
+          <Property Name="FILENAME" Type="varchar2" MaxLength="400" />
+          <Property Name="IMAGE_LAST_UPDATE" Type="timestamp with local time zone" Precision="6" />
+          <Property Name="TAGS" Type="varchar2" MaxLength="4000" />
+          <Property Name="SALE_PRICE" Type="number" Precision="8" Scale="2" />
+          <Property Name="SALE_BEGIN" Type="date" />
+          <Property Name="SALE_END" Type="date" />
+          <Property Name="FRONTEND_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'ADMIN.DEMO_STATES' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="DEMO_STATES">
+          <Property Name="ST" Type="varchar2" MaxLength="30" />
+          <Property Name="STATE_NAME" Type="varchar2" MaxLength="30" />
+          <Property Name="FRONTEND_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="number" Precision="38" Scale="0" />
+        </EntityType>-->
+        <EntityType Name="DEMO_TAGS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TAG" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="CONTENT_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="CONTENT_TYPE" Type="varchar2" MaxLength="30" />
+          <Property Name="CREATED" Type="timestamp with local time zone" Precision="6" />
+          <Property Name="CREATED_BY" Type="varchar2" MaxLength="255" />
+          <Property Name="UPDATED" Type="timestamp with local time zone" Precision="6" />
+          <Property Name="UPDATED_BY" Type="varchar2" MaxLength="255" />
+          <Property Name="FRONTEND_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="DEMO_TAGS_SUM">
+          <Key>
+            <PropertyRef Name="TAG" />
+          </Key>
+          <Property Name="TAG" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="TAG_COUNT" Type="number" Precision="38" Scale="0" />
+          <Property Name="FRONTEND_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="DEMO_TAGS_TYPE_SUM">
+          <Key>
+            <PropertyRef Name="TAG" />
+            <PropertyRef Name="CONTENT_TYPE" />
+          </Key>
+          <Property Name="TAG" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="CONTENT_TYPE" Type="varchar2" MaxLength="30" Nullable="false" />
+          <Property Name="TAG_COUNT" Type="number" Precision="38" Scale="0" />
+          <Property Name="FRONTEND_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="DEPT">
+          <Key>
+            <PropertyRef Name="DEPTNO" />
+          </Key>
+          <Property Name="DEPTNO" Type="number" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="DNAME" Type="varchar2" MaxLength="14" />
+          <Property Name="LOC" Type="varchar2" MaxLength="13" />
+          <Property Name="FRONTEND_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="EMP">
+          <Key>
+            <PropertyRef Name="EMPNO" />
+          </Key>
+          <Property Name="EMPNO" Type="number" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="ENAME" Type="varchar2" MaxLength="10" />
+          <Property Name="JOB" Type="varchar2" MaxLength="9" />
+          <Property Name="MGR" Type="number" Precision="4" Scale="0" />
+          <Property Name="HIREDATE" Type="date" />
+          <Property Name="SAL" Type="number" Precision="7" Scale="2" />
+          <Property Name="COMM" Type="number" Precision="7" Scale="2" />
+          <Property Name="DEPTNO" Type="number" Precision="2" Scale="0" />
+          <Property Name="FRONTEND_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="INGREDIENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRICE" Type="number" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="FILENAME" Type="varchar2" MaxLength="400" />
+          <Property Name="MIMETYPE" Type="varchar2" MaxLength="255" />
+          <Property Name="INGREDIENT_IMAGE" Type="blob" />
+          <Property Name="DESCRIPTION" Type="varchar2" MaxLength="2000" />
+          <Property Name="LOCATION_TOP" Type="varchar2" MaxLength="1" Nullable="false" />
+          <Property Name="LOCATION_BOTTOM" Type="varchar2" MaxLength="1" Nullable="false" />
+          <Property Name="LOCATION_CHOC" Type="varchar2" MaxLength="1" Nullable="false" />
+          <Property Name="CATEGORY_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="QUANTITY" Type="number" Precision="8" Scale="0" />
+          <Property Name="IMAGE_LAST_UPDATE" Type="timestamp with local time zone" Precision="6" />
+          <Property Name="FRONTEND_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="INGREDIENT_CATEGORY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="FRONTEND_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="PACKAGE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRODUCT_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="PRICE" Type="number" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="FILENAME" Type="varchar2" MaxLength="400" />
+          <Property Name="MIMETYPE" Type="varchar2" MaxLength="255" />
+          <Property Name="PACKAGE_IMAGE" Type="blob" />
+          <Property Name="IMAGE_LAST_UPDATE" Type="timestamp with local time zone" Precision="6" />
+          <Property Name="FRONTEND_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="RECIEPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRODUCT_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="varchar2" MaxLength="50" />
+          <Property Name="FRONTEND_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="RECIEPE_INGREDIENTS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="RECIEPE_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="QUANTITY" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="UNIT_PRICE" Type="number" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="INGREDIENT_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="FRONTEND_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="RULE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRODUCT_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="FRONTEND_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="RULE_CATEGORIES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="RULE_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="CATEGORY_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="FRONTEND_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="SHAPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRODUCT_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="FILENAME" Type="varchar2" MaxLength="400" />
+          <Property Name="MIMETYPE" Type="varchar2" MaxLength="255" />
+          <Property Name="SHAPE_IMAGE" Type="blob" />
+          <Property Name="PRICE" Type="number" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="IMAGE_LAST_UPDATE" Type="timestamp with local time zone" Precision="6" />
+          <Property Name="FRONTEND_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <Association Name="CATEGORY_RULECATEGORY_FK">
+          <End Role="INGREDIENT_CATEGORY" Type="Self.INGREDIENT_CATEGORY" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RULE_CATEGORIES" Type="Self.RULE_CATEGORIES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INGREDIENT_CATEGORY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RULE_CATEGORIES">
+              <PropertyRef Name="CATEGORY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DEMO_ORDER_ITEMS_FK">
+          <End Role="DEMO_ORDERS" Type="Self.DEMO_ORDERS" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DEMO_ORDER_ITEMS" Type="Self.DEMO_ORDER_ITEMS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEMO_ORDERS">
+              <PropertyRef Name="ORDER_ID" />
+            </Principal>
+            <Dependent Role="DEMO_ORDER_ITEMS">
+              <PropertyRef Name="ORDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DEMO_ORDER_ITEMS_PRODUCT_ID_FK">
+          <End Role="DEMO_PRODUCT_INFO" Type="Self.DEMO_PRODUCT_INFO" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DEMO_ORDER_ITEMS" Type="Self.DEMO_ORDER_ITEMS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEMO_PRODUCT_INFO">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="DEMO_ORDER_ITEMS">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DEMO_ORDERS_CUSTOMER_ID_FK">
+          <End Role="DEMO_CUSTOMERS" Type="Self.DEMO_CUSTOMERS" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DEMO_ORDERS" Type="Self.DEMO_ORDERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEMO_CUSTOMERS">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="DEMO_ORDERS">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INGREDIENT_CATEGORY_CON">
+          <End Role="INGREDIENT_CATEGORY" Type="Self.INGREDIENT_CATEGORY" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="INGREDIENT" Type="Self.INGREDIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INGREDIENT_CATEGORY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="INGREDIENT">
+              <PropertyRef Name="CATEGORY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INGREDIENT_TO_RECIEPE_FK">
+          <End Role="INGREDIENT" Type="Self.INGREDIENT" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RECIEPE_INGREDIENTS" Type="Self.RECIEPE_INGREDIENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INGREDIENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RECIEPE_INGREDIENTS">
+              <PropertyRef Name="INGREDIENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PACKAGE_CON">
+          <End Role="DEMO_PRODUCT_INFO" Type="Self.DEMO_PRODUCT_INFO" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PACKAGE" Type="Self.PACKAGE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEMO_PRODUCT_INFO">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="PACKAGE">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RECIEPE_TO_INGREDIENTS_FK">
+          <End Role="RECIEPE" Type="Self.RECIEPE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RECIEPE_INGREDIENTS" Type="Self.RECIEPE_INGREDIENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RECIEPE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RECIEPE_INGREDIENTS">
+              <PropertyRef Name="RECIEPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RECIEPE_TO_PRODUCT_FK">
+          <End Role="DEMO_PRODUCT_INFO" Type="Self.DEMO_PRODUCT_INFO" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RECIEPE" Type="Self.RECIEPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEMO_PRODUCT_INFO">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="RECIEPE">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RULE_CON">
+          <End Role="DEMO_PRODUCT_INFO" Type="Self.DEMO_PRODUCT_INFO" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RULE" Type="Self.RULE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEMO_PRODUCT_INFO">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="RULE">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RULE_RULECATEGORY_FK">
+          <End Role="RULE" Type="Self.RULE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RULE_CATEGORIES" Type="Self.RULE_CATEGORIES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RULE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RULE_CATEGORIES">
+              <PropertyRef Name="RULE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SHAPE_CON">
+          <End Role="DEMO_PRODUCT_INFO" Type="Self.DEMO_PRODUCT_INFO" Multiplicity="1" />
+          <End Role="SHAPE" Type="Self.SHAPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEMO_PRODUCT_INFO">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="SHAPE">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0011033">
+          <End Role="EMP" Type="Self.EMP" Multiplicity="0..1" />
+          <End Role="EMP1" Type="Self.EMP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMP">
+              <PropertyRef Name="EMPNO" />
+            </Principal>
+            <Dependent Role="EMP1">
+              <PropertyRef Name="MGR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0011034">
+          <End Role="DEPT" Type="Self.DEPT" Multiplicity="0..1" />
+          <End Role="EMP" Type="Self.EMP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPT">
+              <PropertyRef Name="DEPTNO" />
+            </Principal>
+            <Dependent Role="EMP">
+              <PropertyRef Name="DEPTNO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBModel2StoreContainer">
+          <EntitySet Name="DEMO_CONSTRAINT_LOOKUP" EntityType="Self.DEMO_CONSTRAINT_LOOKUP" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="DEMO_CUSTOMERS" EntityType="Self.DEMO_CUSTOMERS" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="DEMO_ORDER_ITEMS" EntityType="Self.DEMO_ORDER_ITEMS" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="DEMO_ORDERS" EntityType="Self.DEMO_ORDERS" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="DEMO_PRODUCT_INFO" EntityType="Self.DEMO_PRODUCT_INFO" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="DEMO_TAGS" EntityType="Self.DEMO_TAGS" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="DEMO_TAGS_SUM" EntityType="Self.DEMO_TAGS_SUM" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="DEMO_TAGS_TYPE_SUM" EntityType="Self.DEMO_TAGS_TYPE_SUM" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="DEPT" EntityType="Self.DEPT" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="EMP" EntityType="Self.EMP" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="INGREDIENT" EntityType="Self.INGREDIENT" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="INGREDIENT_CATEGORY" EntityType="Self.INGREDIENT_CATEGORY" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="PACKAGE" EntityType="Self.PACKAGE" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="RECIEPE" EntityType="Self.RECIEPE" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="RECIEPE_INGREDIENTS" EntityType="Self.RECIEPE_INGREDIENTS" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="RULE" EntityType="Self.RULE" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="RULE_CATEGORIES" EntityType="Self.RULE_CATEGORIES" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="SHAPE" EntityType="Self.SHAPE" Schema="ADMIN" store:Type="Tables" />
+          <AssociationSet Name="CATEGORY_RULECATEGORY_FK" Association="Self.CATEGORY_RULECATEGORY_FK">
+            <End Role="INGREDIENT_CATEGORY" EntitySet="INGREDIENT_CATEGORY" />
+            <End Role="RULE_CATEGORIES" EntitySet="RULE_CATEGORIES" />
+          </AssociationSet>
+          <AssociationSet Name="DEMO_ORDER_ITEMS_FK" Association="Self.DEMO_ORDER_ITEMS_FK">
+            <End Role="DEMO_ORDERS" EntitySet="DEMO_ORDERS" />
+            <End Role="DEMO_ORDER_ITEMS" EntitySet="DEMO_ORDER_ITEMS" />
+          </AssociationSet>
+          <AssociationSet Name="DEMO_ORDER_ITEMS_PRODUCT_ID_FK" Association="Self.DEMO_ORDER_ITEMS_PRODUCT_ID_FK">
+            <End Role="DEMO_PRODUCT_INFO" EntitySet="DEMO_PRODUCT_INFO" />
+            <End Role="DEMO_ORDER_ITEMS" EntitySet="DEMO_ORDER_ITEMS" />
+          </AssociationSet>
+          <AssociationSet Name="DEMO_ORDERS_CUSTOMER_ID_FK" Association="Self.DEMO_ORDERS_CUSTOMER_ID_FK">
+            <End Role="DEMO_CUSTOMERS" EntitySet="DEMO_CUSTOMERS" />
+            <End Role="DEMO_ORDERS" EntitySet="DEMO_ORDERS" />
+          </AssociationSet>
+          <AssociationSet Name="INGREDIENT_CATEGORY_CON" Association="Self.INGREDIENT_CATEGORY_CON">
+            <End Role="INGREDIENT_CATEGORY" EntitySet="INGREDIENT_CATEGORY" />
+            <End Role="INGREDIENT" EntitySet="INGREDIENT" />
+          </AssociationSet>
+          <AssociationSet Name="INGREDIENT_TO_RECIEPE_FK" Association="Self.INGREDIENT_TO_RECIEPE_FK">
+            <End Role="INGREDIENT" EntitySet="INGREDIENT" />
+            <End Role="RECIEPE_INGREDIENTS" EntitySet="RECIEPE_INGREDIENTS" />
+          </AssociationSet>
+          <AssociationSet Name="PACKAGE_CON" Association="Self.PACKAGE_CON">
+            <End Role="DEMO_PRODUCT_INFO" EntitySet="DEMO_PRODUCT_INFO" />
+            <End Role="PACKAGE" EntitySet="PACKAGE" />
+          </AssociationSet>
+          <AssociationSet Name="RECIEPE_TO_INGREDIENTS_FK" Association="Self.RECIEPE_TO_INGREDIENTS_FK">
+            <End Role="RECIEPE" EntitySet="RECIEPE" />
+            <End Role="RECIEPE_INGREDIENTS" EntitySet="RECIEPE_INGREDIENTS" />
+          </AssociationSet>
+          <AssociationSet Name="RECIEPE_TO_PRODUCT_FK" Association="Self.RECIEPE_TO_PRODUCT_FK">
+            <End Role="DEMO_PRODUCT_INFO" EntitySet="DEMO_PRODUCT_INFO" />
+            <End Role="RECIEPE" EntitySet="RECIEPE" />
+          </AssociationSet>
+          <AssociationSet Name="RULE_CON" Association="Self.RULE_CON">
+            <End Role="DEMO_PRODUCT_INFO" EntitySet="DEMO_PRODUCT_INFO" />
+            <End Role="RULE" EntitySet="RULE" />
+          </AssociationSet>
+          <AssociationSet Name="RULE_RULECATEGORY_FK" Association="Self.RULE_RULECATEGORY_FK">
+            <End Role="RULE" EntitySet="RULE" />
+            <End Role="RULE_CATEGORIES" EntitySet="RULE_CATEGORIES" />
+          </AssociationSet>
+          <AssociationSet Name="SHAPE_CON" Association="Self.SHAPE_CON">
+            <End Role="DEMO_PRODUCT_INFO" EntitySet="DEMO_PRODUCT_INFO" />
+            <End Role="SHAPE" EntitySet="SHAPE" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0011033" Association="Self.SYS_C0011033">
+            <End Role="EMP" EntitySet="EMP" />
+            <End Role="EMP1" EntitySet="EMP" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0011034" Association="Self.SYS_C0011034">
+            <End Role="DEPT" EntitySet="DEPT" />
+            <End Role="EMP" EntitySet="EMP" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBModel2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DEMO_CONSTRAINT_LOOKUP">
+          <Key>
+            <PropertyRef Name="CONSTRAINT_NAME" />
+          </Key>
+          <Property Name="CONSTRAINT_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MESSAGE" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DEMO_CUSTOMERS">
+          <Key>
+            <PropertyRef Name="CUSTOMER_ID" />
+          </Key>
+          <Property Name="CUSTOMER_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="CUST_FIRST_NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CUST_LAST_NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CUST_STREET_ADDRESS1" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="CUST_STREET_ADDRESS2" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="CUST_CITY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CUST_STATE" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="CUST_POSTAL_CODE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CUST_EMAIL" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PHONE_NUMBER1" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="PHONE_NUMBER2" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="URL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CREDIT_LIMIT" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="TAGS" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="MANUFACTURER_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="FRONTEND_ID" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="DEMO_ORDERS" Relationship="Self.DEMO_ORDERS_CUSTOMER_ID_FK" FromRole="DEMO_CUSTOMERS" ToRole="DEMO_ORDERS" />
+        </EntityType>
+        <EntityType Name="DEMO_ORDER_ITEMS">
+          <Key>
+            <PropertyRef Name="ORDER_ITEM_ID" />
+          </Key>
+          <Property Name="ORDER_ITEM_ID" Type="Byte" Nullable="false" />
+          <Property Name="ORDER_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRODUCT_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="UNIT_PRICE" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="QUANTITY" Type="Int32" Nullable="false" />
+          <Property Name="FRONTEND_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="DEMO_ORDERS" Relationship="Self.DEMO_ORDER_ITEMS_FK" FromRole="DEMO_ORDER_ITEMS" ToRole="DEMO_ORDERS" />
+          <NavigationProperty Name="DEMO_PRODUCT_INFO" Relationship="Self.DEMO_ORDER_ITEMS_PRODUCT_ID_FK" FromRole="DEMO_ORDER_ITEMS" ToRole="DEMO_PRODUCT_INFO" />
+        </EntityType>
+        <EntityType Name="DEMO_ORDERS">
+          <Key>
+            <PropertyRef Name="ORDER_ID" />
+          </Key>
+          <Property Name="ORDER_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="CUSTOMER_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ORDER_TOTAL" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="ORDER_TIMESTAMP" Type="DateTime" Precision="255" />
+          <Property Name="USER_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TAGS" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="STATUS" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="FRONTEND_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="DELIVERY_DATE" Type="DateTime" />
+          <NavigationProperty Name="DEMO_CUSTOMERS" Relationship="Self.DEMO_ORDERS_CUSTOMER_ID_FK" FromRole="DEMO_ORDERS" ToRole="DEMO_CUSTOMERS" />
+          <NavigationProperty Name="DEMO_ORDER_ITEMS" Relationship="Self.DEMO_ORDER_ITEMS_FK" FromRole="DEMO_ORDERS" ToRole="DEMO_ORDER_ITEMS" />
+        </EntityType>
+        <EntityType Name="DEMO_PRODUCT_INFO">
+          <Key>
+            <PropertyRef Name="PRODUCT_ID" />
+          </Key>
+          <Property Name="PRODUCT_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRODUCT_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PRODUCT_DESCRIPTION" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="CATEGORY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PRODUCT_AVAIL" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="LIST_PRICE" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="PRODUCT_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="MIMETYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FILENAME" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="IMAGE_LAST_UPDATE" Type="DateTime" Precision="255" />
+          <Property Name="TAGS" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="SALE_PRICE" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="SALE_BEGIN" Type="DateTime" />
+          <Property Name="SALE_END" Type="DateTime" />
+          <Property Name="FRONTEND_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="DEMO_ORDER_ITEMS" Relationship="Self.DEMO_ORDER_ITEMS_PRODUCT_ID_FK" FromRole="DEMO_PRODUCT_INFO" ToRole="DEMO_ORDER_ITEMS" />
+          <NavigationProperty Name="PACKAGE" Relationship="Self.PACKAGE_CON" FromRole="DEMO_PRODUCT_INFO" ToRole="PACKAGE" />
+          <NavigationProperty Name="RECIEPE" Relationship="Self.RECIEPE_TO_PRODUCT_FK" FromRole="DEMO_PRODUCT_INFO" ToRole="RECIEPE" />
+          <NavigationProperty Name="RULE" Relationship="Self.RULE_CON" FromRole="DEMO_PRODUCT_INFO" ToRole="RULE" />
+          <NavigationProperty Name="SHAPE" Relationship="Self.SHAPE_CON" FromRole="DEMO_PRODUCT_INFO" ToRole="SHAPE" />
+        </EntityType>
+        <EntityType Name="DEMO_TAGS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TAG" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CONTENT_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="CONTENT_TYPE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CREATED" Type="DateTime" Precision="255" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATED" Type="DateTime" Precision="255" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FRONTEND_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="Decimal" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="DEMO_TAGS_SUM">
+          <Key>
+            <PropertyRef Name="TAG" />
+          </Key>
+          <Property Name="TAG" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TAG_COUNT" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="FRONTEND_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="Decimal" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="DEMO_TAGS_TYPE_SUM">
+          <Key>
+            <PropertyRef Name="TAG" />
+            <PropertyRef Name="CONTENT_TYPE" />
+          </Key>
+          <Property Name="TAG" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CONTENT_TYPE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TAG_COUNT" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="FRONTEND_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="Decimal" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="DEPT">
+          <Key>
+            <PropertyRef Name="DEPTNO" />
+          </Key>
+          <Property Name="DEPTNO" Type="Byte" Nullable="false" />
+          <Property Name="DNAME" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+          <Property Name="LOC" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="FRONTEND_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="EMP" Relationship="Self.SYS_C0011034" FromRole="DEPT" ToRole="EMP" />
+        </EntityType>
+        <EntityType Name="EMP">
+          <Key>
+            <PropertyRef Name="EMPNO" />
+          </Key>
+          <Property Name="EMPNO" Type="Int16" Nullable="false" />
+          <Property Name="ENAME" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="JOB" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="MGR" Type="Int16" />
+          <Property Name="HIREDATE" Type="DateTime" />
+          <Property Name="SAL" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="COMM" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="DEPTNO" Type="Byte" />
+          <Property Name="FRONTEND_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="DEPT" Relationship="Self.SYS_C0011034" FromRole="EMP" ToRole="DEPT" />
+          <NavigationProperty Name="EMP1" Relationship="Self.SYS_C0011033" FromRole="EMP" ToRole="EMP1" />
+          <NavigationProperty Name="EMP2" Relationship="Self.SYS_C0011033" FromRole="EMP1" ToRole="EMP" />
+        </EntityType>
+        <EntityType Name="INGREDIENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRICE" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="FILENAME" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="MIMETYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="INGREDIENT_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="LOCATION_TOP" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LOCATION_BOTTOM" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LOCATION_CHOC" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CATEGORY_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="QUANTITY" Type="Int32" />
+          <Property Name="IMAGE_LAST_UPDATE" Type="DateTime" Precision="255" />
+          <Property Name="FRONTEND_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="INGREDIENT_CATEGORY" Relationship="Self.INGREDIENT_CATEGORY_CON" FromRole="INGREDIENT" ToRole="INGREDIENT_CATEGORY" />
+          <NavigationProperty Name="RECIEPE_INGREDIENTS" Relationship="Self.INGREDIENT_TO_RECIEPE_FK" FromRole="INGREDIENT" ToRole="RECIEPE_INGREDIENTS" />
+        </EntityType>
+        <EntityType Name="INGREDIENT_CATEGORY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FRONTEND_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="INGREDIENT" Relationship="Self.INGREDIENT_CATEGORY_CON" FromRole="INGREDIENT_CATEGORY" ToRole="INGREDIENT" />
+          <NavigationProperty Name="RULE_CATEGORIES" Relationship="Self.CATEGORY_RULECATEGORY_FK" FromRole="INGREDIENT_CATEGORY" ToRole="RULE_CATEGORIES" />
+        </EntityType>
+        <EntityType Name="PACKAGE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRODUCT_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRICE" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="FILENAME" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="MIMETYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PACKAGE_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IMAGE_LAST_UPDATE" Type="DateTime" Precision="255" />
+          <Property Name="FRONTEND_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="DEMO_PRODUCT_INFO" Relationship="Self.PACKAGE_CON" FromRole="PACKAGE" ToRole="DEMO_PRODUCT_INFO" />
+        </EntityType>
+        <EntityType Name="RECIEPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRODUCT_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FRONTEND_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="DEMO_PRODUCT_INFO" Relationship="Self.RECIEPE_TO_PRODUCT_FK" FromRole="RECIEPE" ToRole="DEMO_PRODUCT_INFO" />
+          <NavigationProperty Name="RECIEPE_INGREDIENTS" Relationship="Self.RECIEPE_TO_INGREDIENTS_FK" FromRole="RECIEPE" ToRole="RECIEPE_INGREDIENTS" />
+        </EntityType>
+        <EntityType Name="RECIEPE_INGREDIENTS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="RECIEPE_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="QUANTITY" Type="Int32" Nullable="false" />
+          <Property Name="UNIT_PRICE" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="INGREDIENT_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="FRONTEND_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="INGREDIENT" Relationship="Self.INGREDIENT_TO_RECIEPE_FK" FromRole="RECIEPE_INGREDIENTS" ToRole="INGREDIENT" />
+          <NavigationProperty Name="RECIEPE" Relationship="Self.RECIEPE_TO_INGREDIENTS_FK" FromRole="RECIEPE_INGREDIENTS" ToRole="RECIEPE" />
+        </EntityType>
+        <EntityType Name="RULE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRODUCT_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="FRONTEND_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="DEMO_PRODUCT_INFO" Relationship="Self.RULE_CON" FromRole="RULE" ToRole="DEMO_PRODUCT_INFO" />
+          <NavigationProperty Name="RULE_CATEGORIES" Relationship="Self.RULE_RULECATEGORY_FK" FromRole="RULE" ToRole="RULE_CATEGORIES" />
+        </EntityType>
+        <EntityType Name="RULE_CATEGORIES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="RULE_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="CATEGORY_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="FRONTEND_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="INGREDIENT_CATEGORY" Relationship="Self.CATEGORY_RULECATEGORY_FK" FromRole="RULE_CATEGORIES" ToRole="INGREDIENT_CATEGORY" />
+          <NavigationProperty Name="RULE" Relationship="Self.RULE_RULECATEGORY_FK" FromRole="RULE_CATEGORIES" ToRole="RULE" />
+        </EntityType>
+        <EntityType Name="SHAPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRODUCT_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FILENAME" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="MIMETYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SHAPE_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="PRICE" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="IMAGE_LAST_UPDATE" Type="DateTime" Precision="255" />
+          <Property Name="FRONTEND_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="DEMO_PRODUCT_INFO" Relationship="Self.SHAPE_CON" FromRole="SHAPE" ToRole="DEMO_PRODUCT_INFO" />
+        </EntityType>
+        <Association Name="DEMO_ORDERS_CUSTOMER_ID_FK">
+          <End Role="DEMO_CUSTOMERS" Type="Self.DEMO_CUSTOMERS" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DEMO_ORDERS" Type="Self.DEMO_ORDERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEMO_CUSTOMERS">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="DEMO_ORDERS">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DEMO_ORDER_ITEMS_FK">
+          <End Role="DEMO_ORDERS" Type="Self.DEMO_ORDERS" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DEMO_ORDER_ITEMS" Type="Self.DEMO_ORDER_ITEMS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEMO_ORDERS">
+              <PropertyRef Name="ORDER_ID" />
+            </Principal>
+            <Dependent Role="DEMO_ORDER_ITEMS">
+              <PropertyRef Name="ORDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DEMO_ORDER_ITEMS_PRODUCT_ID_FK">
+          <End Role="DEMO_PRODUCT_INFO" Type="Self.DEMO_PRODUCT_INFO" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DEMO_ORDER_ITEMS" Type="Self.DEMO_ORDER_ITEMS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEMO_PRODUCT_INFO">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="DEMO_ORDER_ITEMS">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PACKAGE_CON">
+          <End Role="DEMO_PRODUCT_INFO" Type="Self.DEMO_PRODUCT_INFO" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PACKAGE" Type="Self.PACKAGE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEMO_PRODUCT_INFO">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="PACKAGE">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RECIEPE_TO_PRODUCT_FK">
+          <End Role="DEMO_PRODUCT_INFO" Type="Self.DEMO_PRODUCT_INFO" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RECIEPE" Type="Self.RECIEPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEMO_PRODUCT_INFO">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="RECIEPE">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RULE_CON">
+          <End Role="DEMO_PRODUCT_INFO" Type="Self.DEMO_PRODUCT_INFO" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RULE" Type="Self.RULE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEMO_PRODUCT_INFO">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="RULE">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SHAPE_CON">
+          <End Role="DEMO_PRODUCT_INFO" Type="Self.DEMO_PRODUCT_INFO" Multiplicity="1" />
+          <End Role="SHAPE" Type="Self.SHAPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEMO_PRODUCT_INFO">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="SHAPE">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0011034">
+          <End Role="DEPT" Type="Self.DEPT" Multiplicity="0..1" />
+          <End Role="EMP" Type="Self.EMP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPT">
+              <PropertyRef Name="DEPTNO" />
+            </Principal>
+            <Dependent Role="EMP">
+              <PropertyRef Name="DEPTNO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0011033">
+          <End Role="EMP" Type="Self.EMP" Multiplicity="0..1" />
+          <End Role="EMP1" Type="Self.EMP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMP">
+              <PropertyRef Name="EMPNO" />
+            </Principal>
+            <Dependent Role="EMP1">
+              <PropertyRef Name="MGR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INGREDIENT_CATEGORY_CON">
+          <End Role="INGREDIENT_CATEGORY" Type="Self.INGREDIENT_CATEGORY" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="INGREDIENT" Type="Self.INGREDIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INGREDIENT_CATEGORY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="INGREDIENT">
+              <PropertyRef Name="CATEGORY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INGREDIENT_TO_RECIEPE_FK">
+          <End Role="INGREDIENT" Type="Self.INGREDIENT" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RECIEPE_INGREDIENTS" Type="Self.RECIEPE_INGREDIENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INGREDIENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RECIEPE_INGREDIENTS">
+              <PropertyRef Name="INGREDIENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CATEGORY_RULECATEGORY_FK">
+          <End Role="INGREDIENT_CATEGORY" Type="Self.INGREDIENT_CATEGORY" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RULE_CATEGORIES" Type="Self.RULE_CATEGORIES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INGREDIENT_CATEGORY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RULE_CATEGORIES">
+              <PropertyRef Name="CATEGORY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RECIEPE_TO_INGREDIENTS_FK">
+          <End Role="RECIEPE" Type="Self.RECIEPE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RECIEPE_INGREDIENTS" Type="Self.RECIEPE_INGREDIENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RECIEPE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RECIEPE_INGREDIENTS">
+              <PropertyRef Name="RECIEPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RULE_RULECATEGORY_FK">
+          <End Role="RULE" Type="Self.RULE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RULE_CATEGORIES" Type="Self.RULE_CATEGORIES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RULE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RULE_CATEGORIES">
+              <PropertyRef Name="RULE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BackendDBEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DEMO_CONSTRAINT_LOOKUP" EntityType="Self.DEMO_CONSTRAINT_LOOKUP" />
+          <EntitySet Name="DEMO_CUSTOMERS" EntityType="Self.DEMO_CUSTOMERS" />
+          <EntitySet Name="DEMO_ORDER_ITEMS" EntityType="Self.DEMO_ORDER_ITEMS" />
+          <EntitySet Name="DEMO_ORDERS" EntityType="Self.DEMO_ORDERS" />
+          <EntitySet Name="DEMO_PRODUCT_INFO" EntityType="Self.DEMO_PRODUCT_INFO" />
+          <EntitySet Name="DEMO_TAGS" EntityType="Self.DEMO_TAGS" />
+          <EntitySet Name="DEMO_TAGS_SUM" EntityType="Self.DEMO_TAGS_SUM" />
+          <EntitySet Name="DEMO_TAGS_TYPE_SUM" EntityType="Self.DEMO_TAGS_TYPE_SUM" />
+          <EntitySet Name="DEPT" EntityType="Self.DEPT" />
+          <EntitySet Name="EMP" EntityType="Self.EMP" />
+          <EntitySet Name="INGREDIENT" EntityType="Self.INGREDIENT" />
+          <EntitySet Name="INGREDIENT_CATEGORY" EntityType="Self.INGREDIENT_CATEGORY" />
+          <EntitySet Name="PACKAGE" EntityType="Self.PACKAGE" />
+          <EntitySet Name="RECIEPE" EntityType="Self.RECIEPE" />
+          <EntitySet Name="RECIEPE_INGREDIENTS" EntityType="Self.RECIEPE_INGREDIENTS" />
+          <EntitySet Name="RULE" EntityType="Self.RULE" />
+          <EntitySet Name="RULE_CATEGORIES" EntityType="Self.RULE_CATEGORIES" />
+          <EntitySet Name="SHAPE" EntityType="Self.SHAPE" />
+          <AssociationSet Name="DEMO_ORDERS_CUSTOMER_ID_FK" Association="Self.DEMO_ORDERS_CUSTOMER_ID_FK">
+            <End Role="DEMO_CUSTOMERS" EntitySet="DEMO_CUSTOMERS" />
+            <End Role="DEMO_ORDERS" EntitySet="DEMO_ORDERS" />
+          </AssociationSet>
+          <AssociationSet Name="DEMO_ORDER_ITEMS_FK" Association="Self.DEMO_ORDER_ITEMS_FK">
+            <End Role="DEMO_ORDERS" EntitySet="DEMO_ORDERS" />
+            <End Role="DEMO_ORDER_ITEMS" EntitySet="DEMO_ORDER_ITEMS" />
+          </AssociationSet>
+          <AssociationSet Name="DEMO_ORDER_ITEMS_PRODUCT_ID_FK" Association="Self.DEMO_ORDER_ITEMS_PRODUCT_ID_FK">
+            <End Role="DEMO_PRODUCT_INFO" EntitySet="DEMO_PRODUCT_INFO" />
+            <End Role="DEMO_ORDER_ITEMS" EntitySet="DEMO_ORDER_ITEMS" />
+          </AssociationSet>
+          <AssociationSet Name="PACKAGE_CON" Association="Self.PACKAGE_CON">
+            <End Role="DEMO_PRODUCT_INFO" EntitySet="DEMO_PRODUCT_INFO" />
+            <End Role="PACKAGE" EntitySet="PACKAGE" />
+          </AssociationSet>
+          <AssociationSet Name="RECIEPE_TO_PRODUCT_FK" Association="Self.RECIEPE_TO_PRODUCT_FK">
+            <End Role="DEMO_PRODUCT_INFO" EntitySet="DEMO_PRODUCT_INFO" />
+            <End Role="RECIEPE" EntitySet="RECIEPE" />
+          </AssociationSet>
+          <AssociationSet Name="RULE_CON" Association="Self.RULE_CON">
+            <End Role="DEMO_PRODUCT_INFO" EntitySet="DEMO_PRODUCT_INFO" />
+            <End Role="RULE" EntitySet="RULE" />
+          </AssociationSet>
+          <AssociationSet Name="SHAPE_CON" Association="Self.SHAPE_CON">
+            <End Role="DEMO_PRODUCT_INFO" EntitySet="DEMO_PRODUCT_INFO" />
+            <End Role="SHAPE" EntitySet="SHAPE" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0011034" Association="Self.SYS_C0011034">
+            <End Role="DEPT" EntitySet="DEPT" />
+            <End Role="EMP" EntitySet="EMP" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0011033" Association="Self.SYS_C0011033">
+            <End Role="EMP" EntitySet="EMP" />
+            <End Role="EMP1" EntitySet="EMP" />
+          </AssociationSet>
+          <AssociationSet Name="INGREDIENT_CATEGORY_CON" Association="Self.INGREDIENT_CATEGORY_CON">
+            <End Role="INGREDIENT_CATEGORY" EntitySet="INGREDIENT_CATEGORY" />
+            <End Role="INGREDIENT" EntitySet="INGREDIENT" />
+          </AssociationSet>
+          <AssociationSet Name="INGREDIENT_TO_RECIEPE_FK" Association="Self.INGREDIENT_TO_RECIEPE_FK">
+            <End Role="INGREDIENT" EntitySet="INGREDIENT" />
+            <End Role="RECIEPE_INGREDIENTS" EntitySet="RECIEPE_INGREDIENTS" />
+          </AssociationSet>
+          <AssociationSet Name="CATEGORY_RULECATEGORY_FK" Association="Self.CATEGORY_RULECATEGORY_FK">
+            <End Role="INGREDIENT_CATEGORY" EntitySet="INGREDIENT_CATEGORY" />
+            <End Role="RULE_CATEGORIES" EntitySet="RULE_CATEGORIES" />
+          </AssociationSet>
+          <AssociationSet Name="RECIEPE_TO_INGREDIENTS_FK" Association="Self.RECIEPE_TO_INGREDIENTS_FK">
+            <End Role="RECIEPE" EntitySet="RECIEPE" />
+            <End Role="RECIEPE_INGREDIENTS" EntitySet="RECIEPE_INGREDIENTS" />
+          </AssociationSet>
+          <AssociationSet Name="RULE_RULECATEGORY_FK" Association="Self.RULE_RULECATEGORY_FK">
+            <End Role="RULE" EntitySet="RULE" />
+            <End Role="RULE_CATEGORIES" EntitySet="RULE_CATEGORIES" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBModel2StoreContainer" CdmEntityContainer="BackendDBEntities2">
+          <EntitySetMapping Name="DEMO_CONSTRAINT_LOOKUP">
+            <EntityTypeMapping TypeName="DBModel2.DEMO_CONSTRAINT_LOOKUP">
+              <MappingFragment StoreEntitySet="DEMO_CONSTRAINT_LOOKUP">
+                <ScalarProperty Name="CONSTRAINT_NAME" ColumnName="CONSTRAINT_NAME" />
+                <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEMO_CUSTOMERS">
+            <EntityTypeMapping TypeName="DBModel2.DEMO_CUSTOMERS">
+              <MappingFragment StoreEntitySet="DEMO_CUSTOMERS">
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+                <ScalarProperty Name="CUST_FIRST_NAME" ColumnName="CUST_FIRST_NAME" />
+                <ScalarProperty Name="CUST_LAST_NAME" ColumnName="CUST_LAST_NAME" />
+                <ScalarProperty Name="CUST_STREET_ADDRESS1" ColumnName="CUST_STREET_ADDRESS1" />
+                <ScalarProperty Name="CUST_STREET_ADDRESS2" ColumnName="CUST_STREET_ADDRESS2" />
+                <ScalarProperty Name="CUST_CITY" ColumnName="CUST_CITY" />
+                <ScalarProperty Name="CUST_STATE" ColumnName="CUST_STATE" />
+                <ScalarProperty Name="CUST_POSTAL_CODE" ColumnName="CUST_POSTAL_CODE" />
+                <ScalarProperty Name="CUST_EMAIL" ColumnName="CUST_EMAIL" />
+                <ScalarProperty Name="PHONE_NUMBER1" ColumnName="PHONE_NUMBER1" />
+                <ScalarProperty Name="PHONE_NUMBER2" ColumnName="PHONE_NUMBER2" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="CREDIT_LIMIT" ColumnName="CREDIT_LIMIT" />
+                <ScalarProperty Name="TAGS" ColumnName="TAGS" />
+                <ScalarProperty Name="MANUFACTURER_ID" ColumnName="MANUFACTURER_ID" />
+                <ScalarProperty Name="FRONTEND_ID" ColumnName="FRONTEND_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEMO_ORDER_ITEMS">
+            <EntityTypeMapping TypeName="DBModel2.DEMO_ORDER_ITEMS">
+              <MappingFragment StoreEntitySet="DEMO_ORDER_ITEMS">
+                <ScalarProperty Name="ORDER_ITEM_ID" ColumnName="ORDER_ITEM_ID" />
+                <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+                <ScalarProperty Name="UNIT_PRICE" ColumnName="UNIT_PRICE" />
+                <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+                <ScalarProperty Name="FRONTEND_ID" ColumnName="FRONTEND_ID" />
+                <ScalarProperty Name="MANUFACTURER_ID" ColumnName="MANUFACTURER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEMO_ORDERS">
+            <EntityTypeMapping TypeName="DBModel2.DEMO_ORDERS">
+              <MappingFragment StoreEntitySet="DEMO_ORDERS">
+                <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+                <ScalarProperty Name="ORDER_TOTAL" ColumnName="ORDER_TOTAL" />
+                <ScalarProperty Name="ORDER_TIMESTAMP" ColumnName="ORDER_TIMESTAMP" />
+                <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+                <ScalarProperty Name="TAGS" ColumnName="TAGS" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="FRONTEND_ID" ColumnName="FRONTEND_ID" />
+                <ScalarProperty Name="MANUFACTURER_ID" ColumnName="MANUFACTURER_ID" />
+                <ScalarProperty Name="DELIVERY_DATE" ColumnName="DELIVERY_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEMO_PRODUCT_INFO">
+            <EntityTypeMapping TypeName="DBModel2.DEMO_PRODUCT_INFO">
+              <MappingFragment StoreEntitySet="DEMO_PRODUCT_INFO">
+                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+                <ScalarProperty Name="PRODUCT_NAME" ColumnName="PRODUCT_NAME" />
+                <ScalarProperty Name="PRODUCT_DESCRIPTION" ColumnName="PRODUCT_DESCRIPTION" />
+                <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+                <ScalarProperty Name="PRODUCT_AVAIL" ColumnName="PRODUCT_AVAIL" />
+                <ScalarProperty Name="LIST_PRICE" ColumnName="LIST_PRICE" />
+                <ScalarProperty Name="PRODUCT_IMAGE" ColumnName="PRODUCT_IMAGE" />
+                <ScalarProperty Name="MIMETYPE" ColumnName="MIMETYPE" />
+                <ScalarProperty Name="FILENAME" ColumnName="FILENAME" />
+                <ScalarProperty Name="IMAGE_LAST_UPDATE" ColumnName="IMAGE_LAST_UPDATE" />
+                <ScalarProperty Name="TAGS" ColumnName="TAGS" />
+                <ScalarProperty Name="SALE_PRICE" ColumnName="SALE_PRICE" />
+                <ScalarProperty Name="SALE_BEGIN" ColumnName="SALE_BEGIN" />
+                <ScalarProperty Name="SALE_END" ColumnName="SALE_END" />
+                <ScalarProperty Name="FRONTEND_ID" ColumnName="FRONTEND_ID" />
+                <ScalarProperty Name="MANUFACTURER_ID" ColumnName="MANUFACTURER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEMO_TAGS">
+            <EntityTypeMapping TypeName="DBModel2.DEMO_TAGS">
+              <MappingFragment StoreEntitySet="DEMO_TAGS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TAG" ColumnName="TAG" />
+                <ScalarProperty Name="CONTENT_ID" ColumnName="CONTENT_ID" />
+                <ScalarProperty Name="CONTENT_TYPE" ColumnName="CONTENT_TYPE" />
+                <ScalarProperty Name="CREATED" ColumnName="CREATED" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED" ColumnName="UPDATED" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="FRONTEND_ID" ColumnName="FRONTEND_ID" />
+                <ScalarProperty Name="MANUFACTURER_ID" ColumnName="MANUFACTURER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEMO_TAGS_SUM">
+            <EntityTypeMapping TypeName="DBModel2.DEMO_TAGS_SUM">
+              <MappingFragment StoreEntitySet="DEMO_TAGS_SUM">
+                <ScalarProperty Name="TAG" ColumnName="TAG" />
+                <ScalarProperty Name="TAG_COUNT" ColumnName="TAG_COUNT" />
+                <ScalarProperty Name="FRONTEND_ID" ColumnName="FRONTEND_ID" />
+                <ScalarProperty Name="MANUFACTURER_ID" ColumnName="MANUFACTURER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEMO_TAGS_TYPE_SUM">
+            <EntityTypeMapping TypeName="DBModel2.DEMO_TAGS_TYPE_SUM">
+              <MappingFragment StoreEntitySet="DEMO_TAGS_TYPE_SUM">
+                <ScalarProperty Name="TAG" ColumnName="TAG" />
+                <ScalarProperty Name="CONTENT_TYPE" ColumnName="CONTENT_TYPE" />
+                <ScalarProperty Name="TAG_COUNT" ColumnName="TAG_COUNT" />
+                <ScalarProperty Name="FRONTEND_ID" ColumnName="FRONTEND_ID" />
+                <ScalarProperty Name="MANUFACTURER_ID" ColumnName="MANUFACTURER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEPT">
+            <EntityTypeMapping TypeName="DBModel2.DEPT">
+              <MappingFragment StoreEntitySet="DEPT">
+                <ScalarProperty Name="DEPTNO" ColumnName="DEPTNO" />
+                <ScalarProperty Name="DNAME" ColumnName="DNAME" />
+                <ScalarProperty Name="LOC" ColumnName="LOC" />
+                <ScalarProperty Name="FRONTEND_ID" ColumnName="FRONTEND_ID" />
+                <ScalarProperty Name="MANUFACTURER_ID" ColumnName="MANUFACTURER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMP">
+            <EntityTypeMapping TypeName="DBModel2.EMP">
+              <MappingFragment StoreEntitySet="EMP">
+                <ScalarProperty Name="EMPNO" ColumnName="EMPNO" />
+                <ScalarProperty Name="ENAME" ColumnName="ENAME" />
+                <ScalarProperty Name="JOB" ColumnName="JOB" />
+                <ScalarProperty Name="MGR" ColumnName="MGR" />
+                <ScalarProperty Name="HIREDATE" ColumnName="HIREDATE" />
+                <ScalarProperty Name="SAL" ColumnName="SAL" />
+                <ScalarProperty Name="COMM" ColumnName="COMM" />
+                <ScalarProperty Name="DEPTNO" ColumnName="DEPTNO" />
+                <ScalarProperty Name="FRONTEND_ID" ColumnName="FRONTEND_ID" />
+                <ScalarProperty Name="MANUFACTURER_ID" ColumnName="MANUFACTURER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INGREDIENT">
+            <EntityTypeMapping TypeName="DBModel2.INGREDIENT">
+              <MappingFragment StoreEntitySet="INGREDIENT">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="FILENAME" ColumnName="FILENAME" />
+                <ScalarProperty Name="MIMETYPE" ColumnName="MIMETYPE" />
+                <ScalarProperty Name="INGREDIENT_IMAGE" ColumnName="INGREDIENT_IMAGE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="LOCATION_TOP" ColumnName="LOCATION_TOP" />
+                <ScalarProperty Name="LOCATION_BOTTOM" ColumnName="LOCATION_BOTTOM" />
+                <ScalarProperty Name="LOCATION_CHOC" ColumnName="LOCATION_CHOC" />
+                <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+                <ScalarProperty Name="IMAGE_LAST_UPDATE" ColumnName="IMAGE_LAST_UPDATE" />
+                <ScalarProperty Name="FRONTEND_ID" ColumnName="FRONTEND_ID" />
+                <ScalarProperty Name="MANUFACTURER_ID" ColumnName="MANUFACTURER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INGREDIENT_CATEGORY">
+            <EntityTypeMapping TypeName="DBModel2.INGREDIENT_CATEGORY">
+              <MappingFragment StoreEntitySet="INGREDIENT_CATEGORY">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="FRONTEND_ID" ColumnName="FRONTEND_ID" />
+                <ScalarProperty Name="MANUFACTURER_ID" ColumnName="MANUFACTURER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PACKAGE">
+            <EntityTypeMapping TypeName="DBModel2.PACKAGE">
+              <MappingFragment StoreEntitySet="PACKAGE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="FILENAME" ColumnName="FILENAME" />
+                <ScalarProperty Name="MIMETYPE" ColumnName="MIMETYPE" />
+                <ScalarProperty Name="PACKAGE_IMAGE" ColumnName="PACKAGE_IMAGE" />
+                <ScalarProperty Name="IMAGE_LAST_UPDATE" ColumnName="IMAGE_LAST_UPDATE" />
+                <ScalarProperty Name="FRONTEND_ID" ColumnName="FRONTEND_ID" />
+                <ScalarProperty Name="MANUFACTURER_ID" ColumnName="MANUFACTURER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RECIEPE">
+            <EntityTypeMapping TypeName="DBModel2.RECIEPE">
+              <MappingFragment StoreEntitySet="RECIEPE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="FRONTEND_ID" ColumnName="FRONTEND_ID" />
+                <ScalarProperty Name="MANUFACTURER_ID" ColumnName="MANUFACTURER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RECIEPE_INGREDIENTS">
+            <EntityTypeMapping TypeName="DBModel2.RECIEPE_INGREDIENTS">
+              <MappingFragment StoreEntitySet="RECIEPE_INGREDIENTS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="RECIEPE_ID" ColumnName="RECIEPE_ID" />
+                <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+                <ScalarProperty Name="UNIT_PRICE" ColumnName="UNIT_PRICE" />
+                <ScalarProperty Name="INGREDIENT_ID" ColumnName="INGREDIENT_ID" />
+                <ScalarProperty Name="FRONTEND_ID" ColumnName="FRONTEND_ID" />
+                <ScalarProperty Name="MANUFACTURER_ID" ColumnName="MANUFACTURER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RULE">
+            <EntityTypeMapping TypeName="DBModel2.RULE">
+              <MappingFragment StoreEntitySet="RULE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+                <ScalarProperty Name="FRONTEND_ID" ColumnName="FRONTEND_ID" />
+                <ScalarProperty Name="MANUFACTURER_ID" ColumnName="MANUFACTURER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RULE_CATEGORIES">
+            <EntityTypeMapping TypeName="DBModel2.RULE_CATEGORIES">
+              <MappingFragment StoreEntitySet="RULE_CATEGORIES">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="RULE_ID" ColumnName="RULE_ID" />
+                <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+                <ScalarProperty Name="FRONTEND_ID" ColumnName="FRONTEND_ID" />
+                <ScalarProperty Name="MANUFACTURER_ID" ColumnName="MANUFACTURER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SHAPE">
+            <EntityTypeMapping TypeName="DBModel2.SHAPE">
+              <MappingFragment StoreEntitySet="SHAPE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="FILENAME" ColumnName="FILENAME" />
+                <ScalarProperty Name="MIMETYPE" ColumnName="MIMETYPE" />
+                <ScalarProperty Name="SHAPE_IMAGE" ColumnName="SHAPE_IMAGE" />
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="IMAGE_LAST_UPDATE" ColumnName="IMAGE_LAST_UPDATE" />
+                <ScalarProperty Name="FRONTEND_ID" ColumnName="FRONTEND_ID" />
+                <ScalarProperty Name="MANUFACTURER_ID" ColumnName="MANUFACTURER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="54281563db8d480d9db726651808fc69" Name="Diagram1">
+        <EntityTypeShape EntityType="DBModelBE.APEX__ACL" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelBE.APEX__WS_FILES" Width="1.5" PointX="11" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelBE.APEX__WS_LINKS" Width="1.5" PointX="11" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelBE.APEX__WS_NOTES" Width="1.5" PointX="11" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelBE.APEX__WS_ROWS" Width="1.5" PointX="8.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelBE.APEX__WS_TAGS" Width="1.5" PointX="11" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelBE.APEX__WS_WEBPG_SECTIONS" Width="1.5" PointX="13.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelBE.APEX_TEAM_DEV_FILES" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelBE.DEMO_CONSTRAINT_LOOKUP" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelBE.DEMO_CUSTOMERS" Width="1.5" PointX="1.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelBE.DEMO_ORDER_ITEMS" Width="1.5" PointX="6" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelBE.DEMO_ORDERS" Width="1.5" PointX="3.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelBE.DEMO_PRODUCT_INFO" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelBE.DEMO_TAGS" Width="1.5" PointX="13.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelBE.DEMO_TAGS_SUM" Width="1.5" PointX="15.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelBE.DEMO_TAGS_TYPE_SUM" Width="1.5" PointX="15.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelBE.DEPT" Width="1.5" PointX="10.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelBE.EMP" Width="1.5" PointX="13" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelBE.INGREDIENT" Width="1.5" PointX="3" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelBE.INGREDIENT_CATEGORY" Width="1.5" PointX="0.75" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelBE.PACKAGE" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelBE.RECIEPE" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelBE.RECIEPE_INGREDIENTS" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelBE.RULE" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelBE.RULE_CATEGORIES" Width="1.5" PointX="5.25" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelBE.SHAPE" Width="1.5" PointX="3" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelBE.APEX__WS_HISTORY" Width="1.5" PointX="15.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModelBE.APEX__WS_WEBPG_SECTION_HISTORY" Width="1.5" PointX="15.75" PointY="10.75" IsExpanded="true" />
+        <AssociationConnector Association="DBModelBE.APEX__WS_FILES_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModelBE.APEX__WS_LINKS_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModelBE.APEX__WS_NOTES_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModelBE.APEX__WS_TAGS_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModelBE.DEMO_ORDERS_CUSTOMER_ID_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModelBE.DEMO_ORDER_ITEMS_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModelBE.DEMO_ORDER_ITEMS_PRODUCT_ID_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModelBE.PACKAGE_CON" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModelBE.RECIEPE_TO_PRODUCT_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModelBE.RULE_CON" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModelBE.SHAPE_CON" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModelBE.SYS_C0011034" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModelBE.SYS_C0011033" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModelBE.INGREDIENT_CATEGORY_CON" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModelBE.INGREDIENT_TO_RECIEPE_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModelBE.CATEGORY_RULECATEGORY_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModelBE.RECIEPE_TO_INGREDIENTS_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModelBE.RULE_RULECATEGORY_FK" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
