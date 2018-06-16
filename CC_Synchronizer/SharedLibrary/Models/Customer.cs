@@ -14,7 +14,7 @@ namespace SharedLibrary.Models
         public string Address { get; set; }
         public string City { get; set; }
         public string State { get; set; }
-        public int Zip { get; set; }
+        public string Zip { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public string Url { get; set; }
@@ -26,7 +26,7 @@ namespace SharedLibrary.Models
 
         }
 
-        public Customer(int customerId, string firstName, string lastName, string address, string city, string state, int zip, string email, string phoneNumber, string url, int creditLimit, string tags)
+        public Customer(int customerId, string firstName, string lastName, string address, string city, string state, string zip, string email, string phoneNumber, string url, int creditLimit, string tags)
         {
             CustomerId = customerId;
             FirstName = firstName;
