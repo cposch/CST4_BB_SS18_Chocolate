@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RESTFrontendService", "REST
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedLibrary", "SharedLibrary\SharedLibrary.csproj", "{081F0B4A-E2AC-4083-B5F1-092483389899}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppSharedClasses", "AppSharedClasses\AppSharedClasses.csproj", "{77139AB5-961D-48C2-8855-C2E5DB6DD1DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{081F0B4A-E2AC-4083-B5F1-092483389899}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{081F0B4A-E2AC-4083-B5F1-092483389899}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{081F0B4A-E2AC-4083-B5F1-092483389899}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77139AB5-961D-48C2-8855-C2E5DB6DD1DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77139AB5-961D-48C2-8855-C2E5DB6DD1DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77139AB5-961D-48C2-8855-C2E5DB6DD1DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77139AB5-961D-48C2-8855-C2E5DB6DD1DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
