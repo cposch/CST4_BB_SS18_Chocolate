@@ -14,7 +14,7 @@ namespace BackendDataHandler
     
     public partial class DEMO_ORDER_ITEMS
     {
-        public decimal ORDER_ITEM_ID { get; set; }
+        public byte ORDER_ITEM_ID { get; set; }
         public decimal ORDER_ID { get; set; }
         public decimal PRODUCT_ID { get; set; }
         public decimal UNIT_PRICE { get; set; }

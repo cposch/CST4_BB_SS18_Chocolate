@@ -553,7 +553,7 @@ warning 6013: The table/view 'ADMIN.DEMO_STATES' does not have a primary key def
           <Key>
             <PropertyRef Name="ORDER_ITEM_ID" />
           </Key>
-          <Property Name="ORDER_ITEM_ID" Type="Decimal" Nullable="false" />
+          <Property Name="ORDER_ITEM_ID" Type="Byte" Nullable="false" />
           <Property Name="ORDER_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="PRODUCT_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="UNIT_PRICE" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
