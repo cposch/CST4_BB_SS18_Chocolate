@@ -12,7 +12,7 @@ namespace SharedLibrary.Models
         {
         }
 
-        public Product(int product_ID, string product_Name, string product_Description, string category, string product_Avail, decimal list_Price, byte[] product_Image, string mIMETYPE, string filename, DateTime image_Last_Update, string tags, decimal sale_Price, DateTime sale_Begin, DateTime sale_End)
+        public Product(int product_ID, string product_Name, string product_Description, string category, string product_Avail, decimal list_Price, byte[] product_Image, string mIMETYPE, string filename, DateTime image_Last_Update, string tags, decimal sale_Price, DateTime sale_Begin, DateTime sale_End, int frontend_ID, int manufaturer_ID)
         {
             Product_ID = product_ID;
             Product_Name = product_Name;
@@ -28,6 +28,9 @@ namespace SharedLibrary.Models
             Sale_Price = sale_Price;
             Sale_Begin = sale_Begin;
             Sale_End = sale_End;
+            Frontend_ID = frontend_ID;
+            Manufaturer_ID = manufaturer_ID;
+
         }
 
         public int Product_ID { get; set; }
@@ -44,5 +47,7 @@ namespace SharedLibrary.Models
         public decimal Sale_Price { get; set; }
         public DateTime Sale_Begin { get; set; }
         public DateTime Sale_End { get; set; }
+        public int Frontend_ID { get; set; }
+        public int Manufaturer_ID { get; set; }
     }
 }
