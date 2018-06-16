@@ -75,6 +75,19 @@
   <ItemGroup>
     <Compile Include="AppService\AppServer.cs" />
     <Compile Include="AppService\ClientHandler.cs" />
+    <Compile Include="AppService\SyncDataModels\Customers.cs" />
+    <Compile Include="AppService\SyncDataModels\Ingredients.cs" />
+    <Compile Include="AppService\SyncDataModels\Ingredient_Category.cs" />
+    <Compile Include="AppService\SyncDataModels\Orders.cs" />
+    <Compile Include="AppService\SyncDataModels\Order_Items.cs" />
+    <Compile Include="AppService\SyncDataModels\Packages.cs" />
+    <Compile Include="AppService\SyncDataModels\Product_Info.cs" />
+    <Compile Include="AppService\SyncDataModels\Recipe.cs" />
+    <Compile Include="AppService\SyncDataModels\Recipe_Ingredients.cs" />
+    <Compile Include="AppService\SyncDataModels\Rule.cs" />
+    <Compile Include="AppService\SyncDataModels\Rule_Categories.cs" />
+    <Compile Include="AppService\SyncDataModels\Shape.cs" />
+    <Compile Include="AppService\SyncXMLSerializer.cs" />
     <Compile Include="FrontendService\FrontendHost.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -84,6 +97,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AppSharedClasses\AppSharedClasses.csproj">
+      <Project>{77139ab5-961d-48c2-8855-c2e5db6dd1da}</Project>
+      <Name>AppSharedClasses</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BackendDataHandler\BackendDataHandler.csproj">
       <Project>{86386307-7a44-4300-b3f4-de6d7c2bbcd6}</Project>
       <Name>BackendDataHandler</Name>
@@ -109,5 +126,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

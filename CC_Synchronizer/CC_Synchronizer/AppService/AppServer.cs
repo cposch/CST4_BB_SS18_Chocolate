@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CC_Synchronizer.AppService
@@ -25,7 +23,9 @@ namespace CC_Synchronizer.AppService
         private void StartAccepting()
         {
             while (true)
+            {
                 clients.Add(new ClientHandler(serverSocket.Accept()));
+            }
         }
     }
 }

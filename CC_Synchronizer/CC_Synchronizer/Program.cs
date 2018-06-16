@@ -18,13 +18,11 @@ namespace CC_Synchronizer
             BackendDataHandling BDH = new BackendDataHandling();
             Product testproduct = new Product(98, "Test2", "TestBeschreibung", "TestCategory", "Y", 33, new byte[100], "image//jpg", "shirt.jpg", new DateTime(), "Sweet", 44, new DateTime(), new DateTime());
             BDH.AddProduct(testproduct);*/
-            Console.WriteLine("Chocolate Costumizer Syncronizer\n\nPress any key to end.");
-            Console.ReadLine();
+            Console.WriteLine("Chocolate Costumizer Syncronizer\nPress Enter to end the application.\n");
 
-            //AppServer appServer = new AppServer();
-
+            AppServer appServer = new AppServer();
             //FrontendHost feHost = new FrontendHost();
-
+            Console.ReadLine();
         }
     }
 }
