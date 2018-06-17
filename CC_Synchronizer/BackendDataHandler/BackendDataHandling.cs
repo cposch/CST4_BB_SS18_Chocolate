@@ -75,7 +75,7 @@ namespace BackendDataHandler
         public void AddOrderItem(OrderItem oi)
         {
             DEMO_ORDER_ITEMS oit = new DEMO_ORDER_ITEMS();
-            oit.ORDER_ITEM_ID = (byte)oi.OrderItemID;
+            oit.ORDER_ITEM_ID = Convert.ToByte(oi.OrderItemID);
             oit.ORDER_ID = oi.OrderID;
             oit.PRODUCT_ID = oi.ProductID;
             oit.UNIT_PRICE = oi.UnitPrice;
