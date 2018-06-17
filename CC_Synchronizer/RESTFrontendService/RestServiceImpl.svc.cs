@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using BackendDataHandler;
 using RESTFrontendService.DataModels;
 using SharedLibrary.Models;
 
@@ -13,60 +14,29 @@ namespace RESTFrontendService
     // NOTE: In order to launch WCF Test Client for testing this service, please select RestServiceImpl.svc or RestServiceImpl.svc.cs at the Solution Explorer and start debugging.
     public class RestServiceImpl : IRestServiceImpl
     {
+
+        BackendDataHandling dh = new BackendDataHandling();
+
         // Dummymethode für den Test
         public DMProduct GetProductTest()
         {
             return new DMProduct(Guid.Parse("09bdd169-12b0-4167-a201-f9494a72e50b"), "chocolate cake", "yummi", 130, new DMRecipe(Guid.Parse("09bdd169-12b0-4167-a201-f9494a72e50b"), "Do this and that"));
         }
-
-        // DELETE Methoden
         
-        public Customer DeleteCustomer(string customerID)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Order DeleteOrder(string orderID)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Product DeleteProduct(string productID)
-        {
-            throw new NotImplementedException();
-        }
-        
-
         // GET Methoden
         public List<Customer> GetCustomers()
         {
-            throw new NotImplementedException();
+            return dh.QueryAllCustomer();
         }
 
         public List<Order> GetOrders()
         {
-            throw new NotImplementedException();
+            return dh.QueryAllOrders();
         }
 
         public List<Product> GetProducts()
         {
-            throw new NotImplementedException();
-        }
-
-        // POST Methoden
-        public Customer InsertCustomer(Customer c)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Order InsertOrder(Order o)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Product InsertProduct(Product p)
-        {
-            throw new NotImplementedException();
+            return dh.QueryAllProducts();
         }
 
         // PUT Methoden
@@ -81,6 +51,39 @@ namespace RESTFrontendService
         }
 
         public Product UpdateProduct()
+        {
+            throw new NotImplementedException();
+        }
+
+        // POST (INSERT) Methoden
+        public void InsertCustomer(Customer c)
+        {
+            dh.AddCustomer(c);
+        }
+
+        public void InsertOrder(Order o)
+        {
+            dh.AddOrder(o);
+        }
+
+        public void InsertProduct(Product p)
+        {
+            dh.AddProduct(p);
+        }
+
+        // DELETE Methoden
+
+        public Customer DeleteCustomer(string customerID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Order DeleteOrder(string orderID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Product DeleteProduct(string productID)
         {
             throw new NotImplementedException();
         }

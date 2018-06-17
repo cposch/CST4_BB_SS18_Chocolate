@@ -88,6 +88,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BackendDataHandler\BackendDataHandler.csproj">
+      <Project>{86386307-7A44-4300-B3F4-DE6D7C2BBCD6}</Project>
+      <Name>BackendDataHandler</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SharedLibrary\SharedLibrary.csproj">
       <Project>{081f0b4a-e2ac-4083-b5f1-092483389899}</Project>
       <Name>SharedLibrary</Name>
