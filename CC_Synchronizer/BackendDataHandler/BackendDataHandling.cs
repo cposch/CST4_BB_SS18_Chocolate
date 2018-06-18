@@ -159,7 +159,7 @@ namespace BackendDataHandler
             }).ToList();
         }
 
-        public List<Customer> QueryAllCustomer(int FID)
+        public List<Customer> QueryAllCustomerbyFID(int FID)
         {
             return db.DEMO_CUSTOMERS.Where(w => w.FRONTEND_ID.Equals(FID)).Select(w => new Customer()
             {
@@ -179,7 +179,7 @@ namespace BackendDataHandler
             }).ToList();
         }
 
-        public List<Customer> QueryAllCustomerbyFID(int FID)
+        public List<Customer> QueryAllCustomer()
         {
             return db.DEMO_CUSTOMERS.Select(w => new Customer()
             {
@@ -200,7 +200,7 @@ namespace BackendDataHandler
         }
 
 
-        public List<Order> QueryAllOrders(int FID)
+        public List<Order> QueryAllOrdersbyFID(int FID)
         {
             return db.DEMO_ORDERS.Where(w => w.FRONTEND_ID.Equals(FID)).Select(w => new Order()
             {
@@ -234,7 +234,7 @@ namespace BackendDataHandler
 
         }
 
-        public List<Order> QueryAllOrdersbyFID()
+        public List<Order> QueryAllOrders()
         {
             return db.DEMO_ORDERS.Select(w => new Order()
             {
