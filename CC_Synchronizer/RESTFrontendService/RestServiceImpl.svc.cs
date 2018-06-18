@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.Xml;
 using BackendDataHandler;
 using RESTFrontendService.DataModels;
 using SharedLibrary.Models;
@@ -56,20 +57,35 @@ namespace RESTFrontendService
         }
 
         // POST (INSERT) Methoden
-        public void InsertCustomer(Customer c)
+        public void InsertCustomer(XmlElement c)
         {
-            dh.AddCustomer(c);
+            dh.AddCustomer(new Customer() {
+                CustomerId = int.Parse(c.GetAttribute("Id")),
+                FirstName = c.GetAttribute("FirstName"),
+                LastName = c.GetAttribute("LastName"),
+                Address = c.GetAttribute("Address"),
+                City = c.GetAttribute("City"),
+                State = c.GetAttribute("State"),
+                Zip = c.GetAttribute("Zip"),
+                Email = c.GetAttribute("Email"),
+                PhoneNumber = c.GetAttribute("PhoneNumber"),
+                Url = c.GetAttribute("Url"),
+                CreditLimit = int.Parse(c.GetAttribute("CreditLimit")),
+                Tags = c.GetAttribute("Tags")
+
+            });
+
         }
 
-        public void InsertOrder(Order o)
+       /** public void InsertOrder(XmlElement o)
         {
             dh.AddOrder(o);
-        }
+        }*/
 
-        public void InsertProduct(Product p)
+      /**  public void InsertProduct(XmlElement p)
         {
             dh.AddProduct(p);
-        }
+        }*/
 
         // DELETE Methoden
 
