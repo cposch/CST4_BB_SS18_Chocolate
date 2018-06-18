@@ -41,7 +41,7 @@ namespace CC_Synchronizer.AppService
                     buffer = new byte[int.Parse(recievedString)];
                     continue;
                 }
-                Console.WriteLine(recievedString);
+                //Console.WriteLine(recievedString);
 
                 switch (TableId)
                 {
