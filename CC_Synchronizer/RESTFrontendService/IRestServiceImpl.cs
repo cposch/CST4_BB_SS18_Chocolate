@@ -31,9 +31,9 @@ namespace RESTFrontendService
         [WebGet(ResponseFormat = WebMessageFormat.Xml, BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "xml/orders")]
         List<Order> GetOrders();
 
-        [OperationContract]
+        /*[OperationContract]
         [WebGet(ResponseFormat = WebMessageFormat.Xml, BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "xml/customers")]
-        List<Customer> GetCustomers();
+        List<Customer> GetCustomers();*/
 
         // UPDATE Methoden
         // Übergabeparameter einfügen

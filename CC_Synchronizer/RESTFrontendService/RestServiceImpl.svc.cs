@@ -25,14 +25,14 @@ namespace RESTFrontendService
         }
         
         // GET Methoden
-        public List<Customer> GetCustomers()
+        /*public List<Customer> GetCustomers()
         {
             return dh.QueryAllCustomer();
-        }
+        }*/
 
         public List<Order> GetOrders()
         {
-            return dh.QueryAllOrders();
+            return dh.QueryAllOrdersbyFID();
         }
 
         public List<Product> GetProducts()
