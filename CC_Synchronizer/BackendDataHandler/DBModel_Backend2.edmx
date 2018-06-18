@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DBModel2.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DBModel2.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="DEMO_CONSTRAINT_LOOKUP">
           <Key>
             <PropertyRef Name="CONSTRAINT_NAME" />
@@ -37,7 +37,7 @@
           <Key>
             <PropertyRef Name="ORDER_ITEM_ID" />
           </Key>
-          <Property Name="ORDER_ITEM_ID" Type="number" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="ORDER_ITEM_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="ORDER_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="PRODUCT_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="UNIT_PRICE" Type="number" Precision="8" Scale="2" Nullable="false" />
@@ -81,14 +81,6 @@
           <Property Name="FRONTEND_ID" Type="number" Precision="38" Scale="0" />
           <Property Name="MANUFACTURER_ID" Type="number" Precision="38" Scale="0" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'ADMIN.DEMO_STATES' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="DEMO_STATES">
-          <Property Name="ST" Type="varchar2" MaxLength="30" />
-          <Property Name="STATE_NAME" Type="varchar2" MaxLength="30" />
-          <Property Name="FRONTEND_ID" Type="number" Precision="38" Scale="0" />
-          <Property Name="MANUFACTURER_ID" Type="number" Precision="38" Scale="0" />
-        </EntityType>-->
         <EntityType Name="DEMO_TAGS">
           <Key>
             <PropertyRef Name="ID" />
@@ -515,8 +507,7 @@ warning 6013: The table/view 'ADMIN.DEMO_STATES' does not have a primary key def
             <End Role="EMP" EntitySet="EMP" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DBModel2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -549,20 +540,6 @@ warning 6013: The table/view 'ADMIN.DEMO_STATES' does not have a primary key def
           <Property Name="FRONTEND_ID" Type="Decimal" Precision="38" Scale="0" />
           <NavigationProperty Name="DEMO_ORDERS" Relationship="Self.DEMO_ORDERS_CUSTOMER_ID_FK" FromRole="DEMO_CUSTOMERS" ToRole="DEMO_ORDERS" />
         </EntityType>
-        <EntityType Name="DEMO_ORDER_ITEMS">
-          <Key>
-            <PropertyRef Name="ORDER_ITEM_ID" />
-          </Key>
-          <Property Name="ORDER_ITEM_ID" Type="Byte" Nullable="false" />
-          <Property Name="ORDER_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="PRODUCT_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="UNIT_PRICE" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
-          <Property Name="QUANTITY" Type="Int32" Nullable="false" />
-          <Property Name="FRONTEND_ID" Type="Decimal" Precision="38" Scale="0" />
-          <Property Name="MANUFACTURER_ID" Type="Decimal" Precision="38" Scale="0" />
-          <NavigationProperty Name="DEMO_ORDERS" Relationship="Self.DEMO_ORDER_ITEMS_FK" FromRole="DEMO_ORDER_ITEMS" ToRole="DEMO_ORDERS" />
-          <NavigationProperty Name="DEMO_PRODUCT_INFO" Relationship="Self.DEMO_ORDER_ITEMS_PRODUCT_ID_FK" FromRole="DEMO_ORDER_ITEMS" ToRole="DEMO_PRODUCT_INFO" />
-        </EntityType>
         <EntityType Name="DEMO_ORDERS">
           <Key>
             <PropertyRef Name="ORDER_ID" />
@@ -578,7 +555,7 @@ warning 6013: The table/view 'ADMIN.DEMO_STATES' does not have a primary key def
           <Property Name="MANUFACTURER_ID" Type="Decimal" Precision="38" Scale="0" />
           <Property Name="DELIVERY_DATE" Type="DateTime" />
           <NavigationProperty Name="DEMO_CUSTOMERS" Relationship="Self.DEMO_ORDERS_CUSTOMER_ID_FK" FromRole="DEMO_ORDERS" ToRole="DEMO_CUSTOMERS" />
-          <NavigationProperty Name="DEMO_ORDER_ITEMS" Relationship="Self.DEMO_ORDER_ITEMS_FK" FromRole="DEMO_ORDERS" ToRole="DEMO_ORDER_ITEMS" />
+          <NavigationProperty Name="DEMO_ORDER_ITEMS" Relationship="DBModel2.DEMO_ORDER_ITEMS_FK" FromRole="DEMO_ORDERS" ToRole="DEMO_ORDER_ITEMS" />
         </EntityType>
         <EntityType Name="DEMO_PRODUCT_INFO">
           <Key>
@@ -600,11 +577,11 @@ warning 6013: The table/view 'ADMIN.DEMO_STATES' does not have a primary key def
           <Property Name="SALE_END" Type="DateTime" />
           <Property Name="FRONTEND_ID" Type="Decimal" Precision="38" Scale="0" />
           <Property Name="MANUFACTURER_ID" Type="Decimal" Precision="38" Scale="0" />
-          <NavigationProperty Name="DEMO_ORDER_ITEMS" Relationship="Self.DEMO_ORDER_ITEMS_PRODUCT_ID_FK" FromRole="DEMO_PRODUCT_INFO" ToRole="DEMO_ORDER_ITEMS" />
           <NavigationProperty Name="PACKAGE" Relationship="Self.PACKAGE_CON" FromRole="DEMO_PRODUCT_INFO" ToRole="PACKAGE" />
           <NavigationProperty Name="RECIEPE" Relationship="Self.RECIEPE_TO_PRODUCT_FK" FromRole="DEMO_PRODUCT_INFO" ToRole="RECIEPE" />
           <NavigationProperty Name="RULE" Relationship="Self.RULE_CON" FromRole="DEMO_PRODUCT_INFO" ToRole="RULE" />
           <NavigationProperty Name="SHAPE" Relationship="Self.SHAPE_CON" FromRole="DEMO_PRODUCT_INFO" ToRole="SHAPE" />
+          <NavigationProperty Name="DEMO_ORDER_ITEMS" Relationship="DBModel2.DEMO_ORDER_ITEMS_PRODUCT_ID_FK" FromRole="DEMO_PRODUCT_INFO" ToRole="DEMO_ORDER_ITEMS" />
         </EntityType>
         <EntityType Name="DEMO_TAGS">
           <Key>
@@ -798,34 +775,6 @@ warning 6013: The table/view 'ADMIN.DEMO_STATES' does not have a primary key def
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="DEMO_ORDER_ITEMS_FK">
-          <End Role="DEMO_ORDERS" Type="Self.DEMO_ORDERS" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="DEMO_ORDER_ITEMS" Type="Self.DEMO_ORDER_ITEMS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DEMO_ORDERS">
-              <PropertyRef Name="ORDER_ID" />
-            </Principal>
-            <Dependent Role="DEMO_ORDER_ITEMS">
-              <PropertyRef Name="ORDER_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="DEMO_ORDER_ITEMS_PRODUCT_ID_FK">
-          <End Role="DEMO_PRODUCT_INFO" Type="Self.DEMO_PRODUCT_INFO" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="DEMO_ORDER_ITEMS" Type="Self.DEMO_ORDER_ITEMS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DEMO_PRODUCT_INFO">
-              <PropertyRef Name="PRODUCT_ID" />
-            </Principal>
-            <Dependent Role="DEMO_ORDER_ITEMS">
-              <PropertyRef Name="PRODUCT_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="PACKAGE_CON">
           <End Role="DEMO_PRODUCT_INFO" Type="Self.DEMO_PRODUCT_INFO" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -977,7 +926,6 @@ warning 6013: The table/view 'ADMIN.DEMO_STATES' does not have a primary key def
         <EntityContainer Name="BackendDBEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="DEMO_CONSTRAINT_LOOKUP" EntityType="Self.DEMO_CONSTRAINT_LOOKUP" />
           <EntitySet Name="DEMO_CUSTOMERS" EntityType="Self.DEMO_CUSTOMERS" />
-          <EntitySet Name="DEMO_ORDER_ITEMS" EntityType="Self.DEMO_ORDER_ITEMS" />
           <EntitySet Name="DEMO_ORDERS" EntityType="Self.DEMO_ORDERS" />
           <EntitySet Name="DEMO_PRODUCT_INFO" EntityType="Self.DEMO_PRODUCT_INFO" />
           <EntitySet Name="DEMO_TAGS" EntityType="Self.DEMO_TAGS" />
@@ -996,14 +944,6 @@ warning 6013: The table/view 'ADMIN.DEMO_STATES' does not have a primary key def
           <AssociationSet Name="DEMO_ORDERS_CUSTOMER_ID_FK" Association="Self.DEMO_ORDERS_CUSTOMER_ID_FK">
             <End Role="DEMO_CUSTOMERS" EntitySet="DEMO_CUSTOMERS" />
             <End Role="DEMO_ORDERS" EntitySet="DEMO_ORDERS" />
-          </AssociationSet>
-          <AssociationSet Name="DEMO_ORDER_ITEMS_FK" Association="Self.DEMO_ORDER_ITEMS_FK">
-            <End Role="DEMO_ORDERS" EntitySet="DEMO_ORDERS" />
-            <End Role="DEMO_ORDER_ITEMS" EntitySet="DEMO_ORDER_ITEMS" />
-          </AssociationSet>
-          <AssociationSet Name="DEMO_ORDER_ITEMS_PRODUCT_ID_FK" Association="Self.DEMO_ORDER_ITEMS_PRODUCT_ID_FK">
-            <End Role="DEMO_PRODUCT_INFO" EntitySet="DEMO_PRODUCT_INFO" />
-            <End Role="DEMO_ORDER_ITEMS" EntitySet="DEMO_ORDER_ITEMS" />
           </AssociationSet>
           <AssociationSet Name="PACKAGE_CON" Association="Self.PACKAGE_CON">
             <End Role="DEMO_PRODUCT_INFO" EntitySet="DEMO_PRODUCT_INFO" />
@@ -1049,7 +989,58 @@ warning 6013: The table/view 'ADMIN.DEMO_STATES' does not have a primary key def
             <End Role="RULE" EntitySet="RULE" />
             <End Role="RULE_CATEGORIES" EntitySet="RULE_CATEGORIES" />
           </AssociationSet>
+          <EntitySet Name="DEMO_ORDER_ITEMS" EntityType="DBModel2.DEMO_ORDER_ITEMS" />
+          <AssociationSet Name="DEMO_ORDER_ITEMS_FK" Association="DBModel2.DEMO_ORDER_ITEMS_FK">
+            <End Role="DEMO_ORDERS" EntitySet="DEMO_ORDERS" />
+            <End Role="DEMO_ORDER_ITEMS" EntitySet="DEMO_ORDER_ITEMS" />
+          </AssociationSet>
+          <AssociationSet Name="DEMO_ORDER_ITEMS_PRODUCT_ID_FK" Association="DBModel2.DEMO_ORDER_ITEMS_PRODUCT_ID_FK">
+            <End Role="DEMO_PRODUCT_INFO" EntitySet="DEMO_PRODUCT_INFO" />
+            <End Role="DEMO_ORDER_ITEMS" EntitySet="DEMO_ORDER_ITEMS" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="DEMO_ORDER_ITEMS">
+          <Key>
+            <PropertyRef Name="ORDER_ITEM_ID" />
+          </Key>
+          <Property Name="ORDER_ITEM_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="ORDER_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="PRODUCT_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="UNIT_PRICE" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="QUANTITY" Type="Int32" Nullable="false" />
+          <Property Name="FRONTEND_ID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="MANUFACTURER_ID" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="DEMO_ORDERS" Relationship="DBModel2.DEMO_ORDER_ITEMS_FK" FromRole="DEMO_ORDER_ITEMS" ToRole="DEMO_ORDERS" />
+          <NavigationProperty Name="DEMO_PRODUCT_INFO" Relationship="DBModel2.DEMO_ORDER_ITEMS_PRODUCT_ID_FK" FromRole="DEMO_ORDER_ITEMS" ToRole="DEMO_PRODUCT_INFO" />
+        </EntityType>
+        <Association Name="DEMO_ORDER_ITEMS_FK">
+          <End Type="DBModel2.DEMO_ORDERS" Role="DEMO_ORDERS" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DBModel2.DEMO_ORDER_ITEMS" Role="DEMO_ORDER_ITEMS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEMO_ORDERS">
+              <PropertyRef Name="ORDER_ID" />
+            </Principal>
+            <Dependent Role="DEMO_ORDER_ITEMS">
+              <PropertyRef Name="ORDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DEMO_ORDER_ITEMS_PRODUCT_ID_FK">
+          <End Type="DBModel2.DEMO_PRODUCT_INFO" Role="DEMO_PRODUCT_INFO" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DBModel2.DEMO_ORDER_ITEMS" Role="DEMO_ORDER_ITEMS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEMO_PRODUCT_INFO">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Principal>
+            <Dependent Role="DEMO_ORDER_ITEMS">
+              <PropertyRef Name="PRODUCT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1083,19 +1074,6 @@ warning 6013: The table/view 'ADMIN.DEMO_STATES' does not have a primary key def
                 <ScalarProperty Name="TAGS" ColumnName="TAGS" />
                 <ScalarProperty Name="MANUFACTURER_ID" ColumnName="MANUFACTURER_ID" />
                 <ScalarProperty Name="FRONTEND_ID" ColumnName="FRONTEND_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DEMO_ORDER_ITEMS">
-            <EntityTypeMapping TypeName="DBModel2.DEMO_ORDER_ITEMS">
-              <MappingFragment StoreEntitySet="DEMO_ORDER_ITEMS">
-                <ScalarProperty Name="ORDER_ITEM_ID" ColumnName="ORDER_ITEM_ID" />
-                <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
-                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
-                <ScalarProperty Name="UNIT_PRICE" ColumnName="UNIT_PRICE" />
-                <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
-                <ScalarProperty Name="FRONTEND_ID" ColumnName="FRONTEND_ID" />
-                <ScalarProperty Name="MANUFACTURER_ID" ColumnName="MANUFACTURER_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1306,6 +1284,19 @@ warning 6013: The table/view 'ADMIN.DEMO_STATES' does not have a primary key def
                 <ScalarProperty Name="IMAGE_LAST_UPDATE" ColumnName="IMAGE_LAST_UPDATE" />
                 <ScalarProperty Name="FRONTEND_ID" ColumnName="FRONTEND_ID" />
                 <ScalarProperty Name="MANUFACTURER_ID" ColumnName="MANUFACTURER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEMO_ORDER_ITEMS">
+            <EntityTypeMapping TypeName="DBModel2.DEMO_ORDER_ITEMS">
+              <MappingFragment StoreEntitySet="DEMO_ORDER_ITEMS">
+                <ScalarProperty Name="MANUFACTURER_ID" ColumnName="MANUFACTURER_ID" />
+                <ScalarProperty Name="FRONTEND_ID" ColumnName="FRONTEND_ID" />
+                <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+                <ScalarProperty Name="UNIT_PRICE" ColumnName="UNIT_PRICE" />
+                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+                <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+                <ScalarProperty Name="ORDER_ITEM_ID" ColumnName="ORDER_ITEM_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

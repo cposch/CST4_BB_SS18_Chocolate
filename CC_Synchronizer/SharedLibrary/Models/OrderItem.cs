@@ -8,17 +8,17 @@ namespace SharedLibrary.Models
 {
     public class OrderItem
     {
-        public int OrderItemID { get; set; }
-        public int OrderID { get; set; }
-        public int ProductID { get; set; }
+        public decimal OrderItemID { get; set; }
+        public decimal OrderID { get; set; }
+        public decimal ProductID { get; set; }
         public decimal UnitPrice { get; set; }
         public int Quantity { get; set; }
-        public int ManufacturerID { get; set; }
-        public int FrontEndID { get; set; }
+        public decimal? ManufacturerID { get; set; }
+        public decimal? FrontEndID { get; set; }
 
         public OrderItem() { }
 
-        public OrderItem(int orderItemID, int orderID, int productID, decimal unitPrice, int quantity, int manufacturerID, int frontEndID)
+        public OrderItem(decimal orderItemID, decimal orderID, decimal productID, decimal unitPrice, int quantity, decimal manufacturerID, decimal frontEndID)
         {
             OrderItemID = orderItemID;
             OrderID = orderID;

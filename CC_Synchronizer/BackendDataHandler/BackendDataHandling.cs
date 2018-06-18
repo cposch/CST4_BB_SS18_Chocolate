@@ -93,32 +93,78 @@ namespace BackendDataHandler
         {
             return db.DEMO_PRODUCT_INFO.Select(w => new Product()
             {
-                Product_ID = (int)w.PRODUCT_ID,
+                Product_ID = w.PRODUCT_ID,
                 Product_Name = w.PRODUCT_NAME,
                 Product_Description = w.PRODUCT_DESCRIPTION,
                 Category = w.CATEGORY,
                 Product_Avail = w.PRODUCT_AVAIL,
-                List_Price = (decimal)w.LIST_PRICE,
+                List_Price = w.LIST_PRICE,
                 Product_Image = w.PRODUCT_IMAGE,
                 MIMETYPE = w.MIMETYPE,
                 Filename = w.FILENAME,
-                Image_Last_Update = (DateTime)w.IMAGE_LAST_UPDATE,
+                Image_Last_Update = w.IMAGE_LAST_UPDATE,
                 Tags = w.TAGS,
-                Sale_Price = (decimal)w.SALE_PRICE,
-                Sale_Begin = (DateTime)w.SALE_BEGIN,
-                Sale_End = (DateTime)w.SALE_END,
-                Frontend_ID = (int)w.FRONTEND_ID,
-                Manufaturer_ID = (int)w.MANUFACTURER_ID
+                Sale_Price = w.SALE_PRICE,
+                Sale_Begin = w.SALE_BEGIN,
+                Sale_End = w.SALE_END,
+                Frontend_ID = w.FRONTEND_ID,
+                Manufaturer_ID = w.MANUFACTURER_ID
 
             }).ToList();
         }
 
-        public List<Customer> QueryAllCustomer()
+        public List<Product> QueryAllProductsbyFID(int FID)
         {
-            return db.DEMO_CUSTOMERS.Select(w => new Customer()
+            return db.DEMO_PRODUCT_INFO.Where(w => w.FRONTEND_ID.Equals(FID)).Select(w => new Product()
+            {
+                Product_ID = w.PRODUCT_ID,
+                Product_Name = w.PRODUCT_NAME,
+                Product_Description = w.PRODUCT_DESCRIPTION,
+                Category = w.CATEGORY,
+                Product_Avail = w.PRODUCT_AVAIL,
+                List_Price = w.LIST_PRICE,
+                Product_Image = w.PRODUCT_IMAGE,
+                MIMETYPE = w.MIMETYPE,
+                Filename = w.FILENAME,
+                Image_Last_Update = w.IMAGE_LAST_UPDATE,
+                Tags = w.TAGS,
+                Sale_Price = w.SALE_PRICE,
+                Sale_Begin = w.SALE_BEGIN,
+                Sale_End = w.SALE_END,
+                Frontend_ID = w.FRONTEND_ID,
+                Manufaturer_ID = w.MANUFACTURER_ID
+            }).ToList();
+        }
+
+        public List<Product> QueryAllProductsbyMID(int MID)
+        {
+            return db.DEMO_PRODUCT_INFO.Where(w => w.MANUFACTURER_ID.Equals(MID)).Select(w => new Product()
+            {
+                Product_ID = w.PRODUCT_ID,
+                Product_Name = w.PRODUCT_NAME,
+                Product_Description = w.PRODUCT_DESCRIPTION,
+                Category = w.CATEGORY,
+                Product_Avail = w.PRODUCT_AVAIL,
+                List_Price = w.LIST_PRICE,
+                Product_Image = w.PRODUCT_IMAGE,
+                MIMETYPE = w.MIMETYPE,
+                Filename = w.FILENAME,
+                Image_Last_Update = w.IMAGE_LAST_UPDATE,
+                Tags = w.TAGS,
+                Sale_Price = w.SALE_PRICE,
+                Sale_Begin = w.SALE_BEGIN,
+                Sale_End = w.SALE_END,
+                Frontend_ID = w.FRONTEND_ID,
+                Manufaturer_ID = w.MANUFACTURER_ID
+            }).ToList();
+        }
+
+        public List<Customer> QueryAllCustomer(int FID)
+        {
+            return db.DEMO_CUSTOMERS.Where(w => w.FRONTEND_ID.Equals(FID)).Select(w => new Customer()
             {
 
-                CustomerId = (int)w.CUSTOMER_ID,
+                CustomerId = w.CUSTOMER_ID,
                 FirstName = w.CUST_FIRST_NAME,
                 LastName = w.CUST_LAST_NAME,
                 Address = w.CUST_STREET_ADDRESS1,
@@ -128,38 +174,93 @@ namespace BackendDataHandler
                 Email = w.CUST_EMAIL,
                 PhoneNumber = w.PHONE_NUMBER1,
                 Url = w.URL,
-                CreditLimit = (int)w.CREDIT_LIMIT,
+                CreditLimit = w.CREDIT_LIMIT,
                 Tags = w.TAGS
             }).ToList();
         }
 
-        public List<Order> QueryAllOrders()
+        public List<Customer> QueryAllCustomerbyFID(int FID)
         {
-            return db.DEMO_ORDERS.Select(w => new Order()
+            return db.DEMO_CUSTOMERS.Select(w => new Customer()
             {
-              OrderId = (int)w.ORDER_ID,
-                CustomerID = (int)w.CUSTOMER_ID,
-                OrderTotal = (decimal)w.ORDER_TOTAL,
-                OrderTimeStamp = (DateTime)w.ORDER_TIMESTAMP,
+
+                CustomerId = w.CUSTOMER_ID,
+                FirstName = w.CUST_FIRST_NAME,
+                LastName = w.CUST_LAST_NAME,
+                Address = w.CUST_STREET_ADDRESS1,
+                City = w.CUST_CITY,
+                State = w.CUST_STATE,
+                Zip = w.CUST_POSTAL_CODE,
+                Email = w.CUST_EMAIL,
+                PhoneNumber = w.PHONE_NUMBER1,
+                Url = w.URL,
+                CreditLimit = w.CREDIT_LIMIT,
+                Tags = w.TAGS
+            }).ToList();
+        }
+
+
+        public List<Order> QueryAllOrders(int FID)
+        {
+            return db.DEMO_ORDERS.Where(w => w.FRONTEND_ID.Equals(FID)).Select(w => new Order()
+            {
+              OrderId = w.ORDER_ID,
+                CustomerID = w.CUSTOMER_ID,
+                OrderTotal = w.ORDER_TOTAL,
+                OrderTimeStamp = w.ORDER_TIMESTAMP,
                 UserName = w.USER_NAME,
                 Tags = w.TAGS,
-                Frontend_ID = (int)w.FRONTEND_ID,
-                Manufaturer_ID = (int)w.MANUFACTURER_ID
+                Frontend_ID = w.FRONTEND_ID,
+                Manufaturer_ID = w.MANUFACTURER_ID
 
             }).ToList();
 
         }
-        public List<OrderItem> QueryAllOrderItmesByOrder(Order o)
+
+        public List<Order> QueryAllOrdersbyMID(int MID)
         {
-            return db.DEMO_ORDER_ITEMS.Where(w => w.ORDER_ID.Equals(o.OrderId)).Select(w => new OrderItem()
+            return db.DEMO_ORDERS.Where(w => w.MANUFACTURER_ID.Equals(MID)).Select(w => new Order()
             {
-                OrderItemID = (int)w.ORDER_ITEM_ID,
-                OrderID = (int)w.ORDER_ID,
-                ProductID = (int)w.PRODUCT_ID,
+                OrderId = w.ORDER_ID,
+                CustomerID = w.CUSTOMER_ID,
+                OrderTotal = w.ORDER_TOTAL,
+                OrderTimeStamp = w.ORDER_TIMESTAMP,
+                UserName = w.USER_NAME,
+                Tags = w.TAGS,
+                Frontend_ID = w.FRONTEND_ID,
+                Manufaturer_ID = w.MANUFACTURER_ID
+
+            }).ToList();
+
+        }
+
+        public List<Order> QueryAllOrdersbyFID()
+        {
+            return db.DEMO_ORDERS.Select(w => new Order()
+            {
+                OrderId = w.ORDER_ID,
+                CustomerID = w.CUSTOMER_ID,
+                OrderTotal = w.ORDER_TOTAL,
+                OrderTimeStamp = w.ORDER_TIMESTAMP,
+                UserName = w.USER_NAME,
+                Tags = w.TAGS,
+                Frontend_ID = w.FRONTEND_ID,
+                Manufaturer_ID = w.MANUFACTURER_ID
+
+            }).ToList();
+
+        }
+        public List<OrderItem> QueryAllOrderItmesByOrder(int oid)
+        {
+            return db.DEMO_ORDER_ITEMS.Where(w => w.ORDER_ID.Equals(oid)).Select(w => new OrderItem()
+            {
+                OrderItemID = w.ORDER_ITEM_ID,
+                OrderID = w.ORDER_ID,
+                ProductID = w.PRODUCT_ID,
                 UnitPrice = w.UNIT_PRICE,
                 Quantity = w.QUANTITY,
-                ManufacturerID = (int)w.MANUFACTURER_ID,
-                FrontEndID = (int)w.FRONTEND_ID
+                ManufacturerID = w.MANUFACTURER_ID,
+                FrontEndID = w.FRONTEND_ID
         }).ToList();
 
     }

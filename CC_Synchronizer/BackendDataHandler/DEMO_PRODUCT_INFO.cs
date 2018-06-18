@@ -17,11 +17,11 @@ namespace BackendDataHandler
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DEMO_PRODUCT_INFO()
         {
-            this.DEMO_ORDER_ITEMS = new HashSet<DEMO_ORDER_ITEMS>();
             this.PACKAGE = new HashSet<PACKAGE>();
             this.RECIEPE = new HashSet<RECIEPE>();
             this.RULE = new HashSet<RULE>();
             this.SHAPE = new HashSet<SHAPE>();
+            this.DEMO_ORDER_ITEMS = new HashSet<DEMO_ORDER_ITEMS>();
         }
     
         public decimal PRODUCT_ID { get; set; }
@@ -42,8 +42,6 @@ namespace BackendDataHandler
         public Nullable<decimal> MANUFACTURER_ID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DEMO_ORDER_ITEMS> DEMO_ORDER_ITEMS { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PACKAGE> PACKAGE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RECIEPE> RECIEPE { get; set; }
@@ -51,5 +49,7 @@ namespace BackendDataHandler
         public virtual ICollection<RULE> RULE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SHAPE> SHAPE { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DEMO_ORDER_ITEMS> DEMO_ORDER_ITEMS { get; set; }
     }
 }

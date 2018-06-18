@@ -12,7 +12,7 @@ namespace SharedLibrary.Models
         {
         }
 
-        public Product(int product_ID, string product_Name, string product_Description, string category, string product_Avail, decimal list_Price, byte[] product_Image, string mIMETYPE, string filename, DateTime image_Last_Update, string tags, decimal sale_Price, DateTime sale_Begin, DateTime sale_End, int frontend_ID, int manufaturer_ID)
+        public Product(decimal product_ID, string product_Name, string product_Description, string category, string product_Avail, decimal list_Price, byte[] product_Image, string mIMETYPE, string filename, DateTime image_Last_Update, string tags, decimal sale_Price, DateTime sale_Begin, DateTime sale_End, decimal frontend_ID, decimal manufaturer_ID)
         {
             Product_ID = product_ID;
             Product_Name = product_Name;
@@ -33,21 +33,21 @@ namespace SharedLibrary.Models
 
         }
 
-        public int Product_ID { get; set; }
+        public decimal Product_ID { get; set; }
         public string Product_Name { get; set; }
         public string Product_Description { get; set; }
         public string Category { get; set; }
         public string Product_Avail { get; set; }
-        public decimal List_Price { get; set; }
+        public decimal? List_Price { get; set; }
         public byte[] Product_Image { get; set; }
         public string MIMETYPE { get; set; }
         public string Filename { get; set; }
-        public DateTime Image_Last_Update { get; set; }
+        public DateTime? Image_Last_Update { get; set; }
         public string Tags { get; set; }
-        public decimal Sale_Price { get; set; }
-        public DateTime Sale_Begin { get; set; }
-        public DateTime Sale_End { get; set; }
-        public int Frontend_ID { get; set; }
-        public int Manufaturer_ID { get; set; }
+        public decimal? Sale_Price { get; set; }
+        public DateTime? Sale_Begin { get; set; }
+        public DateTime? Sale_End { get; set; }
+        public decimal? Frontend_ID { get; set; }
+        public decimal? Manufaturer_ID { get; set; }
     }
 }

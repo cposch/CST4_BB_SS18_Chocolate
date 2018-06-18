@@ -7,7 +7,6 @@
       <Diagram DiagramId="b0d0cd178b924bb592d8bf4ebdbbbd1b" Name="Diagram1">
         <EntityTypeShape EntityType="DBModel2.DEMO_CONSTRAINT_LOOKUP" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModel2.DEMO_CUSTOMERS" Width="1.5" PointX="1.5" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBModel2.DEMO_ORDER_ITEMS" Width="1.5" PointX="6" PointY="8.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModel2.DEMO_ORDERS" Width="1.5" PointX="3.75" PointY="2.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModel2.DEMO_PRODUCT_INFO" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModel2.DEMO_TAGS" Width="1.5" PointX="8.75" PointY="5.75" IsExpanded="true" />
@@ -24,8 +23,6 @@
         <EntityTypeShape EntityType="DBModel2.RULE_CATEGORIES" Width="1.5" PointX="5.25" PointY="17.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModel2.SHAPE" Width="1.5" PointX="3" PointY="17.125" IsExpanded="true" />
         <AssociationConnector Association="DBModel2.DEMO_ORDERS_CUSTOMER_ID_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="DBModel2.DEMO_ORDER_ITEMS_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="DBModel2.DEMO_ORDER_ITEMS_PRODUCT_ID_FK" ManuallyRouted="false" />
         <AssociationConnector Association="DBModel2.PACKAGE_CON" ManuallyRouted="false" />
         <AssociationConnector Association="DBModel2.RECIEPE_TO_PRODUCT_FK" ManuallyRouted="false" />
         <AssociationConnector Association="DBModel2.RULE_CON" ManuallyRouted="false" />
@@ -37,6 +34,9 @@
         <AssociationConnector Association="DBModel2.CATEGORY_RULECATEGORY_FK" ManuallyRouted="false" />
         <AssociationConnector Association="DBModel2.RECIEPE_TO_INGREDIENTS_FK" ManuallyRouted="false" />
         <AssociationConnector Association="DBModel2.RULE_RULECATEGORY_FK" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DBModel2.DEMO_ORDER_ITEMS" Width="1.5" PointX="6" PointY="8.375" />
+        <AssociationConnector Association="DBModel2.DEMO_ORDER_ITEMS_FK" />
+        <AssociationConnector Association="DBModel2.DEMO_ORDER_ITEMS_PRODUCT_ID_FK" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

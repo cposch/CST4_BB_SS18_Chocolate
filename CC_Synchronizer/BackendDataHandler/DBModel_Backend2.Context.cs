@@ -27,7 +27,6 @@ namespace BackendDataHandler
     
         public virtual DbSet<DEMO_CONSTRAINT_LOOKUP> DEMO_CONSTRAINT_LOOKUP { get; set; }
         public virtual DbSet<DEMO_CUSTOMERS> DEMO_CUSTOMERS { get; set; }
-        public virtual DbSet<DEMO_ORDER_ITEMS> DEMO_ORDER_ITEMS { get; set; }
         public virtual DbSet<DEMO_ORDERS> DEMO_ORDERS { get; set; }
         public virtual DbSet<DEMO_PRODUCT_INFO> DEMO_PRODUCT_INFO { get; set; }
         public virtual DbSet<DEMO_TAGS> DEMO_TAGS { get; set; }
@@ -43,5 +42,6 @@ namespace BackendDataHandler
         public virtual DbSet<RULE> RULE { get; set; }
         public virtual DbSet<RULE_CATEGORIES> RULE_CATEGORIES { get; set; }
         public virtual DbSet<SHAPE> SHAPE { get; set; }
+        public virtual DbSet<DEMO_ORDER_ITEMS> DEMO_ORDER_ITEMS { get; set; }
     }
 }

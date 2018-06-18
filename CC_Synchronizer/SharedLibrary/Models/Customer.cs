@@ -8,7 +8,7 @@ namespace SharedLibrary.Models
 {
     public class Customer
     {
-        public int CustomerId { get; set; }
+        public decimal CustomerId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Address { get; set; }
@@ -18,7 +18,7 @@ namespace SharedLibrary.Models
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public string Url { get; set; }
-        public int CreditLimit { get; set; }
+        public decimal? CreditLimit { get; set; }
         public string Tags { get; set; }
 
         public Customer()
@@ -26,7 +26,7 @@ namespace SharedLibrary.Models
 
         }
 
-        public Customer(int customerId, string firstName, string lastName, string address, string city, string state, string zip, string email, string phoneNumber, string url, int creditLimit, string tags)
+        public Customer(decimal customerId, string firstName, string lastName, string address, string city, string state, string zip, string email, string phoneNumber, string url, decimal creditLimit, string tags)
         {
             CustomerId = customerId;
             FirstName = firstName;
