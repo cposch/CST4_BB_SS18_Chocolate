@@ -7,6 +7,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Xml;
 
 namespace RESTFrontendService
 {
@@ -49,17 +50,17 @@ namespace RESTFrontendService
         Customer UpdateCustomer();
 
         // INSERT Methoden
-        [OperationContract]
+      /**  [OperationContract]
         [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Xml, BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "insert/product")]
-        void InsertProduct(Product p);
+        void InsertProduct(XmlElement p);
 
         [OperationContract]
         [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Xml, BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "insert/order")]
-        void InsertOrder(Order o);
+        void InsertOrder(XmlElement o);*/
 
         [OperationContract]
         [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Xml, BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "insert/customer")]
-        void InsertCustomer(Customer c);
+        void InsertCustomer(XmlElement c);
 
         // DELETE Methoden
         // Übergabeparameter + URI template einfügen
