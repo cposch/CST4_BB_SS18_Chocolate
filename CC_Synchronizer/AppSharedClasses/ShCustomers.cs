@@ -1,4 +1,6 @@
-﻿namespace AppSharedClasses
+﻿using System;
+
+namespace AppSharedClasses
 {
     public class ShCustomers
     {
@@ -14,10 +16,11 @@
         public string PhoneNumber2 { get; set; }
         public int BackendID { get; set; }
         public int FrontEndID { get; set; }
+        public DateTime Lastmodified { get; set; }
 
         public ShCustomers() { }
 
-        public ShCustomers(int customer_ID, string firstName, string lastName, string streetAdress1, string streetAdress2, string city, string postalCode, string email, string phoneNumber1, string phoneNumber2, int backendID, int frontEndID)
+        public ShCustomers(int customer_ID, string firstName, string lastName, string streetAdress1, string streetAdress2, string city, string postalCode, string email, string phoneNumber1, string phoneNumber2, int backendID, int frontEndID, DateTime lastmodified)
         {
             Customer_ID = customer_ID;
             FirstName = firstName;
@@ -31,9 +34,10 @@
             PhoneNumber2 = phoneNumber2;
             BackendID = backendID;
             FrontEndID = frontEndID;
+            Lastmodified = lastmodified;
         }
 
-        public ShCustomers(string firstName, string lastName, string streetAdress1, string streetAdress2, string city, string postalCode, string email, string phoneNumber1, string phoneNumber2, int backendID, int frontEndID)
+        public ShCustomers(string firstName, string lastName, string streetAdress1, string streetAdress2, string city, string postalCode, string email, string phoneNumber1, string phoneNumber2, int backendID, int frontEndID, DateTime lastmodified)
         {
             FirstName = firstName;
             LastName = lastName;
@@ -46,6 +50,7 @@
             PhoneNumber2 = phoneNumber2;
             BackendID = backendID;
             FrontEndID = frontEndID;
+            Lastmodified = lastmodified;
         }
     }
 }

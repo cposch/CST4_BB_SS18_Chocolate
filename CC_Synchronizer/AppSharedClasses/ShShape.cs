@@ -1,4 +1,5 @@
-﻿using System.Windows.Media.Imaging;     //Reference PresentationCore
+﻿using System;
+using System.Windows.Media.Imaging;     //Reference PresentationCore
 
 namespace AppSharedClasses
 {
@@ -11,22 +12,22 @@ namespace AppSharedClasses
         public float Price { get; set; }
         public int BackendID { get; set; }
         public int FrontEndID { get; set; }
+        public DateTime Lastmodified { get; set; }
+        public string Filename { get; set; }
 
         public ShShape() { }
 
-        public ShShape(int id, int productId, string name, BitmapImage shapeImage, float price)
+        public ShShape(int id, int productId, string name, BitmapImage shapeImage, float price, int backendID, int frontEndID, DateTime lastmodified, string filename)
         {
             Id = id;
             ProductId = productId;
             Name = name;
             ShapeImage = shapeImage;
             Price = price;
-        }
-
-        public ShShape(int id, int productId, string name, BitmapImage shapeImage, float price, int backendID, int frontEndID):this(id, productId, name, shapeImage, price)
-        {
             BackendID = backendID;
             FrontEndID = frontEndID;
+            Lastmodified = lastmodified;
+            Filename = filename;
         }
     }
 }

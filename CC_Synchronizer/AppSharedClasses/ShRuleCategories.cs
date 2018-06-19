@@ -1,4 +1,6 @@
-﻿namespace AppSharedClasses
+﻿using System;
+
+namespace AppSharedClasses
 {
     public class ShRuleCategories
     {
@@ -7,20 +9,18 @@
         public int CategoryId { get; set; }
         public int BackendID { get; set; }
         public int FrontEndID { get; set; }
+        public DateTime Lastmodified { get; set; }
 
         public ShRuleCategories() { }
 
-        public ShRuleCategories(int id, int ruleId, int categoryId)
+        public ShRuleCategories(int id, int ruleId, int categoryId, int backendID, int frontEndID, DateTime lastmodified)
         {
             Id = id;
             RuleId = ruleId;
             CategoryId = categoryId;
-        }
-
-        public ShRuleCategories(int id, int ruleId, int categoryId, int backendID, int frontEndID) : this(id, ruleId, categoryId)
-        {
             BackendID = backendID;
             FrontEndID = frontEndID;
+            Lastmodified = lastmodified;
         }
     }
 }

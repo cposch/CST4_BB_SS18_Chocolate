@@ -1,4 +1,6 @@
-﻿namespace AppSharedClasses
+﻿using System;
+
+namespace AppSharedClasses
 {
     public class ShRecipeIngredients
     {
@@ -9,10 +11,11 @@
         public int IngredientId { get; set; }
         public int BackendID { get; set; }
         public int FrontEndID { get; set; }
+        public DateTime Lastmodified { get; set; }
 
         public ShRecipeIngredients() { }
 
-        public ShRecipeIngredients(int id, int recipeId, int quantity, float unitPrice, int ingredientId, int backendID, int frontEndID)
+        public ShRecipeIngredients(int id, int recipeId, int quantity, float unitPrice, int ingredientId, int backendID, int frontEndID, DateTime lastmodified)
         {
             Id = id;
             RecipeId = recipeId;
@@ -21,6 +24,7 @@
             IngredientId = ingredientId;
             BackendID = backendID;
             FrontEndID = frontEndID;
+            Lastmodified = lastmodified;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace AppSharedClasses
+﻿using System;
+
+namespace AppSharedClasses
 {
     public class ShIngredient
     {
@@ -13,10 +15,11 @@
         public int Quantity { get; set; }
         public int BackendID { get; set; }
         public int FrontEndID { get; set; }
+        public DateTime Lastmodified { get; set; }
 
         public ShIngredient() { }
 
-        public ShIngredient(int id, string description, float price, string locationTop, string locationBottom, string locationChoc, int categoryId, string name, int quantity, int backendID, int frontEndID)
+        public ShIngredient(int id, string description, float price, string locationTop, string locationBottom, string locationChoc, int categoryId, string name, int quantity, int backendID, int frontEndID, DateTime lastmodified)
         {
             Id = id;
             Description = description;
@@ -29,9 +32,10 @@
             Quantity = quantity;
             BackendID = backendID;
             FrontEndID = frontEndID;
+            Lastmodified = lastmodified;
         }
 
-        public ShIngredient(string description, float price, string locationTop, string locationBottom, string locationChoc, int categoryId, string name, int quantity, int backendID, int frontEndID)
+        public ShIngredient(string description, float price, string locationTop, string locationBottom, string locationChoc, int categoryId, string name, int quantity, int backendID, int frontEndID, DateTime lastmodified)
         {
             Description = description;
             Price = price;
@@ -43,6 +47,7 @@
             Quantity = quantity;
             BackendID = backendID;
             FrontEndID = frontEndID;
+            Lastmodified = lastmodified;
         }
     }
 }

@@ -12,10 +12,11 @@ namespace AppSharedClasses
         public string Status { get; set; }
         public int BackendID { get; set; }
         public int FrontEndID { get; set; }
+        public DateTime Lastmodified { get; set; }
 
         public ShOrders() { }
 
-        public ShOrders(int ordersID, int customerID, float orderTotal, DateTime orderTimeStamp, string userName, string status, int backendID, int frontEndID)
+        public ShOrders(int ordersID, int customerID, float orderTotal, DateTime orderTimeStamp, string userName, string status, int backendID, int frontEndID, DateTime lastmodified)
         {
             OrdersID = ordersID;
             CustomerID = customerID;
@@ -25,6 +26,7 @@ namespace AppSharedClasses
             Status = status;
             BackendID = backendID;
             FrontEndID = frontEndID;
+            Lastmodified = lastmodified;
         }
     }
 }
