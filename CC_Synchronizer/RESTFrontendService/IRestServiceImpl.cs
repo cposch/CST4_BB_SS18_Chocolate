@@ -31,9 +31,9 @@ namespace RESTFrontendService
         [WebGet(ResponseFormat = WebMessageFormat.Xml, BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "xml/orders")]
         List<Order> GetOrders();
 
-        /*[OperationContract]
+        [OperationContract]
         [WebGet(ResponseFormat = WebMessageFormat.Xml, BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "xml/customers")]
-        List<Customer> GetCustomers();*/
+        List<Customer> GetCustomers();
 
         // UPDATE Methoden
         // Übergabeparameter einfügen
@@ -50,20 +50,19 @@ namespace RESTFrontendService
         Customer UpdateCustomer();
 
         // INSERT Methoden
-      /**  [OperationContract]
+        [OperationContract]
         [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Xml, BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "insert/product")]
         void InsertProduct(XmlElement p);
 
         [OperationContract]
         [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Xml, BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "insert/order")]
-        void InsertOrder(XmlElement o);*/
+        void InsertOrder(XmlElement o);
 
         [OperationContract]
         [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Xml, BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "insert/customer")]
         void InsertCustomer(XmlElement c);
 
         // DELETE Methoden
-        // Übergabeparameter + URI template einfügen
         
         [OperationContract]
         [WebInvoke(Method = "DELETE", ResponseFormat = WebMessageFormat.Xml, BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "delete/product/{productID}")]
