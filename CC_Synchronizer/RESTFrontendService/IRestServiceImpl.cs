@@ -39,7 +39,7 @@ namespace RESTFrontendService
         // Übergabeparameter einfügen
         [OperationContract]
         [WebInvoke(Method = "PUT", ResponseFormat = WebMessageFormat.Xml, BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "update/product")]
-        Product UpdateProduct();
+        void UpdateProduct(decimal pid, decimal fid);
 
         [OperationContract]
         [WebInvoke(Method = "PUT", ResponseFormat = WebMessageFormat.Xml, BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "update/order")]

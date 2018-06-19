@@ -51,9 +51,9 @@ namespace RESTFrontendService
             throw new NotImplementedException();
         }
 
-        public Product UpdateProduct()
+        public void UpdateProduct(decimal pid, decimal fid)
         {
-            throw new NotImplementedException();
+            dh.UpdateProductFID(pid, fid);
         }
 
         // POST (INSERT) Methoden ........................................................................................
