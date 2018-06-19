@@ -307,13 +307,13 @@ namespace BackendDataHandler
             }
         }
 
-        public Boolean UpdateProductMID(decimal pid, decimal? fid)
+        public Boolean UpdateProductMID(decimal pid, decimal? mid)
         {
 
             DEMO_PRODUCT_INFO result = (from p in db.DEMO_PRODUCT_INFO
                                         where p.PRODUCT_ID == pid
                                         select p).SingleOrDefault();
-            result.MANUFACTURER_ID = fid;
+            result.MANUFACTURER_ID = mid;
             try
             {
                 db.SaveChanges();
