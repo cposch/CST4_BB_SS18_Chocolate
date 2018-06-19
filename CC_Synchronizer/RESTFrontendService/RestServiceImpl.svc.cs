@@ -51,8 +51,10 @@ namespace RESTFrontendService
             throw new NotImplementedException();
         }
 
-        public void UpdateProduct(decimal pid, decimal fid)
+        public void UpdateProductFID(XmlElement pFID)
         {
+            decimal pid = decimal.Parse(pFID.GetAttribute("ProductID"));
+            decimal fid = decimal.Parse(pFID.GetAttribute("FrontendID"));
             dh.UpdateProductFID(pid, fid);
         }
 
