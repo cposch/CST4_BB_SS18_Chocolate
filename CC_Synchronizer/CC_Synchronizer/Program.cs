@@ -14,10 +14,10 @@ namespace CC_Synchronizer
     {
         static void Main(string[] args)
         {
-            /* Insert Product Test -- there be dragons!
+            // Insert Product Test -- there be dragons!
              BackendDataHandling BDH = new BackendDataHandling();
-             Product testproduct = new Product(98, "Test2", "TestBeschreibung", "TestCategory", "Y", 33, new byte[100], "image//jpg", "shirt.jpg", new DateTime(), "Sweet", 44, new DateTime(), new DateTime());
-             BDH.AddProduct(testproduct);*/
+             Product testproduct = new Product( "Test3", "TestBeschreibung", "TestCategory", "Y", 33, new byte[100], "image//jpg", "shirt.jpg", new DateTime(), "Sweet", 44, new DateTime(), new DateTime(), null,null);
+             BDH.AddProduct(testproduct);
             /* Update Product Test 
             BackendDataHandling BHD = new BackendDataHandling();
             bool temp;
