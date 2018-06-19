@@ -1,6 +1,7 @@
 ﻿using SharedLibrary.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -113,7 +114,7 @@ namespace BackendDataHandler
             }).ToList();
         }
 
-        public List<Product> QueryAllProductsbyFID(int FID)
+        public List<Product> QueryAllProductsbyFID(decimal? FID)
         {
             return db.DEMO_PRODUCT_INFO.Where(w => w.FRONTEND_ID.Equals(FID)).Select(w => new Product()
             {
@@ -136,7 +137,7 @@ namespace BackendDataHandler
             }).ToList();
         }
 
-        public List<Product> QueryAllProductsbyMID(int MID)
+        public List<Product> QueryAllProductsbyMID(decimal? MID)
         {
             return db.DEMO_PRODUCT_INFO.Where(w => w.MANUFACTURER_ID.Equals(MID)).Select(w => new Product()
             {
@@ -159,7 +160,7 @@ namespace BackendDataHandler
             }).ToList();
         }
 
-        public List<Customer> QueryAllCustomerbyFID(int FID)
+        public List<Customer> QueryAllCustomerbyFID(decimal? FID)
         {
             return db.DEMO_CUSTOMERS.Where(w => w.FRONTEND_ID.Equals(FID)).Select(w => new Customer()
             {
@@ -199,8 +200,29 @@ namespace BackendDataHandler
             }).ToList();
         }
 
+        public Customer GetCustomer(decimal? CID)
+        {
+            return db.DEMO_CUSTOMERS.Where(w => w.CUSTOMER_ID.Equals(CID)).Select(w => new Customer()
+            {
 
-        public List<Order> QueryAllOrdersbyFID(int FID)
+                CustomerId = w.CUSTOMER_ID,
+                FirstName = w.CUST_FIRST_NAME,
+                LastName = w.CUST_LAST_NAME,
+                Address = w.CUST_STREET_ADDRESS1,
+                City = w.CUST_CITY,
+                State = w.CUST_STATE,
+                Zip = w.CUST_POSTAL_CODE,
+                Email = w.CUST_EMAIL,
+                PhoneNumber = w.PHONE_NUMBER1,
+                Url = w.URL,
+                CreditLimit = w.CREDIT_LIMIT,
+                Tags = w.TAGS
+            }).First();
+
+        }
+
+
+        public List<Order> QueryAllOrdersbyFID(decimal? FID)
         {
             return db.DEMO_ORDERS.Where(w => w.FRONTEND_ID.Equals(FID)).Select(w => new Order()
             {
@@ -217,7 +239,7 @@ namespace BackendDataHandler
 
         }
 
-        public List<Order> QueryAllOrdersbyMID(int MID)
+        public List<Order> QueryAllOrdersbyMID(decimal? MID)
         {
             return db.DEMO_ORDERS.Where(w => w.MANUFACTURER_ID.Equals(MID)).Select(w => new Order()
             {
@@ -250,7 +272,7 @@ namespace BackendDataHandler
             }).ToList();
 
         }
-        public List<OrderItem> QueryAllOrderItmesByOrder(int oid)
+        public List<OrderItem> QueryAllOrderItmesByOrder(decimal? oid)
         {
             return db.DEMO_ORDER_ITEMS.Where(w => w.ORDER_ID.Equals(oid)).Select(w => new OrderItem()
             {
@@ -264,5 +286,32 @@ namespace BackendDataHandler
         }).ToList();
 
     }
+        //updates -----------------------------------------------
+
+        public Boolean UpdateProductFID (decimal pid, decimal? fid)
+        {
+            
+               DEMO_PRODUCT_INFO result = (from p in db.DEMO_PRODUCT_INFO
+                                 where p.PRODUCT_ID == pid
+                                 select p).SingleOrDefault();
+            result.FRONTEND_ID = fid;
+            try
+            {
+                db.SaveChanges();
+                return true;
+            }
+            
+            catch (DbUpdateException ex)
+            {
+                return false;
+            }
+        }
+
+
+
+    }
 }
-}
+
+
+
+
