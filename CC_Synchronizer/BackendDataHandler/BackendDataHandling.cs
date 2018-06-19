@@ -307,7 +307,24 @@ namespace BackendDataHandler
             }
         }
 
+        public Boolean UpdateProductMID(decimal pid, decimal? fid)
+        {
 
+            DEMO_PRODUCT_INFO result = (from p in db.DEMO_PRODUCT_INFO
+                                        where p.PRODUCT_ID == pid
+                                        select p).SingleOrDefault();
+            result.MANUFACTURER_ID = fid;
+            try
+            {
+                db.SaveChanges();
+                return true;
+            }
+
+            catch (DbUpdateException ex)
+            {
+                return false;
+            }
+        }
 
     }
 }
