@@ -5,24 +5,25 @@ using System.Threading;
 using System.Threading.Tasks;
 using AppSharedClasses;
 using CC_Synchronizer.AppService.SyncDataModels;
+using BackendDataHandler;
 
 namespace CC_Synchronizer.AppService
 {
     public class ClientHandler
     {
         Socket socket;
-        Customers customers = new Customers();
-        Ingredients ingredients = new Ingredients();
-        Ingredient_Category ingredientCategory = new Ingredient_Category();
-        Order_Items orderItems = new Order_Items();
-        Orders orders = new Orders();
-        Packages packages = new Packages();
-        Product_Info productInfo = new Product_Info();
-        Recipe recipe = new Recipe();
-        Recipe_Ingredients recipeIngredients = new Recipe_Ingredients();
-        Rule rule = new Rule();
-        Rule_Categories ruleCategories = new Rule_Categories();
-        Shape shape = new Shape();
+        Customers customers;
+        Ingredients ingredients;
+        Ingredient_Category ingredientCategory;
+        Order_Items orderItems;
+        Orders orders;
+        Packages packages;
+        Product_Info productInfo;
+        Recipe recipe;
+        Recipe_Ingredients recipeIngredients;
+        Rule rule;
+        Rule_Categories ruleCategories;
+        Shape shape;
         byte[] buffer = new byte[2];
 
 
@@ -40,7 +41,7 @@ namespace CC_Synchronizer.AppService
             //Console.WriteLine("Table cleared");
             Recieve();
             //Console.WriteLine("Recieving finished");
-            //Get new data from BE?
+            //GetDbContent();
             //Merge
             SendBack();
 
@@ -66,19 +67,20 @@ namespace CC_Synchronizer.AppService
 
         private void Recieve()
         {
-            ShCustomers customerLine;
-            ShIngredient ingredientLine;
-            ShIngredientCategory ingredientCategoryLine;
-            ShOrderItems orderItemLine;
-            ShOrders orderLine;
-            ShPackage packageLine;
-            ShProductInfo productInfoLine;
-            ShRecipe recipeLine;
-            ShRecipeIngredients recipeIngredientLine;
-            ShRule ruleLine;
-            ShRuleCategories ruleCategoryLine;
-            ShShape shapeLine;
-            
+            #region Init AppSharedClasses & SyncXMLSerializer
+            customers = new Customers();
+            ingredients = new Ingredients();
+            ingredientCategory = new Ingredient_Category();
+            orderItems = new Order_Items();
+            orders = new Orders();
+            packages = new Packages();
+            productInfo = new Product_Info();
+            recipe = new Recipe();
+            recipeIngredients = new Recipe_Ingredients();
+            rule = new Rule();
+            ruleCategories = new Rule_Categories();
+            shape = new Shape();
+
             SyncXMLSerializer<ShCustomers> customerXmlSerializer = new SyncXMLSerializer<ShCustomers>();
             SyncXMLSerializer<ShIngredient> ingredientXmlSerializer = new SyncXMLSerializer<ShIngredient>();
             SyncXMLSerializer<ShIngredientCategory> ingredientCategoryXmlSerializer = new SyncXMLSerializer<ShIngredientCategory>();
@@ -91,7 +93,8 @@ namespace CC_Synchronizer.AppService
             SyncXMLSerializer<ShRule> ruleXmlSerializer = new SyncXMLSerializer<ShRule>();
             SyncXMLSerializer<ShRuleCategories> ruleCategoryXmlSerializer = new SyncXMLSerializer<ShRuleCategories>();
             SyncXMLSerializer<ShShape> shapeXmlSerializer = new SyncXMLSerializer<ShShape>();
-            
+            #endregion
+
             int length = 0;
             string recievedString = "";
             int TableId = 0;
@@ -118,56 +121,43 @@ namespace CC_Synchronizer.AppService
                 switch (TableId)
                 {
                     case 1:     //Customer
-                        customerLine = customerXmlSerializer.Deserialize(recievedString);
                         //Console.WriteLine("Customer XML Deserialized");
-                        customers.Add(customerLine);
+                        customers.Add(customerXmlSerializer.Deserialize(recievedString));
                         //Console.WriteLine("Customer recieved");
                         break;
                     case 2:     //Ingredient
-                        ingredientLine = ingredientXmlSerializer.Deserialize(recievedString);
-                        ingredients.Add(ingredientLine);
+                        ingredients.Add(ingredientXmlSerializer.Deserialize(recievedString));
                         break;
                     case 3:     //Ingredient_Category
-                        ingredientCategoryLine = ingredientCategoryXmlSerializer.Deserialize(recievedString);
+                        ingredientCategory.Add(ingredientCategoryXmlSerializer.Deserialize(recievedString));
                         //Console.WriteLine("IC XML Deserialized");
-                        ingredientCategory.Add(ingredientCategoryLine);
-                        //Console.WriteLine("Customer recieved");
                         break;
                     case 4:     //Order_Items
-                        orderItemLine = orderItemXmlSerializer.Deserialize(recievedString);
-                        orderItems.Add(orderItemLine);
+                        orderItems.Add(orderItemXmlSerializer.Deserialize(recievedString));
                         break;
                     case 5:     //Orders
-                        orderLine = orderXmlSerializer.Deserialize(recievedString);
-                        orders.Add(orderLine);
+                        orders.Add(orderXmlSerializer.Deserialize(recievedString));
                         break;
                     case 6:     //Packages
-                        packageLine = packageXmlSerializer.Deserialize(recievedString);
-                        packages.Add(packageLine);
+                        packages.Add(packageXmlSerializer.Deserialize(recievedString));
                         break;
                     case 7:     //Product_Info
-                        productInfoLine = productInfoXmlSerializer.Deserialize(recievedString);
-                        productInfo.Add(productInfoLine);
+                        productInfo.Add(productInfoXmlSerializer.Deserialize(recievedString));
                         break;
                     case 8:     //Recipe
-                        recipeLine = recipeXmlSerializer.Deserialize(recievedString);
-                        recipe.Add(recipeLine);
+                        recipe.Add(recipeXmlSerializer.Deserialize(recievedString));
                         break;
                     case 9:     //Recipe_Ingredients
-                        recipeIngredientLine = recipeIngredientsXmlSerializer.Deserialize(recievedString);
-                        recipeIngredients.Add(recipeIngredientLine);
+                        recipeIngredients.Add(recipeIngredientsXmlSerializer.Deserialize(recievedString));
                         break;
                     case 10:    //Rule
-                        ruleLine = ruleXmlSerializer.Deserialize(recievedString);
-                        rule.Add(ruleLine);
+                        rule.Add(ruleXmlSerializer.Deserialize(recievedString));
                         break;
                     case 11:    //Rule_Categories
-                        ruleCategoryLine = ruleCategoryXmlSerializer.Deserialize(recievedString);
-                        ruleCategories.Add(ruleCategoryLine);
+                        ruleCategories.Add(ruleCategoryXmlSerializer.Deserialize(recievedString));
                         break;
                     case 12:    //Shape
-                        shapeLine = shapeXmlSerializer.Deserialize(recievedString);
-                        shape.Add(shapeLine);
+                        shape.Add(shapeXmlSerializer.Deserialize(recievedString));
                         break;
                     default:
                         break;
@@ -176,6 +166,12 @@ namespace CC_Synchronizer.AppService
                 buffer = new byte[2];
             }
         }
+
+        //private void GetDbContent()
+        //{
+        //    BackendDataHandling bdh = new BackendDataHandling();
+
+        //}
 
         private void SendBack()
         {
