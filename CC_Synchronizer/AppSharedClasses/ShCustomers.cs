@@ -4,7 +4,7 @@ namespace AppSharedClasses
 {
     public class ShCustomers
     {
-        public int Customer_ID { get; set; }
+        public int? Customer_ID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string StreetAdress1 { get; set; }
@@ -14,13 +14,13 @@ namespace AppSharedClasses
         public string Email { get; set; }
         public string PhoneNumber1 { get; set; }
         public string PhoneNumber2 { get; set; }
-        public int BackendID { get; set; }
-        public int FrontEndID { get; set; }
+        public int? BackendID { get; set; }
+        public int? FrontEndID { get; set; }
         public DateTime Lastmodified { get; set; }
 
         public ShCustomers() { }
 
-        public ShCustomers(int customer_ID, string firstName, string lastName, string streetAdress1, string streetAdress2, string city, string postalCode, string email, string phoneNumber1, string phoneNumber2, int backendID, int frontEndID, DateTime lastmodified)
+        public ShCustomers(int? customer_ID, string firstName, string lastName, string streetAdress1, string streetAdress2, string city, string postalCode, string email, string phoneNumber1, string phoneNumber2, int? backendID, int? frontEndID, DateTime lastmodified)
         {
             Customer_ID = customer_ID;
             FirstName = firstName;
@@ -37,7 +37,7 @@ namespace AppSharedClasses
             Lastmodified = lastmodified;
         }
 
-        public ShCustomers(string firstName, string lastName, string streetAdress1, string streetAdress2, string city, string postalCode, string email, string phoneNumber1, string phoneNumber2, int backendID, int frontEndID, DateTime lastmodified)
+        public ShCustomers(string firstName, string lastName, string streetAdress1, string streetAdress2, string city, string postalCode, string email, string phoneNumber1, string phoneNumber2, int? backendID, int? frontEndID, DateTime lastmodified)
         {
             FirstName = firstName;
             LastName = lastName;
