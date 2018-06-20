@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -81,22 +82,29 @@ namespace RESTFrontendService
 
         public void InsertOrder(XmlElement o)
         {
+            string format = "yyyy-MM-dd HH:mm:ss";
+            CultureInfo provider = CultureInfo.InvariantCulture;
+
             dh.AddOrder(new Order() {
                 OrderId = decimal.Parse(o.GetAttribute("Id")),
                 CustomerID = decimal.Parse(o.GetAttribute("CustomerID")),
                 OrderTotal = decimal.Parse(o.GetAttribute("OrderTotal")),
-                OrderTimeStamp = DateTime.Parse(o.GetAttribute("DateTime")),
+                OrderTimeStamp = DateTime.ParseExact(o.GetAttribute("DateTime"), format, provider),
                 UserName = o.GetAttribute("UserName"),
                 Tags = o.GetAttribute("Tags"),
                 Frontend_ID = decimal.Parse(o.GetAttribute("FrontendID")),
-                Manufaturer_ID = decimal.Parse(o.GetAttribute("ManufacturerID"))
+                //Manufaturer_ID = decimal.Parse(o.GetAttribute("ManufacturerID"))
             });
         }
 
         public void InsertProduct(XmlElement p)
         {
+            string format = "yyyy-MM-dd HH:mm:ss";
+            CultureInfo provider = CultureInfo.InvariantCulture;
+
             dh.AddProduct(new Product() {
-                Product_ID = decimal.Parse(p.GetAttribute("ProductID")),
+                
+                //Product_ID = decimal.Parse(p.GetAttribute("ProductID")),
                 Product_Name = p.GetAttribute("ProductName"),
                 Product_Description = p.GetAttribute("ProductDescription"),
                 Category = p.GetAttribute("Category"),
@@ -105,13 +113,13 @@ namespace RESTFrontendService
                 //Product_Image = byte[].Parse(p.GetAttribute("s")),
                 MIMETYPE = p.GetAttribute("MimeType"),
                 Filename = p.GetAttribute("Filename"),
-                Image_Last_Update = DateTime.Parse(p.GetAttribute("ImgLastUpdate")),
+                Image_Last_Update = DateTime.ParseExact(p.GetAttribute("ImgLastUpdate"), format, provider),
                 Tags = p.GetAttribute("Tags"),
                 Sale_Price = decimal.Parse(p.GetAttribute("SalePrice")),
-                Sale_Begin = DateTime.Parse(p.GetAttribute("SaleBegin")),
-                Sale_End = DateTime.Parse(p.GetAttribute("SaleEnd")),
+                Sale_Begin = DateTime.ParseExact(p.GetAttribute("SaleBegin"), format, provider),
+                Sale_End = DateTime.ParseExact(p.GetAttribute("SaleEnd"), format, provider),
                 Frontend_ID = decimal.Parse(p.GetAttribute("FrontendID")),
-                Manufaturer_ID = decimal.Parse(p.GetAttribute("ManufacturerID"))
+                //Manufaturer_ID = decimal.Parse(p.GetAttribute("ManufacturerID"))
             });
         }
 
