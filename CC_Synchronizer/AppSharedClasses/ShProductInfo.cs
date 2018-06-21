@@ -10,10 +10,10 @@ namespace AppSharedClasses
         public string Description { get; set; }
         public string Category { get; set; }
         public bool Availability { get; set; }
-        public float ListPrice { get; set; }
-        public float SalePrice { get; set; }
-        public DateTime SaleBegin { get; set; }
-        public DateTime SaleEnd { get; set; }
+        public float? ListPrice { get; set; }
+        public float? SalePrice { get; set; }
+        public DateTime? SaleBegin { get; set; }
+        public DateTime? SaleEnd { get; set; }
         public BitmapImage ProductImage { get; set; }
         public int? BackendID { get; set; }
         public int? FrontEndID { get; set; }
