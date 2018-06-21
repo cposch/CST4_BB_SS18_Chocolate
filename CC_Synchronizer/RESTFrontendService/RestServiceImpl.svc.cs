@@ -41,6 +41,16 @@ namespace RESTFrontendService
             return dh.QueryAllProducts();
         }
 
+        public List<Product> GetUpdatedForFrontendProducts()
+        {
+            return dh.QueryAllProductsbyLastUpdatedByFrontend();
+        }
+
+        public List<Product> GetUpdatedForManufacturerProducts()
+        {
+            return dh.QueryAllProductsbyLastUpdatedByManufacturer();
+        }
+
         // PUT Methoden .................................................................................................
         public Customer UpdateCustomer()
         {

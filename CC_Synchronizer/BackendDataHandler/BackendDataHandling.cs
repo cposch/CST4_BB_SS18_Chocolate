@@ -160,6 +160,60 @@ namespace BackendDataHandler
             }).ToList();
         }
 
+        public List<Product> QueryAllProductsbyLastUpdatedByFrontend()
+        {
+            var date = (from p in db.LAST_SYNCHED
+                        where p.ID == 1
+                        select p.FRONTEND_LAST_SYNCHED).FirstOrDefault();
+
+            UpdateProductsFrontendLastSynchedDate();
+            return db.DEMO_PRODUCT_INFO.Where(w => !w.FRONTEND_ID.Equals(null) && date < w.LAST_MODIFIED_DATE).Select(w => new Product()
+            {
+                Product_ID = w.PRODUCT_ID,
+                Product_Name = w.PRODUCT_NAME,
+                Product_Description = w.PRODUCT_DESCRIPTION,
+                Category = w.CATEGORY,
+                Product_Avail = w.PRODUCT_AVAIL,
+                List_Price = w.LIST_PRICE,
+                Product_Image = w.PRODUCT_IMAGE,
+                MIMETYPE = w.MIMETYPE,
+                Filename = w.FILENAME,
+                Image_Last_Update = w.IMAGE_LAST_UPDATE,
+                Tags = w.TAGS,
+                Sale_Price = w.SALE_PRICE,
+                Sale_Begin = w.SALE_BEGIN,
+                Sale_End = w.SALE_END,
+                Frontend_ID = w.FRONTEND_ID,
+                Manufaturer_ID = w.MANUFACTURER_ID
+            }).ToList();
+        }
+
+        public List<Product> QueryAllProductsbyLastUpdatedByManufacturer()
+        {
+            var date = (from p in db.LAST_SYNCHED
+                        where p.ID == 1
+                        select p.MANUFACTURER_LAST_SYNCHED).FirstOrDefault();
+            UpdateProductsManufacturerLastSynchedDate();
+            return db.DEMO_PRODUCT_INFO.Where(w => !w.MANUFACTURER_ID.Equals(null) && date < w.LAST_MODIFIED_DATE).Select(w => new Product()
+            {
+                Product_ID = w.PRODUCT_ID,
+                Product_Name = w.PRODUCT_NAME,
+                Product_Description = w.PRODUCT_DESCRIPTION,
+                Category = w.CATEGORY,
+                Product_Avail = w.PRODUCT_AVAIL,
+                List_Price = w.LIST_PRICE,
+                Product_Image = w.PRODUCT_IMAGE,
+                MIMETYPE = w.MIMETYPE,
+                Filename = w.FILENAME,
+                Image_Last_Update = w.IMAGE_LAST_UPDATE,
+                Tags = w.TAGS,
+                Sale_Price = w.SALE_PRICE,
+                Sale_Begin = w.SALE_BEGIN,
+                Sale_End = w.SALE_END,
+                Frontend_ID = w.FRONTEND_ID,
+                Manufaturer_ID = w.MANUFACTURER_ID
+            }).ToList();
+        }
         public List<Customer> QueryAllCustomerbyFID(decimal? FID)
         {
             return db.DEMO_CUSTOMERS.Where(w => w.FRONTEND_ID.Equals(FID)).Select(w => new Customer()
@@ -364,10 +418,108 @@ namespace BackendDataHandler
             }
         }
 
+        public Boolean UpdateManufacturerLastSynched()
+        {
 
+            LAST_SYNCHED result = (from p in db.LAST_SYNCHED
+                                     where p.ID == 1
+                                     select p).SingleOrDefault();
+            result.MANUFACTURER_LAST_SYNCHED = System.DateTime.Now;
+            try
+            {
+                db.SaveChanges();
+                return true;
+            }
+            catch (DbUpdateException)
+            {
+                return false;
+            }
+        }
 
+        public Boolean UpdateProductsFrontendLastSynchedDate()
+        {
+            LAST_SYNCHED result = (from p in db.LAST_SYNCHED
+                                   where p.ID == 1
+                                   select p).SingleOrDefault();
+            result.FRONTEND_LAST_SYNCHED = System.DateTime.Now;
+            try
+            {
+                db.SaveChanges();
+                return true;
+            }
+            catch (DbUpdateException)
+            {
+                return false;
+            }
+        }
 
+        public Boolean UpdateProductsManufacturerLastSynchedDate()
+        {
+            LAST_SYNCHED result = (from p in db.LAST_SYNCHED
+                                   where p.ID == 1
+                                   select p).SingleOrDefault();
+            result.MANUFACTURER_LAST_SYNCHED = System.DateTime.Now;
+            try
+            {
+                db.SaveChanges();
+                return true;
+            }
+            catch (DbUpdateException)
+            {
+                return false;
+            }
+        }
 
+        public Boolean UpdateOrdersFrontendLastSynchedDate()
+        {
+            LAST_SYNCHED result = (from p in db.LAST_SYNCHED
+                                   where p.ID == 2
+                                   select p).SingleOrDefault();
+            result.FRONTEND_LAST_SYNCHED = System.DateTime.Now;
+            try
+            {
+                db.SaveChanges();
+                return true;
+            }
+            catch (DbUpdateException)
+            {
+                return false;
+            }
+        }
+
+        private Boolean UpdateRecipesFrontendLastSynchedDate()
+        {
+            LAST_SYNCHED result = (from p in db.LAST_SYNCHED
+                                   where p.ID == 3
+                                   select p).SingleOrDefault();
+            result.FRONTEND_LAST_SYNCHED = System.DateTime.Now;
+            try
+            {
+                db.SaveChanges();
+                return true;
+            }
+            catch (DbUpdateException)
+            {
+                return false;
+            }
+        }
+
+        private Boolean UpdateCustomerManufacturerLastSynchedDate()
+        {
+            LAST_SYNCHED result = (from p in db.LAST_SYNCHED
+                                   where p.ID == 4
+                                   select p).SingleOrDefault();
+            result.MANUFACTURER_LAST_SYNCHED = System.DateTime.Now;
+            try
+            {
+                db.SaveChanges();
+                return true;
+            }
+            catch (DbUpdateException)
+            {
+                return false;
+            }
+        }
     }
 }
 
