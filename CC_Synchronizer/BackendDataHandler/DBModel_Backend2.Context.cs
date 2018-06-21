@@ -43,5 +43,6 @@ namespace BackendDataHandler
         public virtual DbSet<RULE_CATEGORIES> RULE_CATEGORIES { get; set; }
         public virtual DbSet<SHAPE> SHAPE { get; set; }
         public virtual DbSet<DEMO_ORDER_ITEMS> DEMO_ORDER_ITEMS { get; set; }
+        public virtual DbSet<LAST_SYNCHED> LAST_SYNCHED { get; set; }
     }
 }

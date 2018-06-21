@@ -37,6 +37,7 @@
         <EntityTypeShape EntityType="DBModel2.DEMO_ORDER_ITEMS" Width="1.5" PointX="6" PointY="8.375" />
         <AssociationConnector Association="DBModel2.DEMO_ORDER_ITEMS_FK" />
         <AssociationConnector Association="DBModel2.DEMO_ORDER_ITEMS_PRODUCT_ID_FK" />
+        <EntityTypeShape EntityType="DBModel2.LAST_SYNCHED" Width="1.5" PointX="11.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

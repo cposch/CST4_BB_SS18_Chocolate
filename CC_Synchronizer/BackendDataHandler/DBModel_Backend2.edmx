@@ -80,6 +80,7 @@
           <Property Name="SALE_END" Type="date" />
           <Property Name="FRONTEND_ID" Type="number" Precision="38" Scale="0" />
           <Property Name="MANUFACTURER_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="LAST_MODIFIED_DATE" Type="timestamp with local time zone" Precision="6" />
         </EntityType>
         <EntityType Name="DEMO_TAGS">
           <Key>
@@ -169,6 +170,14 @@
           <Property Name="NAME" Type="varchar2" MaxLength="50" Nullable="false" />
           <Property Name="FRONTEND_ID" Type="number" Precision="38" Scale="0" />
           <Property Name="MANUFACTURER_ID" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="LAST_SYNCHED">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="MANUFACTURER_LAST_SYNCHED" Type="timestamp with local time zone" Precision="6" />
+          <Property Name="FRONTEND_LAST_SYNCHED" Type="timestamp with local time zone" Precision="6" />
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="PACKAGE">
           <Key>
@@ -444,6 +453,7 @@
           <EntitySet Name="EMP" EntityType="Self.EMP" Schema="ADMIN" store:Type="Tables" />
           <EntitySet Name="INGREDIENT" EntityType="Self.INGREDIENT" Schema="ADMIN" store:Type="Tables" />
           <EntitySet Name="INGREDIENT_CATEGORY" EntityType="Self.INGREDIENT_CATEGORY" Schema="ADMIN" store:Type="Tables" />
+          <EntitySet Name="LAST_SYNCHED" EntityType="Self.LAST_SYNCHED" Schema="ADMIN" store:Type="Tables" />
           <EntitySet Name="PACKAGE" EntityType="Self.PACKAGE" Schema="ADMIN" store:Type="Tables" />
           <EntitySet Name="RECIEPE" EntityType="Self.RECIEPE" Schema="ADMIN" store:Type="Tables" />
           <EntitySet Name="RECIEPE_INGREDIENTS" EntityType="Self.RECIEPE_INGREDIENTS" Schema="ADMIN" store:Type="Tables" />
@@ -582,6 +592,7 @@
           <NavigationProperty Name="RULE" Relationship="Self.RULE_CON" FromRole="DEMO_PRODUCT_INFO" ToRole="RULE" />
           <NavigationProperty Name="SHAPE" Relationship="Self.SHAPE_CON" FromRole="DEMO_PRODUCT_INFO" ToRole="SHAPE" />
           <NavigationProperty Name="DEMO_ORDER_ITEMS" Relationship="DBModel2.DEMO_ORDER_ITEMS_PRODUCT_ID_FK" FromRole="DEMO_PRODUCT_INFO" ToRole="DEMO_ORDER_ITEMS" />
+          <Property Name="LAST_MODIFIED_DATE" Type="DateTime" Precision="255" />
         </EntityType>
         <EntityType Name="DEMO_TAGS">
           <Key>
@@ -998,6 +1009,7 @@
             <End Role="DEMO_PRODUCT_INFO" EntitySet="DEMO_PRODUCT_INFO" />
             <End Role="DEMO_ORDER_ITEMS" EntitySet="DEMO_ORDER_ITEMS" />
           </AssociationSet>
+          <EntitySet Name="LAST_SYNCHED" EntityType="DBModel2.LAST_SYNCHED" />
         </EntityContainer>
         <EntityType Name="DEMO_ORDER_ITEMS">
           <Key>
@@ -1041,6 +1053,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="LAST_SYNCHED">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="MANUFACTURER_LAST_SYNCHED" Type="DateTime" Precision="255" />
+          <Property Name="FRONTEND_LAST_SYNCHED" Type="DateTime" Precision="255" />
+          <Property Name="ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1096,6 +1116,7 @@
           <EntitySetMapping Name="DEMO_PRODUCT_INFO">
             <EntityTypeMapping TypeName="DBModel2.DEMO_PRODUCT_INFO">
               <MappingFragment StoreEntitySet="DEMO_PRODUCT_INFO">
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
                 <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
                 <ScalarProperty Name="PRODUCT_NAME" ColumnName="PRODUCT_NAME" />
                 <ScalarProperty Name="PRODUCT_DESCRIPTION" ColumnName="PRODUCT_DESCRIPTION" />
@@ -1297,6 +1318,15 @@
                 <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
                 <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
                 <ScalarProperty Name="ORDER_ITEM_ID" ColumnName="ORDER_ITEM_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LAST_SYNCHED">
+            <EntityTypeMapping TypeName="DBModel2.LAST_SYNCHED">
+              <MappingFragment StoreEntitySet="LAST_SYNCHED">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FRONTEND_LAST_SYNCHED" ColumnName="FRONTEND_LAST_SYNCHED" />
+                <ScalarProperty Name="MANUFACTURER_LAST_SYNCHED" ColumnName="MANUFACTURER_LAST_SYNCHED" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

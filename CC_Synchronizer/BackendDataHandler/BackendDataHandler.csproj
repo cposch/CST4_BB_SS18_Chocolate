@@ -152,6 +152,9 @@
     <Compile Include="INGREDIENT_CATEGORY.cs">
       <DependentUpon>DBModel_Backend2.tt</DependentUpon>
     </Compile>
+    <Compile Include="LAST_SYNCHED.cs">
+      <DependentUpon>DBModel_Backend2.tt</DependentUpon>
+    </Compile>
     <Compile Include="PACKAGE.cs">
       <DependentUpon>DBModel_Backend2.tt</DependentUpon>
     </Compile>
