@@ -44,6 +44,7 @@ namespace CC_Synchronizer.AppService
             //GetDbContent();
             //Merge
             SendBack();
+            //Recieve()
 
             Console.WriteLine("App Client connected from " + socket.RemoteEndPoint.ToString() + " synchronized");
             //socket.Close();
