@@ -326,6 +326,48 @@ namespace BackendDataHandler
             }
         }
 
+        public Boolean UpdateCustomerFID(decimal cid, decimal? fid)
+        {
+
+            DEMO_CUSTOMERS result = (from p in db.DEMO_CUSTOMERS
+                                        where p.CUSTOMER_ID == cid
+                                        select p).SingleOrDefault();
+            result.FRONTEND_ID = fid;
+            try
+            {
+                db.SaveChanges();
+                return true;
+            }
+
+            catch (DbUpdateException ex)
+            {
+                return false;
+            }
+        }
+
+        public Boolean UpdateCustomerMID(decimal cid, decimal? mid)
+        {
+
+            DEMO_CUSTOMERS result = (from p in db.DEMO_CUSTOMERS
+                                        where p.CUSTOMER_ID == cid
+                                        select p).SingleOrDefault();
+            result.MANUFACTURER_ID = mid;
+            try
+            {
+                db.SaveChanges();
+                return true;
+            }
+
+            catch (DbUpdateException ex)
+            {
+                return false;
+            }
+        }
+
+
+
+
+
     }
 }
 
