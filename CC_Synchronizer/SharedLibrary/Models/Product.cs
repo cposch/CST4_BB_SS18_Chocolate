@@ -12,7 +12,7 @@ namespace SharedLibrary.Models
         {
         }
 
-        public Product( string product_Name, string product_Description, string category, string product_Avail, decimal list_Price, byte[] product_Image, string mIMETYPE, string filename, DateTime? image_Last_Update, string tags, decimal? sale_Price, DateTime? sale_Begin, DateTime? sale_End, decimal? frontend_ID, decimal? manufaturer_ID)
+        public Product( string product_Name, string product_Description, string category, string product_Avail, decimal? list_Price, byte[] product_Image, string mIMETYPE, string filename, DateTime? image_Last_Update, string tags, decimal? sale_Price, DateTime? sale_Begin, DateTime? sale_End, decimal? frontend_ID, decimal? manufaturer_ID)
         {
             Product_Name = product_Name;
             Product_Description = product_Description;
