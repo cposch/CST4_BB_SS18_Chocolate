@@ -32,6 +32,12 @@ namespace SharedLibrary.Models
 
         }
 
+        public Product(string product_Name, string product_Description, string category, string product_Avail, decimal? list_Price, byte[] product_Image, string mIMETYPE, string filename, DateTime? image_Last_Update, string tags, decimal? sale_Price, DateTime? sale_Begin, DateTime? sale_End, decimal? frontend_ID, decimal? manufaturer_ID, DateTime? last_Updated, string last_Updated_By) : this(product_Name, product_Description, category, product_Avail, list_Price, product_Image, mIMETYPE, filename, image_Last_Update, tags, sale_Price, sale_Begin, sale_End, frontend_ID, manufaturer_ID)
+        {
+            Last_Updated = last_Updated;
+            Last_Updated_By = last_Updated_By;
+        }
+
         public decimal Product_ID { get; set; }
         public string Product_Name { get; set; }
         public string Product_Description { get; set; }
@@ -48,5 +54,9 @@ namespace SharedLibrary.Models
         public DateTime? Sale_End { get; set; }
         public decimal? Frontend_ID { get; set; }
         public decimal? Manufaturer_ID { get; set; }
+
+        public DateTime? Last_Updated { get; set; }
+
+        public string Last_Updated_By { get; set; }
     }
 }

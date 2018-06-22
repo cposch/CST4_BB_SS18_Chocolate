@@ -17,5 +17,6 @@ namespace BackendDataHandler
         public Nullable<System.DateTime> MANUFACTURER_LAST_SYNCHED { get; set; }
         public Nullable<System.DateTime> FRONTEND_LAST_SYNCHED { get; set; }
         public decimal ID { get; set; }
+        public string TABLE_NAME { get; set; }
     }
 }

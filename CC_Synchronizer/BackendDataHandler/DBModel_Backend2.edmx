@@ -81,6 +81,7 @@
           <Property Name="FRONTEND_ID" Type="number" Precision="38" Scale="0" />
           <Property Name="MANUFACTURER_ID" Type="number" Precision="38" Scale="0" />
           <Property Name="LAST_MODIFIED_DATE" Type="timestamp with local time zone" Precision="6" />
+          <Property Name="LAST_UPDATED_BY" Type="varchar2" MaxLength="50" />
         </EntityType>
         <EntityType Name="DEMO_TAGS">
           <Key>
@@ -178,6 +179,7 @@
           <Property Name="MANUFACTURER_LAST_SYNCHED" Type="timestamp with local time zone" Precision="6" />
           <Property Name="FRONTEND_LAST_SYNCHED" Type="timestamp with local time zone" Precision="6" />
           <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TABLE_NAME" Type="varchar2" MaxLength="50" />
         </EntityType>
         <EntityType Name="PACKAGE">
           <Key>
@@ -593,6 +595,7 @@
           <NavigationProperty Name="SHAPE" Relationship="Self.SHAPE_CON" FromRole="DEMO_PRODUCT_INFO" ToRole="SHAPE" />
           <NavigationProperty Name="DEMO_ORDER_ITEMS" Relationship="DBModel2.DEMO_ORDER_ITEMS_PRODUCT_ID_FK" FromRole="DEMO_PRODUCT_INFO" ToRole="DEMO_ORDER_ITEMS" />
           <Property Name="LAST_MODIFIED_DATE" Type="DateTime" Precision="255" />
+          <Property Name="LAST_UPDATED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="DEMO_TAGS">
           <Key>
@@ -1060,6 +1063,7 @@
           <Property Name="MANUFACTURER_LAST_SYNCHED" Type="DateTime" Precision="255" />
           <Property Name="FRONTEND_LAST_SYNCHED" Type="DateTime" Precision="255" />
           <Property Name="ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="TABLE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1116,6 +1120,7 @@
           <EntitySetMapping Name="DEMO_PRODUCT_INFO">
             <EntityTypeMapping TypeName="DBModel2.DEMO_PRODUCT_INFO">
               <MappingFragment StoreEntitySet="DEMO_PRODUCT_INFO">
+                <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
                 <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
                 <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
                 <ScalarProperty Name="PRODUCT_NAME" ColumnName="PRODUCT_NAME" />
@@ -1324,6 +1329,7 @@
           <EntitySetMapping Name="LAST_SYNCHED">
             <EntityTypeMapping TypeName="DBModel2.LAST_SYNCHED">
               <MappingFragment StoreEntitySet="LAST_SYNCHED">
+                <ScalarProperty Name="TABLE_NAME" ColumnName="TABLE_NAME" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FRONTEND_LAST_SYNCHED" ColumnName="FRONTEND_LAST_SYNCHED" />
                 <ScalarProperty Name="MANUFACTURER_LAST_SYNCHED" ColumnName="MANUFACTURER_LAST_SYNCHED" />

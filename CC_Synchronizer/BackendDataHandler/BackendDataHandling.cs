@@ -33,6 +33,8 @@ namespace BackendDataHandler
             pt.SALE_END = p.Sale_End;
             pt.FRONTEND_ID = p.Frontend_ID;
             pt.MANUFACTURER_ID = p.Manufaturer_ID;
+            pt.LAST_MODIFIED_DATE = p.Last_Updated;
+            pt.LAST_UPDATED_BY = p.Last_Updated_By;
 
             db.DEMO_PRODUCT_INFO.Add(pt);
             db.SaveChanges();
@@ -109,7 +111,9 @@ namespace BackendDataHandler
                 Sale_Begin = w.SALE_BEGIN,
                 Sale_End = w.SALE_END,
                 Frontend_ID = w.FRONTEND_ID,
-                Manufaturer_ID = w.MANUFACTURER_ID
+                Manufaturer_ID = w.MANUFACTURER_ID,
+                Last_Updated = w.LAST_MODIFIED_DATE,
+                Last_Updated_By = w.LAST_UPDATED_BY
 
             }).ToList();
         }
@@ -133,7 +137,9 @@ namespace BackendDataHandler
                 Sale_Begin = w.SALE_BEGIN,
                 Sale_End = w.SALE_END,
                 Frontend_ID = w.FRONTEND_ID,
-                Manufaturer_ID = w.MANUFACTURER_ID
+                Manufaturer_ID = w.MANUFACTURER_ID,
+                Last_Updated = w.LAST_MODIFIED_DATE,
+                Last_Updated_By = w.LAST_UPDATED_BY
             }).ToList();
         }
 
@@ -156,7 +162,9 @@ namespace BackendDataHandler
                 Sale_Begin = w.SALE_BEGIN,
                 Sale_End = w.SALE_END,
                 Frontend_ID = w.FRONTEND_ID,
-                Manufaturer_ID = w.MANUFACTURER_ID
+                Manufaturer_ID = w.MANUFACTURER_ID,
+                Last_Updated = w.LAST_MODIFIED_DATE,
+                Last_Updated_By = w.LAST_UPDATED_BY
             }).ToList();
         }
 
@@ -184,7 +192,9 @@ namespace BackendDataHandler
                 Sale_Begin = w.SALE_BEGIN,
                 Sale_End = w.SALE_END,
                 Frontend_ID = w.FRONTEND_ID,
-                Manufaturer_ID = w.MANUFACTURER_ID
+                Manufaturer_ID = w.MANUFACTURER_ID,
+                Last_Updated = w.LAST_MODIFIED_DATE,
+                Last_Updated_By = w.LAST_UPDATED_BY
             }).ToList();
         }
 
@@ -211,7 +221,9 @@ namespace BackendDataHandler
                 Sale_Begin = w.SALE_BEGIN,
                 Sale_End = w.SALE_END,
                 Frontend_ID = w.FRONTEND_ID,
-                Manufaturer_ID = w.MANUFACTURER_ID
+                Manufaturer_ID = w.MANUFACTURER_ID,
+                Last_Updated = w.LAST_MODIFIED_DATE,
+                Last_Updated_By = w.LAST_UPDATED_BY
             }).ToList();
         }
         public List<Customer> QueryAllCustomerbyFID(decimal? FID)
@@ -342,13 +354,53 @@ namespace BackendDataHandler
     }
         //updates -----------------------------------------------
 
-        public Boolean UpdateProductFID (decimal pid, decimal? fid)
+        public Boolean UpdateProduct(Product prod, string lub)//Product,LastUpdateBy
+        {
+
+            DEMO_PRODUCT_INFO result = (from p in db.DEMO_PRODUCT_INFO
+                                        where p.PRODUCT_ID == prod.Product_ID
+                                        select p).SingleOrDefault();
+            result.PRODUCT_NAME = prod.Product_Name;
+            result.PRODUCT_DESCRIPTION = prod.Product_Description;
+            result.CATEGORY = prod.Category;
+            result.PRODUCT_AVAIL = prod.Product_Avail;
+            result.LIST_PRICE = prod.List_Price;
+            result.PRODUCT_IMAGE = prod.Product_Image;
+            result.MIMETYPE = prod.MIMETYPE;
+            result.FILENAME = prod.Filename;
+            result.IMAGE_LAST_UPDATE = prod.Image_Last_Update;
+            result.TAGS = prod.Tags;
+            result.SALE_PRICE = prod.Sale_Price;
+            result.SALE_BEGIN = prod.Sale_Begin;
+            result.SALE_END = prod.Sale_End;
+            result.FRONTEND_ID = prod.Frontend_ID;
+            result.MANUFACTURER_ID = prod.Manufaturer_ID;
+            result.LAST_MODIFIED_DATE = DateTime.Now;
+            result.LAST_UPDATED_BY = lub;
+            try
+            {
+                db.SaveChanges();
+                return true;
+            }
+
+            catch (DbUpdateException ex)
+            {
+                return false;
+            }
+        }
+
+
+
+
+        public Boolean UpdateProductFID (decimal pid, decimal? fid, string lub)//ProductID,FrondEndID,LastUpdateBy
         {
             
                DEMO_PRODUCT_INFO result = (from p in db.DEMO_PRODUCT_INFO
                                  where p.PRODUCT_ID == pid
                                  select p).SingleOrDefault();
             result.FRONTEND_ID = fid;
+            result.LAST_MODIFIED_DATE = DateTime.Now;
+            result.LAST_UPDATED_BY = lub;
             try
             {
                 db.SaveChanges();
@@ -361,13 +413,15 @@ namespace BackendDataHandler
             }
         }
 
-        public Boolean UpdateProductMID(decimal pid, decimal? mid)
+        public Boolean UpdateProductMID(decimal pid, decimal? mid, string lub)//ProductID,ManufacturerID,LastUpdateBy
         {
 
             DEMO_PRODUCT_INFO result = (from p in db.DEMO_PRODUCT_INFO
                                         where p.PRODUCT_ID == pid
                                         select p).SingleOrDefault();
             result.MANUFACTURER_ID = mid;
+            result.LAST_MODIFIED_DATE = DateTime.Now;
+            result.LAST_UPDATED_BY = lub;
             try
             {
                 db.SaveChanges();
