@@ -188,7 +188,7 @@ namespace BackendDataHandler
                         select p.FRONTEND_LAST_SYNCHED).FirstOrDefault();
 
             UpdateProductsFrontendLastSynchedDate();
-            return db.DEMO_PRODUCT_INFO.Where(w => !w.FRONTEND_ID.Equals(null) && date < w.LAST_MODIFIED_DATE).Select(w => new Product()
+            return db.DEMO_PRODUCT_INFO.Where(w => !w.FRONTEND_ID.Equals(null) && date < w.LAST_MODIFIED_DATE && !w.LAST_UPDATED_BY.Equals("FRONTEND")).Select(w => new Product()
             {
                 Product_ID = w.PRODUCT_ID,
                 Product_Name = w.PRODUCT_NAME,
@@ -217,7 +217,7 @@ namespace BackendDataHandler
                         where p.ID == 1
                         select p.MANUFACTURER_LAST_SYNCHED).FirstOrDefault();
             UpdateProductsManufacturerLastSynchedDate();
-            return db.DEMO_PRODUCT_INFO.Where(w => !w.MANUFACTURER_ID.Equals(null) && date < w.LAST_MODIFIED_DATE).Select(w => new Product()
+            return db.DEMO_PRODUCT_INFO.Where(w => !w.MANUFACTURER_ID.Equals(null) && date < w.LAST_MODIFIED_DATE && !w.LAST_UPDATED_BY.Equals("MANUFACTURER")).Select(w => new Product()
             {
                 Product_ID = w.PRODUCT_ID,
                 Product_Name = w.PRODUCT_NAME,
