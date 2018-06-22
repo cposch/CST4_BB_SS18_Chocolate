@@ -9,6 +9,8 @@ using CC_Synchronizer.AppService;
 using CC_Synchronizer.FrontendService;
 using SharedLibrary.Models;
 using RESTFrontendService;
+using System.ServiceModel.Web;
+using System.ServiceModel.Description;
 
 namespace CC_Synchronizer
 {
@@ -27,13 +29,28 @@ namespace CC_Synchronizer
             */
             Console.WriteLine("Chocolate Costumizer Synchronizer\nPress Enter to end the application.\n");
 
-            ServiceHost frontendServiceHost = new ServiceHost(typeof(RestServiceImpl));
+            // Frontend Host Variante 1
+            /*ServiceHost frontendServiceHost = new ServiceHost(typeof(RestServiceImpl));
             Task.Factory.StartNew(frontendServiceHost.Open);
             Console.WriteLine("Frontend Service Host startet");
+            frontendServiceHost.Close();*/
+
+            // Frontend Host Variante 2
+            WebServiceHost frontendServiceHost = new WebServiceHost(typeof(RestServiceImpl), new Uri("http://localhost:8000"));
+            ServiceEndpoint ep = frontendServiceHost.AddServiceEndpoint(typeof(IRestServiceImpl), new WebHttpBinding(), "");
+            ServiceDebugBehavior stp = frontendServiceHost.Description.Behaviors.Find<ServiceDebugBehavior>();
+            stp.HttpHelpPageEnabled = false;
+            frontendServiceHost.Open();
+            Console.WriteLine("Frontend Service is up and running");
+            Console.WriteLine("Please press enter to quit");
+
 
             AppServer appServer = new AppServer();
 
             Console.ReadLine();
+
+            // Close Frontend Host
+            frontendServiceHost.Close();
 
             //end server/service?
         }
