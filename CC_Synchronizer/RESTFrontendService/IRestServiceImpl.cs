@@ -45,7 +45,7 @@ namespace RESTFrontendService
         // UPDATE Methoden
         // Übergabeparameter einfügen
         [OperationContract]
-        [WebInvoke(Method = "PUT", ResponseFormat = WebMessageFormat.Xml, BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "update/product")]
+        [WebInvoke(Method = "PUT", ResponseFormat = WebMessageFormat.Xml, BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "update/productFID")]
         void UpdateProductFID(XmlElement pFID);
 
         [OperationContract]
