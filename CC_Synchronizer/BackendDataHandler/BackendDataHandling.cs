@@ -375,7 +375,6 @@ namespace BackendDataHandler
             result.SALE_END = prod.Sale_End;
             result.FRONTEND_ID = prod.Frontend_ID;
             result.MANUFACTURER_ID = prod.Manufaturer_ID;
-            result.LAST_MODIFIED_DATE = DateTime.Now;
             result.LAST_UPDATED_BY = lub;
             try
             {
@@ -399,7 +398,6 @@ namespace BackendDataHandler
                                  where p.PRODUCT_ID == pid
                                  select p).SingleOrDefault();
             result.FRONTEND_ID = fid;
-            result.LAST_MODIFIED_DATE = DateTime.Now;
             result.LAST_UPDATED_BY = lub;
             try
             {
@@ -420,7 +418,6 @@ namespace BackendDataHandler
                                         where p.PRODUCT_ID == pid
                                         select p).SingleOrDefault();
             result.MANUFACTURER_ID = mid;
-            result.LAST_MODIFIED_DATE = DateTime.Now;
             result.LAST_UPDATED_BY = lub;
             try
             {
