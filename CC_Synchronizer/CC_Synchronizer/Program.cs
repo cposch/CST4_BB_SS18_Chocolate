@@ -32,8 +32,10 @@ namespace CC_Synchronizer
             Console.WriteLine("Frontend Service Host startet");
 
             AppServer appServer = new AppServer();
-            //FrontendHost feHost = new FrontendHost();
+
             Console.ReadLine();
+
+            //end server/service?
         }
     }
 }

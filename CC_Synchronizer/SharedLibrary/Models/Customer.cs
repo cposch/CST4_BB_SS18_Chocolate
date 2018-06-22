@@ -20,13 +20,15 @@ namespace SharedLibrary.Models
         public string Url { get; set; }
         public decimal? CreditLimit { get; set; }
         public string Tags { get; set; }
+        public decimal? Frontend_ID { get; set; }
+        public decimal? Manufaturer_ID { get; set; }
 
         public Customer()
         {
 
         }
 
-        public Customer(decimal customerId, string firstName, string lastName, string address, string city, string state, string zip, string email, string phoneNumber, string url, decimal creditLimit, string tags)
+        public Customer(decimal customerId, string firstName, string lastName, string address, string city, string state, string zip, string email, string phoneNumber, string url, decimal creditLimit, string tags, decimal? frontend_ID, decimal? manufaturer_ID)
         {
             CustomerId = customerId;
             FirstName = firstName;
@@ -40,6 +42,8 @@ namespace SharedLibrary.Models
             Url = url;
             CreditLimit = creditLimit;
             Tags = tags;
+            Frontend_ID = frontend_ID;
+            Manufaturer_ID = manufaturer_ID;
         }
     }
 }
