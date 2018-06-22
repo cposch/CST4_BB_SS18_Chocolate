@@ -66,7 +66,7 @@ namespace RESTFrontendService
         {
             decimal pid = decimal.Parse(pFID.GetAttribute("ProductID"));
             decimal fid = decimal.Parse(pFID.GetAttribute("FrontendID"));
-            dh.UpdateProductFID(pid, fid);
+            dh.UpdateProductFID(pid, fid, "FRONTEND");
         }
 
         // POST (INSERT) Methoden ........................................................................................
