@@ -45,9 +45,12 @@
     <Compile Include="Models\IngredientCategory.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderItem.cs" />
+    <Compile Include="Models\Package.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ReciepeIngredients.cs" />
     <Compile Include="Models\Recipe.cs" />
     <Compile Include="Models\Rule.cs" />
+    <Compile Include="Models\RuleCategory.cs" />
     <Compile Include="Models\Shape.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

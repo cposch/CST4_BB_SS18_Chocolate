@@ -6,21 +6,23 @@ using System.Threading.Tasks;
 
 namespace SharedLibrary.Models
 {
-    public class Rule
+    public class RuleCategory
     {
-        public decimal RID { get; set; }
+        public decimal RCID { get; set; }
         public decimal ProductID { get; set; }
+        public decimal CategoryID { get; set; }
         public decimal? FrontendID { get; set; }
         public decimal? ManufacturerID { get; set; }
 
-        public Rule()
+        public RuleCategory()
         {
         }
 
-        public Rule(decimal rID, decimal productID, decimal? frontendID, decimal? manufacturerID)
+        public RuleCategory(decimal rCID, decimal productID, decimal categoryID, decimal? frontendID, decimal? manufacturerID)
         {
-            RID = rID;
+            RCID = rCID;
             ProductID = productID;
+            CategoryID = categoryID;
             FrontendID = frontendID;
             ManufacturerID = manufacturerID;
         }

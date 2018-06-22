@@ -89,6 +89,19 @@ namespace BackendDataHandler
             db.SaveChanges();
         }
 
+        public void AddRecipe(Recipe r)
+        {
+            RECIEPE rt = new RECIEPE();
+            rt.ID = r.RID;
+            rt.PRODUCT_ID = r.ProductID;
+            rt.DESCRIPTION = r.Description;
+            rt.FRONTEND_ID = r.FrontendID;
+            rt.MANUFACTURER_ID = r.ManufacturerID;
+            rt.LAST_UPDATED_BY = r.Last_Updated_By;
+            rt.LAST_MODIFIED_DATE = r.Last_Updated;
+            db.SaveChanges();
+        }
+
 
         //QueryALL -------------------------------------------------------------
 
@@ -352,7 +365,66 @@ namespace BackendDataHandler
         }).ToList();
 
     }
+
+        public List<Recipe> QueryAllRecipe()
+        {
+            return db.RECIEPE.Select(w => new Recipe()
+            {
+               RID = w.ID,
+               ProductID = w.PRODUCT_ID,
+               Description = w.DESCRIPTION,
+               FrontendID = w.FRONTEND_ID,
+               ManufacturerID = w.MANUFACTURER_ID,
+               Last_Updated_By = w.LAST_UPDATED_BY,
+               Last_Updated = w.LAST_MODIFIED_DATE
+            }).ToList();
+        }
+
+        public Recipe GetRecipe(decimal RID)
+        {
+            return db.RECIEPE.Where(w => w.ID.Equals(RID)).Select(w => new Recipe()
+            {
+                RID = w.ID,
+                ProductID = w.PRODUCT_ID,
+                Description = w.DESCRIPTION,
+                FrontendID = w.FRONTEND_ID,
+                ManufacturerID = w.MANUFACTURER_ID,
+                Last_Updated_By = w.LAST_UPDATED_BY,
+                Last_Updated = w.LAST_MODIFIED_DATE
+            }).FirstOrDefault();
+        }
+
+        public List<Recipe> QueryAllRecipeByFrontendID(decimal FID)
+        {
+            return db.RECIEPE.Where(w => w.FRONTEND_ID.Equals(FID)).Select(w => new Recipe()
+            {
+                RID = w.ID,
+                ProductID = w.PRODUCT_ID,
+                Description = w.DESCRIPTION,
+                FrontendID = w.FRONTEND_ID,
+                ManufacturerID = w.MANUFACTURER_ID,
+                Last_Updated_By = w.LAST_UPDATED_BY,
+                Last_Updated = w.LAST_MODIFIED_DATE
+            }).ToList();
+        }
+
+        public List<Recipe> QueryAllRecipeByManufacturerID(decimal MID)
+        {
+            return db.RECIEPE.Where(w => w.MANUFACTURER_ID.Equals(MID)).Select(w => new Recipe()
+            {
+                RID = w.ID,
+                ProductID = w.PRODUCT_ID,
+                Description = w.DESCRIPTION,
+                FrontendID = w.FRONTEND_ID,
+                ManufacturerID = w.MANUFACTURER_ID,
+                Last_Updated_By = w.LAST_UPDATED_BY,
+                Last_Updated = w.LAST_MODIFIED_DATE
+            }).ToList();
+        }
+
         //updates -----------------------------------------------
+
+        //Product Update -------------------------------------------------------------
 
         public Boolean UpdateProduct(Product prod, string lub)//Product,LastUpdateBy
         {
@@ -431,6 +503,8 @@ namespace BackendDataHandler
             }
         }
 
+        //Customer Update -------------------------------------------------------------
+
         public Boolean UpdateCustomer(Customer cust, string lub)//Product,LastUpdateBy
         {
 
@@ -505,6 +579,32 @@ namespace BackendDataHandler
             }
         }
 
+        //Update Recipe
+        public Boolean UpdateRecipe(Recipe R, string lub)//Recipe Object, LastUpdateBy
+        {
+
+            RECIEPE result = (from p in db.RECIEPE
+                                     where p.ID == R.RID
+                                     select p).SingleOrDefault();
+            result.PRODUCT_ID = R.ProductID;
+            result.DESCRIPTION = R.Description;
+            result.FRONTEND_ID = R.FrontendID;
+            result.MANUFACTURER_ID = R.ManufacturerID;
+            result.LAST_UPDATED_BY = lub;
+            try
+            {
+                db.SaveChanges();
+                return true;
+            }
+
+            catch (DbUpdateException ex)
+            {
+                return false;
+            }
+        }
+
+
+        //Update LastSynched
         public Boolean UpdateManufacturerLastSynched()
         {
 
