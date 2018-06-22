@@ -36,6 +36,8 @@ namespace BackendDataHandler
         public string TAGS { get; set; }
         public Nullable<decimal> MANUFACTURER_ID { get; set; }
         public Nullable<decimal> FRONTEND_ID { get; set; }
+        public string LAST_UPDATED_BY { get; set; }
+        public Nullable<System.DateTime> LAST_MODIFIED_DATE { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DEMO_ORDERS> DEMO_ORDERS { get; set; }

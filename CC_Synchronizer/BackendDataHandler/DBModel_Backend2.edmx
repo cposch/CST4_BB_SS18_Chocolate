@@ -32,6 +32,8 @@
           <Property Name="TAGS" Type="varchar2" MaxLength="4000" />
           <Property Name="MANUFACTURER_ID" Type="number" Precision="38" Scale="0" />
           <Property Name="FRONTEND_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="LAST_UPDATED_BY" Type="varchar2" MaxLength="50" />
+          <Property Name="LAST_MODIFIED_DATE" Type="timestamp with local time zone" Precision="6" />
         </EntityType>
         <EntityType Name="DEMO_ORDER_ITEMS">
           <Key>
@@ -205,6 +207,8 @@
           <Property Name="DESCRIPTION" Type="varchar2" MaxLength="50" />
           <Property Name="FRONTEND_ID" Type="number" Precision="38" Scale="0" />
           <Property Name="MANUFACTURER_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="LAST_UPDATED_BY" Type="varchar2" MaxLength="50" />
+          <Property Name="LAST_MODIFIED_DATE" Type="timestamp with local time zone" Precision="6" />
         </EntityType>
         <EntityType Name="RECIEPE_INGREDIENTS">
           <Key>
@@ -407,7 +411,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="SHAPE_CON">
-          <End Role="DEMO_PRODUCT_INFO" Type="Self.DEMO_PRODUCT_INFO" Multiplicity="1" />
+          <End Role="DEMO_PRODUCT_INFO" Type="Self.DEMO_PRODUCT_INFO" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="SHAPE" Type="Self.SHAPE" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DEMO_PRODUCT_INFO">
@@ -551,6 +557,8 @@
           <Property Name="MANUFACTURER_ID" Type="Decimal" Precision="38" Scale="0" />
           <Property Name="FRONTEND_ID" Type="Decimal" Precision="38" Scale="0" />
           <NavigationProperty Name="DEMO_ORDERS" Relationship="Self.DEMO_ORDERS_CUSTOMER_ID_FK" FromRole="DEMO_CUSTOMERS" ToRole="DEMO_ORDERS" />
+          <Property Name="LAST_UPDATED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LAST_MODIFIED_DATE" Type="DateTime" Precision="255" />
         </EntityType>
         <EntityType Name="DEMO_ORDERS">
           <Key>
@@ -721,6 +729,8 @@
           <Property Name="MANUFACTURER_ID" Type="Decimal" Precision="38" Scale="0" />
           <NavigationProperty Name="DEMO_PRODUCT_INFO" Relationship="Self.RECIEPE_TO_PRODUCT_FK" FromRole="RECIEPE" ToRole="DEMO_PRODUCT_INFO" />
           <NavigationProperty Name="RECIEPE_INGREDIENTS" Relationship="Self.RECIEPE_TO_INGREDIENTS_FK" FromRole="RECIEPE" ToRole="RECIEPE_INGREDIENTS" />
+          <Property Name="LAST_UPDATED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LAST_MODIFIED_DATE" Type="DateTime" Precision="255" />
         </EntityType>
         <EntityType Name="RECIEPE_INGREDIENTS">
           <Key>
@@ -1082,6 +1092,8 @@
           <EntitySetMapping Name="DEMO_CUSTOMERS">
             <EntityTypeMapping TypeName="DBModel2.DEMO_CUSTOMERS">
               <MappingFragment StoreEntitySet="DEMO_CUSTOMERS">
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+                <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
                 <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
                 <ScalarProperty Name="CUST_FIRST_NAME" ColumnName="CUST_FIRST_NAME" />
                 <ScalarProperty Name="CUST_LAST_NAME" ColumnName="CUST_LAST_NAME" />
@@ -1255,6 +1267,8 @@
           <EntitySetMapping Name="RECIEPE">
             <EntityTypeMapping TypeName="DBModel2.RECIEPE">
               <MappingFragment StoreEntitySet="RECIEPE">
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+                <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
                 <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />

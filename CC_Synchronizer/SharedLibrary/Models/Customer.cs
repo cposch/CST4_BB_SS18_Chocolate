@@ -22,6 +22,30 @@ namespace SharedLibrary.Models
         public string Tags { get; set; }
         public decimal? Frontend_ID { get; set; }
         public decimal? Manufaturer_ID { get; set; }
+        public DateTime? Last_Updated { get; set; }
+        public string Last_Updated_By { get; set; }
+
+        public Customer(decimal customerId, string firstName, string lastName, string address, string city, string state, string zip, string email, string phoneNumber, string url, decimal? creditLimit, string tags, decimal? frontend_ID, decimal? manufaturer_ID, DateTime? last_Updated, string last_Updated_By)
+        {
+            CustomerId = customerId;
+            FirstName = firstName;
+            LastName = lastName;
+            Address = address;
+            City = city;
+            State = state;
+            Zip = zip;
+            Email = email;
+            PhoneNumber = phoneNumber;
+            Url = url;
+            CreditLimit = creditLimit;
+            Tags = tags;
+            Frontend_ID = frontend_ID;
+            Manufaturer_ID = manufaturer_ID;
+            Last_Updated = last_Updated;
+            Last_Updated_By = last_Updated_By;
+        }
+
+
 
         public Customer()
         {

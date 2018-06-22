@@ -431,13 +431,26 @@ namespace BackendDataHandler
             }
         }
 
-        public Boolean UpdateCustomerFID(decimal cid, decimal? fid)
+        public Boolean UpdateCustomer(Customer cust, string lub)//Product,LastUpdateBy
         {
 
             DEMO_CUSTOMERS result = (from p in db.DEMO_CUSTOMERS
-                                        where p.CUSTOMER_ID == cid
+                                        where p.CUSTOMER_ID == cust.CustomerId
                                         select p).SingleOrDefault();
-            result.FRONTEND_ID = fid;
+            result.CUST_FIRST_NAME = cust.FirstName;
+            result.CUST_LAST_NAME = cust.LastName;
+            result.CUST_STREET_ADDRESS1 = cust.Address;
+            result.CUST_CITY = cust.City;
+            result.CUST_STATE = cust.State;
+            result.CUST_POSTAL_CODE = cust.Zip;
+            result.CUST_EMAIL = cust.Email;
+            result.PHONE_NUMBER1 = cust.PhoneNumber;
+            result.URL = cust.Url;
+            result.TAGS = cust.Tags;
+            result.CREDIT_LIMIT = cust.CreditLimit;
+            result.MANUFACTURER_ID = cust.Manufaturer_ID;
+            result.FRONTEND_ID = cust.Frontend_ID;
+            result.LAST_UPDATED_BY = lub;
             try
             {
                 db.SaveChanges();
@@ -450,13 +463,36 @@ namespace BackendDataHandler
             }
         }
 
-        public Boolean UpdateCustomerMID(decimal cid, decimal? mid)
+
+
+        public Boolean UpdateCustomerFID(decimal cid, decimal? fid, string lub)//CustomerID, FrontendID, LastUpdateBy
+        {
+
+            DEMO_CUSTOMERS result = (from p in db.DEMO_CUSTOMERS
+                                        where p.CUSTOMER_ID == cid
+                                        select p).SingleOrDefault();
+            result.FRONTEND_ID = fid;
+            result.LAST_UPDATED_BY = lub;
+            try
+            {
+                db.SaveChanges();
+                return true;
+            }
+
+            catch (DbUpdateException ex)
+            {
+                return false;
+            }
+        }
+
+        public Boolean UpdateCustomerMID(decimal cid, decimal? mid,string lub)//CustomerID, ManufacturerID, LastUpdateBy
         {
 
             DEMO_CUSTOMERS result = (from p in db.DEMO_CUSTOMERS
                                         where p.CUSTOMER_ID == cid
                                         select p).SingleOrDefault();
             result.MANUFACTURER_ID = mid;
+            result.LAST_UPDATED_BY = lub;
             try
             {
                 db.SaveChanges();
