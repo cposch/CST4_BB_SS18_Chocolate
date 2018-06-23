@@ -25,6 +25,8 @@ namespace RESTFrontendService
             return new DMProduct(Guid.Parse("09bdd169-12b0-4167-a201-f9494a72e50b"), "chocolate cake", "yummi", 130, new DMRecipe(Guid.Parse("09bdd169-12b0-4167-a201-f9494a72e50b"), "Do this and that"));
         }
 
+
+
         // GET Methoden .................................................................................................
         public List<Customer> GetCustomers()
         {
@@ -62,13 +64,58 @@ namespace RESTFrontendService
         }
         // PUT Methoden .................................................................................................
         public Customer UpdateCustomer()
+
+
+        // PUT Methoden (UPDATE) .......................................................................................
+        public void UpdateCustomer(XmlElement c)
+        {
+            dh.UpdateCustomer(new Customer()
+            {
+                CustomerId = int.Parse(c.GetAttribute("Id")),
+                FirstName = c.GetAttribute("FirstName"),
+                LastName = c.GetAttribute("LastName"),
+                Address = c.GetAttribute("Address"),
+                City = c.GetAttribute("City"),
+                State = c.GetAttribute("State"),
+                Zip = c.GetAttribute("Zip"),
+                Email = c.GetAttribute("Email"),
+                PhoneNumber = c.GetAttribute("PhoneNumber"),
+                Url = c.GetAttribute("Url"),
+                CreditLimit = int.Parse(c.GetAttribute("CreditLimit")),
+                Tags = c.GetAttribute("Tags"),
+                Last_Updated_By = "FRONTEND"
+            }, "FRONTEND");
+        }
+
+        public void UpdateOrder(XmlElement o)
         {
             throw new NotImplementedException();
         }
 
-        public Order UpdateOrder()
+        public void UpdateProduct(XmlElement p)
         {
-            throw new NotImplementedException();
+
+            string format = "yyyy-MM-dd HH:mm:ss";
+            CultureInfo provider = CultureInfo.InvariantCulture;
+
+            dh.UpdateProduct(new Product()
+            {
+                Product_Name = p.GetAttribute("ProductName"),
+                Product_Description = p.GetAttribute("ProductDescription"),
+                Category = p.GetAttribute("Category"),
+                Product_Avail = p.GetAttribute("ProductAvail"),
+                List_Price = decimal.Parse(p.GetAttribute("ListPrice")),
+                MIMETYPE = p.GetAttribute("MimeType"),
+                Filename = p.GetAttribute("Filename"),
+                Image_Last_Update = DateTime.ParseExact(p.GetAttribute("ImgLastUpdate"), format, provider),
+                Tags = p.GetAttribute("Tags"),
+                Sale_Price = decimal.Parse(p.GetAttribute("SalePrice")),
+                Sale_Begin = DateTime.ParseExact(p.GetAttribute("SaleBegin"), format, provider),
+                Sale_End = DateTime.ParseExact(p.GetAttribute("SaleEnd"), format, provider),
+                Frontend_ID = decimal.Parse(p.GetAttribute("FrontendID")),
+                Last_Updated_By = "FRONTEND"
+            }, "FRONTEND");
+
         }
 
         public void UpdateProductFID(XmlElement pFID)
@@ -77,6 +124,8 @@ namespace RESTFrontendService
             decimal fid = decimal.Parse(pFID.GetAttribute("FrontendID"));
             dh.UpdateProductFID(pid, fid, "FRONTEND");
         }
+
+
 
         // POST (INSERT) Methoden ........................................................................................
         public void InsertCustomer(XmlElement c)
@@ -116,6 +165,8 @@ namespace RESTFrontendService
             });
         }
 
+
+
         public void InsertProduct(XmlElement p)
         {
             string format = "yyyy-MM-dd HH:mm:ss";
@@ -141,6 +192,8 @@ namespace RESTFrontendService
                 //Manufaturer_ID = decimal.Parse(p.GetAttribute("ManufacturerID"))
             });
         }
+
+
 
         // DELETE Methoden .............................................................................................
 
