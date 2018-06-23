@@ -84,8 +84,7 @@ namespace RESTFrontendService
                 PhoneNumber = c.GetAttribute("PhoneNumber"),
                 Url = c.GetAttribute("Url"),
                 CreditLimit = int.Parse(c.GetAttribute("CreditLimit")),
-                Tags = c.GetAttribute("Tags"),
-                Last_Updated_By = "FRONTEND"
+                Tags = c.GetAttribute("Tags")
 
             });
 
@@ -103,7 +102,7 @@ namespace RESTFrontendService
                 OrderTimeStamp = DateTime.ParseExact(o.GetAttribute("DateTime"), format, provider),
                 UserName = o.GetAttribute("UserName"),
                 Tags = o.GetAttribute("Tags"),
-                Frontend_ID = decimal.Parse(o.GetAttribute("FrontendID"))
+                Frontend_ID = decimal.Parse(o.GetAttribute("FrontendID")),
                 //Manufaturer_ID = decimal.Parse(o.GetAttribute("ManufacturerID"))
             });
         }
@@ -130,7 +129,6 @@ namespace RESTFrontendService
                 Sale_Begin = DateTime.ParseExact(p.GetAttribute("SaleBegin"), format, provider),
                 Sale_End = DateTime.ParseExact(p.GetAttribute("SaleEnd"), format, provider),
                 Frontend_ID = decimal.Parse(p.GetAttribute("FrontendID")),
-                Last_Updated_By = "FRONTEND"
                 //Manufaturer_ID = decimal.Parse(p.GetAttribute("ManufacturerID"))
             });
         }
