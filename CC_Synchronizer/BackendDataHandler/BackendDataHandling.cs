@@ -909,6 +909,74 @@ namespace BackendDataHandler
                 return false;
             }
         }
+
+        private Boolean UpdateOrderItemsManufacturerLastSynchedDate()
+        {
+            LAST_SYNCHED result = (from p in db.LAST_SYNCHED
+                                   where p.ID == 5
+                                   select p).SingleOrDefault();
+            result.MANUFACTURER_LAST_SYNCHED = System.DateTime.Now;
+            try
+            {
+                db.SaveChanges();
+                return true;
+            }
+            catch (DbUpdateException)
+            {
+                return false;
+            }
+        }
+
+        private Boolean UpdateOrderItemsFrontendLastSynchedDate()
+        {
+            LAST_SYNCHED result = (from p in db.LAST_SYNCHED
+                                   where p.ID == 5
+                                   select p).SingleOrDefault();
+            result.FRONTEND_LAST_SYNCHED = System.DateTime.Now;
+            try
+            {
+                db.SaveChanges();
+                return true;
+            }
+            catch (DbUpdateException)
+            {
+                return false;
+            }
+        }
+
+        private Boolean UpdateReciepeIngredientsManufacturerLastSynchedDate()
+        {
+            LAST_SYNCHED result = (from p in db.LAST_SYNCHED
+                                   where p.ID == 6
+                                   select p).SingleOrDefault();
+            result.MANUFACTURER_LAST_SYNCHED = System.DateTime.Now;
+            try
+            {
+                db.SaveChanges();
+                return true;
+            }
+            catch (DbUpdateException)
+            {
+                return false;
+            }
+        }
+
+        private Boolean UpdateReciepeIngredientsFrontendLastSynchedDate()
+        {
+            LAST_SYNCHED result = (from p in db.LAST_SYNCHED
+                                   where p.ID == 6
+                                   select p).SingleOrDefault();
+            result.FRONTEND_LAST_SYNCHED = System.DateTime.Now;
+            try
+            {
+                db.SaveChanges();
+                return true;
+            }
+            catch (DbUpdateException)
+            {
+                return false;
+            }
+        }
     }
 }
 
