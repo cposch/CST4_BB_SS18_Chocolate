@@ -237,7 +237,7 @@ namespace BackendDataHandler
             var date = (from p in db.LAST_SYNCHED
                         where p.ID == 2
                         select p.FRONTEND_LAST_SYNCHED).FirstOrDefault();
-            UpdateProductsFrontendLastSynchedDate();
+            UpdateCustomerFrontendLastSynchedDate();
             return db.DEMO_CUSTOMERS.Where(w => !w.FRONTEND_ID.Equals(null) && date < w.LAST_MODIFIED_DATE && !w.LAST_UPDATED_BY.Equals("FRONTEND")).Select(w => new Customer()
             {
                 CustomerId = w.CUSTOMER_ID,
@@ -291,7 +291,7 @@ namespace BackendDataHandler
             var date = (from p in db.LAST_SYNCHED
                         where p.ID == 2
                         select p.MANUFACTURER_LAST_SYNCHED).FirstOrDefault();
-            UpdateProductsManufacturerLastSynchedDate();
+            UpdateCustomerManufacturerLastSynchedDate();
             return db.DEMO_CUSTOMERS.Where(w => !w.MANUFACTURER_ID.Equals(null) && date < w.LAST_MODIFIED_DATE && !w.LAST_UPDATED_BY.Equals("MANUFACTURER")).Select(w => new Customer()
             {
                 CustomerId = w.CUSTOMER_ID,
@@ -811,9 +811,26 @@ namespace BackendDataHandler
         public Boolean UpdateOrdersFrontendLastSynchedDate()
         {
             LAST_SYNCHED result = (from p in db.LAST_SYNCHED
-                                   where p.ID == 2
+                                   where p.ID == 4
                                    select p).SingleOrDefault();
             result.FRONTEND_LAST_SYNCHED = System.DateTime.Now;
+            try
+            {
+                db.SaveChanges();
+                return true;
+            }
+            catch (DbUpdateException)
+            {
+                return false;
+            }
+        }
+
+        public Boolean UpdateOrdersManufacturerLastSynchedDate()
+        {
+            LAST_SYNCHED result = (from p in db.LAST_SYNCHED
+                                   where p.ID == 4
+                                   select p).SingleOrDefault();
+            result.MANUFACTURER_LAST_SYNCHED = System.DateTime.Now;
             try
             {
                 db.SaveChanges();
@@ -842,12 +859,46 @@ namespace BackendDataHandler
             }
         }
 
+        private Boolean UpdateRecipesManufacturerLastSynchedDate()
+        {
+            LAST_SYNCHED result = (from p in db.LAST_SYNCHED
+                                   where p.ID == 3
+                                   select p).SingleOrDefault();
+            result.MANUFACTURER_LAST_SYNCHED = System.DateTime.Now;
+            try
+            {
+                db.SaveChanges();
+                return true;
+            }
+            catch (DbUpdateException)
+            {
+                return false;
+            }
+        }
+
         private Boolean UpdateCustomerManufacturerLastSynchedDate()
         {
             LAST_SYNCHED result = (from p in db.LAST_SYNCHED
-                                   where p.ID == 4
+                                   where p.ID == 2
                                    select p).SingleOrDefault();
             result.MANUFACTURER_LAST_SYNCHED = System.DateTime.Now;
+            try
+            {
+                db.SaveChanges();
+                return true;
+            }
+            catch (DbUpdateException)
+            {
+                return false;
+            }
+        }
+
+        private Boolean UpdateCustomerFrontendLastSynchedDate()
+        {
+            LAST_SYNCHED result = (from p in db.LAST_SYNCHED
+                                   where p.ID == 2
+                                   select p).SingleOrDefault();
+            result.FRONTEND_LAST_SYNCHED = System.DateTime.Now;
             try
             {
                 db.SaveChanges();
