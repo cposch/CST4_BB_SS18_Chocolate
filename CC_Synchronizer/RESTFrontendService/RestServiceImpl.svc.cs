@@ -62,8 +62,6 @@ namespace RESTFrontendService
         {
             return dh.QueryAllCustomersByLastUpdatedForManufacturer();
         }
-        // PUT Methoden .................................................................................................
-        public Customer UpdateCustomer()
 
 
         // PUT Methoden (UPDATE) .......................................................................................

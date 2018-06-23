@@ -43,6 +43,13 @@ namespace RESTFrontendService
         [WebGet(ResponseFormat = WebMessageFormat.Xml, BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "xml/manufacturer/updated/products")]
         List<Product> GetUpdatedForManufacturerProducts();
 
+        [OperationContract]
+        [WebGet(ResponseFormat = WebMessageFormat.Xml, BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "xml/frontend/updated/customers")]
+        List<Customer> GetUpdatedForFrontendCustomers();
+
+        [OperationContract]
+        [WebGet(ResponseFormat = WebMessageFormat.Xml, BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "xml/manufacturer/updated/customers")]
+        List<Customer> GetUpdatedForManufacturerCustomers();
 
 
         // UPDATE Methoden
