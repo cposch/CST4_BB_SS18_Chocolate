@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SharedLibrary.Models
 {
-    class Package
+    public class Package
     {
         public decimal PID { get; set; }
         public decimal ProductID { get; set; }

@@ -42,7 +42,7 @@ namespace CC_Synchronizer
             stp.HttpHelpPageEnabled = false;
             frontendServiceHost.Open();
             Console.WriteLine("Frontend Service is up and running");
-            Console.WriteLine("Please press enter to quit");
+            //Console.WriteLine("Please press enter to quit");
 
 
             AppServer appServer = new AppServer();
@@ -52,7 +52,7 @@ namespace CC_Synchronizer
             // Close Frontend Host
             frontendServiceHost.Close();
 
-            //end server/service?
+            //end server?
         }
     }
 }

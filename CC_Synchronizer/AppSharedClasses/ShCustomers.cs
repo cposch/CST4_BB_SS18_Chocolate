@@ -15,16 +15,14 @@ namespace AppSharedClasses
         public string Email { get; set; }
         public string PhoneNumber1 { get; set; }
         public string PhoneNumber2 { get; set; }
-        public string Url { get; set; }
         public int? CreditLimit { get; set; }
-        public string Tags { get; set; }
         public int? BackendID { get; set; }
         public int? FrontEndID { get; set; }
-        public DateTime Lastmodified { get; set; }
+        public DateTime? Lastmodified { get; set; }
 
         public ShCustomers() { }
 
-        public ShCustomers(int? customer_ID, string firstName, string lastName, string streetAdress1, string streetAdress2, string city, string state, string postalCode, string email, string phoneNumber1, string phoneNumber2, string url, int? creditLimit, string tags, int? backendID, int? frontEndID, DateTime lastmodified)
+        public ShCustomers(int? customer_ID, string firstName, string lastName, string streetAdress1, string streetAdress2, string city, string state, string postalCode, string email, string phoneNumber1, string phoneNumber2, int? creditLimit, int? backendID, int? frontEndID, DateTime? lastmodified)
         {
             Customer_ID = customer_ID;
             FirstName = firstName;
@@ -37,15 +35,13 @@ namespace AppSharedClasses
             Email = email;
             PhoneNumber1 = phoneNumber1;
             PhoneNumber2 = phoneNumber2;
-            Url = url;
             CreditLimit = creditLimit;
-            Tags = tags;
             BackendID = backendID;
             FrontEndID = frontEndID;
             Lastmodified = lastmodified;
         }
 
-        public ShCustomers(string firstName, string lastName, string streetAdress1, string streetAdress2, string city, string state, string postalCode, string email, string phoneNumber1, string phoneNumber2, string url, int? creditLimit, string tags, int? backendID, int? frontEndID, DateTime lastmodified)
+        public ShCustomers(string firstName, string lastName, string streetAdress1, string streetAdress2, string city, string state, string postalCode, string email, string phoneNumber1, string phoneNumber2, int? creditLimit, int? backendID, int? frontEndID, DateTime? lastmodified)
         {
             FirstName = firstName;
             LastName = lastName;
@@ -57,9 +53,7 @@ namespace AppSharedClasses
             Email = email;
             PhoneNumber1 = phoneNumber1;
             PhoneNumber2 = phoneNumber2;
-            Url = url;
             CreditLimit = creditLimit;
-            Tags = tags;
             BackendID = backendID;
             FrontEndID = frontEndID;
             Lastmodified = lastmodified;

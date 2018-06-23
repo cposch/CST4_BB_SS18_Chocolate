@@ -11,11 +11,11 @@ namespace AppSharedClasses
         public int? IngredientId { get; set; }
         public int? BackendID { get; set; }
         public int? FrontEndID { get; set; }
-        public DateTime Lastmodified { get; set; }
+        public DateTime? Lastmodified { get; set; }
 
         public ShRecipeIngredients() { }
 
-        public ShRecipeIngredients(int? id, int? recipeId, int quantity, float unitPrice, int? ingredientId, int? backendID, int? frontEndID, DateTime lastmodified)
+        public ShRecipeIngredients(int? id, int? recipeId, int quantity, float unitPrice, int? ingredientId, int? backendID, int? frontEndID, DateTime? lastmodified)
         {
             Id = id;
             RecipeId = recipeId;
@@ -27,7 +27,7 @@ namespace AppSharedClasses
             Lastmodified = lastmodified;
         }
 
-        public ShRecipeIngredients(int? recipeId, int quantity, float unitPrice, int? ingredientId, int? backendID, int? frontEndID, DateTime lastmodified)
+        public ShRecipeIngredients(int? recipeId, int quantity, float unitPrice, int? ingredientId, int? backendID, int? frontEndID, DateTime? lastmodified)
         {
             RecipeId = recipeId;
             Quantity = quantity;

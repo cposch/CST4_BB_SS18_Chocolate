@@ -8,11 +8,11 @@ namespace AppSharedClasses
         public int? ProductId { get; set; }
         public int? BackendID { get; set; }
         public int? FrontEndID { get; set; }
-        public DateTime Lastmodified { get; set; }
+        public DateTime? Lastmodified { get; set; }
 
         public ShRule() { }
 
-        public ShRule(int? id, int? productId, int? backendID, int? frontEndID, DateTime lastmodified)
+        public ShRule(int? id, int? productId, int? backendID, int? frontEndID, DateTime? lastmodified)
         {
             Id = id;
             ProductId = productId;
@@ -21,7 +21,7 @@ namespace AppSharedClasses
             Lastmodified = lastmodified;
         }
 
-        public ShRule(int? productId, int? backendID, int? frontEndID, DateTime lastmodified)
+        public ShRule(int? productId, int? backendID, int? frontEndID, DateTime? lastmodified)
         {
             ProductId = productId;
             BackendID = backendID;

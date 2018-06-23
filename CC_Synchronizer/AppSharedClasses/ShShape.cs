@@ -12,12 +12,12 @@ namespace AppSharedClasses
         public float Price { get; set; }
         public int? BackendID { get; set; }
         public int? FrontEndID { get; set; }
-        public DateTime Lastmodified { get; set; }
+        public DateTime? Lastmodified { get; set; }
         public string Filename { get; set; }
 
         public ShShape() { }
 
-        public ShShape(int? id, int? productId, string name, BitmapImage shapeImage, float price, int? backendID, int? frontEndID, DateTime lastmodified, string filename)
+        public ShShape(int? id, int? productId, string name, BitmapImage shapeImage, float price, int? backendID, int? frontEndID, DateTime? lastmodified, string filename)
         {
             Id = id;
             ProductId = productId;
@@ -30,7 +30,7 @@ namespace AppSharedClasses
             Filename = filename;
         }
 
-        public ShShape(int? productId, string name, BitmapImage shapeImage, float price, int? backendID, int? frontEndID, DateTime lastmodified, string filename)
+        public ShShape(int? productId, string name, BitmapImage shapeImage, float price, int? backendID, int? frontEndID, DateTime? lastmodified, string filename)
         {
             ProductId = productId;
             Name = name;

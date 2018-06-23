@@ -12,12 +12,12 @@ namespace AppSharedClasses
         public BitmapImage PackageImage { get; set; }
         public int? BackendID { get; set; }
         public int? FrontEndID { get; set; }
-        public DateTime Lastmodified { get; set; }
+        public DateTime? Lastmodified { get; set; }
         public string Filename { get; set; }
 
         public ShPackage() { }
 
-        public ShPackage(int? id, int? productId, string name, float price, BitmapImage packageImage, int? backendID, int? frontEndID, DateTime lastmodified, string filename)
+        public ShPackage(int? id, int? productId, string name, float price, BitmapImage packageImage, int? backendID, int? frontEndID, DateTime? lastmodified, string filename)
         {
             Id = id;
             ProductId = productId;
@@ -30,7 +30,7 @@ namespace AppSharedClasses
             Filename = filename;
         }
 
-        public ShPackage(int? productId, string name, float price, BitmapImage packageImage, int? backendID, int? frontEndID, DateTime lastmodified, string filename)
+        public ShPackage(int? productId, string name, float price, BitmapImage packageImage, int? backendID, int? frontEndID, DateTime? lastmodified, string filename)
         {
             ProductId = productId;
             Name = name;

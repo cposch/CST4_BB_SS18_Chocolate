@@ -6,26 +6,27 @@ using System.Threading.Tasks;
 using AppSharedClasses;
 using CC_Synchronizer.AppService.SyncDataModels;
 using BackendDataHandler;
+using SharedLibrary.Models;
 
 namespace CC_Synchronizer.AppService
 {
     public class ClientHandler
     {
         Socket socket;
-        Customers customers;
-        Ingredients ingredients;
-        Ingredient_Category ingredientCategory;
-        Order_Items orderItems;
-        Orders orders;
-        Packages packages;
-        Product_Info productInfo;
-        Recipe recipe;
-        Recipe_Ingredients recipeIngredients;
-        Rule rule;
-        Rule_Categories ruleCategories;
-        Shape shape;
+        Customers customers = new Customers();
+        Ingredients ingredients = new Ingredients();
+        Ingredient_Category ingredientCategory = new Ingredient_Category();
+        Order_Items orderItems = new Order_Items();
+        Orders orders = new Orders();
+        Packages packages = new Packages();
+        Product_Info productInfo = new Product_Info();
+        SyncDataModels.Recipe recipe = new SyncDataModels.Recipe();
+        Recipe_Ingredients recipeIngredients = new Recipe_Ingredients();
+        SyncDataModels.Rule rule = new SyncDataModels.Rule();
+        Rule_Categories ruleCategories = new Rule_Categories();
+        SyncDataModels.Shape shape = new SyncDataModels.Shape();
+        BackendDataHandling bdh = new BackendDataHandling();
         byte[] buffer = new byte[2];
-
 
         public ClientHandler(Socket socket)
         {
@@ -41,10 +42,15 @@ namespace CC_Synchronizer.AppService
             //Console.WriteLine("Table cleared");
             Recieve();
             //Console.WriteLine("Recieving finished");
-            //GetDbContent();
-            //Merge
+            InputDbContent();
+
+            ClearTableLists();
+            GetDbContent();
             SendBack();
-            //Recieve()
+            
+            //For IDs of new app entries
+            Recieve();
+            UpdateMID();
 
             Console.WriteLine("App Client connected from " + socket.RemoteEndPoint.ToString() + " synchronized");
             //socket.Close();
@@ -68,20 +74,6 @@ namespace CC_Synchronizer.AppService
 
         private void Recieve()
         {
-            #region Init AppSharedClasses & SyncXMLSerializer
-            customers = new Customers();
-            ingredients = new Ingredients();
-            ingredientCategory = new Ingredient_Category();
-            orderItems = new Order_Items();
-            orders = new Orders();
-            packages = new Packages();
-            productInfo = new Product_Info();
-            recipe = new Recipe();
-            recipeIngredients = new Recipe_Ingredients();
-            rule = new Rule();
-            ruleCategories = new Rule_Categories();
-            shape = new Shape();
-
             SyncXMLSerializer<ShCustomers> customerXmlSerializer = new SyncXMLSerializer<ShCustomers>();
             SyncXMLSerializer<ShIngredient> ingredientXmlSerializer = new SyncXMLSerializer<ShIngredient>();
             SyncXMLSerializer<ShIngredientCategory> ingredientCategoryXmlSerializer = new SyncXMLSerializer<ShIngredientCategory>();
@@ -94,7 +86,6 @@ namespace CC_Synchronizer.AppService
             SyncXMLSerializer<ShRule> ruleXmlSerializer = new SyncXMLSerializer<ShRule>();
             SyncXMLSerializer<ShRuleCategories> ruleCategoryXmlSerializer = new SyncXMLSerializer<ShRuleCategories>();
             SyncXMLSerializer<ShShape> shapeXmlSerializer = new SyncXMLSerializer<ShShape>();
-            #endregion
 
             int length = 0;
             string recievedString = "";
@@ -168,11 +159,368 @@ namespace CC_Synchronizer.AppService
             }
         }
 
-        //private void GetDbContent()
-        //{
-        //    BackendDataHandling bdh = new BackendDataHandling();
+        private void InputDbContent()
+        {
+            Customer cust;
+            Ingredient ingr;
+            IngredientCategory ic;
+            Order order;
+            OrderItem oi;
+            Product prod;
+            SharedLibrary.Models.Recipe rec;
+            Package pack;
+            ReciepeIngredients ri;
+            SharedLibrary.Models.Rule rule;
+            RuleCategory rc;
+            SharedLibrary.Models.Shape shape;
 
-        //}
+            if (productInfo.TableList.Count > 0)
+            {
+                foreach (var item in productInfo.TableList)
+                {
+                    prod = new Product();
+
+                    if (item.BackendID == null)
+                    {
+                        //Create Product_ID?
+
+                        if (item.ProduktID != null)
+                            prod.Manufaturer_ID = item.ProduktID;
+
+                        prod.Product_Name = item.Name;
+                        prod.Product_Description = item.Description;
+                        prod.Category = item.Category;
+                        prod.Product_Avail = item.Availability;
+                        prod.List_Price = (decimal?)item.ListPrice;
+
+                        if (item.SalePrice != null)
+                            prod.Sale_Price = (decimal?)item.SalePrice;
+
+                        if (item.SaleBegin != null)
+                            prod.Sale_Begin = item.SaleBegin;
+
+                        if (item.SaleEnd != null)
+                            prod.Sale_End = item.SaleEnd;
+
+                        prod.Filename = item.Filename;
+
+                        if (item.FrontEndID != null)
+                            prod.Frontend_ID = item.FrontEndID;
+
+                        bdh.AddProduct(prod);
+                    }
+                    else
+                    {
+                        prod.Product_ID = (decimal)item.BackendID;
+
+                        if (item.ProduktID != null)
+                            prod.Manufaturer_ID = item.ProduktID;
+
+                        prod.Product_Name = item.Name;
+                        prod.Product_Description = item.Description;
+                        prod.Category = item.Category;
+                        prod.Product_Avail = item.Availability;
+                        prod.List_Price = (decimal?)item.ListPrice;
+
+                        if (item.SalePrice != null)
+                            prod.Sale_Price = (decimal?)item.SalePrice;
+
+                        if (item.SaleBegin != null)
+                            prod.Sale_Begin = item.SaleBegin;
+
+                        if (item.SaleEnd != null)
+                            prod.Sale_End = item.SaleEnd;
+
+                        prod.Filename = item.Filename;
+
+                        if (item.FrontEndID != null)
+                            prod.Frontend_ID = item.FrontEndID;
+
+                        bdh.UpdateProduct(prod, "MANUFACTURER");
+                    }
+                }
+            }
+
+            if (customers.TableList.Count > 0)
+            {
+                foreach (var item in customers.TableList)
+                {
+                    cust = new Customer();
+
+                    if (item.BackendID == null)
+                    {
+                        //Create Customer_ID
+
+                        cust.FirstName = item.FirstName;
+                        cust.LastName = item.LastName;
+                        cust.Address = item.StreetAdress1;
+                        cust.City = item.City;
+                        cust.State = item.State;
+                        cust.Zip = item.PostalCode;
+                        cust.Email = item.Email;
+                        cust.PhoneNumber = item.PhoneNumber1;
+                        //cust.Url = "";
+
+                        if (item.CreditLimit != null)
+                            cust.CreditLimit = item.CreditLimit;
+
+                        //cust.Tags = "";
+
+                        if (item.Lastmodified != null)
+                            cust.Last_Updated = item.Lastmodified;
+
+                        if (item.Customer_ID != null)
+                            cust.Manufaturer_ID = item.Customer_ID;
+
+                        if (item.FrontEndID != null)
+                            cust.Frontend_ID = item.FrontEndID;
+
+                        bdh.AddCustomer(cust);
+                    }
+                    else
+                    {
+                        cust.CustomerId = (decimal)item.BackendID;
+                        cust.FirstName = item.FirstName;
+                        cust.LastName = item.LastName;
+                        cust.Address = item.StreetAdress1;
+                        cust.City = item.City;
+                        cust.State = item.State;
+                        cust.Zip = item.PostalCode;
+                        cust.Email = item.Email;
+                        cust.PhoneNumber = item.PhoneNumber1;
+                        //cust.Url = "";
+
+                        if (item.CreditLimit != null)
+                            cust.CreditLimit = item.CreditLimit;
+
+                        //cust.Tags = "";
+
+                        if (item.Lastmodified != null)
+                            cust.Last_Updated = item.Lastmodified;
+
+                        if (item.Customer_ID != null)
+                            cust.Manufaturer_ID = item.Customer_ID;
+
+                        if (item.FrontEndID != null)
+                            cust.Frontend_ID = item.FrontEndID;
+
+                        bdh.UpdateCustomer(cust, "MANUFACTURER");
+                    }
+                }
+            }
+
+            if (ingredientCategory.TableList.Count > 0)
+            {
+                foreach (var item in ingredientCategory.TableList)
+                {
+                    ic = new IngredientCategory();
+
+                    if (item.BackendID == null)
+                    {
+                        //Create ICID
+
+                        ic.Name = item.Name;
+
+                        if (item.Id != null)
+                            ic.ManufacturerID = item.Id;
+
+                        if (item.FrontEndID != null)
+                            ic.FrontendID = item.FrontEndID;
+
+                        bdh.AddIngredientCategory(ic);
+                    }
+                    else
+                    {
+                        ic.ICID = (decimal)item.BackendID;
+                        ic.Name = item.Name;
+
+                        if (item.Id != null)
+                            ic.ManufacturerID = item.Id;
+
+                        if (item.FrontEndID != null)
+                            ic.FrontendID = item.FrontEndID;
+
+                        bdh.UpdateIngredientsCategory(ic);
+                    }
+                }
+            }
+
+            if (ingredients.TableList.Count > 0)
+            {
+                foreach (var item in ingredients.TableList)
+                {
+                    ingr = new Ingredient();
+
+                    if (item.BackendID == null)
+                    {
+                        //Create IID
+
+                        ingr.Price = (decimal)item.Price;
+                        //ingr.Filename = "";
+                        //ingr.MIMETYPE = "";
+                        //ingr.Ingredient_Image = null;
+                        ingr.Description = item.Description;
+                        ingr.Location_Top = item.LocationTop;
+                        ingr.Location_Bottom = item.LocationBottom;
+                        ingr.Location_Choc = item.LocationChoc;
+                        ingr.Name = item.Name;
+                        ingr.Quantity = item.Quantity;
+                        ingr.CategoryId = bdh.GetIngredientCategoryBID(item.CategoryId);
+
+                        if (item.Id != null)
+                            ingr.ManufacturerID = item.Id;
+
+                        if (item.FrontEndID != null)
+                            ingr.FrontendID = item.FrontEndID;
+
+                        bdh.AddIngredient(ingr);
+                    }
+                    else
+                    {
+                        ingr.IID = (decimal)item.BackendID;
+                        ingr.Price = (decimal)item.Price;
+                        //ingr.Filename = "";
+                        //ingr.MIMETYPE = "";
+                        //ingr.Ingredient_Image = null;
+                        ingr.Description = item.Description;
+                        ingr.Location_Top = item.LocationTop;
+                        ingr.Location_Bottom = item.LocationBottom;
+                        ingr.Location_Choc = item.LocationChoc;
+                        ingr.Name = item.Name;
+                        ingr.Quantity = item.Quantity;
+                        ingr.CategoryId = bdh.GetIngredientCategoryBID(item.CategoryId);
+
+                        if (item.Id != null)
+                            ingr.ManufacturerID = item.Id;
+
+                        if (item.FrontEndID != null)
+                            ingr.FrontendID = item.FrontEndID;
+
+                        bdh.UpdateIngredients(ingr);
+                    }
+                }
+            }
+
+            if (orders.TableList.Count > 0)
+            {
+                foreach (var item in orders.TableList)
+                {
+                    order = new Order();
+
+                    if (item.BackendID==null)
+                    {
+                        //Create Order_ID
+
+                        order.CustomerID = bdh.GetOrderBID(item.CustomerID);
+                        order.OrderTotal = (decimal?)item.OrderTotal;
+                        order.OrderTimeStamp = item.OrderTimeStamp;
+                        order.UserName = item.UserName;
+
+                        if (item.OrdersID != null)
+                            order.Manufaturer_ID = item.OrdersID;
+
+                        if (item.FrontEndID != null)
+                            order.Frontend_ID = item.FrontEndID;
+
+                        bdh.AddOrder(order);
+                    }
+                    else
+                    {
+                        //ToDo: UpdateOrder?
+                    }
+                }
+            }
+
+            if(orderItems.TableList.Count>0)
+            {
+                foreach (var item in orderItems.TableList)
+                {
+                    oi = new OrderItem();
+                    if(item.BackendID==null)
+                    {
+                        //Create Order_Item_ID
+                        oi.OrderID = bdh.GetOrderBID(item.OrderID);
+                        oi.ProductID = bdh.GetProductBID(item.ProductID);
+                        oi.UnitPrice = (decimal)item.UnitPrice;
+                        oi.Quantity = (int)item.Quantity;
+
+                        if (item.OrderID != null)
+                            oi.ManufacturerID = item.OrderID;
+
+                        if (item.FrontEndID != null)
+                            oi.FrontEndID = item.FrontEndID;
+
+                        bdh.AddOrderItem(oi);
+                    }
+                    else
+                    {
+                        //ToDo: UpdateOrderItem?
+                    }
+                }
+            }
+
+            if (recipe.TableList.Count>0)
+            {
+                foreach (var item in recipe.TableList)
+                {
+                    rec = new SharedLibrary.Models.Recipe();
+                    if(item.BackendID==null)
+                    {
+                        //Create ID
+                        rec.ProductID = bdh.GetProductBID(item.ProductId);
+                        rec.Description = item.Description;
+
+                        if (item.Id != null)
+                            rec.ManufacturerID = item.Id;
+
+                        if (item.FrontEndID != null)
+                            rec.FrontendID = item.FrontEndID;
+
+                        bdh.AddRecipe(rec);
+                    }
+                    else
+                    {
+                        rec.RID = (decimal)item.BackendID;
+                        rec.ProductID = bdh.GetProductBID(item.ProductId);
+                        rec.Description = item.Description;
+
+                        if (item.Id != null)
+                            rec.ManufacturerID = item.Id;
+
+                        if (item.FrontEndID != null)
+                            rec.FrontendID = item.FrontEndID;
+
+                        bdh.UpdateRecipe(rec, "MANUFACTURER");
+                    }
+                }
+            }
+        }
+
+        private void GetDbContent()
+        {
+            foreach (var i in bdh.QueryAllProductsByLastUpdatedForManufacturer())
+            {
+                productInfo.Add(new ShProductInfo((int?)i.Manufaturer_ID, i.Product_Name, i.Product_Description, i.Category, i.Product_Avail, (float)i.List_Price, (float?)i.Sale_Price, i.Sale_Begin, i.Sale_End, null, (int?)i.Product_ID, (int?)i.Frontend_ID, null, i.Filename));
+            }
+
+            foreach (var i in bdh.QueryAllCustomersByLastUpdatedForManufacturer())
+            {
+                customers.Add(new ShCustomers((int?)i.Manufaturer_ID, i.FirstName, i.LastName, i.Address, "", i.City, i.State, i.Zip, i.Email, i.PhoneNumber, "", (int?)i.CreditLimit, (int?)i.CustomerId, (int?)i.Frontend_ID, null));
+            }
+        }
+
+        private void UpdateMID()
+        {
+            foreach (var item in productInfo.TableList)
+            {
+                bdh.UpdateProductMID((decimal)item.BackendID, item.ProduktID, "MANUFACTURER");
+            }
+            
+            foreach (var item in customers.TableList)
+            {
+                bdh.UpdateCustomerMID((decimal)item.BackendID, item.Customer_ID, "MANUFACTURER");
+            }
+        }
 
         private void SendBack()
         {
