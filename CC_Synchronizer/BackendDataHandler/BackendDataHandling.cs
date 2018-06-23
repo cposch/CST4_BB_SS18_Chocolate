@@ -310,6 +310,47 @@ namespace BackendDataHandler
                 Last_Updated_By = w.LAST_UPDATED_BY
             }).ToList();
         }
+
+        public List<Order> QueryAllOrdersByLastUpdatedForManufacturer()
+        {
+            var date = (from p in db.LAST_SYNCHED
+                        where p.ID == 4
+                        select p.MANUFACTURER_LAST_SYNCHED).FirstOrDefault();
+            UpdateOrdersManufacturerLastSynchedDate();
+
+            return db.DEMO_ORDERS.Where(w => !w.MANUFACTURER_ID.Equals(null) && date < w.LAST_MODIFIED_DATE && !w.LAST_UPDATED_BY.Equals("MANUFACTURER")).Select(w => new Order()
+            {
+                OrderId = w.ORDER_ID,
+                CustomerID = w.CUSTOMER_ID,
+                OrderTotal = w.ORDER_TOTAL,
+                OrderTimeStamp = w.ORDER_TIMESTAMP,
+                UserName = w.USER_NAME,
+                Tags = w.TAGS,
+                Frontend_ID = w.FRONTEND_ID,
+                Manufaturer_ID = w.MANUFACTURER_ID
+
+            }).ToList();
+        }
+
+        public List<OrderItem> QueryAllOrderItmesByOrderAndLastUpdatedForManufacturer(decimal? oid)
+        {
+            var date = (from p in db.LAST_SYNCHED
+                        where p.ID == 5
+                        select p.MANUFACTURER_LAST_SYNCHED).FirstOrDefault();
+            UpdateOrderItemsManufacturerLastSynchedDate();
+
+            return db.DEMO_ORDER_ITEMS.Where(w => w.ORDER_ID.Equals(oid) && !w.MANUFACTURER_ID.Equals(null) && date < w.LAST_MODIFIED_DATE && !w.LAST_UPDATED_BY.Equals("MANUFACTURER")).Select(w => new OrderItem()
+            {
+                OrderItemID = w.ORDER_ITEM_ID,
+                OrderID = w.ORDER_ID,
+                ProductID = w.PRODUCT_ID,
+                UnitPrice = w.UNIT_PRICE,
+                Quantity = w.QUANTITY,
+                ManufacturerID = w.MANUFACTURER_ID,
+                FrontEndID = w.FRONTEND_ID
+            }).ToList();
+        }
+
         public List<Customer> QueryAllCustomerbyFID(decimal? FID)
         {
             return db.DEMO_CUSTOMERS.Where(w => w.FRONTEND_ID.Equals(FID)).Select(w => new Customer()
@@ -433,9 +474,8 @@ namespace BackendDataHandler
                 Quantity = w.QUANTITY,
                 ManufacturerID = w.MANUFACTURER_ID,
                 FrontEndID = w.FRONTEND_ID
-        }).ToList();
-
-    }
+            }).ToList();
+        }
 
         public List<Recipe> QueryAllRecipe()
         {
