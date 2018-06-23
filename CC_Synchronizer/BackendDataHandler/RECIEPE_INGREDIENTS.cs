@@ -21,6 +21,8 @@ namespace BackendDataHandler
         public decimal INGREDIENT_ID { get; set; }
         public Nullable<decimal> FRONTEND_ID { get; set; }
         public Nullable<decimal> MANUFACTURER_ID { get; set; }
+        public string LAST_UPDATED_BY { get; set; }
+        public Nullable<System.DateTime> LAST_MODIFIED_DATE { get; set; }
     
         public virtual INGREDIENT INGREDIENT { get; set; }
         public virtual RECIEPE RECIEPE { get; set; }

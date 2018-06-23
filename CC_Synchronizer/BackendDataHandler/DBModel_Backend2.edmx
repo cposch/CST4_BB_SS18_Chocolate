@@ -46,6 +46,8 @@
           <Property Name="QUANTITY" Type="number" Precision="8" Scale="0" Nullable="false" />
           <Property Name="FRONTEND_ID" Type="number" Precision="38" Scale="0" />
           <Property Name="MANUFACTURER_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="LAST_UPDATED_BY" Type="varchar2" MaxLength="50" />
+          <Property Name="LAST_MODIFIED_DATE" Type="timestamp with local time zone" Precision="6" />
         </EntityType>
         <EntityType Name="DEMO_ORDERS">
           <Key>
@@ -61,6 +63,8 @@
           <Property Name="FRONTEND_ID" Type="number" Precision="38" Scale="0" />
           <Property Name="MANUFACTURER_ID" Type="number" Precision="38" Scale="0" />
           <Property Name="DELIVERY_DATE" Type="date" />
+          <Property Name="LAST_UPDATED_BY" Type="varchar2" MaxLength="50" />
+          <Property Name="LAST_MODIFIED_DATE" Type="timestamp with local time zone" Precision="6" />
         </EntityType>
         <EntityType Name="DEMO_PRODUCT_INFO">
           <Key>
@@ -221,6 +225,8 @@
           <Property Name="INGREDIENT_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="FRONTEND_ID" Type="number" Precision="38" Scale="0" />
           <Property Name="MANUFACTURER_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="LAST_UPDATED_BY" Type="varchar2" MaxLength="50" />
+          <Property Name="LAST_MODIFIED_DATE" Type="timestamp with local time zone" Precision="6" />
         </EntityType>
         <EntityType Name="RULE">
           <Key>
@@ -576,6 +582,8 @@
           <Property Name="DELIVERY_DATE" Type="DateTime" />
           <NavigationProperty Name="DEMO_CUSTOMERS" Relationship="Self.DEMO_ORDERS_CUSTOMER_ID_FK" FromRole="DEMO_ORDERS" ToRole="DEMO_CUSTOMERS" />
           <NavigationProperty Name="DEMO_ORDER_ITEMS" Relationship="DBModel2.DEMO_ORDER_ITEMS_FK" FromRole="DEMO_ORDERS" ToRole="DEMO_ORDER_ITEMS" />
+          <Property Name="LAST_UPDATED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LAST_MODIFIED_DATE" Type="DateTime" Precision="255" />
         </EntityType>
         <EntityType Name="DEMO_PRODUCT_INFO">
           <Key>
@@ -745,6 +753,8 @@
           <Property Name="MANUFACTURER_ID" Type="Decimal" Precision="38" Scale="0" />
           <NavigationProperty Name="INGREDIENT" Relationship="Self.INGREDIENT_TO_RECIEPE_FK" FromRole="RECIEPE_INGREDIENTS" ToRole="INGREDIENT" />
           <NavigationProperty Name="RECIEPE" Relationship="Self.RECIEPE_TO_INGREDIENTS_FK" FromRole="RECIEPE_INGREDIENTS" ToRole="RECIEPE" />
+          <Property Name="LAST_UPDATED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LAST_MODIFIED_DATE" Type="DateTime" Precision="255" />
         </EntityType>
         <EntityType Name="RULE">
           <Key>
@@ -1037,6 +1047,8 @@
           <Property Name="MANUFACTURER_ID" Type="Decimal" Precision="38" Scale="0" />
           <NavigationProperty Name="DEMO_ORDERS" Relationship="DBModel2.DEMO_ORDER_ITEMS_FK" FromRole="DEMO_ORDER_ITEMS" ToRole="DEMO_ORDERS" />
           <NavigationProperty Name="DEMO_PRODUCT_INFO" Relationship="DBModel2.DEMO_ORDER_ITEMS_PRODUCT_ID_FK" FromRole="DEMO_ORDER_ITEMS" ToRole="DEMO_PRODUCT_INFO" />
+          <Property Name="LAST_UPDATED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LAST_MODIFIED_DATE" Type="DateTime" Precision="255" />
         </EntityType>
         <Association Name="DEMO_ORDER_ITEMS_FK">
           <End Type="DBModel2.DEMO_ORDERS" Role="DEMO_ORDERS" Multiplicity="1">
@@ -1116,6 +1128,8 @@
           <EntitySetMapping Name="DEMO_ORDERS">
             <EntityTypeMapping TypeName="DBModel2.DEMO_ORDERS">
               <MappingFragment StoreEntitySet="DEMO_ORDERS">
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+                <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
                 <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
                 <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
                 <ScalarProperty Name="ORDER_TOTAL" ColumnName="ORDER_TOTAL" />
@@ -1280,6 +1294,8 @@
           <EntitySetMapping Name="RECIEPE_INGREDIENTS">
             <EntityTypeMapping TypeName="DBModel2.RECIEPE_INGREDIENTS">
               <MappingFragment StoreEntitySet="RECIEPE_INGREDIENTS">
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+                <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="RECIEPE_ID" ColumnName="RECIEPE_ID" />
                 <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
@@ -1330,6 +1346,8 @@
           <EntitySetMapping Name="DEMO_ORDER_ITEMS">
             <EntityTypeMapping TypeName="DBModel2.DEMO_ORDER_ITEMS">
               <MappingFragment StoreEntitySet="DEMO_ORDER_ITEMS">
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+                <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
                 <ScalarProperty Name="MANUFACTURER_ID" ColumnName="MANUFACTURER_ID" />
                 <ScalarProperty Name="FRONTEND_ID" ColumnName="FRONTEND_ID" />
                 <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
