@@ -590,6 +590,24 @@ namespace BackendDataHandler
                 ManufacturerID = W.MANUFACTURER_ID
             }).FirstOrDefault();
         }
+
+        public List<ReciepeIngredients> GetIngredientsByRecipeID(decimal rid)
+        {
+            return db.RECIEPE_INGREDIENTS.Where(w => w.RECIEPE_ID.Equals(rid)).Select(W => new ReciepeIngredients()
+            {
+                RIID = W.ID,
+                ReciepeID = W.RECIEPE_ID,
+                Quantity = W.QUANTITY,
+                UnitPrice = W.UNIT_PRICE,
+                IngredientID = W.INGREDIENT_ID,
+                FrontendID = W.FRONTEND_ID,
+                ManufacturerID = W.MANUFACTURER_ID,
+                Last_Updated = W.LAST_MODIFIED_DATE,
+                Last_Updated_By = W.LAST_UPDATED_BY
+            }).ToList();
+        }
+
+
         //QueryManufacturer
         public decimal GetCustomerBID(decimal? MID)
         {
@@ -854,6 +872,27 @@ namespace BackendDataHandler
             }
         }
 
+
+        public Boolean UpdateIngredientsCategory(IngredientCategory IC)//IngredientCategory Object
+        {
+
+            INGREDIENT_CATEGORY result = (from p in db.INGREDIENT_CATEGORY
+                                 where p.ID == IC.ICID
+                                 select p).SingleOrDefault();
+            result.NAME = IC.Name;
+            result.FRONTEND_ID = IC.FrontendID;
+            result.MANUFACTURER_ID = IC.ManufacturerID;
+            try
+            {
+                db.SaveChanges();
+                return true;
+            }
+
+            catch (DbUpdateException ex)
+            {
+                return false;
+            }
+        }
 
 
         //Update LastSynched
