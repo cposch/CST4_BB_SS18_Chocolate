@@ -99,6 +99,7 @@ namespace BackendDataHandler
             rt.MANUFACTURER_ID = r.ManufacturerID;
             rt.LAST_UPDATED_BY = r.Last_Updated_By;
             rt.LAST_MODIFIED_DATE = r.Last_Updated;
+            db.RECIEPE.Add(rt);
             db.SaveChanges();
         }
 
@@ -121,7 +122,20 @@ namespace BackendDataHandler
             it.IMAGE_LAST_UPDATE = I.Image_Last_Update;
             it.FRONTEND_ID = I.FrontendID;
             it.MANUFACTURER_ID = I.ManufacturerID;
+            db.INGREDIENT.Add(it);
             db.SaveChanges();
+        }
+
+        public void AddIngredientCategory (IngredientCategory IC)
+        {
+            INGREDIENT_CATEGORY ict = new INGREDIENT_CATEGORY();
+            ict.ID = IC.ICID;
+            ict.NAME = IC.Name;
+            ict.FRONTEND_ID = IC.FrontendID;
+            ict.MANUFACTURER_ID = IC.ManufacturerID;
+            db.INGREDIENT_CATEGORY.Add(ict);
+            db.SaveChanges();
+
         }
 
 
@@ -576,8 +590,55 @@ namespace BackendDataHandler
                 ManufacturerID = W.MANUFACTURER_ID
             }).FirstOrDefault();
         }
+        //QueryManufacturer
+        public decimal GetCustomerBID(decimal? MID)
+        {
+            Customer Cust = new Customer();
+            Cust.CustomerId = db.DEMO_CUSTOMERS.First(A => A.MANUFACTURER_ID == MID).CUSTOMER_ID;
+            return Cust.CustomerId;
+        }
 
+        public decimal GetProductBID(decimal? MID)
+        {
+            Product Prod = new Product();
+            Prod.Product_ID = db.DEMO_PRODUCT_INFO.First(A => A.MANUFACTURER_ID == MID).PRODUCT_ID;
+            return Prod.Product_ID;
+        }
 
+        public decimal GetOrderBID (decimal? MID)
+        {
+            Order Ord = new Order();
+            Ord.OrderId = db.DEMO_ORDERS.First(A => A.MANUFACTURER_ID == MID).ORDER_ID;
+            return Ord.OrderId;
+        }
+
+        public decimal GetRecipeBID (decimal? MID)
+        {
+            Recipe Rec = new Recipe();
+            Rec.RID = db.RECIEPE.First(A => A.MANUFACTURER_ID == MID).ID;
+            return Rec.RID;
+        }
+
+        public decimal GetRecipeIngredientBID (decimal? MID)
+        {
+            ReciepeIngredients RecI = new ReciepeIngredients();
+            RecI.RIID = db.RECIEPE_INGREDIENTS.First(A => A.MANUFACTURER_ID == MID).ID;
+            return RecI.RIID;
+        }
+
+        public decimal GetIngredientBID (decimal? MID)
+        {
+            Ingredient Ing = new Ingredient();
+            Ing.IID = db.INGREDIENT.First(A => A.MANUFACTURER_ID == MID).ID;
+            return Ing.IID;
+        }
+
+        public decimal GetIngredientCategoryBID (decimal? MID)
+        {
+            IngredientCategory IngC = new IngredientCategory();
+            IngC.ICID = db.INGREDIENT_CATEGORY.First(A => A.MANUFACTURER_ID == MID).ID;
+            return IngC.ICID;
+        }
         //updates -----------------------------------------------
 
         //Product Update -------------------------------------------------------------
