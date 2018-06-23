@@ -19,7 +19,7 @@ namespace SharedLibrary.Models
         public string Location_Choc { get; set; }
         public decimal CategoryId { get; set; }
         public string Name { get; set; }
-        public decimal Quantity { get; set; }
+        public int? Quantity { get; set; }
         public DateTime? Image_Last_Update { get; set; }
         public decimal? FrontendID { get; set; }
         public decimal? ManufacturerID { get; set; }
@@ -28,7 +28,7 @@ namespace SharedLibrary.Models
         {
         }
 
-        public Ingredient(decimal iID, decimal price, string filename, string mIMETYPE, byte[] ingredient_Image, string description, string location_Top, string location_Bottom, string location_Choc, decimal categoryId, string name, decimal quantity, DateTime? image_Last_Update, decimal? frontendID, decimal? manufacturerID)
+        public Ingredient(decimal iID, decimal price, string filename, string mIMETYPE, byte[] ingredient_Image, string description, string location_Top, string location_Bottom, string location_Choc, decimal categoryId, string name, int? quantity, DateTime? image_Last_Update, decimal? frontendID, decimal? manufacturerID)
         {
             IID = iID;
             Price = price;

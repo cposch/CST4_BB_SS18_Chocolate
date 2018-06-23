@@ -103,6 +103,28 @@ namespace BackendDataHandler
         }
 
 
+        public void AddIngredient (Ingredient I)
+        {
+            INGREDIENT it = new INGREDIENT();
+            it.ID = I.IID;
+            it.PRICE = I.Price;
+            it.FILENAME = I.Filename;
+            it.MIMETYPE = I.MIMETYPE;
+            it.INGREDIENT_IMAGE = I.Ingredient_Image;
+            it.DESCRIPTION = I.Description;
+            it.LOCATION_TOP = I.Location_Top;
+            it.LOCATION_BOTTOM = I.Location_Bottom;
+            it.LOCATION_CHOC = I.Location_Choc;
+            it.CATEGORY_ID = I.CategoryId;
+            it.NAME = I.Name;
+            it.QUANTITY = I.Quantity;
+            it.IMAGE_LAST_UPDATE = I.Image_Last_Update;
+            it.FRONTEND_ID = I.FrontendID;
+            it.MANUFACTURER_ID = I.ManufacturerID;
+            db.SaveChanges();
+        }
+
+
         //QueryALL -------------------------------------------------------------
 
         public List<Product> QueryAllProducts()
@@ -181,7 +203,7 @@ namespace BackendDataHandler
             }).ToList();
         }
 
-        public List<Product> QueryAllProductsByLastUpdatedForFrontend()
+        public List<Product> QueryAllProductsbyLastUpdatedByFrontend()
         {
             var date = (from p in db.LAST_SYNCHED
                         where p.ID == 1
@@ -211,33 +233,7 @@ namespace BackendDataHandler
             }).ToList();
         }
 
-        public List<Customer> QueryAllCustomersByLastUpdatedForFrontend()
-        {
-            var date = (from p in db.LAST_SYNCHED
-                        where p.ID == 2
-                        select p.FRONTEND_LAST_SYNCHED).FirstOrDefault();
-            UpdateProductsFrontendLastSynchedDate();
-            return db.DEMO_CUSTOMERS.Where(w => !w.FRONTEND_ID.Equals(null) && date < w.LAST_MODIFIED_DATE && !w.LAST_UPDATED_BY.Equals("FRONTEND")).Select(w => new Customer()
-            {
-
-                CustomerId = w.CUSTOMER_ID,
-                FirstName = w.CUST_FIRST_NAME,
-                LastName = w.CUST_LAST_NAME,
-                Address = w.CUST_STREET_ADDRESS1,
-                City = w.CUST_CITY,
-                State = w.CUST_STATE,
-                Zip = w.CUST_POSTAL_CODE,
-                Email = w.CUST_EMAIL,
-                PhoneNumber = w.PHONE_NUMBER1,
-                Url = w.URL,
-                CreditLimit = w.CREDIT_LIMIT,
-                Tags = w.TAGS,
-                Last_Updated = w.LAST_MODIFIED_DATE,
-                Last_Updated_By = w.LAST_UPDATED_BY
-            }).ToList();
-        }
-
-        public List<Product> QueryAllProductsByLastUpdatedForManufacturer()
+        public List<Product> QueryAllProductsbyLastUpdatedByManufacturer()
         {
             var date = (from p in db.LAST_SYNCHED
                         where p.ID == 1
@@ -261,32 +257,6 @@ namespace BackendDataHandler
                 Sale_End = w.SALE_END,
                 Frontend_ID = w.FRONTEND_ID,
                 Manufaturer_ID = w.MANUFACTURER_ID,
-                Last_Updated = w.LAST_MODIFIED_DATE,
-                Last_Updated_By = w.LAST_UPDATED_BY
-            }).ToList();
-        }
-
-        public List<Customer> QueryAllCustomersByLastUpdatedForManufacturer()
-        {
-            var date = (from p in db.LAST_SYNCHED
-                        where p.ID == 2
-                        select p.MANUFACTURER_LAST_SYNCHED).FirstOrDefault();
-            UpdateProductsManufacturerLastSynchedDate();
-            return db.DEMO_CUSTOMERS.Where(w => !w.MANUFACTURER_ID.Equals(null) && date < w.LAST_MODIFIED_DATE && !w.LAST_UPDATED_BY.Equals("MANUFACTURER")).Select(w => new Customer()
-            {
-
-                CustomerId = w.CUSTOMER_ID,
-                FirstName = w.CUST_FIRST_NAME,
-                LastName = w.CUST_LAST_NAME,
-                Address = w.CUST_STREET_ADDRESS1,
-                City = w.CUST_CITY,
-                State = w.CUST_STATE,
-                Zip = w.CUST_POSTAL_CODE,
-                Email = w.CUST_EMAIL,
-                PhoneNumber = w.PHONE_NUMBER1,
-                Url = w.URL,
-                CreditLimit = w.CREDIT_LIMIT,
-                Tags = w.TAGS,
                 Last_Updated = w.LAST_MODIFIED_DATE,
                 Last_Updated_By = w.LAST_UPDATED_BY
             }).ToList();
@@ -474,6 +444,51 @@ namespace BackendDataHandler
             }).ToList();
         }
 
+        public List<Ingredient> QueryAllIngredients()
+        {
+            return db.INGREDIENT.Select(W => new Ingredient()
+            {
+                IID = W.ID,
+                Price = W.PRICE,
+                Filename = W.FILENAME,
+                MIMETYPE = W.MIMETYPE,
+                Ingredient_Image = W.INGREDIENT_IMAGE,
+                Description = W.DESCRIPTION,
+                Location_Top = W.LOCATION_TOP,
+                Location_Bottom = W.LOCATION_TOP,
+                Location_Choc = W.LOCATION_CHOC,
+                CategoryId = W.CATEGORY_ID,
+                Name = W.NAME,
+                Quantity = W.QUANTITY,
+                Image_Last_Update = W.IMAGE_LAST_UPDATE,
+                FrontendID = W.FRONTEND_ID,
+                ManufacturerID = W.MANUFACTURER_ID
+            }).ToList();
+        }
+
+        public Ingredient GetInredigent(decimal iid)
+        {
+            return db.INGREDIENT.Where(w => w.ID.Equals(iid)).Select(W => new Ingredient()
+            {
+                IID = W.ID,
+                Price = W.PRICE,
+                Filename = W.FILENAME,
+                MIMETYPE = W.MIMETYPE,
+                Ingredient_Image = W.INGREDIENT_IMAGE,
+                Description = W.DESCRIPTION,
+                Location_Top = W.LOCATION_TOP,
+                Location_Bottom = W.LOCATION_TOP,
+                Location_Choc = W.LOCATION_CHOC,
+                CategoryId = W.CATEGORY_ID,
+                Name = W.NAME,
+                Quantity = W.QUANTITY,
+                Image_Last_Update = W.IMAGE_LAST_UPDATE,
+                FrontendID = W.FRONTEND_ID,
+                ManufacturerID = W.MANUFACTURER_ID
+            }).FirstOrDefault();
+        }
+
+
         //updates -----------------------------------------------
 
         //Product Update -------------------------------------------------------------
@@ -654,6 +669,41 @@ namespace BackendDataHandler
                 return false;
             }
         }
+        //Update Ingredients
+
+        public Boolean UpdateIngredients(Ingredient I)//Ingredients Object, LastUpdateBy
+        {
+
+            INGREDIENT result = (from p in db.INGREDIENT
+                              where p.ID == I.IID
+                              select p).SingleOrDefault();
+
+            result.PRICE = I.Price;
+            result.FILENAME = I.Filename;
+            result.MIMETYPE = I.MIMETYPE;
+            result.INGREDIENT_IMAGE = I.Ingredient_Image;
+            result.DESCRIPTION = I.Description;
+            result.LOCATION_TOP = I.Location_Top;
+            result.LOCATION_BOTTOM = I.Location_Bottom;
+            result.LOCATION_CHOC = I.Location_Choc;
+            result.CATEGORY_ID = I.CategoryId;
+            result.NAME = I.Name;
+            result.QUANTITY = I.Quantity;
+            result.IMAGE_LAST_UPDATE = I.Image_Last_Update;
+            result.FRONTEND_ID = I.FrontendID;
+            result.MANUFACTURER_ID = I.ManufacturerID;
+            try
+            {
+                db.SaveChanges();
+                return true;
+            }
+
+            catch (DbUpdateException ex)
+            {
+                return false;
+            }
+        }
+
 
 
         //Update LastSynched
