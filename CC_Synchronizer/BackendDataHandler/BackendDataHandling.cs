@@ -203,7 +203,7 @@ namespace BackendDataHandler
             }).ToList();
         }
 
-        public List<Product> QueryAllProductsbyLastUpdatedByFrontend()
+        public List<Product> QueryAllProductsByLastUpdatedForFrontend()
         {
             var date = (from p in db.LAST_SYNCHED
                         where p.ID == 1
@@ -232,8 +232,32 @@ namespace BackendDataHandler
                 Last_Updated_By = w.LAST_UPDATED_BY
             }).ToList();
         }
+        public List<Customer> QueryAllCustomersByLastUpdatedForFrontend()
+        {
+            var date = (from p in db.LAST_SYNCHED
+                        where p.ID == 2
+                        select p.FRONTEND_LAST_SYNCHED).FirstOrDefault();
+            UpdateProductsFrontendLastSynchedDate();
+            return db.DEMO_CUSTOMERS.Where(w => !w.FRONTEND_ID.Equals(null) && date < w.LAST_MODIFIED_DATE && !w.LAST_UPDATED_BY.Equals("FRONTEND")).Select(w => new Customer()
+            {
+                CustomerId = w.CUSTOMER_ID,
+                FirstName = w.CUST_FIRST_NAME,
+                LastName = w.CUST_LAST_NAME,
+                Address = w.CUST_STREET_ADDRESS1,
+                City = w.CUST_CITY,
+                State = w.CUST_STATE,
+                Zip = w.CUST_POSTAL_CODE,
+                Email = w.CUST_EMAIL,
+                PhoneNumber = w.PHONE_NUMBER1,
+                Url = w.URL,
+                CreditLimit = w.CREDIT_LIMIT,
+                Tags = w.TAGS,
+                Last_Updated = w.LAST_MODIFIED_DATE,
+                Last_Updated_By = w.LAST_UPDATED_BY
+            }).ToList();
+        }
 
-        public List<Product> QueryAllProductsbyLastUpdatedByManufacturer()
+        public List<Product> QueryAllProductsByLastUpdatedForManufacturer()
         {
             var date = (from p in db.LAST_SYNCHED
                         where p.ID == 1
@@ -257,6 +281,31 @@ namespace BackendDataHandler
                 Sale_End = w.SALE_END,
                 Frontend_ID = w.FRONTEND_ID,
                 Manufaturer_ID = w.MANUFACTURER_ID,
+                Last_Updated = w.LAST_MODIFIED_DATE,
+                Last_Updated_By = w.LAST_UPDATED_BY
+            }).ToList();
+        }
+
+        public List<Customer> QueryAllCustomersByLastUpdatedForManufacturer()
+        {
+            var date = (from p in db.LAST_SYNCHED
+                        where p.ID == 2
+                        select p.MANUFACTURER_LAST_SYNCHED).FirstOrDefault();
+            UpdateProductsManufacturerLastSynchedDate();
+            return db.DEMO_CUSTOMERS.Where(w => !w.MANUFACTURER_ID.Equals(null) && date < w.LAST_MODIFIED_DATE && !w.LAST_UPDATED_BY.Equals("MANUFACTURER")).Select(w => new Customer()
+            {
+                CustomerId = w.CUSTOMER_ID,
+                FirstName = w.CUST_FIRST_NAME,
+                LastName = w.CUST_LAST_NAME,
+                Address = w.CUST_STREET_ADDRESS1,
+                City = w.CUST_CITY,
+                State = w.CUST_STATE,
+                Zip = w.CUST_POSTAL_CODE,
+                Email = w.CUST_EMAIL,
+                PhoneNumber = w.PHONE_NUMBER1,
+                Url = w.URL,
+                CreditLimit = w.CREDIT_LIMIT,
+                Tags = w.TAGS,
                 Last_Updated = w.LAST_MODIFIED_DATE,
                 Last_Updated_By = w.LAST_UPDATED_BY
             }).ToList();
