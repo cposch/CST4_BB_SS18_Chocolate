@@ -17,7 +17,7 @@ namespace BackendDataHandler
         public void AddProduct(Product p)
         {
             DEMO_PRODUCT_INFO pt = new DEMO_PRODUCT_INFO();
-            //pt.PRODUCT_ID = p.Product_ID;
+            pt.PRODUCT_ID = p.Product_ID;
             pt.PRODUCT_NAME = p.Product_Name;
             pt.PRODUCT_DESCRIPTION = p.Product_Description;
             pt.CATEGORY = p.Category;

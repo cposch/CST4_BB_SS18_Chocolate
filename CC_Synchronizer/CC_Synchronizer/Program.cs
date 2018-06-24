@@ -35,13 +35,13 @@ namespace CC_Synchronizer
             Console.WriteLine("Frontend Service Host startet");
             frontendServiceHost.Close();*/
 
-            // Frontend Host Variante 2
+            // Frontend Host Variante 2            
             WebServiceHost frontendServiceHost = new WebServiceHost(typeof(RestServiceImpl), new Uri("http://localhost:8000"));
             ServiceEndpoint ep = frontendServiceHost.AddServiceEndpoint(typeof(IRestServiceImpl), new WebHttpBinding(), "");
             ServiceDebugBehavior stp = frontendServiceHost.Description.Behaviors.Find<ServiceDebugBehavior>();
             stp.HttpHelpPageEnabled = false;
             frontendServiceHost.Open();
-            Console.WriteLine("Frontend Service is up and running");
+            Console.WriteLine("Frontend Service is up and running");            
             //Console.WriteLine("Please press enter to quit");
 
 
