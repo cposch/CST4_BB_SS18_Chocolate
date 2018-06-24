@@ -104,7 +104,7 @@ namespace BackendDataHandler
         }
 
 
-        public void AddIngredient (Ingredient I)
+        public void AddIngredient(Ingredient I)
         {
             INGREDIENT it = new INGREDIENT();
             //it.ID = I.IID;
@@ -126,7 +126,7 @@ namespace BackendDataHandler
             db.SaveChanges();
         }
 
-        public void AddIngredientCategory (IngredientCategory IC)
+        public void AddIngredientCategory(IngredientCategory IC)
         {
             INGREDIENT_CATEGORY ict = new INGREDIENT_CATEGORY();
             //ict.ID = IC.ICID;
@@ -346,6 +346,33 @@ namespace BackendDataHandler
             }).ToList();
         }
 
+        public List<Ingredient> QueryAllIngredientsByLastUpdatedForManufacturer()
+        {
+            var date = (from p in db.LAST_SYNCHED
+                        where p.ID == 7
+                        select p.MANUFACTURER_LAST_SYNCHED).FirstOrDefault();
+            UpdateIngredientsManufacturerLastSynchedDate();
+
+            return db.INGREDIENT.Where(w => !w.MANUFACTURER_ID.Equals(null) && date < w.LAST_MODIFIED_DATE && !w.LAST_UPDATED_BY.Equals("MANUFACTURER")).Select(W => new Ingredient()
+            {
+                IID = W.ID,
+                Price = W.PRICE,
+                Filename = W.FILENAME,
+                MIMETYPE = W.MIMETYPE,
+                Ingredient_Image = W.INGREDIENT_IMAGE,
+                Description = W.DESCRIPTION,
+                Location_Top = W.LOCATION_TOP,
+                Location_Bottom = W.LOCATION_TOP,
+                Location_Choc = W.LOCATION_CHOC,
+                CategoryId = W.CATEGORY_ID,
+                Name = W.NAME,
+                Quantity = W.QUANTITY,
+                Image_Last_Update = W.IMAGE_LAST_UPDATE,
+                FrontendID = W.FRONTEND_ID,
+                ManufacturerID = W.MANUFACTURER_ID
+            }).ToList();
+        }
+
         public List<OrderItem> QueryAllOrderItmesByOrderAndLastUpdatedForManufacturer(decimal? oid)
         {
             var date = (from p in db.LAST_SYNCHED
@@ -431,7 +458,7 @@ namespace BackendDataHandler
         {
             return db.DEMO_ORDERS.Where(w => w.FRONTEND_ID.Equals(FID)).Select(w => new Order()
             {
-              OrderId = w.ORDER_ID,
+                OrderId = w.ORDER_ID,
                 CustomerID = w.CUSTOMER_ID,
                 OrderTotal = w.ORDER_TOTAL,
                 OrderTimeStamp = w.ORDER_TIMESTAMP,
@@ -495,13 +522,13 @@ namespace BackendDataHandler
         {
             return db.RECIEPE.Select(w => new Recipe()
             {
-               RID = w.ID,
-               ProductID = w.PRODUCT_ID,
-               Description = w.DESCRIPTION,
-               FrontendID = w.FRONTEND_ID,
-               ManufacturerID = w.MANUFACTURER_ID,
-               Last_Updated_By = w.LAST_UPDATED_BY,
-               Last_Updated = w.LAST_MODIFIED_DATE
+                RID = w.ID,
+                ProductID = w.PRODUCT_ID,
+                Description = w.DESCRIPTION,
+                FrontendID = w.FRONTEND_ID,
+                ManufacturerID = w.MANUFACTURER_ID,
+                Last_Updated_By = w.LAST_UPDATED_BY,
+                Last_Updated = w.LAST_MODIFIED_DATE
             }).ToList();
         }
 
@@ -623,35 +650,35 @@ namespace BackendDataHandler
             return Prod.Product_ID;
         }
 
-        public decimal GetOrderBID (decimal? MID)
+        public decimal GetOrderBID(decimal? MID)
         {
             Order Ord = new Order();
             Ord.OrderId = db.DEMO_ORDERS.First(A => A.MANUFACTURER_ID == MID).ORDER_ID;
             return Ord.OrderId;
         }
 
-        public decimal GetRecipeBID (decimal? MID)
+        public decimal GetRecipeBID(decimal? MID)
         {
             Recipe Rec = new Recipe();
             Rec.RID = db.RECIEPE.First(A => A.MANUFACTURER_ID == MID).ID;
             return Rec.RID;
         }
 
-        public decimal GetRecipeIngredientBID (decimal? MID)
+        public decimal GetRecipeIngredientBID(decimal? MID)
         {
             ReciepeIngredients RecI = new ReciepeIngredients();
             RecI.RIID = db.RECIEPE_INGREDIENTS.First(A => A.MANUFACTURER_ID == MID).ID;
             return RecI.RIID;
         }
 
-        public decimal GetIngredientBID (decimal? MID)
+        public decimal GetIngredientBID(decimal? MID)
         {
             Ingredient Ing = new Ingredient();
             Ing.IID = db.INGREDIENT.First(A => A.MANUFACTURER_ID == MID).ID;
             return Ing.IID;
         }
 
-        public decimal GetIngredientCategoryBID (decimal? MID)
+        public decimal GetIngredientCategoryBID(decimal? MID)
         {
             IngredientCategory IngC = new IngredientCategory();
             IngC.ICID = db.INGREDIENT_CATEGORY.First(A => A.MANUFACTURER_ID == MID).ID;
@@ -698,12 +725,12 @@ namespace BackendDataHandler
 
 
 
-        public Boolean UpdateProductFID (decimal pid, decimal? fid, string lub)//ProductID,FrondEndID,LastUpdateBy
+        public Boolean UpdateProductFID(decimal pid, decimal? fid, string lub)//ProductID,FrondEndID,LastUpdateBy
         {
-            
-               DEMO_PRODUCT_INFO result = (from p in db.DEMO_PRODUCT_INFO
-                                 where p.PRODUCT_ID == pid
-                                 select p).SingleOrDefault();
+
+            DEMO_PRODUCT_INFO result = (from p in db.DEMO_PRODUCT_INFO
+                                        where p.PRODUCT_ID == pid
+                                        select p).SingleOrDefault();
             result.FRONTEND_ID = fid;
             result.LAST_UPDATED_BY = lub;
             try
@@ -711,7 +738,7 @@ namespace BackendDataHandler
                 db.SaveChanges();
                 return true;
             }
-            
+
             catch (DbUpdateException ex)
             {
                 return false;
@@ -744,8 +771,8 @@ namespace BackendDataHandler
         {
 
             DEMO_CUSTOMERS result = (from p in db.DEMO_CUSTOMERS
-                                        where p.CUSTOMER_ID == cust.CustomerId
-                                        select p).SingleOrDefault();
+                                     where p.CUSTOMER_ID == cust.CustomerId
+                                     select p).SingleOrDefault();
             result.CUST_FIRST_NAME = cust.FirstName;
             result.CUST_LAST_NAME = cust.LastName;
             result.CUST_STREET_ADDRESS1 = cust.Address;
@@ -778,8 +805,8 @@ namespace BackendDataHandler
         {
 
             DEMO_CUSTOMERS result = (from p in db.DEMO_CUSTOMERS
-                                        where p.CUSTOMER_ID == cid
-                                        select p).SingleOrDefault();
+                                     where p.CUSTOMER_ID == cid
+                                     select p).SingleOrDefault();
             result.FRONTEND_ID = fid;
             result.LAST_UPDATED_BY = lub;
             try
@@ -794,12 +821,12 @@ namespace BackendDataHandler
             }
         }
 
-        public Boolean UpdateCustomerMID(decimal cid, decimal? mid,string lub)//CustomerID, ManufacturerID, LastUpdateBy
+        public Boolean UpdateCustomerMID(decimal cid, decimal? mid, string lub)//CustomerID, ManufacturerID, LastUpdateBy
         {
 
             DEMO_CUSTOMERS result = (from p in db.DEMO_CUSTOMERS
-                                        where p.CUSTOMER_ID == cid
-                                        select p).SingleOrDefault();
+                                     where p.CUSTOMER_ID == cid
+                                     select p).SingleOrDefault();
             result.MANUFACTURER_ID = mid;
             result.LAST_UPDATED_BY = lub;
             try
@@ -819,8 +846,8 @@ namespace BackendDataHandler
         {
 
             RECIEPE result = (from p in db.RECIEPE
-                                     where p.ID == R.RID
-                                     select p).SingleOrDefault();
+                              where p.ID == R.RID
+                              select p).SingleOrDefault();
             result.PRODUCT_ID = R.ProductID;
             result.DESCRIPTION = R.Description;
             result.FRONTEND_ID = R.FrontendID;
@@ -843,8 +870,8 @@ namespace BackendDataHandler
         {
 
             INGREDIENT result = (from p in db.INGREDIENT
-                              where p.ID == I.IID
-                              select p).SingleOrDefault();
+                                 where p.ID == I.IID
+                                 select p).SingleOrDefault();
 
             result.PRICE = I.Price;
             result.FILENAME = I.Filename;
@@ -877,8 +904,8 @@ namespace BackendDataHandler
         {
 
             INGREDIENT_CATEGORY result = (from p in db.INGREDIENT_CATEGORY
-                                 where p.ID == IC.ICID
-                                 select p).SingleOrDefault();
+                                          where p.ID == IC.ICID
+                                          select p).SingleOrDefault();
             result.NAME = IC.Name;
             result.FRONTEND_ID = IC.FrontendID;
             result.MANUFACTURER_ID = IC.ManufacturerID;
@@ -900,8 +927,8 @@ namespace BackendDataHandler
         {
 
             LAST_SYNCHED result = (from p in db.LAST_SYNCHED
-                                     where p.ID == 1
-                                     select p).SingleOrDefault();
+                                   where p.ID == 1
+                                   select p).SingleOrDefault();
             result.MANUFACTURER_LAST_SYNCHED = System.DateTime.Now;
             try
             {
@@ -1107,6 +1134,23 @@ namespace BackendDataHandler
                                    where p.ID == 6
                                    select p).SingleOrDefault();
             result.FRONTEND_LAST_SYNCHED = System.DateTime.Now;
+            try
+            {
+                db.SaveChanges();
+                return true;
+            }
+            catch (DbUpdateException)
+            {
+                return false;
+            }
+        }
+
+        private Boolean UpdateIngredientsManufacturerLastSynchedDate()
+        {
+            LAST_SYNCHED result = (from p in db.LAST_SYNCHED
+                                   where p.ID == 7
+                                   select p).SingleOrDefault();
+            result.MANUFACTURER_LAST_SYNCHED = System.DateTime.Now;
             try
             {
                 db.SaveChanges();

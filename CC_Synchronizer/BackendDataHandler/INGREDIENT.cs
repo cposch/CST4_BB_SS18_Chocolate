@@ -35,6 +35,8 @@ namespace BackendDataHandler
         public Nullable<System.DateTime> IMAGE_LAST_UPDATE { get; set; }
         public Nullable<decimal> FRONTEND_ID { get; set; }
         public Nullable<decimal> MANUFACTURER_ID { get; set; }
+        public Nullable<System.DateTime> LAST_MODIFIED_DATE { get; set; }
+        public string LAST_UPDATED_BY { get; set; }
     
         public virtual INGREDIENT_CATEGORY INGREDIENT_CATEGORY { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

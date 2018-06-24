@@ -168,6 +168,8 @@
           <Property Name="IMAGE_LAST_UPDATE" Type="timestamp with local time zone" Precision="6" />
           <Property Name="FRONTEND_ID" Type="number" Precision="38" Scale="0" />
           <Property Name="MANUFACTURER_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="LAST_MODIFIED_DATE" Type="timestamp with local time zone" Precision="6" />
+          <Property Name="LAST_UPDATED_BY" Type="varchar2" MaxLength="50" />
         </EntityType>
         <EntityType Name="INGREDIENT_CATEGORY">
           <Key>
@@ -698,6 +700,8 @@
           <Property Name="MANUFACTURER_ID" Type="Decimal" Precision="38" Scale="0" />
           <NavigationProperty Name="INGREDIENT_CATEGORY" Relationship="Self.INGREDIENT_CATEGORY_CON" FromRole="INGREDIENT" ToRole="INGREDIENT_CATEGORY" />
           <NavigationProperty Name="RECIEPE_INGREDIENTS" Relationship="Self.INGREDIENT_TO_RECIEPE_FK" FromRole="INGREDIENT" ToRole="RECIEPE_INGREDIENTS" />
+          <Property Name="LAST_MODIFIED_DATE" Type="DateTime" Precision="255" />
+          <Property Name="LAST_UPDATED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="INGREDIENT_CATEGORY">
           <Key>
@@ -1234,6 +1238,8 @@
           <EntitySetMapping Name="INGREDIENT">
             <EntityTypeMapping TypeName="DBModel2.INGREDIENT">
               <MappingFragment StoreEntitySet="INGREDIENT">
+                <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="PRICE" ColumnName="PRICE" />
                 <ScalarProperty Name="FILENAME" ColumnName="FILENAME" />
