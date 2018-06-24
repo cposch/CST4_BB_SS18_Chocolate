@@ -43,7 +43,7 @@ namespace BackendDataHandler
         public void AddCustomer(Customer c)
         {
             DEMO_CUSTOMERS ct = new DEMO_CUSTOMERS();
-            ct.CUSTOMER_ID = c.CustomerId;
+            //ct.CUSTOMER_ID = c.CustomerId;
             ct.CUST_FIRST_NAME = c.FirstName;
             ct.CUST_LAST_NAME = c.LastName;
             ct.CUST_STREET_ADDRESS1 = c.Address;
@@ -63,7 +63,7 @@ namespace BackendDataHandler
         {
             DEMO_ORDERS ot = new DEMO_ORDERS();
 
-            ot.ORDER_ID = o.OrderId;
+            //ot.ORDER_ID = o.OrderId;
             ot.CUSTOMER_ID = o.CustomerID;
             ot.ORDER_TOTAL = o.OrderTotal;
             ot.ORDER_TIMESTAMP = o.OrderTimeStamp;
@@ -78,7 +78,7 @@ namespace BackendDataHandler
         public void AddOrderItem(OrderItem oi)
         {
             DEMO_ORDER_ITEMS oit = new DEMO_ORDER_ITEMS();
-            oit.ORDER_ITEM_ID = oi.OrderItemID;
+            //oit.ORDER_ITEM_ID = oi.OrderItemID;
             oit.ORDER_ID = oi.OrderID;
             oit.PRODUCT_ID = oi.ProductID;
             oit.UNIT_PRICE = oi.UnitPrice;
@@ -92,7 +92,7 @@ namespace BackendDataHandler
         public void AddRecipe(Recipe r)
         {
             RECIEPE rt = new RECIEPE();
-            rt.ID = r.RID;
+            //rt.ID = r.RID;
             rt.PRODUCT_ID = r.ProductID;
             rt.DESCRIPTION = r.Description;
             rt.FRONTEND_ID = r.FrontendID;
@@ -107,7 +107,7 @@ namespace BackendDataHandler
         public void AddIngredient (Ingredient I)
         {
             INGREDIENT it = new INGREDIENT();
-            it.ID = I.IID;
+            //it.ID = I.IID;
             it.PRICE = I.Price;
             it.FILENAME = I.Filename;
             it.MIMETYPE = I.MIMETYPE;
@@ -129,7 +129,7 @@ namespace BackendDataHandler
         public void AddIngredientCategory (IngredientCategory IC)
         {
             INGREDIENT_CATEGORY ict = new INGREDIENT_CATEGORY();
-            ict.ID = IC.ICID;
+            //ict.ID = IC.ICID;
             ict.NAME = IC.Name;
             ict.FRONTEND_ID = IC.FrontendID;
             ict.MANUFACTURER_ID = IC.ManufacturerID;
