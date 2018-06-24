@@ -93,6 +93,32 @@ namespace RESTFrontendService
             throw new NotImplementedException();
         }
 
+        public void UpdateProduct(XmlElement p)
+        {
+
+            string format = "yyyy-MM-dd HH:mm:ss";
+            CultureInfo provider = CultureInfo.InvariantCulture;
+
+            dh.UpdateProduct(new Product()
+            {
+                Product_Name = p.GetAttribute("ProductName"),
+                Product_Description = p.GetAttribute("ProductDescription"),
+                Category = p.GetAttribute("Category"),
+                Product_Avail = p.GetAttribute("ProductAvail"),
+                List_Price = decimal.Parse(p.GetAttribute("ListPrice")),
+                MIMETYPE = p.GetAttribute("MimeType"),
+                Filename = p.GetAttribute("Filename"),
+                Image_Last_Update = DateTime.ParseExact(p.GetAttribute("ImgLastUpdate"), format, provider),
+                Tags = p.GetAttribute("Tags"),
+                Sale_Price = decimal.Parse(p.GetAttribute("SalePrice")),
+                Sale_Begin = DateTime.ParseExact(p.GetAttribute("SaleBegin"), format, provider),
+                Sale_End = DateTime.ParseExact(p.GetAttribute("SaleEnd"), format, provider),
+                Frontend_ID = decimal.Parse(p.GetAttribute("FrontendID")),
+                Last_Updated_By = "FRONTEND"
+            }, "FRONTEND");
+
+        }
+
         public void UpdateProductFID(XmlElement pFID)
         {
             decimal pid = decimal.Parse(pFID.GetAttribute("ProductID"));
