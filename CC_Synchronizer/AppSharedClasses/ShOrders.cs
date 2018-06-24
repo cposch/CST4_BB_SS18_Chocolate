@@ -7,7 +7,7 @@ namespace AppSharedClasses
         public int? OrdersID;
         public int? CustomerID { get; set; }
         public float OrderTotal { get; set; }
-        public DateTime OrderTimeStamp { get; set; }
+        public DateTime? OrderTimeStamp { get; set; }
         public string UserName { get; set; }
         public string Status { get; set; }
         public int? BackendID { get; set; }
@@ -16,7 +16,7 @@ namespace AppSharedClasses
 
         public ShOrders() { }
 
-        public ShOrders(int? ordersID, int? customerID, float orderTotal, DateTime orderTimeStamp, string userName, string status, int? backendID, int? frontEndID, DateTime? lastmodified)
+        public ShOrders(int? ordersID, int? customerID, float orderTotal, DateTime? orderTimeStamp, string userName, string status, int? backendID, int? frontEndID, DateTime? lastmodified)
         {
             OrdersID = ordersID;
             CustomerID = customerID;
@@ -29,7 +29,7 @@ namespace AppSharedClasses
             Lastmodified = lastmodified;
         }
 
-        public ShOrders(int? customerID, float orderTotal, DateTime orderTimeStamp, string userName, string status, int? backendID, int? frontEndID, DateTime? lastmodified)
+        public ShOrders(int? customerID, float orderTotal, DateTime? orderTimeStamp, string userName, string status, int? backendID, int? frontEndID, DateTime? lastmodified)
         {
             CustomerID = customerID;
             OrderTotal = orderTotal;

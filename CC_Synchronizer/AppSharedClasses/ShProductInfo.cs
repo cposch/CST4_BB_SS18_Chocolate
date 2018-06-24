@@ -14,7 +14,7 @@ namespace AppSharedClasses
         public float? SalePrice { get; set; }
         public DateTime? SaleBegin { get; set; }
         public DateTime? SaleEnd { get; set; }
-        public BitmapImage ProductImage { get; set; }
+        //public BitmapImage ProductImage { get; set; }
         public int? BackendID { get; set; }
         public int? FrontEndID { get; set; }
         public DateTime? Lastmodified { get; set; }
@@ -22,7 +22,7 @@ namespace AppSharedClasses
 
         public ShProductInfo() { }
 
-        public ShProductInfo(int? produktID, string name, string description, string category, string availability, float listPrice, float? salePrice, DateTime? saleBegin, DateTime? saleEnd, BitmapImage productImage, int? backendID, int? frontEndID, DateTime? lastmodified, string filename)
+        public ShProductInfo(int? produktID, string name, string description, string category, string availability, float listPrice, float? salePrice, DateTime? saleBegin, DateTime? saleEnd, /*BitmapImage productImage,*/ int? backendID, int? frontEndID, DateTime? lastmodified, string filename)
         {
             ProduktID = produktID;
             Name = name;
@@ -33,14 +33,14 @@ namespace AppSharedClasses
             SalePrice = salePrice;
             SaleBegin = saleBegin;
             SaleEnd = saleEnd;
-            ProductImage = productImage;
+            //ProductImage = productImage;
             BackendID = backendID;
             FrontEndID = frontEndID;
             Lastmodified = lastmodified;
             Filename = filename;
         }
 
-        public ShProductInfo(string name, string description, string category, string availability, float listPrice, float? salePrice, DateTime? saleBegin, DateTime? saleEnd, BitmapImage productImage, int? backendID, int? frontEndID, DateTime? lastmodified, string filename)
+        public ShProductInfo(string name, string description, string category, string availability, float listPrice, float? salePrice, DateTime? saleBegin, DateTime? saleEnd, /*BitmapImage productImage,*/ int? backendID, int? frontEndID, DateTime? lastmodified, string filename)
         {
             Name = name;
             Description = description;
@@ -50,7 +50,7 @@ namespace AppSharedClasses
             SalePrice = salePrice;
             SaleBegin = saleBegin;
             SaleEnd = saleEnd;
-            ProductImage = productImage;
+            //ProductImage = productImage;
             BackendID = backendID;
             FrontEndID = frontEndID;
             Lastmodified = lastmodified;
