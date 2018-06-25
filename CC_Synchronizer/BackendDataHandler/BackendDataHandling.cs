@@ -907,6 +907,27 @@ namespace BackendDataHandler
                 return false;
             }
         }
+
+        public Boolean UpdateRecipeMID(decimal rid, decimal? mid, string lub)//RecipeID, ManufacturerID, LastUpdateBy
+        {
+
+            RECIEPE result = (from p in db.RECIEPE
+                                 where p.ID == rid
+                                 select p).SingleOrDefault();
+            result.MANUFACTURER_ID = rid;
+            result.LAST_UPDATED_BY = lub;
+            try
+            {
+                db.SaveChanges();
+                return true;
+            }
+
+            catch (DbUpdateException ex)
+            {
+                return false;
+            }
+        }
+
         //Update Ingredients
 
         public Boolean UpdateIngredients(Ingredient I)//Ingredients Object, LastUpdateBy
