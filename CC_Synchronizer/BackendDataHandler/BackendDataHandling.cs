@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,7 +39,17 @@ namespace BackendDataHandler
             pt.LAST_UPDATED_BY = p.Last_Updated_By;
 
             db.DEMO_PRODUCT_INFO.Add(pt);
-            db.SaveChanges();
+            try {
+                db.SaveChanges();
+            } catch (DbEntityValidationException dbEx) {
+                foreach (var validationErrors in dbEx.EntityValidationErrors) {
+                    foreach (var validationError in validationErrors.ValidationErrors) {
+                        Trace.TraceInformation("Property: {0} Error: {1}",
+                                                validationError.PropertyName,
+                                                validationError.ErrorMessage);
+                    }
+                }
+            }
         }
 
         public void AddCustomer(Customer c)
@@ -55,6 +67,7 @@ namespace BackendDataHandler
             ct.URL = c.Url;
             ct.CREDIT_LIMIT = c.CreditLimit;
             ct.TAGS = c.Tags;
+            ct.FRONTEND_ID = c.Frontend_ID;
             db.DEMO_CUSTOMERS.Add(ct);
             db.SaveChanges();
         }

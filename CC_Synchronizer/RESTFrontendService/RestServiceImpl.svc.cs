@@ -79,8 +79,14 @@ namespace RESTFrontendService
                 Url = c.GetAttribute("Url"),
                 CreditLimit = int.Parse(c.GetAttribute("CreditLimit")),
                 Tags = c.GetAttribute("Tags"),
-                Last_Updated_By = "FRONTEND"
+                Last_Updated_By = "FRONTEND",
             }, "FRONTEND");
+        }
+
+        public void UpdateCustomerFID(XmlElement pFID) {
+            decimal cid = decimal.Parse(pFID.GetAttribute("CustomerID"));
+            decimal fid = decimal.Parse(pFID.GetAttribute("FrontendID"));
+            dh.UpdateCustomerFID(cid, fid, "FRONTEND");
         }
 
         public void UpdateOrder(XmlElement o)
@@ -132,7 +138,7 @@ namespace RESTFrontendService
         public void InsertCustomer(XmlElement c)
         {
             dh.AddCustomer(new Customer() {
-                CustomerId = int.Parse(c.GetAttribute("Id")),
+                // CustomerId = int.Parse(c.GetAttribute("Id")),
                 FirstName = c.GetAttribute("FirstName"),
                 LastName = c.GetAttribute("LastName"),
                 Address = c.GetAttribute("Address"),
@@ -143,8 +149,8 @@ namespace RESTFrontendService
                 PhoneNumber = c.GetAttribute("PhoneNumber"),
                 Url = c.GetAttribute("Url"),
                 CreditLimit = int.Parse(c.GetAttribute("CreditLimit")),
-                Tags = c.GetAttribute("Tags")
-
+                Tags = c.GetAttribute("Tags"),
+                Frontend_ID = int.Parse(c.GetAttribute("FrontendID"))
             });
 
         }

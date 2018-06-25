@@ -70,6 +70,9 @@ namespace RESTFrontendService
         [WebInvoke(Method = "PUT", ResponseFormat = WebMessageFormat.Xml, BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "update/customer")]
         void UpdateCustomer(XmlElement c);
 
+        [OperationContract]
+        [WebInvoke(Method = "PUT", ResponseFormat = WebMessageFormat.Xml, BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "update/customerFID")]
+        void UpdateCustomerFID(XmlElement pFID);
 
 
         // INSERT Methoden
