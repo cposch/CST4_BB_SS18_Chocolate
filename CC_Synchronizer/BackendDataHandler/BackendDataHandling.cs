@@ -596,6 +596,29 @@ namespace BackendDataHandler
             }).ToList();
         }
 
+        public List<Ingredient> QueryAllIngredientsByMID(decimal? MID)
+        {
+            return db.INGREDIENT.Where(W=>W.MANUFACTURER_ID.Equals(MID)).Select(W => new Ingredient()
+            {
+                IID = W.ID,
+                Price = W.PRICE,
+                Filename = W.FILENAME,
+                MIMETYPE = W.MIMETYPE,
+                Ingredient_Image = W.INGREDIENT_IMAGE,
+                Description = W.DESCRIPTION,
+                Location_Top = W.LOCATION_TOP,
+                Location_Bottom = W.LOCATION_TOP,
+                Location_Choc = W.LOCATION_CHOC,
+                CategoryId = W.CATEGORY_ID,
+                Name = W.NAME,
+                Quantity = W.QUANTITY,
+                Image_Last_Update = W.IMAGE_LAST_UPDATE,
+                FrontendID = W.FRONTEND_ID,
+                ManufacturerID = W.MANUFACTURER_ID
+            }).ToList();
+        }
+
+
         public Ingredient GetInredigent(decimal iid)
         {
             return db.INGREDIENT.Where(w => w.ID.Equals(iid)).Select(W => new Ingredient()
