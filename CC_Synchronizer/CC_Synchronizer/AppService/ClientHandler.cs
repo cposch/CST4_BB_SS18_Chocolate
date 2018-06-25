@@ -98,7 +98,7 @@ namespace CC_Synchronizer.AppService
             {
                 length = socket.Receive(buffer);
                 recievedString = Encoding.ASCII.GetString(buffer, 0, length);
-                Console.WriteLine(recievedString);
+                //Console.WriteLine(recievedString);
                 //Console.WriteLine(buffer.Length);
 
                 if (buffer.Length == 2)
@@ -183,11 +183,11 @@ namespace CC_Synchronizer.AppService
             OrderItem oi;
             Product prod;
             SharedLibrary.Models.Recipe rec;
-            Package pack;
-            ReciepeIngredients ri;
-            SharedLibrary.Models.Rule rule;
-            RuleCategory rc;
-            SharedLibrary.Models.Shape shape;
+            //Package pack;
+            //ReciepeIngredients ri;
+            //SharedLibrary.Models.Rule rule;
+            //RuleCategory rc;
+            //SharedLibrary.Models.Shape shape;
 
             Console.WriteLine("Start DB Input");
 
