@@ -90,7 +90,6 @@
     <Compile Include="AppService\SyncDataModels\Rule_Categories.cs" />
     <Compile Include="AppService\SyncDataModels\Shape.cs" />
     <Compile Include="AppService\SyncXMLSerializer.cs" />
-    <Compile Include="FrontendService\FrontendHost.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -106,10 +105,6 @@
     <ProjectReference Include="..\BackendDataHandler\BackendDataHandler.csproj">
       <Project>{86386307-7a44-4300-b3f4-de6d7c2bbcd6}</Project>
       <Name>BackendDataHandler</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FrontendServiceProvider\FrontendServiceProvider.csproj">
-      <Project>{fdd95d55-81a7-48d8-a845-08a267b2fa2b}</Project>
-      <Name>FrontendServiceProvider</Name>
     </ProjectReference>
     <ProjectReference Include="..\RESTFrontendService\RESTFrontendService.csproj">
       <Project>{deb1f2ee-9515-4aef-9924-04bc1db5666e}</Project>
