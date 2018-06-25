@@ -48,7 +48,7 @@ namespace CC_Synchronizer.AppService
             //Thread.Sleep(1000);
             SendBack();
 
-            //For IDs of new app entries
+            //For MIDs of new app entries
             ClearTableLists();
             Recieve();
             UpdateMID();
@@ -98,8 +98,8 @@ namespace CC_Synchronizer.AppService
             {
                 length = socket.Receive(buffer);
                 recievedString = Encoding.ASCII.GetString(buffer, 0, length);
-                Console.WriteLine(recievedString);
-                Console.WriteLine(buffer.Length);
+                //Console.WriteLine(recievedString);
+                //Console.WriteLine(buffer.Length);
 
                 if (buffer.Length == 2)
                 {
@@ -130,16 +130,13 @@ namespace CC_Synchronizer.AppService
                 switch (TableId)
                 {
                     case 1:     //Customer
-                        //Console.WriteLine("Customer XML Deserialized");
                         customers.Add(customerXmlSerializer.Deserialize(recievedString));
-                        //Console.WriteLine("Customer recieved");
                         break;
                     case 2:     //Ingredient
                         ingredients.Add(ingredientXmlSerializer.Deserialize(recievedString));
                         break;
                     case 3:     //Ingredient_Category
                         ingredientCategory.Add(ingredientCategoryXmlSerializer.Deserialize(recievedString));
-                        //Console.WriteLine("IC XML Deserialized");
                         break;
                     case 4:     //Order_Items
                         orderItems.Add(orderItemXmlSerializer.Deserialize(recievedString));
@@ -192,11 +189,11 @@ namespace CC_Synchronizer.AppService
             RuleCategory rc;
             SharedLibrary.Models.Shape shape;
 
-            Console.WriteLine("Start DB Input\nProduct Count: " + productInfo.TableList.Count);
+            Console.WriteLine("Start DB Input");
 
             if (productInfo.TableList.Count > 0)
             {
-                Console.WriteLine("Start input Product");
+                Console.WriteLine("Start input Product\nCount: " + productInfo.TableList.Count);
 
                 foreach (var item in productInfo.TableList)
                 {
@@ -245,6 +242,11 @@ namespace CC_Synchronizer.AppService
                         prod.Product_Avail = item.Availability;
                         prod.List_Price = (decimal?)item.ListPrice;
 
+                        prod.Product_Image = null;
+                        prod.MIMETYPE = "";
+                        prod.Filename = "";
+                        prod.Tags = "";
+
                         if (item.SalePrice != null)
                             prod.Sale_Price = (decimal?)item.SalePrice;
 
@@ -272,270 +274,279 @@ namespace CC_Synchronizer.AppService
                 }
             }
 
-            //if (customers.TableList.Count > 0)
-            //{
-            //    foreach (var item in customers.TableList)
-            //    {
-            //        cust = new Customer();
+            if (customers.TableList.Count > 0)
+            {
+                Console.WriteLine("Start input Customers\nCount: " + customers.TableList.Count);
 
-            //        if (item.BackendID == null)
-            //        {
-            //            cust.CustomerId = (decimal)item.BackendID;
-            //            cust.FirstName = item.FirstName;
-            //            cust.LastName = item.LastName;
-            //            cust.Address = item.StreetAdress1;
-            //            cust.City = item.City;
-            //            //cust.State = "";
-            //            cust.Zip = item.PostalCode;
-            //            cust.Email = item.Email;
-            //            cust.PhoneNumber = item.PhoneNumber1;
-            //            //cust.Url = "";
+                foreach (var item in customers.TableList)
+                {
+                    cust = new Customer();
 
-            //            //if (item.CreditLimit != null)
-            //            //    cust.CreditLimit = item.CreditLimit;
+                    if (item.BackendID == null)
+                    {
+                        cust.CustomerId = (decimal)item.Customer_ID;
+                        cust.FirstName = item.FirstName;
+                        cust.LastName = item.LastName;
+                        cust.Address = item.StreetAdress1;
+                        cust.City = item.City;
+                        cust.State = "";
+                        cust.Zip = item.PostalCode;
+                        cust.Email = item.Email;
+                        cust.PhoneNumber = item.PhoneNumber1;
+                        cust.Url = "";
+                        cust.CreditLimit = null;
+                        cust.Tags = "";
 
-            //            //cust.Tags = "";
+                        if (item.Customer_ID != null)
+                            cust.Manufaturer_ID = item.Customer_ID;
 
-            //            if (item.Lastmodified != null)
-            //                cust.Last_Updated = item.Lastmodified;
+                        if (item.FrontEndID != null)
+                            cust.Frontend_ID = item.FrontEndID;
 
-            //            if (item.Customer_ID != null)
-            //                cust.Manufaturer_ID = item.Customer_ID;
+                        bdh.AddCustomer(cust);
+                    }
+                    else
+                    {
+                        cust.CustomerId = (decimal)item.BackendID;
+                        cust.FirstName = item.FirstName;
+                        cust.LastName = item.LastName;
+                        cust.Address = item.StreetAdress1;
+                        cust.City = item.City;
+                        cust.State = "";
+                        cust.Zip = item.PostalCode;
+                        cust.Email = item.Email;
+                        cust.PhoneNumber = item.PhoneNumber1;
+                        cust.Url = "";
+                        cust.CreditLimit = null;
+                        cust.Tags = "";
 
-            //            if (item.FrontEndID != null)
-            //                cust.Frontend_ID = item.FrontEndID;
+                        if (item.Customer_ID != null)
+                            cust.Manufaturer_ID = item.Customer_ID;
 
-            //            bdh.AddCustomer(cust);
-            //        }
-            //        else
-            //        {
-            //            cust.CustomerId = (decimal)item.BackendID;
-            //            cust.FirstName = item.FirstName;
-            //            cust.LastName = item.LastName;
-            //            cust.Address = item.StreetAdress1;
-            //            cust.City = item.City;
-            //            //cust.State = item.State;
-            //            cust.Zip = item.PostalCode;
-            //            cust.Email = item.Email;
-            //            cust.PhoneNumber = item.PhoneNumber1;
-            //            //cust.Url = "";
+                        if (item.FrontEndID != null)
+                            cust.Frontend_ID = item.FrontEndID;
 
-            //            //if (item.CreditLimit != null)
-            //            //    cust.CreditLimit = item.CreditLimit;
+                        success = bdh.UpdateCustomer(cust, "MANUFACTURER");
 
-            //            //cust.Tags = "";
+                        if (success)
+                            Console.WriteLine("DB Update Customer executed");
+                        else
+                            Console.WriteLine("DB Update Customer failed");
+                    }
+                }
+            }
 
-            //            if (item.Lastmodified != null)
-            //                cust.Last_Updated = item.Lastmodified;
+            if (ingredientCategory.TableList.Count > 0)
+            {
+                Console.WriteLine("Start input IngredientCategory\nCount: " + ingredientCategory.TableList.Count);
 
-            //            if (item.Customer_ID != null)
-            //                cust.Manufaturer_ID = item.Customer_ID;
+                foreach (var item in ingredientCategory.TableList)
+                {
+                    ic = new IngredientCategory();
 
-            //            if (item.FrontEndID != null)
-            //                cust.Frontend_ID = item.FrontEndID;
+                    if (item.BackendID == null)
+                    {
+                        ic.ICID = (decimal)item.Id;
+                        ic.Name = item.Name;
 
-            //            success = bdh.UpdateCustomer(cust, "MANUFACTURER");
+                        if (item.Id != null)
+                            ic.ManufacturerID = item.Id;
 
-            //            if (success)
-            //                Console.WriteLine("DB Update Customer executed");
-            //            else
-            //                Console.WriteLine("DB Update Customer failed");
-            //        }
-            //    }
-            //}
+                        if (item.FrontEndID != null)
+                            ic.FrontendID = item.FrontEndID;
 
-            //if (ingredientCategory.TableList.Count > 0)
-            //{
-            //    foreach (var item in ingredientCategory.TableList)
-            //    {
-            //        ic = new IngredientCategory();
+                        bdh.AddIngredientCategory(ic);
+                    }
+                    else
+                    {
+                        ic.ICID = (decimal)item.BackendID;
+                        ic.Name = item.Name;
 
-            //        if (item.BackendID == null)
-            //        {
-            //            ic.Name = item.Name;
+                        if (item.Id != null)
+                            ic.ManufacturerID = item.Id;
 
-            //            if (item.Id != null)
-            //                ic.ManufacturerID = item.Id;
+                        if (item.FrontEndID != null)
+                            ic.FrontendID = item.FrontEndID;
 
-            //            if (item.FrontEndID != null)
-            //                ic.FrontendID = item.FrontEndID;
+                        success = bdh.UpdateIngredientsCategory(ic);
 
-            //            bdh.AddIngredientCategory(ic);
-            //        }
-            //        else
-            //        {
-            //            ic.ICID = (decimal)item.BackendID;
-            //            ic.Name = item.Name;
+                        if (success)
+                            Console.WriteLine("DB Update IngredientsCategory executed");
+                        else
+                            Console.WriteLine("DB Update IngredientsCategory failed");
+                    }
+                }
+            }
 
-            //            if (item.Id != null)
-            //                ic.ManufacturerID = item.Id;
+            if (ingredients.TableList.Count > 0)
+            {
+                Console.WriteLine("Start input Ingredients\nCount: " + ingredients.TableList.Count);
 
-            //            if (item.FrontEndID != null)
-            //                ic.FrontendID = item.FrontEndID;
+                foreach (var item in ingredients.TableList)
+                {
+                    ingr = new Ingredient();
 
-            //            success = bdh.UpdateIngredientsCategory(ic);
+                    if (item.BackendID == null)
+                    {
+                        ingr.IID = (decimal)item.Id;
+                        ingr.Price = (decimal)item.Price;
+                        ingr.Filename = "";
+                        ingr.MIMETYPE = "";
+                        ingr.Ingredient_Image = null;
+                        ingr.Description = item.Description;
+                        ingr.Location_Top = item.LocationTop;
+                        ingr.Location_Bottom = item.LocationBottom;
+                        ingr.Location_Choc = item.LocationChoc;
+                        ingr.Name = item.Name;
+                        ingr.Quantity = item.Quantity;
+                        ingr.CategoryId = (decimal)item.CategoryId;
 
-            //            if (success)
-            //                Console.WriteLine("DB Update IngredientsCategory executed");
-            //            else
-            //                Console.WriteLine("DB Update IngredientsCategory failed");
-            //        }
-            //    }
-            //}
+                        if (item.Id != null)
+                            ingr.ManufacturerID = item.Id;
 
-            //if (ingredients.TableList.Count > 0)
-            //{
-            //    foreach (var item in ingredients.TableList)
-            //    {
-            //        ingr = new Ingredient();
+                        if (item.FrontEndID != null)
+                            ingr.FrontendID = item.FrontEndID;
 
-            //        if (item.BackendID == null)
-            //        {
-            //            ingr.Price = (decimal)item.Price;
-            //            //ingr.Filename = "";
-            //            //ingr.MIMETYPE = "";
-            //            //ingr.Ingredient_Image = null;
-            //            ingr.Description = item.Description;
-            //            ingr.Location_Top = item.LocationTop;
-            //            ingr.Location_Bottom = item.LocationBottom;
-            //            ingr.Location_Choc = item.LocationChoc;
-            //            ingr.Name = item.Name;
-            //            ingr.Quantity = item.Quantity;
-            //            ingr.CategoryId = bdh.GetIngredientCategoryBID(item.CategoryId);
+                        bdh.AddIngredient(ingr);
+                    }
+                    else
+                    {
+                        ingr.IID = (decimal)item.BackendID;
+                        ingr.Price = (decimal)item.Price;
+                        ingr.Filename = "";
+                        ingr.MIMETYPE = "";
+                        ingr.Ingredient_Image = null;
+                        ingr.Description = item.Description;
+                        ingr.Location_Top = item.LocationTop;
+                        ingr.Location_Bottom = item.LocationBottom;
+                        ingr.Location_Choc = item.LocationChoc;
+                        ingr.Name = item.Name;
+                        ingr.Quantity = item.Quantity;
+                        ingr.CategoryId = (decimal)item.CategoryId;
 
-            //            if (item.Id != null)
-            //                ingr.ManufacturerID = item.Id;
+                        if (item.Id != null)
+                            ingr.ManufacturerID = item.Id;
 
-            //            if (item.FrontEndID != null)
-            //                ingr.FrontendID = item.FrontEndID;
+                        if (item.FrontEndID != null)
+                            ingr.FrontendID = item.FrontEndID;
 
-            //            bdh.AddIngredient(ingr);
-            //        }
-            //        else
-            //        {
-            //            ingr.IID = (decimal)item.BackendID;
-            //            ingr.Price = (decimal)item.Price;
-            //            //ingr.Filename = "";
-            //            //ingr.MIMETYPE = "";
-            //            //ingr.Ingredient_Image = null;
-            //            ingr.Description = item.Description;
-            //            ingr.Location_Top = item.LocationTop;
-            //            ingr.Location_Bottom = item.LocationBottom;
-            //            ingr.Location_Choc = item.LocationChoc;
-            //            ingr.Name = item.Name;
-            //            ingr.Quantity = item.Quantity;
-            //            ingr.CategoryId = bdh.GetIngredientCategoryBID(item.CategoryId);
+                        success = bdh.UpdateIngredients(ingr);
 
-            //            if (item.Id != null)
-            //                ingr.ManufacturerID = item.Id;
+                        if (success)
+                            Console.WriteLine("DB Update Ingredients executed");
+                        else
+                            Console.WriteLine("DB Update Ingredients failed");
+                    }
+                }
+            }
 
-            //            if (item.FrontEndID != null)
-            //                ingr.FrontendID = item.FrontEndID;
+            if (orders.TableList.Count > 0)
+            {
+                Console.WriteLine("Start input Orders\nCount: " + orders.TableList.Count);
 
-            //            success = bdh.UpdateIngredients(ingr);
+                foreach (var item in orders.TableList)
+                {
+                    order = new Order();
 
-            //            if (success)
-            //                Console.WriteLine("DB Update Ingredients executed");
-            //            else
-            //                Console.WriteLine("DB Update Ingredients failed");
-            //        }
-            //    }
-            //}
+                    if (item.BackendID == null)
+                    {
+                        order.OrderId = (decimal)item.OrdersID;
+                        order.CustomerID = bdh.GetOrderBID(item.CustomerID);
+                        order.OrderTotal = (decimal?)item.OrderTotal;
+                        order.OrderTimeStamp = item.OrderTimeStamp;
+                        order.UserName = item.UserName;
+                        order.Tags = "";
 
-            //if (orders.TableList.Count > 0)
-            //{
-            //    foreach (var item in orders.TableList)
-            //    {
-            //        order = new Order();
+                        if (item.OrdersID != null)
+                            order.Manufaturer_ID = item.OrdersID;
 
-            //        if (item.BackendID == null)
-            //        {
-            //            order.CustomerID = bdh.GetOrderBID(item.CustomerID);
-            //            order.OrderTotal = (decimal?)item.OrderTotal;
-            //            order.OrderTimeStamp = item.OrderTimeStamp;
-            //            order.UserName = item.UserName;
+                        if (item.FrontEndID != null)
+                            order.Frontend_ID = item.FrontEndID;
 
-            //            if (item.OrdersID != null)
-            //                order.Manufaturer_ID = item.OrdersID;
+                        bdh.AddOrder(order);
+                    }
+                    //else
+                    //{
+                    //    //ToDo: UpdateOrder?
+                    //}
+                }
+            }
 
-            //            if (item.FrontEndID != null)
-            //                order.Frontend_ID = item.FrontEndID;
+            if (orderItems.TableList.Count > 0)
+            {
+                Console.WriteLine("Start input OrdersItems\nCount: " + orderItems.TableList.Count);
 
-            //            bdh.AddOrder(order);
-            //        }
-            //        else
-            //        {
-            //            //ToDo: UpdateOrder?
-            //        }
-            //    }
-            //}
+                foreach (var item in orderItems.TableList)
+                {
+                    oi = new OrderItem();
+                    if (item.BackendID == null)
+                    {
+                        oi.OrderItemID = (decimal)item.OrderItemID;
+                        oi.OrderID = bdh.GetOrderBID(item.OrderID);
+                        oi.ProductID = bdh.GetProductBID(item.ProductID);
+                        oi.UnitPrice = (decimal)item.UnitPrice;
+                        oi.Quantity = (int)item.Quantity;
 
-            //if (orderItems.TableList.Count > 0)
-            //{
-            //    foreach (var item in orderItems.TableList)
-            //    {
-            //        oi = new OrderItem();
-            //        if (item.BackendID == null)
-            //        {
-            //            oi.OrderID = bdh.GetOrderBID(item.OrderID);
-            //            oi.ProductID = bdh.GetProductBID(item.ProductID);
-            //            oi.UnitPrice = (decimal)item.UnitPrice;
-            //            oi.Quantity = (int)item.Quantity;
+                        if (item.OrderID != null)
+                            oi.ManufacturerID = item.OrderItemID;
 
-            //            if (item.OrderID != null)
-            //                oi.ManufacturerID = item.OrderID;
+                        if (item.FrontEndID != null)
+                            oi.FrontEndID = item.FrontEndID;
 
-            //            if (item.FrontEndID != null)
-            //                oi.FrontEndID = item.FrontEndID;
+                        bdh.AddOrderItem(oi);
+                    }
+                    //else
+                    //{
+                    //    //ToDo: UpdateOrderItem?
+                    //}
+                }
+            }
 
-            //            bdh.AddOrderItem(oi);
-            //        }
-            //        else
-            //        {
-            //            //ToDo: UpdateOrderItem?
-            //        }
-            //    }
-            //}
+            if (recipe.TableList.Count > 0)
+            {
+                Console.WriteLine("Start input Recipes\nCount: " + recipe.TableList.Count);
 
-            //if (recipe.TableList.Count > 0)
-            //{
-            //    foreach (var item in recipe.TableList)
-            //    {
-            //        rec = new SharedLibrary.Models.Recipe();
-            //        if (item.BackendID == null)
-            //        {
-            //            rec.ProductID = bdh.GetProductBID(item.ProductId);
-            //            rec.Description = item.Description;
+                foreach (var item in recipe.TableList)
+                {
+                    rec = new SharedLibrary.Models.Recipe();
+                    if (item.BackendID == null)
+                    {
+                        rec.RID = (decimal)item.Id;
+                        rec.ProductID = bdh.GetProductBID(item.ProductId);
+                        rec.Description = item.Description;
 
-            //            if (item.Id != null)
-            //                rec.ManufacturerID = item.Id;
+                        if (item.Id != null)
+                            rec.ManufacturerID = item.Id;
 
-            //            if (item.FrontEndID != null)
-            //                rec.FrontendID = item.FrontEndID;
+                        if (item.FrontEndID != null)
+                            rec.FrontendID = item.FrontEndID;
 
-            //            bdh.AddRecipe(rec);
-            //        }
-            //        else
-            //        {
-            //            rec.RID = (decimal)item.BackendID;
-            //            rec.ProductID = bdh.GetProductBID(item.ProductId);
-            //            rec.Description = item.Description;
+                        rec.Last_Updated = DateTime.Now;
+                        rec.Last_Updated_By = "MANUFACTURER";
 
-            //            if (item.Id != null)
-            //                rec.ManufacturerID = item.Id;
+                        bdh.AddRecipe(rec);
+                    }
+                    else
+                    {
+                        rec.RID = (decimal)item.BackendID;
+                        rec.ProductID = bdh.GetProductBID(item.ProductId);
+                        rec.Description = item.Description;
 
-            //            if (item.FrontEndID != null)
-            //                rec.FrontendID = item.FrontEndID;
+                        if (item.Id != null)
+                            rec.ManufacturerID = item.Id;
 
-            //            success = bdh.UpdateRecipe(rec, "MANUFACTURER");
+                        if (item.FrontEndID != null)
+                            rec.FrontendID = item.FrontEndID;
 
-            //            if (success)
-            //                Console.WriteLine("DB Update Recipe executed");
-            //            else
-            //                Console.WriteLine("DB Update Recipe failed");
-            //        }
-            //    }
-            //}
+                        success = bdh.UpdateRecipe(rec, "MANUFACTURER");
+
+                        if (success)
+                            Console.WriteLine("DB Update Recipe executed");
+                        else
+                            Console.WriteLine("DB Update Recipe failed");
+                    }
+                }
+            }
 
             //ToDo: DB fuctions for Package, RecipeIngedients, Rule, RuleCategory, Shape
         }
@@ -556,15 +567,15 @@ namespace CC_Synchronizer.AppService
                 Console.WriteLine("Get Ingredient from DB");
             }
 
-            //foreach (var i in bdh.QueryAllCustomersByLastUpdatedForManufacturer())
-            //{
-            //    customers.Add(new ShCustomers((int?)i.Manufaturer_ID, i.FirstName, i.LastName, i.Address, "", i.City, i.Zip, i.Email, i.PhoneNumber, "", (int?)i.CustomerId, (int?)i.Frontend_ID, null));
-            //}
+            foreach (var i in bdh.QueryAllCustomersByLastUpdatedForManufacturer())
+            {
+                customers.Add(new ShCustomers((int?)i.Manufaturer_ID, i.FirstName, i.LastName, i.Address, "", i.City, i.Zip, i.Email, i.PhoneNumber, "", (int?)i.CustomerId, (int?)i.Frontend_ID, null));
+            }
 
-            //foreach (var i in bdh.QueryAllOrdersByLastUpdatedForManufacturer())
-            //{
-            //    orders.Add(new ShOrders((int?)i.Manufaturer_ID, (int?)bdh.GetCustomerBID(bdh.GetCustomer(i.CustomerID).Manufaturer_ID), (float)i.OrderTotal, i.OrderTimeStamp, i.UserName, "", (int?)i.CustomerID, (int?)i.Frontend_ID, null));
-            //}
+            foreach (var i in bdh.QueryAllOrdersByLastUpdatedForManufacturer())
+            {
+                orders.Add(new ShOrders((int?)i.Manufaturer_ID, (int?)bdh.GetCustomer(i.CustomerID).Manufaturer_ID, (float)i.OrderTotal, i.OrderTimeStamp, i.UserName, "", (int?)i.OrderId, (int?)i.Frontend_ID, null));
+            }
         }
 
         private void UpdateMID()
@@ -576,11 +587,31 @@ namespace CC_Synchronizer.AppService
                 Console.WriteLine("Update Product ID");
             }
 
-            //ToDo:UpdateRecipeMID
+            //Update Recipe MID
+            foreach (var item in recipe.TableList)
+            {
+                SharedLibrary.Models.Recipe rec = new SharedLibrary.Models.Recipe();
+
+                rec.RID = (decimal)item.BackendID;
+                rec.ProductID = bdh.GetProductBID(item.ProductId);
+                rec.Description = item.Description;
+                rec.ManufacturerID = item.Id;
+
+                if (item.FrontEndID != null)
+                    rec.FrontendID = item.FrontEndID;
+
+                bool success = bdh.UpdateRecipe(rec, "MANUFACTURER");
+
+                if (success)
+                    Console.WriteLine("DB Update Recipe BID");
+                else
+                    Console.WriteLine("DB Update Recipe BID failed");
+            }
 
             //foreach (var item in customers.TableList)
             //{
             //    bdh.UpdateCustomerMID((decimal)item.BackendID, item.Customer_ID, "MANUFACTURER");
+            //    Console.WriteLine("Update Customer ID");
             //}
 
             Console.WriteLine("Update MID complete");
