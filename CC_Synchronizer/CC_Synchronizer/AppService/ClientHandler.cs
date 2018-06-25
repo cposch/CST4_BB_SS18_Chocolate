@@ -561,9 +561,9 @@ namespace CC_Synchronizer.AppService
                 Console.WriteLine("Get Product from DB");
             }
 
-            foreach (var i in bdh.QueryAllIngredientsByLastUpdatedForManufacturer())
+            foreach (var i in bdh.QueryAllIngredientsByMID(null))
             {
-                ingredients.Add(new ShIngredient((int?)i.ManufacturerID, i.Description, (float)i.Price, i.Location_Top, i.Location_Bottom, i.Location_Choc, (int?)i.CategoryId, i.Name, (int)i.Quantity, (int)i.IID, (int?)i.FrontendID, null));
+                ingredients.Add(new ShIngredient((int?)i.ManufacturerID, i.Description, (float)i.Price, i.Location_Top, i.Location_Bottom, i.Location_Choc, (int?)i.CategoryId, i.Name, i.Quantity, (int)i.IID, (int?)i.FrontendID, null));
                 Console.WriteLine("Get Ingredient from DB");
             }
 
