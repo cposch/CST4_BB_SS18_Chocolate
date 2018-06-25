@@ -942,6 +942,26 @@ namespace BackendDataHandler
             }
         }
 
+        public Boolean UpdateIngredientsMID(decimal iid, decimal? mid, string lub)//IngredientID, ManufacturerID, LastUpdateBy
+        {
+
+            INGREDIENT result = (from p in db.INGREDIENT
+                                     where p.ID == iid
+                                     select p).SingleOrDefault();
+            result.MANUFACTURER_ID = mid;
+            result.LAST_UPDATED_BY = lub;
+            try
+            {
+                db.SaveChanges();
+                return true;
+            }
+
+            catch (DbUpdateException ex)
+            {
+                return false;
+            }
+        }
+
 
         public Boolean UpdateIngredientsCategory(IngredientCategory IC)//IngredientCategory Object
         {
