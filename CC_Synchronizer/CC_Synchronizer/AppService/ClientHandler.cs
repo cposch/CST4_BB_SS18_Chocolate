@@ -44,11 +44,11 @@ namespace CC_Synchronizer.AppService
             InputDbContent();
 
             ClearTableLists();
-            //GetDbContent();
-            Thread.Sleep(1000);
+            GetDbContent();
+            //Thread.Sleep(1000);
             SendBack();
 
-            //For IDs of new app entries
+            //For MIDs of new app entries
             ClearTableLists();
             Recieve();
             UpdateMID();
@@ -99,7 +99,7 @@ namespace CC_Synchronizer.AppService
                 length = socket.Receive(buffer);
                 recievedString = Encoding.ASCII.GetString(buffer, 0, length);
                 Console.WriteLine(recievedString);
-                Console.WriteLine(buffer.Length);
+                //Console.WriteLine(buffer.Length);
 
                 if (buffer.Length == 2)
                 {
@@ -130,16 +130,13 @@ namespace CC_Synchronizer.AppService
                 switch (TableId)
                 {
                     case 1:     //Customer
-                        //Console.WriteLine("Customer XML Deserialized");
                         customers.Add(customerXmlSerializer.Deserialize(recievedString));
-                        //Console.WriteLine("Customer recieved");
                         break;
                     case 2:     //Ingredient
                         ingredients.Add(ingredientXmlSerializer.Deserialize(recievedString));
                         break;
                     case 3:     //Ingredient_Category
                         ingredientCategory.Add(ingredientCategoryXmlSerializer.Deserialize(recievedString));
-                        //Console.WriteLine("IC XML Deserialized");
                         break;
                     case 4:     //Order_Items
                         orderItems.Add(orderItemXmlSerializer.Deserialize(recievedString));
@@ -192,17 +189,19 @@ namespace CC_Synchronizer.AppService
             RuleCategory rc;
             SharedLibrary.Models.Shape shape;
 
-            Console.WriteLine("Start DB Input\nProduct Count: " + productInfo.TableList.Count);
+            Console.WriteLine("Start DB Input");
 
             if (productInfo.TableList.Count > 0)
             {
-                Console.WriteLine("Start input Product");
+                Console.WriteLine("Start input Product\nCount: " + productInfo.TableList.Count);
+
                 foreach (var item in productInfo.TableList)
                 {
                     prod = new Product();
 
                     if (item.BackendID == null)
                     {
+                        prod.Product_ID = (decimal)item.ProduktID;
                         prod.Product_Name = item.Name;
                         prod.Product_Description = item.Description;
                         prod.Category = item.Category;
@@ -243,6 +242,11 @@ namespace CC_Synchronizer.AppService
                         prod.Product_Avail = item.Availability;
                         prod.List_Price = (decimal?)item.ListPrice;
 
+                        prod.Product_Image = null;
+                        prod.MIMETYPE = "";
+                        prod.Filename = "";
+                        prod.Tags = "";
+
                         if (item.SalePrice != null)
                             prod.Sale_Price = (decimal?)item.SalePrice;
 
@@ -272,29 +276,26 @@ namespace CC_Synchronizer.AppService
 
             if (customers.TableList.Count > 0)
             {
+                Console.WriteLine("Start input Customers\nCount: " + customers.TableList.Count);
+
                 foreach (var item in customers.TableList)
                 {
                     cust = new Customer();
 
                     if (item.BackendID == null)
                     {
+                        cust.CustomerId = (decimal)item.Customer_ID;
                         cust.FirstName = item.FirstName;
                         cust.LastName = item.LastName;
                         cust.Address = item.StreetAdress1;
                         cust.City = item.City;
-                        //cust.State = "";
+                        cust.State = "";
                         cust.Zip = item.PostalCode;
                         cust.Email = item.Email;
                         cust.PhoneNumber = item.PhoneNumber1;
-                        //cust.Url = "";
-
-                        //if (item.CreditLimit != null)
-                        //    cust.CreditLimit = item.CreditLimit;
-
-                        //cust.Tags = "";
-
-                        if (item.Lastmodified != null)
-                            cust.Last_Updated = item.Lastmodified;
+                        cust.Url = "";
+                        cust.CreditLimit = null;
+                        cust.Tags = "";
 
                         if (item.Customer_ID != null)
                             cust.Manufaturer_ID = item.Customer_ID;
@@ -311,19 +312,13 @@ namespace CC_Synchronizer.AppService
                         cust.LastName = item.LastName;
                         cust.Address = item.StreetAdress1;
                         cust.City = item.City;
-                        //cust.State = item.State;
+                        cust.State = "";
                         cust.Zip = item.PostalCode;
                         cust.Email = item.Email;
                         cust.PhoneNumber = item.PhoneNumber1;
-                        //cust.Url = "";
-
-                        //if (item.CreditLimit != null)
-                        //    cust.CreditLimit = item.CreditLimit;
-
-                        //cust.Tags = "";
-
-                        if (item.Lastmodified != null)
-                            cust.Last_Updated = item.Lastmodified;
+                        cust.Url = "";
+                        cust.CreditLimit = null;
+                        cust.Tags = "";
 
                         if (item.Customer_ID != null)
                             cust.Manufaturer_ID = item.Customer_ID;
@@ -343,12 +338,15 @@ namespace CC_Synchronizer.AppService
 
             if (ingredientCategory.TableList.Count > 0)
             {
+                Console.WriteLine("Start input IngredientCategory\nCount: " + ingredientCategory.TableList.Count);
+
                 foreach (var item in ingredientCategory.TableList)
                 {
                     ic = new IngredientCategory();
 
                     if (item.BackendID == null)
                     {
+                        ic.ICID = (decimal)item.Id;
                         ic.Name = item.Name;
 
                         if (item.Id != null)
@@ -382,23 +380,26 @@ namespace CC_Synchronizer.AppService
 
             if (ingredients.TableList.Count > 0)
             {
+                Console.WriteLine("Start input Ingredients\nCount: " + ingredients.TableList.Count);
+
                 foreach (var item in ingredients.TableList)
                 {
                     ingr = new Ingredient();
 
                     if (item.BackendID == null)
                     {
+                        ingr.IID = (decimal)item.Id;
                         ingr.Price = (decimal)item.Price;
-                        //ingr.Filename = "";
-                        //ingr.MIMETYPE = "";
-                        //ingr.Ingredient_Image = null;
+                        ingr.Filename = "";
+                        ingr.MIMETYPE = "";
+                        ingr.Ingredient_Image = null;
                         ingr.Description = item.Description;
                         ingr.Location_Top = item.LocationTop;
                         ingr.Location_Bottom = item.LocationBottom;
                         ingr.Location_Choc = item.LocationChoc;
                         ingr.Name = item.Name;
                         ingr.Quantity = item.Quantity;
-                        ingr.CategoryId = bdh.GetIngredientCategoryBID(item.CategoryId);
+                        ingr.CategoryId = (decimal)item.CategoryId;
 
                         if (item.Id != null)
                             ingr.ManufacturerID = item.Id;
@@ -412,16 +413,16 @@ namespace CC_Synchronizer.AppService
                     {
                         ingr.IID = (decimal)item.BackendID;
                         ingr.Price = (decimal)item.Price;
-                        //ingr.Filename = "";
-                        //ingr.MIMETYPE = "";
-                        //ingr.Ingredient_Image = null;
+                        ingr.Filename = "";
+                        ingr.MIMETYPE = "";
+                        ingr.Ingredient_Image = null;
                         ingr.Description = item.Description;
                         ingr.Location_Top = item.LocationTop;
                         ingr.Location_Bottom = item.LocationBottom;
                         ingr.Location_Choc = item.LocationChoc;
                         ingr.Name = item.Name;
                         ingr.Quantity = item.Quantity;
-                        ingr.CategoryId = bdh.GetIngredientCategoryBID(item.CategoryId);
+                        ingr.CategoryId = (decimal)item.CategoryId;
 
                         if (item.Id != null)
                             ingr.ManufacturerID = item.Id;
@@ -441,16 +442,20 @@ namespace CC_Synchronizer.AppService
 
             if (orders.TableList.Count > 0)
             {
+                Console.WriteLine("Start input Orders\nCount: " + orders.TableList.Count);
+
                 foreach (var item in orders.TableList)
                 {
                     order = new Order();
 
-                    if (item.BackendID==null)
+                    if (item.BackendID == null)
                     {
+                        order.OrderId = (decimal)item.OrdersID;
                         order.CustomerID = bdh.GetOrderBID(item.CustomerID);
                         order.OrderTotal = (decimal?)item.OrderTotal;
                         order.OrderTimeStamp = item.OrderTimeStamp;
                         order.UserName = item.UserName;
+                        order.Tags = "";
 
                         if (item.OrdersID != null)
                             order.Manufaturer_ID = item.OrdersID;
@@ -460,47 +465,53 @@ namespace CC_Synchronizer.AppService
 
                         bdh.AddOrder(order);
                     }
-                    else
-                    {
-                        //ToDo: UpdateOrder?
-                    }
+                    //else
+                    //{
+                    //    //ToDo: UpdateOrder?
+                    //}
                 }
             }
 
-            if(orderItems.TableList.Count > 0)
+            if (orderItems.TableList.Count > 0)
             {
+                Console.WriteLine("Start input OrdersItems\nCount: " + orderItems.TableList.Count);
+
                 foreach (var item in orderItems.TableList)
                 {
                     oi = new OrderItem();
-                    if(item.BackendID==null)
+                    if (item.BackendID == null)
                     {
+                        oi.OrderItemID = (decimal)item.OrderItemID;
                         oi.OrderID = bdh.GetOrderBID(item.OrderID);
                         oi.ProductID = bdh.GetProductBID(item.ProductID);
                         oi.UnitPrice = (decimal)item.UnitPrice;
                         oi.Quantity = (int)item.Quantity;
 
                         if (item.OrderID != null)
-                            oi.ManufacturerID = item.OrderID;
+                            oi.ManufacturerID = item.OrderItemID;
 
                         if (item.FrontEndID != null)
                             oi.FrontEndID = item.FrontEndID;
 
                         bdh.AddOrderItem(oi);
                     }
-                    else
-                    {
-                        //ToDo: UpdateOrderItem?
-                    }
+                    //else
+                    //{
+                    //    //ToDo: UpdateOrderItem?
+                    //}
                 }
             }
 
             if (recipe.TableList.Count > 0)
             {
+                Console.WriteLine("Start input Recipes\nCount: " + recipe.TableList.Count);
+
                 foreach (var item in recipe.TableList)
                 {
                     rec = new SharedLibrary.Models.Recipe();
-                    if(item.BackendID==null)
+                    if (item.BackendID == null)
                     {
+                        rec.RID = (decimal)item.Id;
                         rec.ProductID = bdh.GetProductBID(item.ProductId);
                         rec.Description = item.Description;
 
@@ -509,6 +520,9 @@ namespace CC_Synchronizer.AppService
 
                         if (item.FrontEndID != null)
                             rec.FrontendID = item.FrontEndID;
+
+                        rec.Last_Updated = DateTime.Now;
+                        rec.Last_Updated_By = "MANUFACTURER";
 
                         bdh.AddRecipe(rec);
                     }
@@ -541,25 +555,52 @@ namespace CC_Synchronizer.AppService
         {
             Console.WriteLine("Get DB Content start");
 
+            foreach (var i in bdh.QueryAllProductsbyMID(null))
+            {
+                productInfo.Add(new ShProductInfo((int?)i.Manufaturer_ID, i.Product_Name, i.Product_Description, i.Category, i.Product_Avail, (float)i.List_Price, (float?)i.Sale_Price, i.Sale_Begin, i.Sale_End/*, null*/, (int?)i.Product_ID, (int?)i.Frontend_ID, null, i.Filename));
+                Console.WriteLine("Get new Product from DB");
+            }
+
             foreach (var i in bdh.QueryAllProductsByLastUpdatedForManufacturer())
             {
                 productInfo.Add(new ShProductInfo((int?)i.Manufaturer_ID, i.Product_Name, i.Product_Description, i.Category, i.Product_Avail, (float)i.List_Price, (float?)i.Sale_Price, i.Sale_Begin, i.Sale_End/*, null*/, (int?)i.Product_ID, (int?)i.Frontend_ID, null, i.Filename));
-                Console.WriteLine("Get Product from DB");
+                Console.WriteLine("Get updated Product from DB");
+            }
+
+            foreach (var i in bdh.QueryAllIngredientsByMID(null))
+            {
+                ingredients.Add(new ShIngredient((int?)i.ManufacturerID, i.Description, (float)i.Price, i.Location_Top, i.Location_Bottom, i.Location_Choc, (int?)i.CategoryId, i.Name, i.Quantity, (int)i.IID, (int?)i.FrontendID, null));
+                Console.WriteLine("Get new Ingredient from DB");
+            }
+
+            foreach (var i in bdh.QueryAllIngredientsByLastUpdatedForManufacturer())
+            {
+                ingredients.Add(new ShIngredient((int?)i.ManufacturerID, i.Description, (float)i.Price, i.Location_Top, i.Location_Bottom, i.Location_Choc, (int?)i.CategoryId, i.Name, i.Quantity, (int)i.IID, (int?)i.FrontendID, null));
+                Console.WriteLine("Get updated Ingredient from DB");
+            }
+
+            foreach (var i in bdh.QueryAllCustomerByMID(null))
+            {
+                customers.Add(new ShCustomers((int?)i.Manufaturer_ID, i.FirstName, i.LastName, i.Address, "", i.City, i.Zip, i.Email, i.PhoneNumber, "", (int?)i.CustomerId, (int?)i.Frontend_ID, null));
+                Console.WriteLine("Get new Customer from DB");
             }
 
             foreach (var i in bdh.QueryAllCustomersByLastUpdatedForManufacturer())
             {
                 customers.Add(new ShCustomers((int?)i.Manufaturer_ID, i.FirstName, i.LastName, i.Address, "", i.City, i.Zip, i.Email, i.PhoneNumber, "", (int?)i.CustomerId, (int?)i.Frontend_ID, null));
+                Console.WriteLine("Get updated Customer from DB");
             }
 
-            foreach (var i in bdh.QueryAllOrdersByLastUpdatedForManufacturer())
-            {
-                orders.Add(new ShOrders((int?)i.Manufaturer_ID, (int?)bdh.GetCustomerBID(bdh.GetCustomer(i.CustomerID).Manufaturer_ID), (float)i.OrderTotal, i.OrderTimeStamp, i.UserName, "", (int?)i.CustomerID, (int?)i.Frontend_ID, null));
-            }
-
-            //foreach (var i in bdh.QueryAllIngredientsByLastUpdatedForManufacturer())
+            //foreach (var i in bdh.QueryAllOrdersbyMID(null))
             //{
-            //    ingredients.Add(new ShIngredient((int?)i.ManufacturerID, i.Description, (float)i.Price, i.Location_Top, i.Location_Bottom, i.Location_Choc, null/*(int?)bdh.GetIngredientCategoryBID(bdh.???)*/, i.Name, (int)i.Quantity, (int)i.IID, (int?)i.FrontendID, null));
+            //    orders.Add(new ShOrders((int?)i.Manufaturer_ID, (int?)bdh.GetCustomer(i.CustomerID).Manufaturer_ID, (float)i.OrderTotal, i.OrderTimeStamp, i.UserName, "", (int?)i.OrderId, (int?)i.Frontend_ID, null));
+            //    Console.WriteLine("Get new Order from DB");
+            //}
+
+            //foreach (var i in bdh.QueryAllOrdersByLastUpdatedForManufacturer())
+            //{
+            //    orders.Add(new ShOrders((int?)i.Manufaturer_ID, (int?)bdh.GetCustomer(i.CustomerID).Manufaturer_ID, (float)i.OrderTotal, i.OrderTimeStamp, i.UserName, "", (int?)i.OrderId, (int?)i.Frontend_ID, null));
+            //    Console.WriteLine("Get updated Order from DB");
             //}
         }
 
@@ -572,10 +613,64 @@ namespace CC_Synchronizer.AppService
                 Console.WriteLine("Update Product ID");
             }
 
-            //foreach (var item in customers.TableList)
-            //{
-            //    bdh.UpdateCustomerMID((decimal)item.BackendID, item.Customer_ID, "MANUFACTURER");
-            //}
+            //Update Recipe MID
+            foreach (var item in recipe.TableList)
+            {
+                SharedLibrary.Models.Recipe rec = new SharedLibrary.Models.Recipe();
+
+                rec.RID = (decimal)item.BackendID;
+                rec.ProductID = bdh.GetProductBID(item.ProductId);
+                rec.Description = item.Description;
+                rec.ManufacturerID = item.Id;
+
+                if (item.FrontEndID != null)
+                    rec.FrontendID = item.FrontEndID;
+
+                bool success = bdh.UpdateRecipe(rec, "MANUFACTURER");
+
+                if (success)
+                    Console.WriteLine("DB Update Recipe BID");
+                else
+                    Console.WriteLine("DB Update Recipe BID failed");
+            }
+
+            //Update Ingredient MID
+            foreach (var item in ingredients.TableList)
+            {
+                Ingredient ingr = new Ingredient();
+
+                ingr.IID = (decimal)item.BackendID;
+                ingr.Price = (decimal)item.Price;
+                ingr.Filename = "";
+                ingr.MIMETYPE = "";
+                ingr.Ingredient_Image = null;
+                ingr.Description = item.Description;
+                ingr.Location_Top = item.LocationTop;
+                ingr.Location_Bottom = item.LocationBottom;
+                ingr.Location_Choc = item.LocationChoc;
+                ingr.Name = item.Name;
+                ingr.Quantity = item.Quantity;
+                ingr.CategoryId = (decimal)item.CategoryId;
+
+                if (item.Id != null)
+                    ingr.ManufacturerID = item.Id;
+
+                if (item.FrontEndID != null)
+                    ingr.FrontendID = item.FrontEndID;
+
+                bool success = bdh.UpdateIngredients(ingr);
+
+                if (success)
+                    Console.WriteLine("DB Update Ingredients executed");
+                else
+                    Console.WriteLine("DB Update Ingredients failed");
+            }
+
+            foreach (var item in customers.TableList)
+            {
+                bdh.UpdateCustomerMID((decimal)item.BackendID, item.Customer_ID, "MANUFACTURER");
+                Console.WriteLine("Update Customer ID");
+            }
 
             Console.WriteLine("Update MID complete");
         }
@@ -621,8 +716,6 @@ namespace CC_Synchronizer.AppService
             if (productInfo.TableList.Count > 0)
                 foreach (var item in productInfo.TableList)
                 {
-                    item.ProduktID = null;
-                    item.Name = item.Name + "1";
                     Send(7, item);
                 }
             
@@ -668,7 +761,7 @@ namespace CC_Synchronizer.AppService
             else
                 tableIdString = tableId.ToString();
 
-            Console.WriteLine("TableID to sent: " + tableIdString);
+            //Console.WriteLine("TableID to sent: " + tableIdString);
             socket.Send(Encoding.UTF8.GetBytes(tableIdString));
             Thread.Sleep(50);
 
@@ -683,7 +776,7 @@ namespace CC_Synchronizer.AppService
             }
 
             socket.Send(Encoding.UTF8.GetBytes(stringBytes));
-            Console.WriteLine("stringByte sent: " + stringBytes);
+            //Console.WriteLine("stringByte sent: " + stringBytes);
             Thread.Sleep(50);
             socket.Send(Encoding.UTF8.GetBytes(returnString));
             Console.WriteLine("Table " + tableIdString + " returned");
