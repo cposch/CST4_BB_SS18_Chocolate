@@ -561,20 +561,22 @@ namespace CC_Synchronizer.AppService
                 Console.WriteLine("Get Product from DB");
             }
 
-            foreach (var i in bdh.QueryAllIngredientsByLastUpdatedForManufacturer())
+            foreach (var i in bdh.QueryAllIngredientsByMID(null))
             {
-                ingredients.Add(new ShIngredient((int?)i.ManufacturerID, i.Description, (float)i.Price, i.Location_Top, i.Location_Bottom, i.Location_Choc, (int?)i.CategoryId, i.Name, (int)i.Quantity, (int)i.IID, (int?)i.FrontendID, null));
+                ingredients.Add(new ShIngredient((int?)i.ManufacturerID, i.Description, (float)i.Price, i.Location_Top, i.Location_Bottom, i.Location_Choc, (int?)i.CategoryId, i.Name, i.Quantity, (int)i.IID, (int?)i.FrontendID, null));
                 Console.WriteLine("Get Ingredient from DB");
             }
 
             foreach (var i in bdh.QueryAllCustomersByLastUpdatedForManufacturer())
             {
                 customers.Add(new ShCustomers((int?)i.Manufaturer_ID, i.FirstName, i.LastName, i.Address, "", i.City, i.Zip, i.Email, i.PhoneNumber, "", (int?)i.CustomerId, (int?)i.Frontend_ID, null));
+                Console.WriteLine("Get Customer from DB");
             }
 
             foreach (var i in bdh.QueryAllOrdersByLastUpdatedForManufacturer())
             {
                 orders.Add(new ShOrders((int?)i.Manufaturer_ID, (int?)bdh.GetCustomer(i.CustomerID).Manufaturer_ID, (float)i.OrderTotal, i.OrderTimeStamp, i.UserName, "", (int?)i.OrderId, (int?)i.Frontend_ID, null));
+                Console.WriteLine("Get Order from DB");
             }
         }
 
@@ -608,11 +610,43 @@ namespace CC_Synchronizer.AppService
                     Console.WriteLine("DB Update Recipe BID failed");
             }
 
-            //foreach (var item in customers.TableList)
-            //{
-            //    bdh.UpdateCustomerMID((decimal)item.BackendID, item.Customer_ID, "MANUFACTURER");
-            //    Console.WriteLine("Update Customer ID");
-            //}
+            //Update Ingredient MID
+            foreach (var item in ingredients.TableList)
+            {
+                Ingredient ingr = new Ingredient();
+
+                ingr.IID = (decimal)item.BackendID;
+                ingr.Price = (decimal)item.Price;
+                ingr.Filename = "";
+                ingr.MIMETYPE = "";
+                ingr.Ingredient_Image = null;
+                ingr.Description = item.Description;
+                ingr.Location_Top = item.LocationTop;
+                ingr.Location_Bottom = item.LocationBottom;
+                ingr.Location_Choc = item.LocationChoc;
+                ingr.Name = item.Name;
+                ingr.Quantity = item.Quantity;
+                ingr.CategoryId = (decimal)item.CategoryId;
+
+                if (item.Id != null)
+                    ingr.ManufacturerID = item.Id;
+
+                if (item.FrontEndID != null)
+                    ingr.FrontendID = item.FrontEndID;
+
+                bool success = bdh.UpdateIngredients(ingr);
+
+                if (success)
+                    Console.WriteLine("DB Update Ingredients executed");
+                else
+                    Console.WriteLine("DB Update Ingredients failed");
+            }
+
+            foreach (var item in customers.TableList)
+            {
+                bdh.UpdateCustomerMID((decimal)item.BackendID, item.Customer_ID, "MANUFACTURER");
+                Console.WriteLine("Update Customer ID");
+            }
 
             Console.WriteLine("Update MID complete");
         }
