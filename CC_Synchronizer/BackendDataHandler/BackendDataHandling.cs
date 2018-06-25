@@ -15,7 +15,7 @@ namespace BackendDataHandler
         BackendDBEntities2 db = new BackendDBEntities2();
 
         //Inserts ---------------------------------------------------------------
-
+        #region Inserts
         public void AddProduct(Product p)
         {
             DEMO_PRODUCT_INFO pt = new DEMO_PRODUCT_INFO();
@@ -151,9 +151,9 @@ namespace BackendDataHandler
 
         }
 
-
+        #endregion
         //QueryALL -------------------------------------------------------------
-
+        #region Queries
         public List<Product> QueryAllProducts()
         {
             return db.DEMO_PRODUCT_INFO.Select(w => new Product()
@@ -740,8 +740,9 @@ namespace BackendDataHandler
             IngC.ICID = db.INGREDIENT_CATEGORY.First(A => A.MANUFACTURER_ID == MID).ID;
             return IngC.ICID;
         }
+        #endregion
         //updates -----------------------------------------------
-
+        #region Updates
         //Product Update -------------------------------------------------------------
 
         public Boolean UpdateProduct(Product prod, string lub)//Product,LastUpdateBy
@@ -755,10 +756,10 @@ namespace BackendDataHandler
             result.CATEGORY = prod.Category;
             result.PRODUCT_AVAIL = prod.Product_Avail;
             result.LIST_PRICE = prod.List_Price;
-            result.PRODUCT_IMAGE = prod.Product_Image;
-            result.MIMETYPE = prod.MIMETYPE;
-            result.FILENAME = prod.Filename;
-            result.IMAGE_LAST_UPDATE = prod.Image_Last_Update;
+            //result.PRODUCT_IMAGE = prod.Product_Image;
+            //result.MIMETYPE = prod.MIMETYPE;
+            //result.FILENAME = prod.Filename;
+            //result.IMAGE_LAST_UPDATE = prod.Image_Last_Update;
             result.TAGS = prod.Tags;
             result.SALE_PRICE = prod.Sale_Price;
             result.SALE_BEGIN = prod.Sale_Begin;
@@ -1017,8 +1018,9 @@ namespace BackendDataHandler
                 return false;
             }
         }
+        #endregion
 
-
+        #region LastSynched
         //Update LastSynched
         public Boolean UpdateManufacturerLastSynched()
         {
@@ -1258,6 +1260,7 @@ namespace BackendDataHandler
                 return false;
             }
         }
+        #endregion
     }
 }
 
