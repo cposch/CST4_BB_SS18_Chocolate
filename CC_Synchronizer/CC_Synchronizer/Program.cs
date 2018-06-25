@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using BackendDataHandler;
 using CC_Synchronizer.AppService;
-using CC_Synchronizer.FrontendService;
 using SharedLibrary.Models;
 using RESTFrontendService;
 using System.ServiceModel.Web;
