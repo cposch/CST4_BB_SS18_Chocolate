@@ -607,69 +607,33 @@ namespace CC_Synchronizer.AppService
         private void UpdateMID()
         {
             Console.WriteLine("Update MID startet");
+
+            //Update Product MID
             foreach (var item in productInfo.TableList)
             {
                 bdh.UpdateProductMID((decimal)item.BackendID, item.ProduktID, "MANUFACTURER");
                 Console.WriteLine("Update Product ID");
             }
 
-            //Update Recipe MID
-            foreach (var item in recipe.TableList)
-            {
-                SharedLibrary.Models.Recipe rec = new SharedLibrary.Models.Recipe();
-
-                rec.RID = (decimal)item.BackendID;
-                rec.ProductID = bdh.GetProductBID(item.ProductId);
-                rec.Description = item.Description;
-                rec.ManufacturerID = item.Id;
-
-                if (item.FrontEndID != null)
-                    rec.FrontendID = item.FrontEndID;
-
-                bool success = bdh.UpdateRecipe(rec, "MANUFACTURER");
-
-                if (success)
-                    Console.WriteLine("DB Update Recipe BID");
-                else
-                    Console.WriteLine("DB Update Recipe BID failed");
-            }
-
             //Update Ingredient MID
             foreach (var item in ingredients.TableList)
             {
-                Ingredient ingr = new Ingredient();
-
-                ingr.IID = (decimal)item.BackendID;
-                ingr.Price = (decimal)item.Price;
-                ingr.Filename = "";
-                ingr.MIMETYPE = "";
-                ingr.Ingredient_Image = null;
-                ingr.Description = item.Description;
-                ingr.Location_Top = item.LocationTop;
-                ingr.Location_Bottom = item.LocationBottom;
-                ingr.Location_Choc = item.LocationChoc;
-                ingr.Name = item.Name;
-                ingr.Quantity = item.Quantity;
-                ingr.CategoryId = (decimal)item.CategoryId;
-
-                if (item.Id != null)
-                    ingr.ManufacturerID = item.Id;
-
-                if (item.FrontEndID != null)
-                    ingr.FrontendID = item.FrontEndID;
-
-                bool success = bdh.UpdateIngredients(ingr);
-
-                if (success)
-                    Console.WriteLine("DB Update Ingredients executed");
-                else
-                    Console.WriteLine("DB Update Ingredients failed");
+                bdh.UpdateIngredientsMID((decimal)item.BackendID, item.Id, "MANUFACTURER");
+                Console.WriteLine("Update Ingredients ID");
             }
 
+            //Update Customer MID
             foreach (var item in customers.TableList)
             {
                 bdh.UpdateCustomerMID((decimal)item.BackendID, item.Customer_ID, "MANUFACTURER");
                 Console.WriteLine("Update Customer ID");
+            }
+
+            //Update Recipe MID
+            foreach (var item in recipe.TableList)
+            {
+                bdh.UpdateRecipeMID((decimal)item.BackendID, item.Id, "MANUFACTURER");
+                Console.WriteLine("Update Recipe ID");
             }
 
             Console.WriteLine("Update MID complete");
