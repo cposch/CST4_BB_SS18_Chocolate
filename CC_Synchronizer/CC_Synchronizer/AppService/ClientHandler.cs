@@ -98,7 +98,7 @@ namespace CC_Synchronizer.AppService
             {
                 length = socket.Receive(buffer);
                 recievedString = Encoding.ASCII.GetString(buffer, 0, length);
-                //Console.WriteLine(recievedString);
+                Console.WriteLine(recievedString);
                 //Console.WriteLine(buffer.Length);
 
                 if (buffer.Length == 2)
@@ -555,29 +555,53 @@ namespace CC_Synchronizer.AppService
         {
             Console.WriteLine("Get DB Content start");
 
+            foreach (var i in bdh.QueryAllProductsbyMID(null))
+            {
+                productInfo.Add(new ShProductInfo((int?)i.Manufaturer_ID, i.Product_Name, i.Product_Description, i.Category, i.Product_Avail, (float)i.List_Price, (float?)i.Sale_Price, i.Sale_Begin, i.Sale_End/*, null*/, (int?)i.Product_ID, (int?)i.Frontend_ID, null, i.Filename));
+                Console.WriteLine("Get new Product from DB");
+            }
+
             foreach (var i in bdh.QueryAllProductsByLastUpdatedForManufacturer())
             {
                 productInfo.Add(new ShProductInfo((int?)i.Manufaturer_ID, i.Product_Name, i.Product_Description, i.Category, i.Product_Avail, (float)i.List_Price, (float?)i.Sale_Price, i.Sale_Begin, i.Sale_End/*, null*/, (int?)i.Product_ID, (int?)i.Frontend_ID, null, i.Filename));
-                Console.WriteLine("Get Product from DB");
+                Console.WriteLine("Get updated Product from DB");
             }
 
             foreach (var i in bdh.QueryAllIngredientsByMID(null))
             {
                 ingredients.Add(new ShIngredient((int?)i.ManufacturerID, i.Description, (float)i.Price, i.Location_Top, i.Location_Bottom, i.Location_Choc, (int?)i.CategoryId, i.Name, i.Quantity, (int)i.IID, (int?)i.FrontendID, null));
-                Console.WriteLine("Get Ingredient from DB");
+                Console.WriteLine("Get new Ingredient from DB");
+            }
+
+            foreach (var i in bdh.QueryAllIngredientsByLastUpdatedForManufacturer())
+            {
+                ingredients.Add(new ShIngredient((int?)i.ManufacturerID, i.Description, (float)i.Price, i.Location_Top, i.Location_Bottom, i.Location_Choc, (int?)i.CategoryId, i.Name, i.Quantity, (int)i.IID, (int?)i.FrontendID, null));
+                Console.WriteLine("Get updated Ingredient from DB");
+            }
+
+            foreach (var i in bdh.QueryAllCustomerByMID(null))
+            {
+                customers.Add(new ShCustomers((int?)i.Manufaturer_ID, i.FirstName, i.LastName, i.Address, "", i.City, i.Zip, i.Email, i.PhoneNumber, "", (int?)i.CustomerId, (int?)i.Frontend_ID, null));
+                Console.WriteLine("Get new Customer from DB");
             }
 
             foreach (var i in bdh.QueryAllCustomersByLastUpdatedForManufacturer())
             {
                 customers.Add(new ShCustomers((int?)i.Manufaturer_ID, i.FirstName, i.LastName, i.Address, "", i.City, i.Zip, i.Email, i.PhoneNumber, "", (int?)i.CustomerId, (int?)i.Frontend_ID, null));
-                Console.WriteLine("Get Customer from DB");
+                Console.WriteLine("Get updated Customer from DB");
             }
 
-            foreach (var i in bdh.QueryAllOrdersByLastUpdatedForManufacturer())
-            {
-                orders.Add(new ShOrders((int?)i.Manufaturer_ID, (int?)bdh.GetCustomer(i.CustomerID).Manufaturer_ID, (float)i.OrderTotal, i.OrderTimeStamp, i.UserName, "", (int?)i.OrderId, (int?)i.Frontend_ID, null));
-                Console.WriteLine("Get Order from DB");
-            }
+            //foreach (var i in bdh.QueryAllOrdersbyMID(null))
+            //{
+            //    orders.Add(new ShOrders((int?)i.Manufaturer_ID, (int?)bdh.GetCustomer(i.CustomerID).Manufaturer_ID, (float)i.OrderTotal, i.OrderTimeStamp, i.UserName, "", (int?)i.OrderId, (int?)i.Frontend_ID, null));
+            //    Console.WriteLine("Get new Order from DB");
+            //}
+
+            //foreach (var i in bdh.QueryAllOrdersByLastUpdatedForManufacturer())
+            //{
+            //    orders.Add(new ShOrders((int?)i.Manufaturer_ID, (int?)bdh.GetCustomer(i.CustomerID).Manufaturer_ID, (float)i.OrderTotal, i.OrderTimeStamp, i.UserName, "", (int?)i.OrderId, (int?)i.Frontend_ID, null));
+            //    Console.WriteLine("Get updated Order from DB");
+            //}
         }
 
         private void UpdateMID()
@@ -737,7 +761,7 @@ namespace CC_Synchronizer.AppService
             else
                 tableIdString = tableId.ToString();
 
-            Console.WriteLine("TableID to sent: " + tableIdString);
+            //Console.WriteLine("TableID to sent: " + tableIdString);
             socket.Send(Encoding.UTF8.GetBytes(tableIdString));
             Thread.Sleep(50);
 
@@ -752,7 +776,7 @@ namespace CC_Synchronizer.AppService
             }
 
             socket.Send(Encoding.UTF8.GetBytes(stringBytes));
-            Console.WriteLine("stringByte sent: " + stringBytes);
+            //Console.WriteLine("stringByte sent: " + stringBytes);
             Thread.Sleep(50);
             socket.Send(Encoding.UTF8.GetBytes(returnString));
             Console.WriteLine("Table " + tableIdString + " returned");
