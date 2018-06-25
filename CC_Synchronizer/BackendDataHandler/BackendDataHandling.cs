@@ -432,6 +432,26 @@ namespace BackendDataHandler
             }).ToList();
         }
 
+        public List<Customer> QueryAllCustomerByMID(decimal? MID)
+        {
+            return db.DEMO_CUSTOMERS.Where(W=>W.MANUFACTURER_ID.Equals(MID)).Select(w => new Customer()
+            {
+
+                CustomerId = w.CUSTOMER_ID,
+                FirstName = w.CUST_FIRST_NAME,
+                LastName = w.CUST_LAST_NAME,
+                Address = w.CUST_STREET_ADDRESS1,
+                City = w.CUST_CITY,
+                State = w.CUST_STATE,
+                Zip = w.CUST_POSTAL_CODE,
+                Email = w.CUST_EMAIL,
+                PhoneNumber = w.PHONE_NUMBER1,
+                Url = w.URL,
+                CreditLimit = w.CREDIT_LIMIT,
+                Tags = w.TAGS
+            }).ToList();
+        }
+
         public Customer GetCustomer(decimal? CID)
         {
             return db.DEMO_CUSTOMERS.Where(w => w.CUSTOMER_ID.Equals(CID)).Select(w => new Customer()
