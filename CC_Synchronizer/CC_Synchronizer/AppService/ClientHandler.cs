@@ -549,6 +549,7 @@ namespace CC_Synchronizer.AppService
             }
 
             //ToDo: DB fuctions for Package, RecipeIngedients, Rule, RuleCategory, Shape
+            Console.WriteLine("DB Input finished");
         }
 
         private void GetDbContent()
@@ -602,6 +603,7 @@ namespace CC_Synchronizer.AppService
             //    orders.Add(new ShOrders((int?)i.Manufaturer_ID, (int?)bdh.GetCustomer(i.CustomerID).Manufaturer_ID, (float)i.OrderTotal, i.OrderTimeStamp, i.UserName, "", (int?)i.OrderId, (int?)i.Frontend_ID, null));
             //    Console.WriteLine("Get updated Order from DB");
             //}
+            Console.WriteLine("Get DB Content finished");
         }
 
         private void UpdateMID()
