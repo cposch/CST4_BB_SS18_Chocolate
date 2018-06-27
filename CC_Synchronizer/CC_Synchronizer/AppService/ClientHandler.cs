@@ -105,7 +105,7 @@ namespace CC_Synchronizer.AppService
                 {
                     buffer = new byte[10];
                     TableId = int.Parse(recievedString);
-                    Console.WriteLine("TableID: "+TableId.ToString());
+                    //Console.WriteLine("TableID: "+TableId.ToString());
                     continue;
                 }
                 else if (buffer.Length == 10)
@@ -114,7 +114,7 @@ namespace CC_Synchronizer.AppService
                     {
                         wrongRecieving = true;
                         recievedString = recievedString.Remove(9);
-                        Console.WriteLine("Wrong Recieving: Edited: " + recievedString);
+                        //Console.WriteLine("Wrong Recieving: Edited: " + recievedString);
                     }
 
                     buffer = new byte[int.Parse(recievedString)];
