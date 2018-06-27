@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
-using BackendDataHandler;
 using CC_Synchronizer.AppService;
-using SharedLibrary.Models;
 using RESTFrontendService;
 using System.ServiceModel.Web;
 using System.ServiceModel.Description;
